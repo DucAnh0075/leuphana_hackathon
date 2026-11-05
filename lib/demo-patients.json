@@ -1,0 +1,3102 @@
+{
+  "asOf": "2026-11-05T16:30:00",
+  "synthetic": true,
+  "patients": [
+    {
+      "id": "26004182",
+      "first": "Erika",
+      "name": "Berger",
+      "birth": "14.03.1948",
+      "sex": "weiblich",
+      "room": "201",
+      "bed": "A",
+      "admission": "04.11.2026",
+      "team": "Dr. M. Weber",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "A Rh+",
+      "status": "Stationär",
+      "diagnoses": [
+        {
+          "code": "I50.9",
+          "title": "Chronische Herzinsuffizienz"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Penicillin (anamnestisch)"
+      ],
+      "notes": "Belastungsdyspnoe; stationäre Verlaufskontrolle. Wach, orientiert, selbstständig bei der Nahrungsaufnahme.",
+      "contact": {
+        "name": "Jana Berger",
+        "relationship": "Tochter",
+        "phone": "+49 (0)000 200 01"
+      },
+      "medication": [
+        {
+          "name": "Ramipril",
+          "dose": "2,5 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Torasemid",
+          "dose": "5 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 134,
+          "bpDia": 74,
+          "pulse": 74,
+          "temperature": 36.6,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "08:00",
+          "bpSys": 130,
+          "bpDia": 72,
+          "pulse": 70,
+          "temperature": 36.7,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "10:00",
+          "bpSys": 127,
+          "bpDia": 71,
+          "pulse": 72,
+          "temperature": 36.6,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "12:00",
+          "bpSys": 124,
+          "bpDia": 74,
+          "pulse": 71,
+          "temperature": 36.5,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "14:00",
+          "bpSys": 126,
+          "bpDia": 72,
+          "pulse": 69,
+          "temperature": 36.7,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "16:00",
+          "bpSys": 129,
+          "bpDia": 73,
+          "pulse": 72,
+          "temperature": 36.6,
+          "spo2": 98,
+          "resp": 18
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "12,2",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "7,1",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "6",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "137",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "3,8",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "0,80",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "04.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 201, Bett A. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004182-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004182-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Erika Berger, geboren am 14.03.1948. Fallnummer 26004182. Benannte Kontaktperson: Jana Berger (Tochter). Kontaktdaten: +49 (0)000 200 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Nur bei fehlender Einwilligungsfähigkeit und nach Prüfung der konkreten Behandlungssituation."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Jana Berger ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004182-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004182-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Erika Berger, geboren am 14.03.1948. Fallnummer 26004182. Benannte Kontaktperson: Jana Berger (Tochter). Kontaktdaten: +49 (0)000 200 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004182-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004182-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Erika Berger, geboren am 14.03.1948. Fallnummer 26004182. Benannte Kontaktperson: Jana Berger (Tochter). Kontaktdaten: +49 (0)000 200 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Jana Berger als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004182-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004182-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Erika Berger, geboren am 14.03.1948. Fallnummer 26004182. Benannte Kontaktperson: Jana Berger (Tochter). Kontaktdaten: +49 (0)000 200 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Jana Berger darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Jana Berger",
+          "condition": "Nur bei fehlender Einwilligungsfähigkeit und nach Prüfung der konkreten Behandlungssituation.",
+          "exclusions": [
+            "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+          ],
+          "person": "Jana Berger",
+          "documentId": "26004182-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Jana Berger ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004182-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Jana Berger",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Jana Berger",
+          "documentId": "26004182-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Jana Berger als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Jana Berger",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Jana Berger",
+          "documentId": "26004182-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Jana Berger darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    },
+    {
+      "id": "26004179",
+      "first": "Karl",
+      "name": "Hoffmann",
+      "birth": "22.08.1952",
+      "sex": "männlich",
+      "room": "201",
+      "bed": "B",
+      "admission": "03.11.2026",
+      "team": "Dr. J. Peters",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "0 Rh+",
+      "status": "Stationär",
+      "diagnoses": [
+        {
+          "code": "J44.9",
+          "title": "Chronisch obstruktive Lungenerkrankung"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Keine Allergie dokumentiert"
+      ],
+      "notes": "Aufnahme zur Abklärung zunehmender Belastungsdyspnoe. Mobilisation mit Pausen; Angehörigengespräch geplant.",
+      "contact": {
+        "name": "Martin Hoffmann",
+        "relationship": "Sohn",
+        "phone": "+49 (0)000 201 01"
+      },
+      "medication": [
+        {
+          "name": "Ramipril",
+          "dose": "2,5 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Paracetamol",
+          "dose": "500 mg",
+          "schedule": "bei Bedarf · Demoeintrag",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 136,
+          "bpDia": 75,
+          "pulse": 76,
+          "temperature": 36.7,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "08:00",
+          "bpSys": 132,
+          "bpDia": 73,
+          "pulse": 72,
+          "temperature": 36.8,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "10:00",
+          "bpSys": 129,
+          "bpDia": 72,
+          "pulse": 74,
+          "temperature": 36.7,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "12:00",
+          "bpSys": 126,
+          "bpDia": 75,
+          "pulse": 73,
+          "temperature": 36.6,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "14:00",
+          "bpSys": 128,
+          "bpDia": 73,
+          "pulse": 71,
+          "temperature": 36.8,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "16:00",
+          "bpSys": 131,
+          "bpDia": 74,
+          "pulse": 74,
+          "temperature": 36.7,
+          "spo2": 96,
+          "resp": 16
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "12,4",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "7,5",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "8",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "138",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "4,0",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "0,84",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "03.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 201, Bett B. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004179-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004179-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Karl Hoffmann, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Hoffmann (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Martin Hoffmann ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004179-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004179-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Karl Hoffmann, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Hoffmann (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004179-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004179-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Karl Hoffmann, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Hoffmann (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Hoffmann als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004179-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004179-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Karl Hoffmann, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Hoffmann (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Martin Hoffmann darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Martin Hoffmann",
+          "condition": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann.",
+          "exclusions": [
+            "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+          ],
+          "person": "Martin Hoffmann",
+          "documentId": "26004179-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Martin Hoffmann ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004179-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Martin Hoffmann",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Martin Hoffmann",
+          "documentId": "26004179-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Hoffmann als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Martin Hoffmann",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Martin Hoffmann",
+          "documentId": "26004179-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Martin Hoffmann darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    },
+    {
+      "id": "26004175",
+      "first": "Aylin",
+      "name": "Yilmaz",
+      "birth": "09.11.1965",
+      "sex": "weiblich",
+      "room": "202",
+      "bed": "A",
+      "admission": "02.11.2026",
+      "team": "Dr. M. Weber",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "B Rh+",
+      "status": "Stationär",
+      "diagnoses": [
+        {
+          "code": "E11.9",
+          "title": "Diabetes mellitus Typ 2"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Keine Allergie dokumentiert"
+      ],
+      "notes": "Stationäre Stoffwechselkontrolle. Patientin führt ihr Selbstmessprotokoll; Schulungstermin dokumentiert.",
+      "contact": {
+        "name": "Deniz Yilmaz",
+        "relationship": "Ehemann",
+        "phone": "+49 (0)000 202 01"
+      },
+      "medication": [
+        {
+          "name": "Metformin",
+          "dose": "500 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Paracetamol",
+          "dose": "500 mg",
+          "schedule": "bei Bedarf · Demoeintrag",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 138,
+          "bpDia": 76,
+          "pulse": 78,
+          "temperature": 36.7,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "08:00",
+          "bpSys": 134,
+          "bpDia": 74,
+          "pulse": 74,
+          "temperature": 36.8,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "10:00",
+          "bpSys": 131,
+          "bpDia": 73,
+          "pulse": 76,
+          "temperature": 36.7,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "12:00",
+          "bpSys": 128,
+          "bpDia": 76,
+          "pulse": 75,
+          "temperature": 36.6,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "14:00",
+          "bpSys": 130,
+          "bpDia": 74,
+          "pulse": 73,
+          "temperature": 36.8,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "16:00",
+          "bpSys": 133,
+          "bpDia": 75,
+          "pulse": 76,
+          "temperature": 36.7,
+          "spo2": 97,
+          "resp": 17
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "12,6",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "7,9",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "10",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "139",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "4,2",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "0,88",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "02.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 202, Bett A. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004175-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004175-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Aylin Yilmaz, geboren am 09.11.1965. Fallnummer 26004175. Benannte Kontaktperson: Deniz Yilmaz (Ehemann). Kontaktdaten: +49 (0)000 202 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Für die ausdrücklich beschriebenen gesundheitlichen Angelegenheiten; der aktuelle Wille der betroffenen Person geht vor."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Deniz Yilmaz ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004175-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004175-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Aylin Yilmaz, geboren am 09.11.1965. Fallnummer 26004175. Benannte Kontaktperson: Deniz Yilmaz (Ehemann). Kontaktdaten: +49 (0)000 202 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004175-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004175-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Aylin Yilmaz, geboren am 09.11.1965. Fallnummer 26004175. Benannte Kontaktperson: Deniz Yilmaz (Ehemann). Kontaktdaten: +49 (0)000 202 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Deniz Yilmaz als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004175-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004175-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Aylin Yilmaz, geboren am 09.11.1965. Fallnummer 26004175. Benannte Kontaktperson: Deniz Yilmaz (Ehemann). Kontaktdaten: +49 (0)000 202 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Deniz Yilmaz darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Deniz Yilmaz",
+          "condition": "Für die ausdrücklich beschriebenen gesundheitlichen Angelegenheiten; der aktuelle Wille der betroffenen Person geht vor.",
+          "exclusions": [
+            "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+          ],
+          "person": "Deniz Yilmaz",
+          "documentId": "26004175-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Deniz Yilmaz ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004175-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Deniz Yilmaz",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Deniz Yilmaz",
+          "documentId": "26004175-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Deniz Yilmaz als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Deniz Yilmaz",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Deniz Yilmaz",
+          "documentId": "26004175-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Deniz Yilmaz darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    },
+    {
+      "id": "26004188",
+      "first": "Thomas",
+      "name": "Schneider",
+      "birth": "16.05.1959",
+      "sex": "männlich",
+      "room": "202",
+      "bed": "B",
+      "admission": "05.11.2026",
+      "team": "Dr. J. Peters",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "A Rh−",
+      "status": "Neuaufnahme",
+      "diagnoses": [
+        {
+          "code": "R55",
+          "title": "Synkope und Kollaps"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Keine Allergie dokumentiert"
+      ],
+      "notes": "Aufnahme nach kurzzeitiger Bewusstlosigkeit. Aktuell orientiert; Verlaufskontrolle und Befundsichtung.",
+      "contact": {
+        "name": "Lea Schneider",
+        "relationship": "Tochter",
+        "phone": "+49 (0)000 203 01"
+      },
+      "medication": [
+        {
+          "name": "Ramipril",
+          "dose": "2,5 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Paracetamol",
+          "dose": "500 mg",
+          "schedule": "bei Bedarf · Demoeintrag",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 140,
+          "bpDia": 77,
+          "pulse": 80,
+          "temperature": 36.8,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "08:00",
+          "bpSys": 136,
+          "bpDia": 75,
+          "pulse": 76,
+          "temperature": 36.9,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "10:00",
+          "bpSys": 133,
+          "bpDia": 74,
+          "pulse": 78,
+          "temperature": 36.8,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "12:00",
+          "bpSys": 130,
+          "bpDia": 77,
+          "pulse": 77,
+          "temperature": 36.7,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "14:00",
+          "bpSys": 132,
+          "bpDia": 75,
+          "pulse": 75,
+          "temperature": 36.9,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "16:00",
+          "bpSys": 135,
+          "bpDia": 76,
+          "pulse": 78,
+          "temperature": 36.8,
+          "spo2": 98,
+          "resp": 18
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "12,8",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "8,3",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "12",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "140",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "3,8",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "0,92",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "05.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 202, Bett B. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004188-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004188-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Thomas Schneider, geboren am 16.05.1959. Fallnummer 26004188. Benannte Kontaktperson: Lea Schneider (Tochter). Kontaktdaten: +49 (0)000 203 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Nur bei fehlender Einwilligungsfähigkeit und nach Prüfung der konkreten Behandlungssituation."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Lea Schneider ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004188-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004188-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Thomas Schneider, geboren am 16.05.1959. Fallnummer 26004188. Benannte Kontaktperson: Lea Schneider (Tochter). Kontaktdaten: +49 (0)000 203 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004188-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004188-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Thomas Schneider, geboren am 16.05.1959. Fallnummer 26004188. Benannte Kontaktperson: Lea Schneider (Tochter). Kontaktdaten: +49 (0)000 203 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Lea Schneider als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004188-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004188-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Thomas Schneider, geboren am 16.05.1959. Fallnummer 26004188. Benannte Kontaktperson: Lea Schneider (Tochter). Kontaktdaten: +49 (0)000 203 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Lea Schneider darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Lea Schneider",
+          "condition": "Nur bei fehlender Einwilligungsfähigkeit und nach Prüfung der konkreten Behandlungssituation.",
+          "exclusions": [
+            "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+          ],
+          "person": "Lea Schneider",
+          "documentId": "26004188-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Lea Schneider ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004188-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Lea Schneider",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Lea Schneider",
+          "documentId": "26004188-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Lea Schneider als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Lea Schneider",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Lea Schneider",
+          "documentId": "26004188-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Lea Schneider darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    },
+    {
+      "id": "26004169",
+      "first": "Linh",
+      "name": "Nguyen",
+      "birth": "27.02.1971",
+      "sex": "weiblich",
+      "room": "203",
+      "bed": "A",
+      "admission": "01.11.2026",
+      "team": "Dr. M. Weber",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "A Rh+",
+      "status": "Stationär",
+      "diagnoses": [
+        {
+          "code": "K29.7",
+          "title": "Gastritis"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Latex"
+      ],
+      "notes": "Abklärung anhaltender Oberbauchbeschwerden. Patientin mobil, orale Nahrungsaufnahme wieder möglich.",
+      "contact": {
+        "name": "Minh Nguyen",
+        "relationship": "Bruder",
+        "phone": "+49 (0)000 204 01"
+      },
+      "medication": [
+        {
+          "name": "Pantoprazol",
+          "dose": "20 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Paracetamol",
+          "dose": "500 mg",
+          "schedule": "bei Bedarf · Demoeintrag",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 142,
+          "bpDia": 78,
+          "pulse": 82,
+          "temperature": 36.8,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "08:00",
+          "bpSys": 138,
+          "bpDia": 76,
+          "pulse": 78,
+          "temperature": 36.9,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "10:00",
+          "bpSys": 135,
+          "bpDia": 75,
+          "pulse": 80,
+          "temperature": 36.8,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "12:00",
+          "bpSys": 132,
+          "bpDia": 78,
+          "pulse": 79,
+          "temperature": 36.7,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "14:00",
+          "bpSys": 134,
+          "bpDia": 76,
+          "pulse": 77,
+          "temperature": 36.9,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "16:00",
+          "bpSys": 137,
+          "bpDia": 77,
+          "pulse": 80,
+          "temperature": 36.8,
+          "spo2": 96,
+          "resp": 16
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "13,0",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "8,7",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "14",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "137",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "4,0",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "0,96",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "01.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 203, Bett A. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004169-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004169-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Linh Nguyen, geboren am 27.02.1971. Fallnummer 26004169. Benannte Kontaktperson: Minh Nguyen (Bruder). Kontaktdaten: +49 (0)000 204 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Minh Nguyen ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004169-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004169-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Linh Nguyen, geboren am 27.02.1971. Fallnummer 26004169. Benannte Kontaktperson: Minh Nguyen (Bruder). Kontaktdaten: +49 (0)000 204 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004169-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004169-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Linh Nguyen, geboren am 27.02.1971. Fallnummer 26004169. Benannte Kontaktperson: Minh Nguyen (Bruder). Kontaktdaten: +49 (0)000 204 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Minh Nguyen als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004169-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004169-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Linh Nguyen, geboren am 27.02.1971. Fallnummer 26004169. Benannte Kontaktperson: Minh Nguyen (Bruder). Kontaktdaten: +49 (0)000 204 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Minh Nguyen darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Minh Nguyen",
+          "condition": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann.",
+          "exclusions": [
+            "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+          ],
+          "person": "Minh Nguyen",
+          "documentId": "26004169-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Minh Nguyen ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004169-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Minh Nguyen",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Minh Nguyen",
+          "documentId": "26004169-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Minh Nguyen als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Minh Nguyen",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Minh Nguyen",
+          "documentId": "26004169-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Minh Nguyen darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    },
+    {
+      "id": "26004183",
+      "first": "Helga",
+      "name": "Koch",
+      "birth": "04.12.1943",
+      "sex": "weiblich",
+      "room": "203",
+      "bed": "B",
+      "admission": "04.11.2026",
+      "team": "Dr. J. Peters",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "0 Rh+",
+      "status": "Entlassplanung",
+      "diagnoses": [
+        {
+          "code": "E86",
+          "title": "Volumenmangel"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Keine Allergie dokumentiert"
+      ],
+      "notes": "Aufnahme bei reduzierter Flüssigkeitsaufnahme. Unterstützung bei der Mobilisation; Entlassmanagement eingebunden.",
+      "contact": {
+        "name": "Petra Koch",
+        "relationship": "Tochter",
+        "phone": "+49 (0)000 205 01"
+      },
+      "medication": [
+        {
+          "name": "Ramipril",
+          "dose": "2,5 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Paracetamol",
+          "dose": "500 mg",
+          "schedule": "bei Bedarf · Demoeintrag",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 144,
+          "bpDia": 79,
+          "pulse": 84,
+          "temperature": 36.9,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "08:00",
+          "bpSys": 140,
+          "bpDia": 77,
+          "pulse": 80,
+          "temperature": 37,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "10:00",
+          "bpSys": 137,
+          "bpDia": 76,
+          "pulse": 82,
+          "temperature": 36.9,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "12:00",
+          "bpSys": 134,
+          "bpDia": 79,
+          "pulse": 81,
+          "temperature": 36.8,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "14:00",
+          "bpSys": 136,
+          "bpDia": 77,
+          "pulse": 79,
+          "temperature": 37,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "16:00",
+          "bpSys": 139,
+          "bpDia": 78,
+          "pulse": 82,
+          "temperature": 36.9,
+          "spo2": 97,
+          "resp": 17
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "13,2",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "9,1",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "16",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "138",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "4,2",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "1,00",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "04.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 203, Bett B. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004183-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004183-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Helga Koch, geboren am 04.12.1943. Fallnummer 26004183. Benannte Kontaktperson: Petra Koch (Tochter). Kontaktdaten: +49 (0)000 205 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Für die ausdrücklich beschriebenen gesundheitlichen Angelegenheiten; der aktuelle Wille der betroffenen Person geht vor."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Petra Koch ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004183-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004183-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Helga Koch, geboren am 04.12.1943. Fallnummer 26004183. Benannte Kontaktperson: Petra Koch (Tochter). Kontaktdaten: +49 (0)000 205 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004183-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004183-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Helga Koch, geboren am 04.12.1943. Fallnummer 26004183. Benannte Kontaktperson: Petra Koch (Tochter). Kontaktdaten: +49 (0)000 205 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Petra Koch als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004183-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004183-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Helga Koch, geboren am 04.12.1943. Fallnummer 26004183. Benannte Kontaktperson: Petra Koch (Tochter). Kontaktdaten: +49 (0)000 205 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Petra Koch darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Petra Koch",
+          "condition": "Für die ausdrücklich beschriebenen gesundheitlichen Angelegenheiten; der aktuelle Wille der betroffenen Person geht vor.",
+          "exclusions": [
+            "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+          ],
+          "person": "Petra Koch",
+          "documentId": "26004183-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Petra Koch ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004183-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Petra Koch",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Petra Koch",
+          "documentId": "26004183-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Petra Koch als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Petra Koch",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Petra Koch",
+          "documentId": "26004183-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Petra Koch darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    },
+    {
+      "id": "26004172",
+      "first": "Michael",
+      "name": "Wagner",
+      "birth": "18.07.1962",
+      "sex": "männlich",
+      "room": "204",
+      "bed": "A",
+      "admission": "02.11.2026",
+      "team": "Dr. M. Weber",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "B Rh+",
+      "status": "Stationär",
+      "diagnoses": [
+        {
+          "code": "I48.9",
+          "title": "Vorhofflimmern"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Keine Allergie dokumentiert"
+      ],
+      "notes": "Stationäre Rhythmusabklärung. Patient berichtet über intermittierendes Herzklopfen; Telemetrieverlauf dokumentiert.",
+      "contact": {
+        "name": "Sabine Wagner",
+        "relationship": "Ehefrau",
+        "phone": "+49 (0)000 206 01"
+      },
+      "medication": [
+        {
+          "name": "Ramipril",
+          "dose": "2,5 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Paracetamol",
+          "dose": "500 mg",
+          "schedule": "bei Bedarf · Demoeintrag",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 146,
+          "bpDia": 80,
+          "pulse": 86,
+          "temperature": 37,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "08:00",
+          "bpSys": 142,
+          "bpDia": 78,
+          "pulse": 82,
+          "temperature": 37.1,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "10:00",
+          "bpSys": 139,
+          "bpDia": 77,
+          "pulse": 84,
+          "temperature": 37,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "12:00",
+          "bpSys": 136,
+          "bpDia": 80,
+          "pulse": 83,
+          "temperature": 36.9,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "14:00",
+          "bpSys": 138,
+          "bpDia": 78,
+          "pulse": 81,
+          "temperature": 37.1,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "16:00",
+          "bpSys": 141,
+          "bpDia": 79,
+          "pulse": 84,
+          "temperature": 37,
+          "spo2": 98,
+          "resp": 18
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "13,4",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "9,5",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "18",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "139",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "3,8",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "1,04",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "02.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 204, Bett A. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004172-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004172-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Michael Wagner, geboren am 18.07.1962. Fallnummer 26004172. Benannte Kontaktperson: Sabine Wagner (Ehefrau). Kontaktdaten: +49 (0)000 206 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Nur bei fehlender Einwilligungsfähigkeit und nach Prüfung der konkreten Behandlungssituation."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Sabine Wagner ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004172-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004172-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Michael Wagner, geboren am 18.07.1962. Fallnummer 26004172. Benannte Kontaktperson: Sabine Wagner (Ehefrau). Kontaktdaten: +49 (0)000 206 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004172-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004172-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Michael Wagner, geboren am 18.07.1962. Fallnummer 26004172. Benannte Kontaktperson: Sabine Wagner (Ehefrau). Kontaktdaten: +49 (0)000 206 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Sabine Wagner als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004172-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004172-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Michael Wagner, geboren am 18.07.1962. Fallnummer 26004172. Benannte Kontaktperson: Sabine Wagner (Ehefrau). Kontaktdaten: +49 (0)000 206 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Sabine Wagner darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Sabine Wagner",
+          "condition": "Nur bei fehlender Einwilligungsfähigkeit und nach Prüfung der konkreten Behandlungssituation.",
+          "exclusions": [
+            "Vermögensangelegenheiten und freiheitsentziehende Maßnahmen sind nicht umfasst."
+          ],
+          "person": "Sabine Wagner",
+          "documentId": "26004172-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Sabine Wagner ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004172-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Sabine Wagner",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Sabine Wagner",
+          "documentId": "26004172-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Sabine Wagner als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Sabine Wagner",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Sabine Wagner",
+          "documentId": "26004172-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Sabine Wagner darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    },
+    {
+      "id": "26004185",
+      "first": "Anna",
+      "name": "Fischer",
+      "birth": "30.01.1956",
+      "sex": "weiblich",
+      "room": "204",
+      "bed": "B",
+      "admission": "04.11.2026",
+      "team": "Dr. J. Peters",
+      "insurance": "Demokasse Nord · gesetzlich",
+      "bloodGroup": "A Rh−",
+      "status": "Stationär",
+      "diagnoses": [
+        {
+          "code": "J18.9",
+          "title": "Pneumonie"
+        },
+        {
+          "code": "I10.90",
+          "title": "Arterielle Hypertonie"
+        }
+      ],
+      "allergies": [
+        "Keine Allergie dokumentiert"
+      ],
+      "notes": "Verlaufskontrolle einer Atemwegsinfektion. Patientin mobil im Zimmer, Atemtherapie dokumentiert.",
+      "contact": {
+        "name": "Jonas Fischer",
+        "relationship": "Sohn",
+        "phone": "+49 (0)000 207 01"
+      },
+      "medication": [
+        {
+          "name": "Ramipril",
+          "dose": "2,5 mg",
+          "schedule": "1–0–0",
+          "route": "oral"
+        },
+        {
+          "name": "Paracetamol",
+          "dose": "500 mg",
+          "schedule": "bei Bedarf · Demoeintrag",
+          "route": "oral"
+        }
+      ],
+      "vitals": [
+        {
+          "time": "06:00",
+          "bpSys": 148,
+          "bpDia": 81,
+          "pulse": 88,
+          "temperature": 37,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "08:00",
+          "bpSys": 144,
+          "bpDia": 79,
+          "pulse": 84,
+          "temperature": 37.1,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "10:00",
+          "bpSys": 141,
+          "bpDia": 78,
+          "pulse": 86,
+          "temperature": 37,
+          "spo2": 96,
+          "resp": 16
+        },
+        {
+          "time": "12:00",
+          "bpSys": 138,
+          "bpDia": 81,
+          "pulse": 85,
+          "temperature": 36.9,
+          "spo2": 97,
+          "resp": 17
+        },
+        {
+          "time": "14:00",
+          "bpSys": 140,
+          "bpDia": 79,
+          "pulse": 83,
+          "temperature": 37.1,
+          "spo2": 98,
+          "resp": 18
+        },
+        {
+          "time": "16:00",
+          "bpSys": 143,
+          "bpDia": 80,
+          "pulse": 86,
+          "temperature": 37,
+          "spo2": 96,
+          "resp": 16
+        }
+      ],
+      "labs": [
+        {
+          "name": "Hämoglobin",
+          "value": "13,6",
+          "unit": "g/dl",
+          "reference": "12,0–16,0",
+          "flag": ""
+        },
+        {
+          "name": "Leukozyten",
+          "value": "9,9",
+          "unit": "/nl",
+          "reference": "4,0–10,0",
+          "flag": ""
+        },
+        {
+          "name": "CRP",
+          "value": "20",
+          "unit": "mg/l",
+          "reference": "< 5",
+          "flag": "↑"
+        },
+        {
+          "name": "Natrium",
+          "value": "140",
+          "unit": "mmol/l",
+          "reference": "135–145",
+          "flag": ""
+        },
+        {
+          "name": "Kalium",
+          "value": "4,0",
+          "unit": "mmol/l",
+          "reference": "3,5–5,1",
+          "flag": ""
+        },
+        {
+          "name": "Kreatinin",
+          "value": "1,08",
+          "unit": "mg/dl",
+          "reference": "0,6–1,2",
+          "flag": ""
+        }
+      ],
+      "events": [
+        {
+          "time": "05.11.2026 10:15",
+          "title": "Visite dokumentiert",
+          "text": "Verlauf und vorliegende Befunde besprochen. Synthetischer Dokumentationseintrag."
+        },
+        {
+          "time": "05.11.2026 09:40",
+          "title": "Vorsorgedokumente eingegangen",
+          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+        },
+        {
+          "time": "05.11.2026 08:10",
+          "title": "Laborbefund bereitgestellt",
+          "text": "Kontrolllabor im Befundbereich einsehbar."
+        },
+        {
+          "time": "04.11.2026 14:20",
+          "title": "Stationäre Aufnahme",
+          "text": "Station 2A, Zimmer 204, Bett B. Aufnahmebogen und Kontaktperson erfasst."
+        }
+      ],
+      "documents": [
+        {
+          "id": "26004185-vorsorge",
+          "title": "Vorsorgevollmacht – Gesundheit",
+          "kind": "Vorsorgevollmacht",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004185-vorsorge.pdf",
+          "pages": [
+            {
+              "heading": "Personen und Voraussetzungen",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Anna Fischer, geboren am 30.01.1956. Fallnummer 26004185. Benannte Kontaktperson: Jonas Fischer (Sohn). Kontaktdaten: +49 (0)000 207 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "condition",
+                  "title": "2. Voraussetzungen",
+                  "text": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann."
+                }
+              ]
+            },
+            {
+              "heading": "Umfang und Grenzen",
+              "sections": [
+                {
+                  "id": "scope",
+                  "title": "3. Gesundheitliche Vertretung",
+                  "text": "Jonas Fischer ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Ausgeschlossene Angelegenheiten",
+                  "text": "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+                },
+                {
+                  "id": "verification",
+                  "title": "5. Einordnung im Demofall",
+                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004185-patientenverfuegung",
+          "title": "Patientenverfügung",
+          "kind": "Patientenverfügung",
+          "date": "18.08.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004185-patientenverfuegung.pdf",
+          "pages": [
+            {
+              "heading": "Behandlungssituation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Anna Fischer, geboren am 30.01.1956. Fallnummer 26004185. Benannte Kontaktperson: Jonas Fischer (Sohn). Kontaktdaten: +49 (0)000 207 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "situation",
+                  "title": "2. Beschriebene Situation",
+                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
+                }
+              ]
+            },
+            {
+              "heading": "Wünsche und Abgrenzung",
+              "sections": [
+                {
+                  "id": "wishes",
+                  "title": "3. Behandlungswünsche",
+                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
+                },
+                {
+                  "id": "limits",
+                  "title": "4. Grenzen dieser Zusammenfassung",
+                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
+                },
+                {
+                  "id": "role",
+                  "title": "5. Rolle des Dokuments",
+                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004185-betreuung",
+          "title": "Betreuungsverfügung",
+          "kind": "Betreuungsverfügung",
+          "date": "12.06.2025",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004185-betreuung.pdf",
+          "pages": [
+            {
+              "heading": "Wunsch für eine mögliche Betreuung",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Anna Fischer, geboren am 30.01.1956. Fallnummer 26004185. Benannte Kontaktperson: Jonas Fischer (Sohn). Kontaktdaten: +49 (0)000 207 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "nomination",
+                  "title": "2. Gewünschte Betreuungsperson",
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Jonas Fischer als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                },
+                {
+                  "id": "limits",
+                  "title": "3. Grenzen der Benennung",
+                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26004185-auskunft",
+          "title": "Auskunft & Schweigepflichtentbindung",
+          "kind": "Auskunftsvollmacht",
+          "date": "03.11.2026",
+          "received": "05.11.2026 09:40",
+          "status": "Dokumentiert",
+          "url": "/demo-documents/26004185-auskunft.pdf",
+          "pages": [
+            {
+              "heading": "Information und Kommunikation",
+              "sections": [
+                {
+                  "id": "identity",
+                  "title": "1. Personen und Zuordnung",
+                  "text": "Fiktive Person: Anna Fischer, geboren am 30.01.1956. Fallnummer 26004185. Benannte Kontaktperson: Jonas Fischer (Sohn). Kontaktdaten: +49 (0)000 207 01 (nicht anwählbare Demorufnummer)."
+                },
+                {
+                  "id": "information",
+                  "title": "2. Umfang der Auskunft",
+                  "text": "Jonas Fischer darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                },
+                {
+                  "id": "time",
+                  "title": "3. Zeitliche und sachliche Begrenzung",
+                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "vertretung",
+          "label": "Gesundheitsvertretung",
+          "value": "Jonas Fischer",
+          "condition": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann.",
+          "exclusions": [
+            "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+          ],
+          "person": "Jonas Fischer",
+          "documentId": "26004185-vorsorge",
+          "page": 2,
+          "section": "3. Gesundheitliche Vertretung",
+          "quote": "Jonas Fischer ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "category": "representation"
+        },
+        {
+          "id": "wille",
+          "label": "Behandlungswünsche",
+          "value": "Situationsgebunden",
+          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "exclusions": [
+            "Keine pauschale Reanimations- oder Therapieanordnung."
+          ],
+          "person": "",
+          "documentId": "26004185-patientenverfuegung",
+          "page": 2,
+          "section": "3. Behandlungswünsche",
+          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "category": "wishes"
+        },
+        {
+          "id": "betreuung",
+          "label": "Betreuungswunsch",
+          "value": "Jonas Fischer",
+          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "exclusions": [
+            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+          ],
+          "person": "Jonas Fischer",
+          "documentId": "26004185-betreuung",
+          "page": 1,
+          "section": "2. Gewünschte Betreuungsperson",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Jonas Fischer als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "category": "care"
+        },
+        {
+          "id": "auskunft",
+          "label": "Auskunftsrecht",
+          "value": "Jonas Fischer",
+          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "exclusions": [
+            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+          ],
+          "person": "Jonas Fischer",
+          "documentId": "26004185-auskunft",
+          "page": 1,
+          "section": "2. Umfang der Auskunft",
+          "quote": "Jonas Fischer darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "category": "information"
+        }
+      ]
+    }
+  ]
+}
