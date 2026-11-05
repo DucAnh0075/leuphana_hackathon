@@ -191,3 +191,17 @@ Schnittstellen, an die sich alle halten:
 - pro Karte eigene Dokumente (Zuordnung Karten-UID → Person)
 - DSGVO Art. 9: privater Bucket, Signed URLs, PIN bzw. Notfallzugang für Ärzt:innen
 - Upload/Erstellung der Dokumente direkt in der App (BMJV-Vorlagen, KI-gestützt, mehrsprachig, einfache Sprache)
+
+## 10. Agents (Claude Code + Codex)
+Unter `.claude/agents/` liegen vier Agents. Die drei Coding-Agents sind schlanke Claude-Hüllen (Haiku, low). Das eigentliche Coden geben sie per `codex exec` an **GPT-6 Astra (Reasoning low)** weiter, danach prüfen sie den Build und melden das Ergebnis.
+
+| Agent | Aufgabe | Schritte | Issue-Label |
+|---|---|---|---|
+| `nfc-setup` | Next.js-Gerüst, Supabase, `/dokumente`, Deployment | 1, 2, 4, 9 | `setup` |
+| `nfc-reader` | `useCardReader` + Windows-Bridge | 5, 8, 10 | `reader` |
+| `nfc-ui` | Startseite + PDF-Viewer | 6, 7 | `ui` |
+| `nfc-content` | PDFs recherchieren und herunterladen (kein Codex) | 3 | `content` |
+
+Voraussetzung: Codex CLI installiert und eingeloggt (`codex login`).
+Aufruf in Claude Code, z. B.: *„Nutze den Agent nfc-ui für Issue #15“*.
+Reihenfolge: zuerst `nfc-setup`, danach `nfc-reader`, `nfc-ui` und `nfc-content` parallel. Die Logs von Codex landen in `.agent-logs/` (nicht im Git).
