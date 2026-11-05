@@ -23,7 +23,7 @@ Als Demo liegt das offizielle [BMJV-Formular Vorsorgevollmacht](https://www.bmjv
 2. Die Umgebungsvariablen `NEXT_PUBLIC_SUPABASE_URL` und `NEXT_PUBLIC_SUPABASE_ANON_KEY` setzen, jeweils für **Production** und **Preview**.
 3. Deployen.
 
-Produktions-URL: _noch nicht eingetragen_
+Produktions-URL: https://leuphanahackathon.vercel.app/
 
 ### Demo-Laptop-Ablauf (PLAN.md Schritt 9)
 
