@@ -1,5 +1,5 @@
-import PdfViewer, { type Doc } from "@/components/PdfViewer";
-import { supabase, supabaseConfigError } from "@/lib/supabase";
+import PdfViewer from "@/components/PdfViewer";
+import { getDocuments } from "@/lib/documents";
 
 export const dynamic = "force-dynamic";
 
@@ -13,30 +13,23 @@ function Notice({ message }: { message: string }) {
 }
 
 export default async function DokumentePage() {
-  if (!supabase) {
-    return <Notice message={supabaseConfigError ?? "Die Supabase-Konfiguration fehlt."} />;
-  }
+  const { docs, offline } = await getDocuments();
 
-  const bucket = supabase.storage.from("documents");
-  const { data, error } = await bucket.list("", {
-    limit: 100,
-    sortBy: { column: "name", order: "asc" },
-  });
-
-  if (error) {
-    return <Notice message="Die Dokumente konnten gerade nicht geladen werden. Bitte versuchen Sie es später erneut." />;
-  }
-
-  const docs: Doc[] = (data ?? [])
-    .filter((file) => file.id && /\.pdf$/i.test(file.name))
-    .map((file) => ({
-      title: file.name.replace(/\.pdf$/i, "").replace(/_/g, " "),
-      url: bucket.getPublicUrl(file.name).data.publicUrl,
-    }));
-
-  if (docs.length === 0) {
-    return <Notice message="Es sind noch keine PDF-Dokumente hinterlegt. Bitte laden Sie Ihre Vorsorgedokumente in den Supabase-Bucket „documents“ hoch." />;
-  }
-
-  return <PdfViewer docs={docs} />;
+  return (
+    <>
+      {offline && (
+        <div
+          role="status"
+          className="mx-auto w-full max-w-4xl bg-slate-900 p-6 text-2xl font-bold text-white"
+        >
+          Offline-Modus – lokale Dokumente
+        </div>
+      )}
+      {docs.length === 0 ? (
+        <Notice message="Es sind noch keine PDF-Dokumente hinterlegt. Bitte laden Sie Ihre Vorsorgedokumente in den Supabase-Bucket „documents“ hoch oder legen Sie im Offline-Modus PDFs nach public/pdfs/." />
+      ) : (
+        <PdfViewer docs={docs} />
+      )}
+    </>
+  );
 }
