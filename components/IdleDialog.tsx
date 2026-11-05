@@ -7,6 +7,7 @@ import { Icon } from "./Icons";
 export default function IdleDialog({ onFinish }: { onFinish: () => void }) {
   const lastActivity = useRef(0);
   const warningOpen = useRef(false);
+  const focusBeforeWarning = useRef<HTMLElement | null>(null);
   const [remaining, setRemaining] = useState<number | null>(null);
   const continueReading = () => {
     lastActivity.current = Date.now();
@@ -22,6 +23,9 @@ export default function IdleDialog({ onFinish }: { onFinish: () => void }) {
       const elapsed = Date.now() - lastActivity.current;
       if (elapsed >= 120_000) { onFinish(); return; }
       if (elapsed >= 100_000) {
+        if (!warningOpen.current) {
+          focusBeforeWarning.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        }
         warningOpen.current = true;
         setRemaining(Math.ceil((120_000 - elapsed) / 1000));
       }
@@ -33,7 +37,13 @@ export default function IdleDialog({ onFinish }: { onFinish: () => void }) {
   }, [onFinish]);
 
   return <Dialog.Root open={remaining !== null} onOpenChange={open => { if (!open) continueReading(); }}>
-    <Dialog.Portal><Dialog.Overlay className="dialog-overlay" /><Dialog.Content className="idle-dialog" onPointerDownOutside={event => event.preventDefault()} onEscapeKeyDown={event => { event.preventDefault(); continueReading(); }}>
+    <Dialog.Portal><Dialog.Overlay className="dialog-overlay" /><Dialog.Content className="idle-dialog" onPointerDownOutside={event => event.preventDefault()} onEscapeKeyDown={event => { event.preventDefault(); continueReading(); }} onCloseAutoFocus={event => {
+      // This timed dialog has no trigger. Only continuing should restore reader focus.
+      event.preventDefault();
+      const target = focusBeforeWarning.current;
+      focusBeforeWarning.current = null;
+      if (!warningOpen.current && target?.isConnected) target.focus({ preventScroll: true });
+    }}>
       <span className="dialog-symbol"><Icon name="document" width="30" height="30" /></span>
       <Dialog.Title>Lesen Sie noch?</Dialog.Title>
       <Dialog.Description>Nach längerer Inaktivität schließen wir die Patientenakte. Sie können jederzeit weiterlesen.</Dialog.Description>
