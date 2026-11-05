@@ -20,7 +20,9 @@ export function useCardReader({
 
   useEffect(() => {
     const client = supabase;
-    if (!client) return;
+    const onScan = (event: Event) => onCardRef.current((event as CustomEvent<string>).detail ?? "demo");
+    window.addEventListener("demo-card-scan", onScan);
+    if (!client) return () => window.removeEventListener("demo-card-scan", onScan);
 
     const channel = client
       .channel("scans-" + crypto.randomUUID())
@@ -34,6 +36,7 @@ export function useCardReader({
       );
 
     return () => {
+      window.removeEventListener("demo-card-scan", onScan);
       void client.removeChannel(channel);
     };
   }, []);

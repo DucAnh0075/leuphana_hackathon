@@ -58,13 +58,13 @@ test("Alle vier Kurzverweise öffnen die richtige PDF-Seite samt Bedingungen und
 });
 
 test("Patientenwechsel und fremde Dokument-IDs vermischen keine Akten", async ({ page }) => {
-  await openPatient(page, "Hoffmann, Karl");
+  await openPatient(page, "Becker, Henri");
   await openSource(page);
-  await expect(page.locator(".source-evidence")).toContainText("Martin Hoffmann");
+  await expect(page.locator(".source-evidence")).toContainText("Martin Becker");
   await expect(page.locator(".source-evidence")).not.toContainText("Jana Berger");
-  await expect(page.locator(".page-sheet .textLayer")).toContainText("Martin Hoffmann");
+  await expect(page.locator(".page-sheet .textLayer")).toContainText("Martin Becker");
   await page.goto("/?patient=26004179&document=26004182-vorsorge&page=2");
-  await expect(page.getByLabel("Patientenkontext")).toContainText("Hoffmann, Karl");
+  await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
   await expect(page.locator(".embedded-viewer")).toHaveCount(0);
 });
 
@@ -128,4 +128,14 @@ test("Alle 32 generierten PDFs sind tatsächlich erreichbar", async ({ request }
     expect(response.status()).toBe(200);
     expect((await response.body()).subarray(0, 5).toString()).toBe("%PDF-");
   }
+});
+
+test("NFC-Scan öffnet Henri Beckers Dokumente und zeigt eine Benachrichtigung", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("searchbox").fill("");
+  await page.evaluate(() => window.dispatchEvent(new CustomEvent("demo-card-scan", { detail: "demo" })));
+  await expect(page.getByRole("status")).toContainText("Henri Becker");
+  await expect(page.getByRole("status")).toContainText("NFC-Notfallkarte erkannt");
+  await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
+  await expect(page.getByRole("tab", { name: /Dokumente/ })).toHaveAttribute("aria-selected", "true");
 });

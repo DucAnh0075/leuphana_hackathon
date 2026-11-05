@@ -336,3 +336,13 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
 .source-evidence summary { cursor:pointer; font-size:11px; font-weight:600; }
 .source-evidence p,.source-evidence blockquote { font-size:11px; line-height:1.6; max-width:100%; margin:7px 0 0; }
 .source-evidence blockquote { padding-left:9px; border-left:2px solid #c5b48d; }
+
+.scan-toast { position:fixed; top:84px; right:16px; z-index:60; width:340px; max-width:calc(100vw - 32px); background:white; border:1px solid #c7d2dc; border-left:4px solid #285d80; box-shadow:0 6px 20px rgba(30,50,65,.18); padding:12px 14px; display:grid; grid-template-columns:auto 1fr auto; gap:10px; font:12px Arial; color:var(--foreground); animation:scan-toast-in 200ms ease-out; }
+.scan-toast > svg { color:#285d80; }
+.scan-toast-content { min-width:0; overflow-wrap:anywhere; line-height:1.45; }
+.scan-toast-title { font-weight:bold; color:#285d80; }
+.scan-toast-content strong { display:block; font-size:14px; font-weight:bold; }
+.scan-toast > .icon-button { align-self:start; }
+.scan-toast-actions { grid-column:2 / -1; }
+@keyframes scan-toast-in { from { opacity:0; transform:translateX(100%); } to { opacity:1; transform:translateX(0); } }
+@media(prefers-reduced-motion:reduce) { .scan-toast { animation:none; } }

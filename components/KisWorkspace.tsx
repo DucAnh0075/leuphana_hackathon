@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import dataset from "@/lib/demo-patients.json";
+import { useCardReader } from "@/hooks/useCardReader";
+import ScanToast from "./ScanToast";
 import PdfViewer from "./PdfViewer";
 import IdleDialog from "./IdleDialog";
 import { Icon } from "./Icons";
@@ -13,6 +15,8 @@ type Fact = Patient["facts"][number];
 type Section = "overview" | "vitals" | "documents" | "contacts" | "history";
 type OpenDocument = { document: ClinicalDocument; page: number; section?: string; quote?: string };
 const patients = dataset.patients;
+const cardPatients: Record<string, string> = { demo: "26004179" };
+const SCAN_FALLBACK_PATIENT = "26004179";
 const sections: { id: Section; label: string; icon: "pages" | "pulse" | "document" | "users" | "history" }[] = [
   { id: "overview", label: "Fallübersicht", icon: "pages" },
   { id: "vitals", label: "Kurve / Vitaldaten", icon: "pulse" },
@@ -50,6 +54,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   const [activeFact, setActiveFact] = useState<string | null>(null);
   const [readDocuments, setReadDocuments] = useState<string[]>([]);
   const [documentQuery, setDocumentQuery] = useState("");
+  const [toast, setToast] = useState<{ patient: Patient; at: number } | null>(null);
   const [inbox, setInbox] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const returnFocus = useRef<string | null>(null);
@@ -65,6 +70,11 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
     setSelected(patient); setSection(nextSection); setOpened(null); setActiveFact(null); setDocumentQuery(""); setInbox(false);
     updateAddress(patient);
   };
+  const onCard = (id: string) => {
+    const patient = patients.find(patient => patient.id === (cardPatients[id] ?? SCAN_FALLBACK_PATIENT));
+    if (patient) { openPatient(patient, "documents"); setToast({ patient, at: Date.now() }); }
+  };
+  useCardReader({ onCard });
   const closeChart = () => {
     setSelected(null); setOpened(null); setActiveFact(null); setInbox(false); updateAddress(null);
   };
@@ -167,5 +177,6 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
         <footer className="clinical-statusbar"><span><i className="status-dot" />Lokale Demonstration · synthetische Patienten und Dokumente</span><span>05.11.2026 · Station 2A</span></footer>
       </div>
     </div>
+    <ScanToast scan={toast} onShowDocuments={() => { if (toast) openPatient(toast.patient, "documents"); }} onClose={() => setToast(null)} />
   </div>;
 }

@@ -19,9 +19,9 @@ OUT = ROOT / "public/demo-documents"
 OUT.mkdir(parents=True, exist_ok=True)
 RENDERS = ROOT / "test-results/pdf-review"
 RENDERS.mkdir(parents=True, exist_ok=True)
-font = Path("C:/Windows/Fonts/arial.ttf")
-bold = Path("C:/Windows/Fonts/arialbd.ttf")
-if font.exists():
+font = next((p for p in [Path("C:/Windows/Fonts/arial.ttf"), Path("/mnt/c/Windows/Fonts/arial.ttf")] if p.exists()), None)
+bold = next((p for p in [Path("C:/Windows/Fonts/arialbd.ttf"), Path("/mnt/c/Windows/Fonts/arialbd.ttf")] if p.exists()), None)
+if font and bold:
     pdfmetrics.registerFont(TTFont("DemoSans", str(font)))
     pdfmetrics.registerFont(TTFont("DemoBold", str(bold)))
     regular, strong = "DemoSans", "DemoBold"
