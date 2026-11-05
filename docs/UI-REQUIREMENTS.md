@@ -15,13 +15,21 @@ Diese Ausgestaltung folgt der anschließenden Nutzerkorrektur mit zwei M-KIS-Ref
 - KIS.7: Der Quellenaufruf öffnet das richtige PDF direkt auf der genannten Seite. Auch nach Patientenwechsel darf kein fremder Beleg stehen bleiben.
 - KIS.8: Der Patientenkopf bleibt während der Dokumentlektüre sichtbar. Schließen kehrt zum passenden Aktenbereich zurück.
 - KIS.9: Dokumentiert/verfügbar bedeutet keine rechtliche Freigabe. Ein Betreuungswunsch wird nicht als gerichtliche Bestellung, ein Auskunftsrecht nicht als Behandlungsentscheidung und eine situationsbezogene Patientenverfügung nicht als pauschale Therapieanordnung dargestellt.
-- KIS.10: Alle klinischen Angaben und Dokumente sind synthetisch; es werden keine echten Personen, Unterschriften oder produktiven Schnittstellen behauptet.
+- KIS.10: Alle patientenbezogenen Angaben und Festlegungen sind synthetisch; es werden keine echten Personen, Unterschriften oder produktiven Schnittstellen behauptet.
 - KIS.11: Strukturierte Angaben und PDFs stammen aus demselben editierbaren Datensatz. Die Erzeugung validiert Belegzitat und Abschnitt auf der tatsächlichen PDF-Seite.
 - KIS.12: Browserprüfungen und Screenshot-Iterationen müssen Stationssicht, gefüllte Fallakte, mehrere Dokumenttypen, gezielte Quellenaufrufe, Patientenwechsel und schmale Ansichten abdecken.
 
+- KIS.13: Echte Vorlagen werden als solche belegt: offizielles Vollmachtformular, ausgewählte BMJ-Textbausteine und selbst verfasste Beispiele bleiben unterscheidbar.
+- KIS.14: Personen und Festlegungen sind synthetisch. Jede ausgefüllte PDF-Seite ist als Demo markiert; keine Signaturen oder bestätigte Rechtswirksamkeit werden erzeugt.
+- KIS.15: Gesundheitssorge, ausgeschlossene Befugnisse und Ja-/Nein-Auswahlen müssen zwischen Originalformular, gespeicherten Formularfeldern und Aktenhinweisen übereinstimmen.
+- KIS.16: Konkrete Behandlungswünsche erscheinen im Versorgungskontext. Die Anwendungssituation bleibt zusammen mit dem Wunsch sichtbar; keine pauschale Therapie- oder Reanimationsanordnung wird abgeleitet.
+- KIS.17: Jede konkrete Aussage hat eine eigene Beleg-ID mit Patient, Dokument, Seite, Abschnitt und Zitat. Neuladen oder manipulierte Seitenparameter dürfen den Beleg nicht einer anderen Aussage zuordnen.
+- KIS.18: Farbakzente kennzeichnen fachliche Bereiche. Pulsbewegung ist klar simuliert, pausierbar und bei reduzierter Bewegung deaktiviert; Messwerte bleiben unverändert.
+- KIS.19: Individuelle Demofassungen enthalten ausgewählte, konsistente Alternativen. Die unveränderte Textbausteinvorlage ist separat als Quelle einsehbar und wird nicht mit einer persönlichen Erklärung verwechselt.
+
 Referenzen: [M-KIS Fallübersicht](https://www.meierhofer.com/wp-content/uploads/2023/11/kis-screen-mit-falluebersicht.png), [M-KIS Vitaldaten](https://www.meierhofer.com/wp-content/uploads/2023/11/kis-screen-mit-falluebersicht-und-vitaldaten.png). Übernommen werden Informationshierarchie und Dichte; es wird keine originale Herstelleroberfläche oder echte Integration behauptet.
 
-Datenumfang dieser Iteration: acht Patienten, 32 Dokumente, 48 PDF-Seiten und 32 belegte Kurzangaben. Die bisherigen Import- und Reader-Issues bleiben Integrationsaufgaben; ihr Auslöser ist kein dominantes Produktbedienelement im klinischen Alltag.
+Datenumfang dieser Iteration: acht Patienten, 32 Dokumente, 72 PDF-Seiten und 64 belegte Kurz- und Detailangaben. Die bisherigen Import- und Reader-Issues bleiben Integrationsaufgaben; ihr Auslöser ist kein dominantes Produktbedienelement im klinischen Alltag.
 
 ## Frühere Kontextkorrektur: erster KIS-Demonstrator
 

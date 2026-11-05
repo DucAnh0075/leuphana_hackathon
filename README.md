@@ -49,10 +49,22 @@ Jede Akte enthält vier verschiedene Dokumentarten: Vorsorgevollmacht für Gesun
 ### Daten und Belegkette
 
 - `lib/demo-patients.json`: gemeinsamer, editierbarer synthetischer Quelldatensatz.
-- `public/demo-documents/`: 32 eigens erzeugte PDF-Dokumente mit insgesamt 48 Seiten.
-- `scripts/generate_demo_documents.py`: reproduzierbare PDF-Erzeugung; prüft jeden der 32 Kurzverweise gegen Text und Abschnitt auf der tatsächlichen PDF-Seite.
+- `public/demo-documents/`: 32 ausgefüllte oder erzeugte Demo-PDFs mit insgesamt 72 Seiten.
+- `scripts/generate_demo_documents.py`: reproduzierbare PDF-Erzeugung; prüft alle 64 Kurz- und Detailverweise gegen Text und Abschnitt auf der tatsächlichen PDF-Seite.
 
-Alle Personen, Kontaktdaten, Messwerte und Dokumenterklärungen sind erfunden. Die Dokumente sind als synthetisch und nicht rechtswirksam gekennzeichnet. Angezeigte Daten sind Demonstrationsinhalt, keine klinischen Empfehlungen oder automatisch rechtlich geprüften Befugnisse. Die Informationen sind für die Vorführung bereits im KIS vorhanden; es besteht keine echte Krankenhaus- oder NFC-Anbindung. Der ursprüngliche Supabase-Adapter bleibt im Repository erhalten, beliefert diese synthetische Demo jedoch nicht.
+Alle Personen, Kontaktdaten, Messwerte und individuellen Festlegungen sind erfunden. Die Formulierungen der Patientenverfügung und das Vollmachtformular stammen aus den jeweils angegebenen echten Vorlagen. Die Dokumente sind als synthetisch und nicht rechtswirksam gekennzeichnet. Angezeigte Daten sind Demonstrationsinhalt, keine klinischen Empfehlungen oder automatisch rechtlich geprüften Befugnisse. Die Informationen sind für die Vorführung bereits im KIS vorhanden; es besteht keine echte Krankenhaus- oder NFC-Anbindung. Der ursprüngliche Supabase-Adapter bleibt im Repository erhalten, beliefert diese synthetische Demo jedoch nicht.
+
+### Echte Vorlagen und konkrete Behandlungswünsche
+
+Die acht Vorsorgevollmachten verwenden das unveränderte Formularlayout des Bundesministeriums der Justiz (Januar 2023), ausgefüllt mit fiktiven Personen und expliziten Ja-/Nein-Auswahlen. Die interaktiven Formularfelder bleiben erhalten. Jede Seite trägt einen Demohinweis; Unterschriften werden nicht erzeugt.
+
+Die Patientenverfügungen sind individuelle Demofassungen aus ausgewählten Textbausteinen des vom Nutzer bereitgestellten BMJ-PDFs. Nicht gewählte, widersprüchliche Alternativen gehören nicht zur individuellen Erklärung. Die unveränderte Vorlage liegt als benötigte, reproduzierbare Quelle unter `public/templates/patientenverfuegung-textbausteine.pdf`. Betreuungsverfügung und begrenzte Auskunftserklärung bleiben selbst verfasste synthetische Beispiele. Die Herkunft wird je Dokument in `provenance` angegeben.
+
+Je Akte ergänzen vier `carePreferences` konkrete Aussagen zu Schmerztherapie, Ernährung, Notfallplanung und Beatmung. Jede Aussage führt ihre Anwendungssituation, Grenzen und die genaue Belegstelle mit. Erika Berger und Karl Hoffmann zeigen unterschiedliche Wünsche zur Wiederbelebung. Das System bestätigt keine aktuelle Anwendbarkeit und leitet keine allgemeine DNR-Anordnung ab.
+
+Die Zuordnung ist für die Demo redaktionell vorbereitet und gegen die tatsächlichen PDF-Inhalte geprüft. Es gibt weiterhin keine automatische Dokumentextraktion und keine reale KIS-Anbindung. Direktlinks enthalten die Beleg-ID; beim Neuladen wird sie innerhalb derselben Patientenakte und desselben Dokuments aufgelöst.
+
+Der Vitalmonitor zeigt feste synthetische Messwerte. Seine schematische Pulsanimation ist pausierbar und folgt der Systemeinstellung für reduzierte Bewegung; sie stellt kein EKG oder Live-Monitoring dar.
 
 ### Lokal starten und prüfen
 
@@ -70,6 +82,6 @@ Die Browsertests verwenden unter Windows Microsoft Edge; auf anderen Systemen vo
 PDF-Daten nach Änderungen neu erzeugen (Python-Entwicklungswerkzeuge, nicht für den App-Betrieb nötig):
 
 ```bash
-python -m pip install reportlab pymupdf
+python -m pip install reportlab pymupdf pypdf
 python scripts/generate_demo_documents.py
 ```

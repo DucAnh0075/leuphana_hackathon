@@ -35,7 +35,7 @@ test("Fallübersicht enthält klinische Bereiche und nachvollziehbare Vorsorgehi
   await page.screenshot({ path: info.outputPath("case-overview.png"), fullPage: true });
   await page.locator(".hot-tag").filter({ hasText: "Gesundheitsvertretung" }).click();
   await expect(page.locator(".scope-detail")).toContainText("fehlender Einwilligungsfähigkeit");
-  await expect(page.locator(".scope-detail")).toContainText("Vermögensangelegenheiten");
+  await expect(page.locator(".scope-detail")).toContainText(data.patients[0].facts[0].exclusions[0]);
   await page.screenshot({ path: info.outputPath("scope-detail.png"), fullPage: true });
   await page.locator(".scope-detail").getByRole("button", { name: "Jana Berger", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Kontaktperson", exact: true })).toBeVisible();
@@ -74,7 +74,7 @@ test("Beleglink bleibt nach Neuladen auf der richtigen Seite; PDF-Navigation fun
   await expect(page).toHaveURL(/document=26004182-vorsorge&page=2/);
   await page.reload();
   await expect(page.locator(".page-count")).toContainText("Seite 2");
-  await expect(page.locator(".source-evidence")).toContainText("Vermögensangelegenheiten");
+  await expect(page.locator(".source-evidence")).toContainText(data.patients[0].facts[0].exclusions[0]);
   await page.getByRole("button", { name: "Vorherige Seite", exact: true }).click();
   await expect(page.locator(".page-count")).toContainText("Seite 1");
   await page.getByRole("button", { name: "Vergrößern", exact: true }).click();
@@ -104,7 +104,7 @@ test("PDF-Ladefehler lässt sich wiederholen und erhält Patientenkontext", asyn
   await expect(page.locator(".pdf-error")).toContainText("nicht geladen");
   fail = false;
   await page.getByRole("button", { name: "Erneut versuchen", exact: true }).click();
-  await expect(page.locator(".page-sheet .textLayer")).toContainText("3. Gesundheitliche Vertretung");
+  await expect(page.locator(".page-sheet .textLayer")).toContainText(data.patients[0].facts[0].section);
   await expect(page.getByLabel("Patientenkontext")).toContainText("Berger, Erika");
 });
 
@@ -128,4 +128,74 @@ test("Alle 32 generierten PDFs sind tatsächlich erreichbar", async ({ request }
     expect(response.status()).toBe(200);
     expect((await response.body()).subarray(0, 5).toString()).toBe("%PDF-");
   }
+});
+
+test("Konkrete Behandlungswünsche führen zur individuellen Erklärung und ihrer Vorlage", async ({ page }, info) => {
+  await openPatient(page);
+  for (const fact of data.patients[0].carePreferences) {
+    const entry = page.locator(".care-preference").filter({ hasText: fact.target });
+    await expect(entry).toContainText(fact.value);
+    await expect(entry).toContainText(fact.condition);
+    await expect(entry).toContainText(fact.exclusions[0]);
+    await entry.locator(".source-link").click();
+    await expect(page.locator(".viewer-heading h2")).toBeInViewport();
+    const titleBox = await page.locator(".viewer-heading h2").boundingBox();
+    const patientBox = await page.getByLabel("Patientenkontext").boundingBox();
+    expect(titleBox!.y).toBeGreaterThanOrEqual(patientBox!.y + patientBox!.height);
+    await expect(page.locator(".page-sheet .textLayer")).toContainText(fact.section);
+    await expect(page.locator(".source-evidence")).toContainText(fact.quote);
+    await expect(page.locator(".source-evidence")).toContainText(fact.condition);
+    await expect(page.locator(".source-evidence")).toContainText(fact.exclusions[0]);
+    await expect(page.locator(".pdf-content")).toHaveAttribute("data-evidence-id", fact.id);
+    await page.locator(".source-provenance summary").click();
+    await expect(page.locator(".source-provenance a")).toHaveAttribute("href", "/templates/patientenverfuegung-textbausteine.pdf#page=" + fact.templatePage);
+    if (fact.id === "reanimation") await page.screenshot({ path: info.outputPath("individual-directive.png"), fullPage: true });
+    await page.getByRole("button", { name: "Dokument schließen", exact: true }).click();
+  }
+});
+
+test("Beleg-ID erhält den konkreten Wunsch beim Neuladen und verhindert falsche Seitenzuordnung", async ({ page }) => {
+  const patient = data.patients[0];
+  const fact = patient.carePreferences.find(item => item.id === "reanimation")!;
+  await page.goto("/?patient=" + patient.id + "&document=" + fact.documentId + "&page=99&evidence=" + fact.id);
+  await expect(page.locator(".source-evidence")).toContainText(fact.quote);
+  await expect(page.locator(".source-evidence")).toContainText(fact.exclusions[0]);
+  await expect(page.locator(".page-count")).toContainText("Seite " + fact.page);
+  await page.reload();
+  await expect(page.locator(".source-evidence")).toContainText(fact.quote);
+  await expect(page.locator(".page-sheet .textLayer")).toContainText(fact.section);
+  await page.goto("/?patient=" + patient.id + "&document=" + patient.documents[0].id + "&evidence=" + fact.id);
+  await expect(page.locator(".source-evidence")).not.toContainText(fact.quote);
+  const other = data.patients[1].carePreferences.find(item => item.id === "reanimation")!;
+  expect(other.value).not.toBe(fact.value);
+  await openPatient(page, "Hoffmann, Karl");
+  const entry = page.locator(".care-preference").filter({ hasText: other.target });
+  await expect(entry).toContainText(other.value);
+  await entry.locator(".source-link").click();
+  await expect(page.locator(".source-evidence")).toContainText(other.quote);
+  await expect(page.locator(".source-evidence")).not.toContainText(fact.quote);
+  await page.locator(".hot-tag").filter({ hasText: "Auskunftsrecht" }).click();
+  await expect(page).toHaveURL(/\?patient=26004179$/);
+  await page.reload();
+  await expect(page.locator(".embedded-viewer")).toHaveCount(0);
+});
+
+test("Pulsanimation ist pausierbar, respektiert reduzierte Bewegung und verändert keine Messwerte", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await openPatient(page);
+  const monitor = page.locator(".pulse-monitor");
+  await expect(monitor).toContainText("Simulation");
+  await expect(monitor).toContainText("Demowerte von 16:00 Uhr");
+  await expect(monitor).toHaveAttribute("data-paused", "false");
+  await expect(page.locator(".monitor-trace")).toHaveCSS("animation-play-state", "running");
+  const values = await monitor.locator(".monitor-content").innerText();
+  await page.getByRole("button", { name: "Animation pausieren", exact: true }).click();
+  await expect(monitor).toHaveAttribute("data-paused", "true");
+  await expect(page.locator(".monitor-trace")).toHaveCSS("animation-play-state", "paused");
+  await page.getByRole("button", { name: "Animation fortsetzen", exact: true }).click();
+  await expect(monitor).toHaveAttribute("data-paused", "false");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.getByRole("button", { name: "Animation deaktiviert: reduzierte Bewegung", exact: true })).toBeDisabled();
+  await expect(page.locator(".monitor-trace")).toHaveCSS("animation-name", "none");
+  await expect(monitor.locator(".monitor-content")).toHaveText(values, { useInnerText: true });
 });

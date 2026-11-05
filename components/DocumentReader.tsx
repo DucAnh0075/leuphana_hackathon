@@ -28,7 +28,7 @@ function Thumbnail({ number, selected, onSelect }: { number: number; selected: b
   </button>;
 }
 
-export default function PdfContent({ doc, initialPage = 1, sourceSection, sourceQuote, sourceCondition, sourceExclusions }: PdfViewerProps) {
+export default function PdfContent({ doc, initialPage = 1, sourceSection, sourceQuote, sourceCondition, sourceExclusions, sourcePerson, evidenceId, provenance, sourceTemplatePage }: PdfViewerProps) {
   const [numPages, setNumPages] = useState(0);
   const [page, setPage] = useState(Math.max(1, initialPage));
   const [zoom, setZoom] = useState<number | "fit">("fit");
@@ -51,8 +51,9 @@ export default function PdfContent({ doc, initialPage = 1, sourceSection, source
   };
   const failed = error || password;
   const pdfError = <div className="pdf-error" role="alert"><Icon name="document" width="40" height="40" /><h2>{password ? "Dieses PDF ist passwortgeschützt." : "Dieses Dokument konnte nicht geladen werden."}</h2><p>{password ? "Öffnen Sie das Original mit Ihrem PDF-Programm." : "Versuchen Sie es erneut oder öffnen Sie das Original."}</p><div className="error-actions">{!password && <button className="button primary" onClick={() => { setError(false); setPassword(false); setNumPages(0); setAttempt(value => value + 1); }}>Erneut versuchen</button>}<a className="button secondary" href={doc.url} target="_blank" rel="noopener noreferrer">Original öffnen ↗</a></div></div>;
-  return <div className="pdf-content">
-    {(sourceSection || sourceCondition) && <details className="source-evidence" open><summary>{sourceSection ? "Belegstelle · Seite " + initialPage + " · " + sourceSection : "Geltungsbereich des Dokuments"}</summary>{sourceQuote && <blockquote>{sourceQuote}</blockquote>}{sourceCondition && <p><strong>Voraussetzung:</strong> {sourceCondition}</p>}{!!sourceExclusions?.length && <p><strong>Nicht umfasst:</strong> {sourceExclusions.join("; ")}</p>}</details>}
+  return <div className="pdf-content" data-evidence-id={evidenceId}>
+    {(sourceSection || sourceCondition) && <details className="source-evidence" open><summary>{sourceSection ? "Belegstelle · Seite " + initialPage + " · " + sourceSection : "Geltungsbereich des Dokuments"}</summary>{sourcePerson && <p><strong>Benannte Person:</strong> {sourcePerson}</p>}{sourceQuote && <blockquote>{sourceQuote}</blockquote>}{sourceCondition && <p><strong>Voraussetzung:</strong> {sourceCondition}</p>}{!!sourceExclusions?.length && <p><strong>Nicht umfasst:</strong> {sourceExclusions.join("; ")}</p>}</details>}
+    {provenance && <details className="source-provenance"><summary>Vorlagengrundlage: {provenance.label}</summary><p>{provenance.version} · {provenance.note}</p>{provenance.url && <a href={provenance.url + (sourceTemplatePage ? "#page=" + sourceTemplatePage : "")} target="_blank" rel="noopener noreferrer">Unveränderte Vorlage ansehen{sourceTemplatePage ? " · Seite " + sourceTemplatePage : ""}</a>}</details>}
     <div className="reader-toolbar" aria-label="Dokumentwerkzeuge">
       <div className="toolbar-group"><button className="icon-button thumbnail-toggle" aria-label="Seitenvorschau" aria-expanded={thumbnails} onClick={() => setThumbnails(value => !value)}><Icon name="pages" /></button><span className="document-type">PDF-DOKUMENT</span></div>
       <div className="toolbar-group zoom-controls"><button className="icon-button" aria-label="Verkleinern" disabled={!numPages || failed || (typeof zoom === "number" && zoom <= 50)} onClick={() => setZoom(value => Math.max(50, (value === "fit" ? 100 : value) - 25))}><Icon name="minus" /></button><span className="zoom-value" aria-live="polite">{zoom === "fit" ? "Auto" : zoom + " %"}</span><button className="icon-button" aria-label="Vergrößern" disabled={!numPages || failed || (typeof zoom === "number" && zoom >= 200)} onClick={() => setZoom(value => Math.min(200, (value === "fit" ? 100 : value) + 25))}><Icon name="plus" /></button><span className="tool-divider" /><button className="icon-button" aria-label="An Breite anpassen" aria-pressed={zoom === "fit"} onClick={() => setZoom("fit")} disabled={!numPages || failed}><Icon name="expand" /></button></div>
