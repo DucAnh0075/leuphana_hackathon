@@ -27,4 +27,11 @@ Produktions-URL: https://leuphanahackathon.vercel.app/
 
 ### Demo-Laptop-Ablauf (PLAN.md Schritt 9)
 
-Chrome mit der Vercel-URL öffnen und mit **F11** in den Vollbildmodus wechseln. Bei einem PC/SC-Reader (Variante B) zusätzlich `node bridge/reader.js` unter **Windows** starten (nicht in WSL).
+Chrome mit der Vercel-URL öffnen und mit **F11** in den Vollbildmodus wechseln. Die Karte wird mit dem iPhone gescannt (siehe „iPhone-Scan“).
+
+## iPhone-Scan (statt USB-Reader)
+
+1. `supabase/schema.sql` im Supabase-Dashboard im **SQL Editor** ausführen. Das richtet die Tabelle `scans`, die Zugriffsregeln und Supabase Realtime ein.
+2. **Weg 1 – Kurzbefehle-Automation:** Auf dem iPhone Kurzbefehle → Automation → + → NFC → Scannen → Karte ans iPhone halten. Aktion **„Inhalte von URL abrufen“** mit `https://leuphanahackathon.vercel.app/api/scan?card=demo` hinzufügen. **„Sofort ausführen“** einschalten und **„Bei Ausführung benachrichtigen“** ausschalten.
+3. **Weg 2 – NFC Tools (wakdev):** Unter Schreiben → Datensatz hinzufügen → URL den URL-Datensatz `https://leuphanahackathon.vercel.app/scan?card=demo` auf die Karte schreiben. **Karte nicht sperren.** Beim Scannen die iPhone-Mitteilung antippen; die Seite sendet den Scan und zeigt „✓ An PC gesendet“.
+4. **Test ohne Handy:** `https://leuphanahackathon.vercel.app/api/scan?card=demo` im Browser aufrufen. Bei geöffneter PC-Seite und verbundenem Realtime-Hook sollte der PC zu den Dokumenten wechseln.

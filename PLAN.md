@@ -3,15 +3,13 @@
 > Teamplan für den Leuphana AI Hackathon (05.11.2026). Thema: digitales Tool für Patientenverfügung und Vorsorgevollmacht.
 
 ## 1. Idee in einem Satz
-Man legt eine NFC-Karte auf einen USB-NFC-Reader am Laptop, und im Browser öffnet sich sofort eine Seite mit **allen hinterlegten Vorsorgedokumenten** (Vorsorgevollmacht, Patientenverfügung, Betreuungsverfügung …). Jedes PDF lässt sich Seite für Seite durchblättern.
+Man hält ein iPhone an eine NFC-Karte, und im Browser des PCs öffnet sich sofort eine Seite mit **allen hinterlegten Vorsorgedokumenten** (Vorsorgevollmacht, Patientenverfügung, Betreuungsverfügung …). Jedes PDF lässt sich Seite für Seite durchblättern.
 
 ## 2. Wichtig zu wissen
 - **Auf der Karte liegen keine PDFs.** Eine NFC-Karte speichert nur ca. 144–888 Bytes. Die Karte ist nur der **Auslöser**: Sobald eine Karte erkannt wird, zeigt die Website alle PDFs aus Supabase Storage.
-- **Den Reader-Typ kennen wir noch nicht.** Ein Test dauert 10 Sekunden: Notepad öffnen, Cursor ins Feld setzen, Karte auflegen.
-  - Werden Zahlen und Buchstaben getippt, ist es ein **Tastatur-Reader (Variante A)**. Wir brauchen keinen Treiber, die Website liest die Eingabe direkt.
-  - Passiert nichts, ist es ein **PC/SC-Reader (Variante B)**, z. B. ACR122U. Dann braucht es ein kleines Node-Skript, das unter **Windows** läuft (nicht in WSL, weil WSL keinen USB-Zugriff hat).
-- Wir bauen **beide Varianten** ein, damit es egal ist, welcher Reader es ist. Für Notfälle gibt es zusätzlich einen Button **„Karte simulieren“**.
-- Die Karte muss vorerst **nicht beschrieben** werden. Jede Karte hat ab Werk eine eindeutige UID, und das reicht als Auslöser. Optional kann man mit der App **NFC Tools (wakdev)** die Website-URL auf die Karte schreiben, dann öffnet sich die Seite auch beim Antippen mit dem iPhone.
+- **Das iPhone liest die Karte**, statt eines USB-Readers. Der PC hat `https://leuphanahackathon.vercel.app/` bereits offen. Für Notfälle gibt es zusätzlich den Button **„Karte simulieren“**.
+- **Weg 1: iOS-Kurzbefehl-Automation (empfohlen für die Demo).** Kurzbefehle → Automation → + → NFC → Scannen → Karte ans iPhone halten und Namen vergeben. Aktion „Inhalte von URL abrufen“ mit `https://leuphanahackathon.vercel.app/api/scan?card=demo` hinzufügen. „Sofort ausführen“ aktivieren, „Bei Ausführung benachrichtigen“ deaktivieren. Die Karte muss dafür **nicht beschrieben** werden; Safari und das Antippen einer Mitteilung entfallen.
+- **Weg 2: URL auf der Karte mit NFC Tools (Fallback).** Schreiben → Datensatz hinzufügen → URL → `https://leuphanahackathon.vercel.app/scan?card=demo` → Schreiben. Karte **nicht sperren**. iPhone an die Karte halten → Mitteilung antippen → Safari öffnet `/scan`, sendet den Scan und zeigt „✓ An PC gesendet“.
 - Für den Hackathon verzichten wir bewusst auf Login, Admin-Seite und DSGVO-Maßnahmen. Das gehört in den Pitch als „nächster Schritt“.
 
 ## 3. Tech-Stack
@@ -21,18 +19,19 @@ Man legt eine NFC-Karte auf einen USB-NFC-Reader am Laptop, und im Browser öffn
 | Hosting | **Vercel** |
 | PDF-Speicher | **Supabase Storage**, öffentlicher Bucket `documents` |
 | PDF-Anzeige | **react-pdf** (basiert auf pdf.js) |
-| Reader-Bridge (nur Variante B) | Node.js + `nfc-pcsc` + `ws`, lokal auf dem Windows-Laptop |
+| Kartenerkennung | **Supabase Realtime** + Tabelle `scans` |
 
 ## 4. Ablauf
 ```
-Karte auf USB-Reader legen
+PC (Chrome, Vollbild): https://leuphanahackathon.vercel.app/
+   „Notfallkarte mit dem Handy scannen …“
+   ▲  Supabase Realtime: INSERT in scans → useCardReader → onCard(cardId)
    │
-   ├─ A: Tastatur-Reader tippt UID + Enter ───────────────────────┐
-   └─ B: bridge/reader.js (Windows) liest UID                      │
-         → sendet über WebSocket ws://localhost:8787 ──────────────┤
-                                                                   ▼
-Browser (Chrome, Vollbild): Startseite „/“ „Karte auflegen …“
-   │  useCardReader() erkennt die Karte → router.push('/dokumente')
+API /api/scan?card=<id> (Next.js auf Vercel) → insert into scans(card_id)
+   ▲
+   └─ iPhone liest die NFC-Karte (Weg 1 oder Weg 2)
+
+PC: onCard(cardId) → router.push('/dokumente')
    ▼
 /dokumente  (Server Component)
    │  listet alle PDFs im Supabase-Bucket `documents` → öffentliche URLs
@@ -45,18 +44,19 @@ PdfViewer: Dokument-Tabs → Seiten-Thumbnails → große Seite, Blättern, Zoom
 ```
 app/
   page.tsx                 # Startseite / Kiosk: „Karte auflegen“
+  api/scan/route.ts        # GET/POST: Scan in scans eintragen
+  scan/page.tsx            # iPhone: Scan senden und bestätigen
   dokumente/page.tsx       # lädt alle PDFs aus Supabase, rendert den Viewer
   layout.tsx
 components/
   PdfViewer.tsx            # Client: Tabs, Thumbnails, Seitenansicht
   CardListener.tsx         # Client: nutzt useCardReader, leitet weiter
 hooks/
-  useCardReader.ts         # Tastatur-Variante + WebSocket-Variante
+  useCardReader.ts         # Supabase Realtime: INSERT in scans → onCard
 lib/
   supabase.ts              # Supabase-Client
-bridge/                    # nur für PC/SC-Reader, läuft lokal unter Windows
-  package.json
-  reader.js
+supabase/
+  schema.sql              # Tabelle scans, RLS und Realtime
 public/
   (optional) Fallback-PDFs, falls Supabase in der Demo nicht erreichbar ist
 .env.example
@@ -98,14 +98,13 @@ Alles in den Bucket `documents` hochladen.
 - Liste `{ title, url }[]` an `<PdfViewer docs={...} />` übergeben
 
 ### Schritt 5: Karte erkennen (`hooks/useCardReader.ts`)
-Der Hook ruft `onCard(uid)` auf, egal über welche Variante die Karte kommt:
-- **Variante A (Tastatur):** `window.addEventListener('keydown')` puffert Zeichen, wenn sie schnell hintereinander kommen (< 50 ms Abstand, so schnell tippt kein Mensch). Bei `Enter` mit mindestens 4 Zeichen im Puffer wird `onCard(buffer)` aufgerufen.
-- **Variante B (WebSocket):** `new WebSocket('ws://localhost:8787')`, bei `onmessage` folgt `onCard(JSON.parse(data).uid)`. Bei Fehlern wird alle 3 s ein neuer Verbindungsversuch gestartet. Chrome erlaubt `ws://localhost` auch von der https-Vercel-Seite aus.
-- Außerdem gibt der Hook einen Status zurück (`'keyboard' | 'bridge-connected'`), der auf der Startseite angezeigt wird
+- `useCardReader({ onCard })` abonniert per Supabase Realtime INSERTs in `public.scans` und ruft `onCard(cardId: string)` auf.
+- Rückgabe: `{ status: 'connecting' | 'connected' | 'offline' }`; ohne Supabase-Konfiguration ist der Status `offline`.
+- Callback in einer Ref per Effect aktualisieren, Channel beim Unmount entfernen.
 
 ### Schritt 6: Startseite (`app/page.tsx` + `components/CardListener.tsx`)
 - großer, ruhiger Bildschirm: Karten-Icon mit Puls-Animation, Text „Notfallkarte auf den Reader legen“
-- kleiner Status unten: „Reader bereit (Tastatur)“ / „Reader-Bridge verbunden“
+- kleiner Status unten: „Verbinde ...“ / „Bereit - Karte mit dem iPhone scannen“
 - bei Karte: kurze Erfolgsanimation („Karte erkannt ✓“), dann `router.push('/dokumente')`
 - Button **„Karte simulieren“** (und Leertaste), der dasselbe auslöst, als Absicherung für die Demo
 
@@ -129,63 +128,52 @@ Der Hook ruft `onCard(uid)` auf, egal über welche Variante die Karte kommt:
 - `useCardReader` ist auch hier aktiv: Eine neue Karte lädt die Seite neu
 - große Schrift, hoher Kontrast, alles auch per Tastatur bedienbar (Thema „barrierearm“)
 
-### Schritt 8: Reader-Bridge (nur Variante B, `bridge/`)
-`bridge/package.json`: Dependencies `nfc-pcsc`, `ws`
-
-`bridge/reader.js`, ungefähr so:
-```js
-const { NFC } = require('nfc-pcsc');
-const { WebSocketServer } = require('ws');
-const wss = new WebSocketServer({ port: 8787 });
-const nfc = new NFC();
-nfc.on('reader', reader => {
-  console.log('Reader:', reader.name);
-  reader.on('card', card => {
-    console.log('Karte:', card.uid);
-    const msg = JSON.stringify({ uid: card.uid });
-    wss.clients.forEach(c => c.readyState === 1 && c.send(msg));
-  });
-  reader.on('error', e => console.error(e));
-});
-console.log('Bridge läuft auf ws://localhost:8787');
+### Schritt 8: Scans empfangen
+In `supabase/schema.sql` Tabelle, RLS und Realtime einrichten:
+```sql
+create table scans (
+  id bigint generated always as identity primary key,
+  card_id text not null default 'demo',
+  created_at timestamptz not null default now()
+);
+alter table scans enable row level security;
+create policy "anon insert" on scans for insert to anon with check (true);
+create policy "anon select" on scans for select to anon using (true);
+alter publication supabase_realtime add table scans;
 ```
-Start (in **Windows**-PowerShell, nicht in WSL):
-```powershell
-cd bridge
-npm install
-node reader.js
-```
-Schlägt `npm install` bei `nfc-pcsc` fehl (native Module), hilft `npm i -g windows-build-tools` bzw. die Installation der Visual Studio Build Tools. Ein Fallback in Python wäre `pyscard` + `websockets` mit derselben Nachricht `{ "uid": "..." }`.
+- `app/api/scan/route.ts`: GET und POST, `card` aus Query bzw. Body (Standard `demo`), Insert in `scans`, Antwort `{ ok: true }`.
+- `app/scan/page.tsx`: ruft beim Laden `/api/scan` auf, zeigt „✓ An PC gesendet“ und einen Button „Nochmal senden“.
 
 ### Schritt 9: Deployment
 1. Repo auf GitHub pushen
 2. Auf vercel.com „Import Project“ wählen, Env-Variablen setzen und deployen
-3. Auf dem Demo-Laptop: Chrome im Vollbild (F11) auf der Vercel-URL, bei Variante B läuft zusätzlich `node bridge/reader.js`
+3. Auf dem Demo-Laptop: Chrome im Vollbild (F11) auf der Vercel-URL
 
-### Schritt 10 (optional): Karte beschreiben für das iPhone
-In der App **NFC Tools** (wakdev): Schreiben → Datensatz hinzufügen → URL → `https://<app>.vercel.app/dokumente` → Schreiben → Karte ans iPhone halten.
-Danach öffnet ein entsperrtes iPhone die Seite beim Antippen der Karte. Die Karte **nicht sperren**, solange sich die URL noch ändern kann.
+### Schritt 10: iPhone einrichten
+iOS-Kurzbefehl-Automation nach **Weg 1 in Abschnitt 2** einrichten und testen. Zusätzlich die Fallback-URL mit **NFC Tools nach Weg 2 in Abschnitt 2** auf die Karte schreiben und testen. Karte nicht sperren.
 
 ## 7. Aufgabenteilung (Vorschlag)
 | Wer | Aufgabe | Schritte |
 |---|---|---|
 | Person 1 | Setup, Supabase, Deployment | 1, 2, 4, 9 |
-| Person 2 | Kartenerkennung: Reader testen, Hook, Bridge | 5, 8, 10 |
+| Person 2 | Kartenerkennung: iPhone-Scan, Realtime-Hook | 5, 8, 10 |
 | Person 3 | UI: Startseite + PDF-Viewer | 6, 7 |
 | Person 4 | Content (PDFs sammeln, Mustermann-Dokumente) + Pitch | 3 |
 
 Schnittstellen, an die sich alle halten:
-- Der Hook liefert `onCard(uid: string)`.
-- Die Bridge sendet `{"uid": "..."}` an `ws://localhost:8787`.
+- `useCardReader({ onCard })` ruft `onCard(cardId: string)` auf und liefert `{ status: 'connecting' | 'connected' | 'offline' }`.
+- API: `/api/scan?card=<id>` trägt einen Scan in `scans` ein.
 - Der Viewer bekommt `docs: { title: string; url: string }[]`.
 
 ## 8. Testen / Demo-Check
-1. **Reader-Test:** Notepad öffnen, Karte auflegen → Variante A oder B feststellen. Bei B muss `node bridge/reader.js` die UID in der Konsole ausgeben.
-2. `npm run dev` → `http://localhost:3000`: Karte auflegen führt zu `/dokumente`, alle PDFs aus dem Bucket erscheinen als Tabs
+1. **iPhone-Test:** Scan am iPhone → PC zeigt die Dokumente in unter 2 s (Weg 1 und Weg 2 testen).
+2. `npm run dev` → `http://localhost:3000`: Karte mit dem iPhone scannen führt zu `/dokumente`, alle PDFs aus dem Bucket erscheinen als Tabs
 3. Jedes PDF prüfen: alle Seiten sichtbar, Thumbnails, Blättern mit Buttons und Pfeiltasten, Zoom, Download
 4. „Karte simulieren“, den „Fertig“-Button und das Zurückspringen nach 2 Min. testen
 5. Ein neues PDF im Supabase-Dashboard hochladen und neu laden: Es muss ohne Deploy erscheinen
-6. Dasselbe gegen die Vercel-URL wiederholen (bei Variante B mit lokal laufender Bridge)
+6. Dasselbe gegen `https://leuphanahackathon.vercel.app/` mit aktivem Supabase Realtime wiederholen.
+
+**Akzeptanz (Issue 32):** Bei offener PC-Seite `/` führt der Aufruf von `/api/scan?card=demo` automatisch zum Sprung auf `/dokumente`.
 
 ## 9. Ausblick für den Pitch (nicht im Hackathon-Umfang)
 - pro Karte eigene Dokumente (Zuordnung Karten-UID → Person)
@@ -198,7 +186,7 @@ Unter `.claude/agents/` liegen vier Agents. Die drei Coding-Agents sind schlanke
 | Agent | Aufgabe | Schritte | Issue-Label |
 |---|---|---|---|
 | `nfc-setup` | Next.js-Gerüst, Supabase, `/dokumente`, Deployment | 1, 2, 4, 9 | `setup` |
-| `nfc-reader` | `useCardReader` + Windows-Bridge | 5, 8, 10 | `reader` |
+| `nfc-reader` | `useCardReader` (Supabase Realtime) + iPhone-Anleitung | 5, 8, 10 | `reader` |
 | `nfc-ui` | Startseite + PDF-Viewer | 6, 7 | `ui` |
 | `nfc-content` | PDFs recherchieren und herunterladen (kein Codex) | 3 | `content` |
 
