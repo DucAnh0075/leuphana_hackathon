@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import dataset from "@/lib/demo-patients.json";
 import PdfViewer from "./PdfViewer";
@@ -26,7 +26,7 @@ const sections: { id: Section; label: string; icon: "pages" | "pulse" | "documen
 const categoryNames: Record<string, string> = { representation: "Vertretung", wishes: "Behandlungswünsche", care: "Betreuungswunsch", information: "Auskunft" };
 const formatDate = (value: string) => /^\d{4}-\d{2}-\d{2}/.test(value) ? new Date(value).toLocaleDateString("de-DE") : value;
 
-function Panel({ title, children, action, className = "", headingRef }: { title: string; children: ReactNode; action?: ReactNode; className?: string; headingRef?: RefObject<HTMLHeadingElement | null> }) {
+function Panel({ title, children, action, className = "", headingRef }: { title: string; children: ReactNode; action?: ReactNode; className?: string; headingRef?: import("react").RefObject<HTMLHeadingElement | null> }) {
   return <section className={"clinical-panel " + className}><header><h2 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{title}</h2>{action}</header><div className="panel-content">{children}</div></section>;
 }
 
@@ -53,7 +53,8 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   const [opened, setOpened] = useState<OpenDocument | null>(initialDoc ? { document: initialDoc, page: initialFact?.page ?? Math.max(1, Math.min(initialPage, initialDoc.pages.length)), section: initialFact?.section, quote: initialFact?.quote, fact: initialFact } : null);
   const [activeFact, setActiveFact] = useState<string | null>(null);
   const [readDocuments, setReadDocuments] = useState<string[]>([]);
-  const [documentQuery, setDocumentQuery] = useState("");
+  const [documentSearchQuery, setDocumentQuery] = useState("");
+  const documentQuery = section === "documents" ? documentSearchQuery : "";
   const [inbox, setInbox] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const viewerHeading = useRef<HTMLHeadingElement>(null);
@@ -95,7 +96,17 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   useEffect(() => { if (selected) heading.current?.focus(); }, [selected]);
   useEffect(() => {
     if (opened) { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); viewerHeading.current?.focus({ preventScroll: true }); }
-    if (!opened && returnFocus.current) { document.getElementById(returnFocus.current)?.focus(); returnFocus.current = null; }
+    if (!opened && returnFocus.current) {
+      const originId = returnFocus.current;
+      const documentId = originId.startsWith("document-") ? originId.slice("document-".length) : null;
+      // History links have no element ID and are remounted when the reader closes.
+      const origin = document.getElementById(originId) ?? (documentId
+        ? Array.from(document.querySelectorAll<HTMLAnchorElement>('[role="tabpanel"][data-state="active"] a.patient-link'))
+          .find(link => new URL(link.href).searchParams.get("document") === documentId)
+        : null);
+      origin?.focus();
+      returnFocus.current = null;
+    }
   }, [opened]);
   useEffect(() => {
     const escape = (event: KeyboardEvent) => {
@@ -124,8 +135,8 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   };
   const renderDocuments = (compact = false) => {
     if (!selected) return null;
-    const docs = compact ? selected.documents : selected.documents.filter(doc => (doc.title + " " + doc.kind).toLocaleLowerCase("de").includes(documentQuery.toLocaleLowerCase("de")));
-    return <div className="table-scroll"><table className="document-table"><thead><tr><th>Status</th><th>Dokument / Typ</th><th>Dokumentdatum</th>{!compact && <th>Geltungsbereich</th>}<th>In Akte seit</th><th>Quelle</th></tr></thead><tbody>{docs.map(doc => <tr key={doc.id}><td><span className="document-state"><i className={readDocuments.includes(doc.id) ? "read-indicator" : "new-indicator"} />{readDocuments.includes(doc.id) ? "Geöffnet" : doc.status}</span></td><td><a id={"document-" + (compact ? "overview-" : "") + doc.id} href={`/?patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => { event.preventDefault(); openDocument(doc, 1, undefined, event.currentTarget.id); }}>{doc.title}</a><small>{doc.kind} · {doc.pages.length} Seiten</small></td><td>{formatDate(doc.date)}</td>{!compact && <td>{selected.facts.filter(fact => fact.documentId === doc.id).map(fact => <div key={fact.id}><strong>{categoryNames[fact.category]}</strong><small>{fact.condition}</small><small>Ausgenommen: {fact.exclusions.join("; ")}</small>{fact.person && <small>Benannte Person: {fact.person}</small>}</div>)}</td>}<td>{formatDate(doc.received)}</td><td><span className={"source-cell provenance-" + (doc.provenance?.kind ?? "synthetic")}>{doc.provenance?.label ?? "Synthetischer Demotext"}</span><small>{doc.provenance?.version || "PDF · Dokumenttext einsehbar"}</small>{doc.provenance?.url && <a className="template-link" href={doc.provenance.url} target="_blank" rel="noopener noreferrer">Vorlage ansehen ↗</a>}</td></tr>)}</tbody></table>{!docs.length && <p className="empty-table">Keine Dokumente für diesen Suchbegriff.</p>}</div>;
+    const docs = selected.documents.filter(doc => (doc.title + " " + doc.kind).toLocaleLowerCase("de").includes(documentQuery.toLocaleLowerCase("de")));
+    return <div className="table-scroll"><table className="document-table"><thead><tr><th>Status</th><th>Dokument / Typ</th><th>Dokumentdatum</th>{!compact && <th>Geltungsbereich</th>}<th>In Akte seit</th><th>Quelle</th></tr></thead><tbody>{docs.map(doc => <tr key={doc.id}><td><span className="document-state"><i className={readDocuments.includes(doc.id) ? "read-indicator" : "new-indicator"} />{readDocuments.includes(doc.id) ? "Geöffnet" : doc.status}</span></td><td><a id={"document-" + doc.id} href={`/?patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => { event.preventDefault(); openDocument(doc); }}>{doc.title}</a><small>{doc.kind} · {doc.pages.length} Seiten</small></td><td>{formatDate(doc.date)}</td>{!compact && <td>{selected.facts.filter(fact => fact.documentId === doc.id).map(fact => <div key={fact.id}><strong>{categoryNames[fact.category]}</strong><small>{fact.condition}</small><small>Ausgenommen: {fact.exclusions.join("; ")}</small>{fact.person && <small>Benannte Person: {fact.person}</small>}</div>)}</td>}<td>{formatDate(doc.received)}</td><td><span className={"source-cell provenance-" + (doc.provenance?.kind ?? "synthetic")}>{doc.provenance?.label ?? "Synthetischer Demotext"}</span><small>{doc.provenance?.version || "PDF · Dokumenttext einsehbar"}</small>{doc.provenance?.url && <a className="template-link" href={doc.provenance.url} target="_blank" rel="noopener noreferrer">Vorlage ansehen ↗</a>}</td></tr>)}</tbody></table>{!docs.length && <p className="empty-table">Keine Dokumente für diesen Suchbegriff.</p>}</div>;
   };
   const renderFacts = () => selected?.facts.map(fact => <div className={"scope-row " + fact.category} key={fact.id}><div><button className="scope-link" onClick={() => openFact(fact)}>{fact.label}</button><strong>{fact.value}</strong><small>{fact.condition}</small>{fact.exclusions.length > 0 && <small className="scope-exclusions">Grenzen: {fact.exclusions.join("; ")}</small>}</div>{sourceLink(fact, true)}</div>);
   const renderCarePreferences = () => selected?.carePreferences?.length ? <Panel title="Behandlungswünsche im Versorgungskontext" headingRef={carePreferencesHeading} className="full-width treatment-preferences" action={<span>Aus der Patientenverfügung</span>}><p className="treatment-context">Situationsgebundene Aussagen aus dem Dokument. Die Anwendbarkeit auf den aktuellen Fall ist nicht bestätigt.</p><div className="care-preference-grid">{selected.carePreferences.map(fact => <article className="care-preference" key={fact.id}><div className="care-preference-heading"><strong>{fact.target ?? fact.label}</strong><span>Dokumentierter Wunsch</span></div><p className="care-preference-value">{fact.value}</p><p className="care-preference-condition"><b>Gilt nur:</b> {fact.condition}</p>{fact.exclusions.length > 0 && <p className="care-preference-limits"><b>Grenzen:</b> {fact.exclusions.join("; ")}</p>}<div className="care-preference-source">{sourceLink(fact, true)}{fact.templateSection && <small>Vorlagenbaustein {fact.templateSection}</small>}</div></article>)}</div></Panel> : null;
@@ -178,7 +189,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
                 <Tabs.Content value="vitals"><Panel title="Kurvenblatt · 05.11.2026" action={<span>Station 2A · Pflege / Vitalparameter</span>}><PulseMonitor sample={selected.vitals[selected.vitals.length - 1]} /><VitalChart patient={selected} />{renderVitalsTable()}</Panel><div className="overview-grid lower-grid"><Panel title="Pflegedokumentation"><p className="clinical-text">{selected.notes}</p><dl className="compact-details"><div><dt>Beobachtungszeitraum</dt><dd>06:00–16:00 Uhr · 05.11.2026</dd></div><div><dt>Dokumentation</dt><dd>Vollständig synthetische Messreihe</dd></div></dl></Panel><Panel title="Relevante Vorsorgehinweise">{renderFacts()}</Panel></div></Tabs.Content>
                 <Tabs.Content value="documents"><div className="document-filter"><label>Dokument suchen <input type="search" value={documentQuery} onChange={event => setDocumentQuery(event.target.value)} placeholder="Titel oder Dokumentart" /></label><span>{selected.documents.length} hinterlegte Dokumente</span></div><Panel title="Vorsorgedokumente und medizinische Willenserklärungen">{renderDocuments()}<p className="panel-footnote">„Dokumentiert“ bezeichnet den Akteneingang. Umfang und Bedingungen ergeben sich aus dem jeweiligen Dokument.</p></Panel><Panel title="Geltungsbereiche und Quellenverzeichnis" className="lower-panel">{renderFacts()}</Panel></Tabs.Content>
                 <Tabs.Content value="contacts"><div className="overview-grid"><Panel title="Kontaktperson"><dl className="compact-details"><div><dt>Name</dt><dd>{selected.contact.name}</dd></div><div><dt>Beziehung</dt><dd>{selected.contact.relationship}</dd></div><div><dt>Telefon</dt><dd>{selected.contact.phone}</dd></div><div><dt>Hinweis</dt><dd>Kontaktdaten allein begründen keine Vertretungsbefugnis.</dd></div></dl></Panel><Panel title="Befugnisse der benannten Personen">{renderFacts()}</Panel></div></Tabs.Content>
-                <Tabs.Content value="history"><Panel title="Fallbezogener Dokumentationsverlauf"><table><thead><tr><th>Zeit</th><th>Eintrag</th><th>Inhalt / Quelle</th></tr></thead><tbody>{selected.events.map((event,index) => <tr key={index}><td className="numeric">{event.time}</td><td><strong>{event.title}</strong></td><td>{event.text}</td></tr>)}{selected.documents.map(doc => <tr key={doc.id}><td>{formatDate(doc.received)}</td><td>Vorsorgedokument hinterlegt</td><td><a id={"history-document-" + doc.id} href={`/?patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => {event.preventDefault();openDocument(doc, 1, undefined, event.currentTarget.id);}}>{doc.title}</a><small>Externe Vorsorgedokumentation · {doc.status}</small></td></tr>)}</tbody></table></Panel></Tabs.Content>
+                <Tabs.Content value="history"><Panel title="Fallbezogener Dokumentationsverlauf"><table><thead><tr><th>Zeit</th><th>Eintrag</th><th>Inhalt / Quelle</th></tr></thead><tbody>{selected.events.map((event,index) => <tr key={index}><td className="numeric">{event.time}</td><td><strong>{event.title}</strong></td><td>{event.text}</td></tr>)}{selected.documents.map(doc => <tr key={doc.id}><td>{formatDate(doc.received)}</td><td>Vorsorgedokument hinterlegt</td><td><a href={`/?patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => {event.preventDefault();openDocument(doc);}}>{doc.title}</a><small>Externe Vorsorgedokumentation · {doc.status}</small></td></tr>)}</tbody></table></Panel></Tabs.Content>
               </Tabs.Root>}
             <IdleDialog onFinish={closeChart} />
           </>}
