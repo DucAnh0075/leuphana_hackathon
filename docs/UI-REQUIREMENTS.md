@@ -1,16 +1,56 @@
 # UI Anforderungen und Stack Vorschlag für die NFC Notfallkarte
 
-Stand: 05.11.2026. Ergebnis: fachlicher und technischer Vorschlag für den anschließenden UI-Bau. Noch keine UI-Implementierung oder Produktfreigabe.
+Stand: 05.11.2026, nach der Kontextkorrektur zum KIS-Demonstrator. Anforderungskatalog mit aktualisierter Interpretation; keine Produktfreigabe.
+
+## Aktuelle Weiterentwicklung: klinische Informationsdichte und Belegstellen
+
+Diese Ausgestaltung folgt der anschließenden Nutzerkorrektur mit zwei M-KIS-Referenzbildern. Sie ersetzt für die aktuelle Demo die frühere Annahme einer sichtbaren Kartenleseaktion und eines zunächst leeren Dokumentbestands. Die zuvor dokumentierten Entscheidungen und Issue-IDs bleiben als Herkunft nachvollziehbar.
+
+- KIS.1: Eine dichte Stations- und Falloberfläche mit schmalen Werkzeugleisten, Fachnavigation und tabellarischen Informationsbereichen ersetzt großzügige Produktflächen.
+- KIS.2: Acht fiktive Patienten besitzen individuell zusammenhängende Diagnosen, Vitalverläufe, Laborwerte, Medikation, Kontakte und Ereignisse.
+- KIS.3: Die klinische Oberfläche zeigt keine Aktion „Karte einlesen“. Die Demo stellt bereits integrierte Informationen in der Patientenakte dar.
+- KIS.4: Je Patient liegen vier eigenständig erzeugte Vorsorgedokumente vor; eine Patientenverfügung, Betreuungsverfügung und Auskunftsvollmacht werden nicht als gleichwertige Vertretungsvollmachten bezeichnet.
+- KIS.5: Relevante Kurzangaben stehen in ihrem fachlichen Kontext. Bedingungen, Einschränkungen und ausgeschlossene Bereiche müssen gemeinsam mit einer Aussage einsehbar bleiben.
+- KIS.6: Jede Kurzangabe referenziert Patient, Dokument-ID, Seite, Abschnitt und wörtlichen Beleg aus dem synthetischen Dokument.
+- KIS.7: Der Quellenaufruf öffnet das richtige PDF direkt auf der genannten Seite. Auch nach Patientenwechsel darf kein fremder Beleg stehen bleiben.
+- KIS.8: Der Patientenkopf bleibt während der Dokumentlektüre sichtbar. Schließen kehrt zum passenden Aktenbereich zurück.
+- KIS.9: Dokumentiert/verfügbar bedeutet keine rechtliche Freigabe. Ein Betreuungswunsch wird nicht als gerichtliche Bestellung, ein Auskunftsrecht nicht als Behandlungsentscheidung und eine situationsbezogene Patientenverfügung nicht als pauschale Therapieanordnung dargestellt.
+- KIS.10: Alle klinischen Angaben und Dokumente sind synthetisch; es werden keine echten Personen, Unterschriften oder produktiven Schnittstellen behauptet.
+- KIS.11: Strukturierte Angaben und PDFs stammen aus demselben editierbaren Datensatz. Die Erzeugung validiert Belegzitat und Abschnitt auf der tatsächlichen PDF-Seite.
+- KIS.12: Browserprüfungen und Screenshot-Iterationen müssen Stationssicht, gefüllte Fallakte, mehrere Dokumenttypen, gezielte Quellenaufrufe, Patientenwechsel und schmale Ansichten abdecken.
+
+Referenzen: [M-KIS Fallübersicht](https://www.meierhofer.com/wp-content/uploads/2023/11/kis-screen-mit-falluebersicht.png), [M-KIS Vitaldaten](https://www.meierhofer.com/wp-content/uploads/2023/11/kis-screen-mit-falluebersicht-und-vitaldaten.png). Übernommen werden Informationshierarchie und Dichte; es wird keine originale Herstelleroberfläche oder echte Integration behauptet.
+
+Datenumfang dieser Iteration: acht Patienten, 32 Dokumente, 48 PDF-Seiten und 32 belegte Kurzangaben. Die bisherigen Import- und Reader-Issues bleiben Integrationsaufgaben; ihr Auslöser ist kein dominantes Produktbedienelement im klinischen Alltag.
+
+## Frühere Kontextkorrektur: erster KIS-Demonstrator
+
+Henri hat die Produktperspektive präzisiert: Die Demo zeigt den Arbeitsplatz des Klinikpersonals **innerhalb eines Krankenhausinformationssystems (KIS)**. Sie ist keine Kartenbestellseite und kein separates Patientenportal. Die Issues bleiben fachlich gültig; ihre UI-Begriffe werden im folgenden KIS-Kontext interpretiert.
+
+Die folgende konkrete Demo-Ausgestaltung (Erika Berger, feste Zuordnung) ist eine vorläufige Umsetzungsannahme und keine ausdrücklich bestätigte Personen- oder Zuordnungsentscheidung des Nutzers.
+
+1. Einstieg ist eine Stationsübersicht mit fiktiven Patienten, Zimmern und Betten.
+2. Eine Demokarte ist fest Erika Berger, Fall 26004182, Zimmer 201 / A zugeordnet. Ein Scan darf ihre Dokumente niemals der gerade zufällig geöffneten anderen Patientenakte zuweisen.
+3. Das Einlesen zeigt Erkennung, Zuordnung und Dokumenteneingang. Danach erscheinen die tatsächlich verfügbaren PDF-Dokumente mit Quelle, Eingangszeit und Lesestatus in der passenden Akte.
+4. Der PDF-Viewer ist Teil der Akte; der Patientenkopf bleibt sichtbar. Schließen führt zur Dokumentliste, Inaktivität zur Stationsübersicht. Eingegangene Dokumente bleiben innerhalb der laufenden Demo erhalten.
+5. Wiederholte Scans erzeugen keine Duplikate. „Demo zurücksetzen“ löscht ausdrücklich den simulierten Eingang für eine erneute Vorführung.
+6. Alle Patientendaten sind fiktiv. Die feste Zuordnung ist Demo-Logik, kein Identitäts- oder Berechtigungsnachweis. Das mitgelieferte PDF ist ein leeres Musterformular und keine unterschriebene Erklärung der fiktiven Patientin.
+7. Es besteht keine technische Verbindung zu einem produktiven ORBIS-/MEDICO-System. Reader-Anbindung, echte Patientenidentifikation und klinische Schnittstellen bleiben getrennte Integrationsaufgaben.
+
+**Übernommene UI-Muster:** kompakte Stationslisten, Organisationshierarchie Station/Zimmer/Bett, dauerhafter Patientenkontext und Hinweise auf neue Dokumente. Quellen: [Dedalus Produktportfolio 2025, Unit View und Krankengeschichte](https://www.dedalus.com/dach/wp-content/uploads/sites/24/2025/04/Dedalus_Produktportfolio_2025_04.pdf), [CGM MEDICO – Stationsorganisation](https://www.cgm.com/deu_de/loesungen/krankenhaus/krankenhausinformationssysteme/cgm-medico/behandlungsmanagement.html). Die neutrale Gestaltung übernimmt die Informationshierarchie, keine Herstelleridentität oder behauptete Zertifizierung.
+
+**Aktueller Umsetzungsstand:** Der dev-Stand mit lokalem PDF-Fallback ist integriert. Der UI-Branch enthält einen KIS-Demonstrator mit Stationsliste, Suche, Zimmerfilter, Patientenakte, Dokumenteneingang, wiederholbarer Kartensimulation und eingebettetem PDF-Viewer. Zustände werden im Browser-Arbeitsspeicher gehalten und beim Neuladen zurückgesetzt. Die nachfolgenden Issues und Quellenangaben stammen aus dem ursprünglichen Anforderungskatalog; Anforderungen sind keine pauschale Behauptung einer vollständigen Abnahme.
+
 
 ## Ziel und vereinbarter Umfang
 
-Eine Person legt eine NFC-Karte auf einen Reader. Der Browser macht hinterlegte Vorsorgedokumente unmittelbar auffindbar und lesbar. Der primäre Nutzungskontext ist ein Laptop im Notfall- beziehungsweise Demoablauf; medizinische Fachpersonen müssen sich schnell orientieren können, Angehörige müssen die Oberfläche verstehen.
+Klinikpersonal arbeitet in einer Stationsübersicht und Patientenakte. Das Einlesen einer Notfallkarte führt die zugeordneten Vorsorgedokumente in diesen bestehenden Arbeitskontext. Der primäre Nutzungskontext ist ein klinischer Demoarbeitsplatz am Laptop.
 
-Henri hat den Umfang „Hackathon-MVP plus Produktblick“ gewählt. Die KI-Seitenleiste aus Issue #28 ist optional. Dokumenterstellung, persönliche Dokumentzuordnung und ein produktiver Zugang zu Gesundheitsdaten gehören zum späteren Produktblick. Im MVP löst jede Karte denselben Dokumentbestand aus. Die Oberfläche darf daraus keine bestätigte Identität oder Zugriffsberechtigung ableiten.
+Henri hat den Umfang „Hackathon-MVP plus Produktblick“ gewählt. Die KI-Seitenleiste aus Issue #28 ist optional. Dokumenterstellung, produktive Patientenidentifikation und Zugang zu echten Gesundheitsdaten gehören zum späteren Produktblick. Die Demo ordnet ihre eine simulierte Karte ausdrücklich einer festen fiktiven Patientin zu; daraus entsteht kein Identitäts- oder Berechtigungsnachweis.
 
 Dieser Katalog ist eine eigenständige Ausarbeitung mit Links zu den Originalen. Es werden keine Issue-Exporte oder Dokumentkopien als Quellenarchiv eingecheckt.
 
-## Aktueller Stand und Quellen
+## Quellenstand der ursprünglichen Analyse (historisch)
 
 - Originalrepository: [DucAnh0075/leuphana_hackathon](https://github.com/DucAnh0075/leuphana_hackathon).
 - [Teamplan](../PLAN.md), main bei 3bf8dcc51ac29dd6bb0f0f541797476343fc464f.
@@ -19,7 +59,7 @@ Dieser Katalog ist eine eigenständige Ausarbeitung mit Links zu den Originalen.
 - Das Repository enthält das [ursprüngliche Briefing](../Basic%20Information%20Digital%20Tool%20Vorsorgedokumente.pdf), die [Pitch-Checkliste](../Checkliste%20Pitch%20Open%20track.pdf), [Daten und Fakten](../Daten%26Fakten%20Pitch.pdf) und das [Positionspapier zur integrierten Notfallplanung](../Die%20Integrierte%20Notfallplanung%20-%20Positionspapier.pdf). Diese Unterlagen wurden im Zusammenhang gelesen. Statistische Aussagen aus der Zusammenstellung sind vor einer öffentlichen Verwendung an ihren Originalquellen zu prüfen.
 - Die vorhandenen [UI-Prompts](../.claude/agents/nfc-ui.md) und die Setup-, Reader- und Content-Prompts beschreiben Zuständigkeiten. Ihre Ausführungskommandos sind kein zusätzlicher Arbeitsauftrag.
 
-### Was im Entwicklungsbranch tatsächlich vorhanden ist
+### Befund vor dem UI-Bau (historisch)
 
 | Bereich | Befund | Konsequenz |
 |---|---|---|
@@ -27,7 +67,7 @@ Dieser Katalog ist eine eigenständige Ausarbeitung mit Links zu den Originalen.
 | Datenzugriff | Supabase-Client und dynamische Route /dokumente | Bestehende Datenanbindung integrieren |
 | Dokumentliste | PDF-Filter, Titel aus Dateinamen, alphabetisch, Limit 100 | Pagination beziehungsweise sichtbare Grenze berücksichtigen |
 | Viewer | Client-Komponente mit PDF-Links | Vollständiger Viewer fehlt |
-| Start | Unveränderte Next.js-Beispielseite | Kiosk-Oberfläche neu gestalten |
+| Start | Unveränderte Next.js-Beispielseite | KIS-Stationsarbeitsplatz gestalten |
 | Layout | Englisch, „Create Next App“, generische Metadaten | Deutsch und passende Produktmetadaten setzen |
 | Fehler/Leerzustand | Meldungen vorhanden, teils mit Supabase-/Env-Anweisungen | Nutzertexte und technische Diagnose trennen |
 | Reader | Keine hooks/- oder bridge/-Implementierung im gelesenen Tree | Schnittstelle abstimmen; Simulation ermöglicht UI-Entwicklung |
@@ -42,12 +82,12 @@ MVP muss ohne KI funktionieren. Bedingte Aufgaben hängen vom Reader ab. Optiona
 
 ## Gemeinsame Anforderungen
 
-- 0.1: Start, Dokumentauswahl und Lesen bilden einen durchgängigen Ablauf mit einer jederzeit erreichbaren Rückkehr zum Start.
+- 0.1: Stationsübersicht, Patientenauswahl, Karteneingang, Dokumentauswahl und Lesen bilden einen durchgängigen Ablauf; die Stationsübersicht bleibt erreichbar.
 - 0.2: Die gesamte Bedienoberfläche verwendet verständliches Deutsch, konsistente Aktionsnamen und den Dokumenttyp als Orientierung.
 - 0.3: Dokumentinhalt und Seitenzahl stammen aus tatsächlich geladenen PDFs. Fehlende Werte werden nicht geschätzt.
 - 0.4: Kartenstatus, Datenladezustand und PDF-Ladezustand werden unabhängig behandelt. Ein erkannter Kartenimpuls beweist noch kein erfolgreich geladenes Dokument.
 - 0.5: Für den öffentlichen Demo-Dokumentbestand werden ausschließlich freigegebene Formulare und ausdrücklich fiktive Muster verwendet.
-- 0.6: Die Demo zeigt keine aus der UID erfundene Person, keine vorgetäuschte Anmeldung und keinen behaupteten medizinischen Gültigkeitsstatus.
+- 0.6: Die feste Demokarte verweist auf eine klar fiktive Patientin. Es werden keine bestätigte UID-Identität, Anmeldung oder medizinische Gültigkeit behauptet.
 - 0.7: Leere Liste, fehlgeschlagene Liste, beschädigtes PDF und fehlende optionale KI-Antwort erhalten unterschiedliche Zustände.
 - 0.8: Ein verspätetes Ladeergebnis darf die inzwischen gewählte Karte, das aktive Dokument oder die aktuelle Seite nicht überschreiben.
 - 0.9: Tastatur, Maus und Touch erreichen dieselben Kernfunktionen. Fokus und aktive Auswahl bleiben sichtbar.
@@ -64,7 +104,7 @@ MVP muss ohne KI funktionieren. Bedingte Aufgaben hängen vom Reader ab. Optiona
 
 Quelle: Next.js-Gerüst mit TypeScript, App Router, Tailwind, Supabase und React-PDF; erfolgreicher Build.
 - 3.1: Das vorhandene Gerüst aus dev bildet die Grundlage des UI-Branches.
-- 3.2: Die Routen / und /dokumente bleiben erhalten und funktionieren auch beim direkten Aufruf.
+- 3.2: / öffnet den KIS-Arbeitsplatz; /dokumente bleibt als Weiterleitung dorthin erreichbar. Das PDF öffnet im Patientenkontext.
 - 3.3: Erweiterungen folgen dem bestehenden Strict-TypeScript-Setup; das vorhandene Lockfile bleibt Grundlage reproduzierbarer Installationen.
 - 3.4: Ergänzung: Viewer-Interaktionen, Datenzugriff und Reader-Ereignisse erhalten getrennte Verantwortlichkeiten.
 Abnahme: Installation aus dem Lockfile, Lint und Produktionsbuild; beide Routen starten ohne Browser- oder Hydrationsfehler.
@@ -188,11 +228,11 @@ Abnahme: physischer Scan auf dem vorgesehenen iPhone und nutzbarer Viewer in Saf
 [Original #15](https://github.com/DucAnh0075/leuphana_hackathon/issues/15) · UI-Kern
 
 Quelle: ruhiger Kiosk, große Überschrift, Karten-Icon, Puls und Reader-Status.
-- 15.1: Hauptanweisung: „Notfallkarte auf den Reader legen“.
-- 15.2: Eine verständliche Darstellung zeigt Karte und Auflagepunkt.
-- 15.3: Ergänzung: Simulationsaktion und Reader-Status sind sichtbar, ohne mit der Hauptanweisung zu konkurrieren.
+- 15.1: Einstieg ist die Stationsübersicht mit Patientennamen, Fallnummern, Zimmern und Betten.
+- 15.2: Eine kompakte Aktion „Karte einlesen (Demo)“ zeigt den Eingang in die klinische Arbeitsoberfläche.
+- 15.3: Ergänzung: Simulation, zugeordnete Demopatientin und Dokumenteingang sind sichtbar; eine vorhandene Akte darf nicht mit dem Kartenempfänger verwechselt werden.
 - 15.4: Ergänzung: Für Tastatureingaben lautet der ehrliche Status „Tastaturmodus aktiv“, solange Hardwarepräsenz nicht festgestellt werden kann.
-- 15.5: Ergänzung: Pulsbewegung ist dezent und entfällt bei reduzierter Bewegung.
+- 15.5: Ergänzung: Kurze Statusübergänge erklären den Import; keine dekorative Pulsanimation auf dem klinischen Arbeitsplatz.
 - 15.6: Der Bildschirm funktioniert im Vollbild und in einem normalen Browserfenster.
 Abnahme: sofort erkennbare Hauptaktion, lesbarer Status, kein Scrollzwang im primären Laptopformat.
 
@@ -204,15 +244,15 @@ Quelle: CardListener, Erfolgsmeldung, Weiterleitung, Button und Leertaste.
 - 16.2: „Karte erkannt“ bestätigt das Ereignis; der anschließende Ladezustand bestätigt erst den Dokumentabruf.
 - 16.3: Ergänzung: Simulation ist als Demoaktion gekennzeichnet und behauptet keinen Hardwarekontakt.
 - 16.4: Ergänzung: Wiederholte Ereignisse während eines laufenden Übergangs erzeugen keine mehrfachen Navigationen.
-- 16.5: Ergänzung: Leertaste simuliert nur auf dem Startbildschirm und außerhalb von Formularen oder bereits fokussierten Bedienelementen.
-- 16.6: Ergänzung: Fokus wird nach dem Routenwechsel sinnvoll in den Dokumentbereich gesetzt.
+- 16.5: Ergänzung: Leertaste simuliert im Klinikarbeitsplatz außerhalb von Formularen, fokussierten Bedienelementen, Dialogen und dem PDF-Viewer.
+- 16.6: Ergänzung: Nach der Zuordnung wird die richtige Patientenakte geöffnet und der Patientenkopf fokussiert.
 Abnahme: alle drei Auslöser, Doppelklick und mehrfacher Scan während des Ladens.
 
 ### Issue 17 PDF-Viewer
 [Original #17](https://github.com/DucAnh0075/leuphana_hackathon/issues/17) · UI-Kern
 
 Quelle: browserseitiger React-PDF-Viewer, Worker, docs-Vertrag, Lade- und Fehlerzustand.
-- 17.1: Das aktive Original-PDF wird innerhalb der Anwendung angezeigt.
+- 17.1: Das aktive Original-PDF wird innerhalb der Patientenakte mit dauerhaft sichtbarem Patientenkopf angezeigt.
 - 17.2: Dokument laden, Seite rendern, Dokumentfehler und Seitenfehler sind unterscheidbar.
 - 17.3: Ergänzung: Fehler eines PDFs lassen den Wechsel auf andere Dokumente zu.
 - 17.4: Ergänzung: „Erneut versuchen“ und Öffnen des Originals bleiben bei renderbaren Zugriffspfaden erreichbar.
@@ -274,12 +314,12 @@ Abnahme: Zoomgrenzen, Größenwechsel, Originaldatei erreichbar und keine ungewo
 [Original #22](https://github.com/DucAnh0075/leuphana_hackathon/issues/22) · UI-Kern
 
 Quelle: Fertig, Escape und automatische Rückkehr nach zwei Minuten ohne Eingabe.
-- 22.1: „Fertig“ setzt den Ablauf zurück und führt nach /.
-- 22.2: Escape schließt zunächst ein offenes Dialogelement; sonst führt es zum Start.
+- 22.1: „Dokument schließen“ führt zur Dokumentliste derselben Akte. „Zur Stationsübersicht“ schließt die Akte; der Dokumenteneingang bleibt erhalten.
+- 22.2: Escape schließt zuerst den Warnungsdialog, danach den PDF-Viewer, danach die Akte. Eingegangene Dokumente werden dadurch nicht entfernt.
 - 22.3: Ergänzung: Tastatur-, Zeiger-, Touch- und Scrollaktivität erneuern den Timer; Hintergrundabrufe tun dies nicht.
 - 22.4: Ergänzung: Nach 100 Sekunden erscheint eine Warnung mit 20 Sekunden Reaktionszeit und „Weiterlesen“.
 - 22.5: Ergänzung: Verlängern ist wiederholt möglich; danach beginnt die Frist neu.
-- 22.6: Ergänzung: Im zurückgesetzten Zustand bleiben keine alte Seite oder alte KI-Antwort sichtbar.
+- 22.6: Ergänzung: Beim Schließen verschwindet der PDF-Lesezustand; der Import bleibt erhalten. Nur „Demo zurücksetzen“ oder ein Neuladen löscht den simulierten Aktenbestand.
 - 22.7: Ergänzung: Timer werden beim Verlassen entfernt und laufen nicht doppelt.
 Abnahme: Fristablauf, Aktivität kurz vor Ablauf, Verlängern, Escape im Dialog und wiederholter Start.
 Die Verlängerung konkretisiert die Barrierearmut anhand [WCAG Timing Adjustable](https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html).
@@ -289,9 +329,9 @@ Die Verlängerung konkretisiert die Barrierearmut anhand [WCAG Timing Adjustable
 
 Quelle: neue Karte aktualisiert den Bestand und setzt auf Dokument 1, Seite 1.
 - 23.1: Kartenereignisse werden auch während des Lesens verarbeitet.
-- 23.2: Eine neue Kartensitzung setzt Dokument, Seite, Zoom und Inaktivitätsfrist definiert zurück.
+- 23.2: Eine erkannte Karte öffnet die zugehörige Akte unabhängig von der vorher ausgewählten Person; der PDF-Lesezustand wird beim Öffnen neu initialisiert.
 - 23.3: Ergänzung: Aktualisieren der Daten und Rücksetzen des lokalen Viewer-Zustands sind getrennte Schritte.
-- 23.4: Ergänzung: Wiederholmeldungen derselben Auflage werden entprellt; eine tatsächlich neu aufgelegte Karte bleibt erkennbar.
+- 23.4: Ergänzung: Wiederholte Imports derselben Demokarte erzeugen keine Dokument- oder Verlaufduplikate.
 - 23.5: Ergänzung: Antworten aus einer älteren Sitzung dürfen den aktuellen Bestand nicht ersetzen.
 Abnahme: zweite Karte auf Seite 3 eines anderen PDFs; Duplikate; langsamere Antwort der vorherigen Sitzung.
 
@@ -387,7 +427,7 @@ Abnahme: bestätigter Upload und praktisch geprüfte Vorführung.
 
 ## Informationsarchitektur und Gestaltungsvorschlag
 
-Startseite: eine klare Kartenaufforderung im Zentrum, darunter die Demoaktion; Status am unteren Rand. Viewer: Dokumentauswahl oben, links einklappbare Seitenvorschau, große Lesefläche, dauerhaft erreichbare Navigation und Abschluss. Die optionale KI-Seitenleiste steht rechts; auf schmalen Bildschirmen öffnet sie als eigener Bereich.
+Stationsübersicht: links Arbeitsbereiche und Zimmer, zentral Patientenliste mit Suche und Zimmerfilter. Patientenakte: dauerhafter Patientenkopf, Aktenbereiche Übersicht/Vorsorgedokumente/Verlauf, Eingangsliste mit Quelle und Zeit. PDF-Viewer: eingebettet unter dem Patientenkopf, einklappbare Seitenvorschau und Lesewerkzeuge; Schließen führt zur Akte.
 
 Die visuelle Sprache soll an gut lesbare medizinische Dokumente anschließen: ruhige helle Flächen, klare Trennung zwischen Dokument und Bedienung, große Handlungsflächen. Keine Marketing-Kacheln oder Kennzahlen auf dem Arbeitsbildschirm.
 
@@ -421,7 +461,7 @@ Alternativen: Vite/React wäre für einen reinen Viewer möglich, würde hier ab
 
 ## Technische Übergaben und nötige Korrekturen
 
-1. Entwicklungsbasis: Vor UI-Code den aktuellen dev-Stand in den UI-Branch integrieren. Das ist hier noch nicht erfolgt. Anschließend die lokale AGENTS.md und die zur installierten Next-Version gehörenden Guides lesen.
+1. Entwicklungsbasis: Der dev-Stand einschließlich lokalem PDF-Fallback wurde integriert. Die lokale AGENTS.md und installierten Next-Guides wurden beim Bau berücksichtigt.
 2. Bestehender Viewer-Vertrag: docs ist eine Liste aus title und url. Den exportierten Typ kompatibel halten; stabile Identität, Quelle und Dokumentversion bei Bedarf ausdrücklich am gemeinsamen Vertrag ergänzen.
 3. Bestehender Reader-Vertrag: useCardReader({ onCard }) liefert status; onCard erhält eine UID. Für Simulation wird derselbe Ereignisweg genutzt. Hardwarezustände nur erweitern, wenn der Reader-Owner sie tatsächlich liefern kann.
 4. Session-Reset: Ein eigener Sitzungsschlüssel beziehungsweise Reset im Viewer muss Dokument, Seite, Zoom und spätere KI-Anfragen zurücksetzen. Ein reiner Daten-Refresh ist kein belastbarer Reset des gesamten UI-Zustands.
@@ -462,7 +502,7 @@ Diese Anforderungen stammen aus dem größeren Briefing beziehungsweise dem Ausb
 | Schneller Wechsel A nach B | Kein Ergebnis von A erscheint unter B |
 | Einseiter/letzte Seite | Keine ungültige Seitennummer |
 | Tastaturdurchlauf | Alle Funktionen erreichbar; Tabs und Seitenwechsel kollidieren nicht |
-| Timeout | Warnung, Verlängerung, Ablauf und vollständiger Reset |
+| Timeout | Warnung, Verlängerung und Rückkehr zur Station; Dokumenteingang bleibt erhalten |
 | Neue Karte im Viewer | Neuer Bestand, Dokument 1, Seite 1, Standardzoom |
 | Mobile Breite/200 Prozent Zoom | Kernaktionen bleiben sichtbar beziehungsweise erreichbar |
 | Optionale KI fällt aus | Original-PDF unverändert nutzbar |
@@ -479,4 +519,4 @@ Diese Szenarien sind Abnahmekriterien, keine bereits bestandenen Tests. Beim Bau
 4. Supabase und echten Reader anschließen; beide Readerpfade separat abnehmen.
 5. Produktionsbuild und Vorführablauf prüfen; optional danach die KI-Seitenleiste ergänzen.
 
-Die UI kann nach Festlegung dieses Vorschlags mit Simulation und einem gekennzeichneten Demobestand beginnen. Die endgültige Hardwareabnahme benötigt den echten Reader. Eine Umsetzung dieser Schritte ist ein eigener nächster Auftrag.
+Die erste KIS-Demo setzt Simulation und gekennzeichneten Demobestand um. Die endgültige Hardware- und Schnittstellenabnahme benötigt echte Reader-/KIS-Anbindungen; die oben aufgeführten Tests sind einzeln zu belegen.
