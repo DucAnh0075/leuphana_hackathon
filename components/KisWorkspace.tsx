@@ -1,21 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
-import dataset from "@/lib/demo-patients.json";
 import PdfViewer from "./PdfViewer";
 import IdleDialog from "./IdleDialog";
 import PulseMonitor from "./PulseMonitor";
 import { Icon } from "./Icons";
+import type { CareSnapshot } from "@/lib/care/types";
+import { projectClinicalPatients } from "@/lib/clinical-care";
 
-type BasePatient = (typeof dataset.patients)[number];
-type Provenance = { kind: string; label: string; url: string; version: string; note: string };
-type ClinicalDocument = BasePatient["documents"][number] & { provenance?: Provenance };
-type Fact = BasePatient["facts"][number] & { target?: string; templatePage?: number; templateSection?: string };
-type Patient = Omit<BasePatient, "documents"> & { documents: ClinicalDocument[]; carePreferences?: Fact[] };
+import type { ClinicalDocument, ClinicalFact as Fact, ClinicalPatient as Patient } from "@/lib/clinical-care";
 type Section = "overview" | "vitals" | "documents" | "contacts" | "history";
 type OpenDocument = { document: ClinicalDocument; page: number; section?: string; quote?: string; fact?: Fact };
-const patients: Patient[] = dataset.patients;
 const sections: { id: Section; label: string; icon: "pages" | "pulse" | "document" | "users" | "history" }[] = [
   { id: "overview", label: "Fallübersicht", icon: "pages" },
   { id: "vitals", label: "Kurve / Vitaldaten", icon: "pulse" },
@@ -42,11 +38,13 @@ function VitalChart({ patient }: { patient: Patient }) {
   </svg></div>;
 }
 
-export default function KisWorkspace({ initialPatientId, initialDocumentId, initialEvidenceId, initialPage = 1 }: { initialPatientId?: string; initialDocumentId?: string; initialEvidenceId?: string; initialPage?: number }) {
+export default function KisWorkspace({ initialPatientId, initialDocumentId, initialEvidenceId, initialPage = 1, careState, integrationPanel, basePath = "/" }: { initialPatientId?: string; initialDocumentId?: string; initialEvidenceId?: string; initialPage?: number; careState?: CareSnapshot; integrationPanel?: ReactNode; basePath?: string }) {
+  const patients: Patient[] = useMemo(() => projectClinicalPatients(careState), [careState]);
   const initialPatient = patients.find(patient => patient.id === initialPatientId) ?? null;
   const initialDoc = initialPatient?.documents.find(doc => doc.id === initialDocumentId);
   const initialFact = initialDoc && initialPatient ? [...initialPatient.facts, ...(initialPatient.carePreferences ?? [])].find(fact => fact.id === initialEvidenceId && fact.documentId === initialDoc.id) : undefined;
-  const [selected, setSelected] = useState<Patient | null>(initialPatient);
+  const [selectedSeed, setSelected] = useState<Patient | null>(initialPatient);
+  const selected = patients.find(patient => patient.id === selectedSeed?.id) ?? null;
   const [section, setSection] = useState<Section>(initialDoc ? "documents" : "overview");
   const [query, setQuery] = useState("");
   const [room, setRoom] = useState("");
@@ -60,13 +58,13 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   const returnFocus = useRef<string | null>(null);
   const sourcePanel = useRef<HTMLDivElement>(null);
 
-  const updateAddress = (patient: Patient | null, doc?: ClinicalDocument, page = 1, fact?: Fact) => {
+  const updateAddress = useCallback((patient: Patient | null, doc?: ClinicalDocument, page = 1, fact?: Fact) => {
     const params = new URLSearchParams();
     if (patient) params.set("patient", patient.id);
     if (doc) { params.set("document", doc.id); params.set("page", String(page)); }
     if (fact) params.set("evidence", fact.id);
-    window.history.replaceState(null, "", params.size ? "/?" + params.toString() : "/");
-  };
+    window.history.replaceState(null, "", params.size ? basePath + (basePath.includes("?") ? "&" : "?") + params.toString() : basePath);
+  }, [basePath]);
   const openPatient = (patient: Patient, nextSection: Section = "overview") => {
     setSelected(patient); setSection(nextSection); setOpened(null); setActiveFact(null); setDocumentQuery(""); setInbox(false);
     updateAddress(patient);
@@ -82,7 +80,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
     if (selected) updateAddress(selected, doc, page, fact);
   };
   const closeDocument = () => { setOpened(null); if (selected) updateAddress(selected); };
-  useEffect(() => { if (selected) heading.current?.focus(); }, [selected]);
+  useEffect(() => { if (selectedSeed?.id) heading.current?.focus(); }, [selectedSeed?.id]);
   useEffect(() => {
     if (opened) { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); viewerHeading.current?.focus({ preventScroll: true }); }
     if (!opened && returnFocus.current) { document.getElementById(returnFocus.current)?.focus(); returnFocus.current = null; }
@@ -96,7 +94,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
     };
     window.addEventListener("keydown", escape);
     return () => window.removeEventListener("keydown", escape);
-  }, [opened, activeFact, selected]);
+  }, [opened, activeFact, selected, updateAddress]);
 
   const visiblePatients = patients.filter(patient => (!room || patient.room === room) && [patient.name, patient.first, patient.id, patient.room, ...patient.diagnoses.map(d => d.title)].join(" ").toLocaleLowerCase("de").includes(query.toLocaleLowerCase("de")));
   const activeScope = selected?.facts.find(fact => fact.id === activeFact);
@@ -110,12 +108,12 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
     const doc = selected?.documents.find(item => item.id === fact.documentId);
     if (!doc || !selected) return null;
     const originId = "source-" + fact.id + (compact ? "-compact" : "");
-    return <a id={originId} className="source-link" href={`/?patient=${selected.id}&document=${doc.id}&page=${fact.page}&evidence=${encodeURIComponent(fact.id)}`} onClick={event => { event.preventDefault(); openDocument(doc, fact.page, fact, originId); }}><Icon name="document" width="13" height="13" />{compact ? "Beleg anzeigen" : doc.title} · S. {fact.page}<span>{compact ? "" : " · " + fact.section}</span><Icon name="arrow" width="12" height="12" /></a>;
+    return <a id={originId} className="source-link" href={`${basePath}${basePath.includes("?") ? "&" : "?"}patient=${selected.id}&document=${doc.id}&page=${fact.page}&evidence=${encodeURIComponent(fact.id)}`} onClick={event => { event.preventDefault(); openDocument(doc, fact.page, fact, originId); }}><Icon name="document" width="13" height="13" />{compact ? "Beleg anzeigen" : doc.title} · S. {fact.page}<span>{compact ? "" : " · " + fact.section}</span><Icon name="arrow" width="12" height="12" /></a>;
   };
   const renderDocuments = (compact = false) => {
     if (!selected) return null;
     const docs = selected.documents.filter(doc => (doc.title + " " + doc.kind).toLocaleLowerCase("de").includes(documentQuery.toLocaleLowerCase("de")));
-    return <div className="table-scroll"><table className="document-table"><thead><tr><th>Status</th><th>Dokument / Typ</th><th>Dokumentdatum</th>{!compact && <th>Geltungsbereich</th>}<th>In Akte seit</th><th>Quelle</th></tr></thead><tbody>{docs.map(doc => <tr key={doc.id}><td><span className="document-state"><i className={readDocuments.includes(doc.id) ? "read-indicator" : "new-indicator"} />{readDocuments.includes(doc.id) ? "Geöffnet" : doc.status}</span></td><td><a id={"document-" + doc.id} href={`/?patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => { event.preventDefault(); openDocument(doc); }}>{doc.title}</a><small>{doc.kind} · {doc.pages.length} Seiten</small></td><td>{formatDate(doc.date)}</td>{!compact && <td>{selected.facts.filter(fact => fact.documentId === doc.id).map(fact => <div key={fact.id}><strong>{categoryNames[fact.category]}</strong><small>{fact.condition}</small><small>Ausgenommen: {fact.exclusions.join("; ")}</small>{fact.person && <small>Benannte Person: {fact.person}</small>}</div>)}</td>}<td>{formatDate(doc.received)}</td><td><span className={"source-cell provenance-" + (doc.provenance?.kind ?? "synthetic")}>{doc.provenance?.label ?? "Synthetischer Demotext"}</span><small>{doc.provenance?.version || "PDF · Dokumenttext einsehbar"}</small>{doc.provenance?.url && <a className="template-link" href={doc.provenance.url} target="_blank" rel="noopener noreferrer">Vorlage ansehen ↗</a>}</td></tr>)}</tbody></table>{!docs.length && <p className="empty-table">Keine Dokumente für diesen Suchbegriff.</p>}</div>;
+    return <div className="table-scroll"><table className="document-table"><thead><tr><th>Status</th><th>Dokument / Typ</th><th>Dokumentdatum</th>{!compact && <th>Geltungsbereich</th>}<th>In Akte seit</th><th>Quelle</th></tr></thead><tbody>{docs.map(doc => <tr key={doc.id}><td><span className="document-state"><i className={readDocuments.includes(doc.id) ? "read-indicator" : "new-indicator"} />{readDocuments.includes(doc.id) ? "Geöffnet" : doc.status}</span></td><td><a id={"document-" + doc.id} href={`${basePath}${basePath.includes("?") ? "&" : "?"}patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => { event.preventDefault(); openDocument(doc); }}>{doc.title}</a><small>{doc.kind} · {doc.pages.length} Seiten</small></td><td>{formatDate(doc.date)}</td>{!compact && <td>{selected.facts.filter(fact => fact.documentId === doc.id).map(fact => <div key={fact.id}><strong>{categoryNames[fact.category]}</strong><small>{fact.condition}</small><small>Ausgenommen: {fact.exclusions.join("; ")}</small>{fact.person && <small>Benannte Person: {fact.person}</small>}</div>)}</td>}<td>{formatDate(doc.received)}</td><td><span className={"source-cell provenance-" + (doc.provenance?.kind ?? "synthetic")}>{doc.provenance?.label ?? "Synthetischer Demotext"}</span><small>{doc.provenance?.version || "PDF · Dokumenttext einsehbar"}</small>{doc.provenance?.url && <a className="template-link" href={doc.provenance.url} target="_blank" rel="noopener noreferrer">Vorlage ansehen ↗</a>}</td></tr>)}</tbody></table>{!docs.length && <p className="empty-table">Keine Dokumente für diesen Suchbegriff.</p>}</div>;
   };
   const renderFacts = () => selected?.facts.map(fact => <div className={"scope-row " + fact.category} key={fact.id}><div><button className="scope-link" onClick={() => openFact(fact)}>{fact.label}</button><strong>{fact.value}</strong><small>{fact.condition}</small>{fact.exclusions.length > 0 && <small className="scope-exclusions">Grenzen: {fact.exclusions.join("; ")}</small>}</div>{sourceLink(fact, true)}</div>);
   const renderCarePreferences = () => selected?.carePreferences?.length ? <Panel title="Behandlungswünsche im Versorgungskontext" className="full-width treatment-preferences" action={<span>Aus der Patientenverfügung</span>}><p className="treatment-context">Situationsgebundene Aussagen aus dem Dokument. Die Anwendbarkeit auf den aktuellen Fall ist nicht bestätigt.</p><div className="care-preference-grid">{selected.carePreferences.map(fact => <article className="care-preference" key={fact.id}><div className="care-preference-heading"><strong>{fact.target ?? fact.label}</strong><span>Dokumentierter Wunsch</span></div><p className="care-preference-value">{fact.value}</p><p className="care-preference-condition"><b>Gilt nur:</b> {fact.condition}</p>{fact.exclusions.length > 0 && <p className="care-preference-limits"><b>Grenzen:</b> {fact.exclusions.join("; ")}</p>}<div className="care-preference-source">{sourceLink(fact, true)}{fact.templateSection && <small>Vorlagenbaustein {fact.templateSection}</small>}</div></article>)}</div></Panel> : null;
@@ -128,7 +126,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   </tbody></table></div>;
 
   return <div className="hospital-shell">
-    <header className="application-title"><span><b className="hospital-logo">+</b>Klinikum Nord <span className="application-subtitle">Klinischer Arbeitsplatz</span></span><span className="demo-label">Synthetische Demo</span><span className="session-user">Dr. M. Weber · Ärztlicher Dienst</span></header>
+    <header className="application-title"><span><b className="hospital-logo">+</b>Klinikum Nord <span className="application-subtitle">Klinischer Arbeitsplatz</span></span><span className="demo-label">Synthetische Demo</span><span className="session-user">{careState?.actor.name ?? "Dr. M. Weber · Ärztlicher Dienst"}</span>{!careState && <a href="/vorsorge" className="text-button">Persönliche Vorsorge</a>}</header>
     <div className="application-tabs"><button className={!selected && !inbox ? "active" : ""} onClick={closeChart}><Icon name="hospital" width="15" height="15" />Station 2A <small>Innere Medizin</small></button>{selected && <button className="active patient-workspace-tab" onClick={closeDocument}><Icon name="users" width="15" height="15" />{selected.name}, {selected.first}<small>Fall {selected.id}</small></button>}<span className="system-date">05.11.2026 · Stand 16:30</span></div>
     <div className="application-body">
       <nav className="module-rail" aria-label="Hauptmodule"><button className={!inbox && !selected ? "active" : ""} aria-label="Stationsübersicht" title="Stationsübersicht" onClick={closeChart}><Icon name="hospital" /></button><button className={inbox ? "active" : ""} aria-label="Dokumenteneingang" title="Dokumenteneingang" onClick={() => { setSelected(null); setOpened(null); setInbox(true); updateAddress(null); }}><Icon name="inbox" /></button>{selected && sections.map(item => <button key={item.id} className={section === item.id && !opened ? "active" : ""} aria-label={item.label} title={item.label} onClick={() => selectSection(item.id)}><Icon name={item.icon} /></button>)}<span className="rail-spacer" /><span className="rail-status" title="Lokale Demonstration"><Icon name="shield" /></span></nav>
@@ -137,11 +135,12 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
         {selected ? <><div className="tree-case"><b>{selected.id}</b><small>{selected.admission} · Station 2A</small></div><nav aria-label="Fallnavigation">{sections.map(item => <button key={item.id} className={"tree-item " + (section === item.id && !opened ? "active" : "")} onClick={() => selectSection(item.id)}><Icon name={item.icon} width="14" height="14" />{item.label}{item.id === "documents" && <span>{selected.documents.length}</span>}</button>)}</nav><div className="tree-subsection">Vorsorge & Vertretung</div>{selected.facts.map(fact => <button key={fact.id} className={"tree-fact " + (activeFact === fact.id ? "active" : "")} onClick={() => openFact(fact)}><i className={"category-dot " + fact.category} />{categoryNames[fact.category] ?? fact.category}</button>)}<div className="tree-heading secondary-heading">Station 2A</div></> : <><button className="tree-item active" onClick={closeChart}><Icon name="hospital" width="14" height="14" />Stationsliste</button><div className="tree-subsection">Innere Medizin</div></>}
         <div className="rooms-tree">{["201", "202", "203", "204"].map(number => <button key={number} className={room === number ? "active" : ""} onClick={() => { closeChart(); setRoom(room === number ? "" : number); setQuery(""); }}><Icon name="bed" width="14" height="14" /><span>Zimmer {number}</span><small>2 / 2</small></button>)}</div>
         {selected && <><div className="tree-heading secondary-heading">Patienten auf Station</div><div className="patient-shortlist">{patients.map(patient => <button key={patient.id} className={selected.id === patient.id ? "active" : ""} onClick={() => openPatient(patient)}><span>{patient.room}{patient.bed}</span>{patient.name}, {patient.first[0]}.</button>)}</div></>}
-        <div className="tree-footer"><span className="status-dot" />Arbeitsplatz Station 2A<small>Demodaten · keine Live-Verbindung</small></div>
+        <div className="tree-footer"><span className="status-dot" />Arbeitsplatz Station 2A<small>{careState ? careState.mode === "demo" ? "Gemeinsamer Demozustand" : "Dokumenteneingang über Supabase" : "Demodaten · keine Live-Verbindung"}</small></div>
       </aside>
       <div className="clinical-workspace">
         <div className="clinical-toolbar"><div className="toolbar-path"><Icon name={selected ? "users" : "hospital"} width="16" height="16" />{selected ? "Fall" : "Station"} <span>›</span> {opened ? "Dokumentenansicht" : selected ? sections.find(item => item.id === section)?.label : inbox ? "Dokumenteneingang" : "Belegungsliste"}</div><div className="toolbar-actions">{selected && <button className="toolbar-button" onClick={closeChart}><Icon name="back" width="14" height="14" />Akte schließen</button>}<span className="toolbar-divider" /><span>Innere Medizin / 2A</span></div></div>
         <main id="main">
+          {integrationPanel}
           {!selected ? <>
             <div className="view-heading"><h1>{inbox ? "Dokumenteneingang" : "Stationsübersicht"}</h1><span>Station 2A · 8 Patienten · 4 Zimmer · 8 belegte Betten</span></div>
             {inbox ? <Panel title="Externe Vorsorgedokumente · Patientenbezogene Eingänge"><div className="table-scroll"><table><thead><tr><th>Eingang</th><th>Patient / Fall</th><th>Dokument</th><th>Status</th><th>Aktion</th></tr></thead><tbody>{patients.flatMap(patient => patient.documents.map(doc => <tr key={doc.id}><td>{formatDate(doc.received)}</td><td><button className="patient-link" onClick={() => openPatient(patient, "documents")}>{patient.name}, {patient.first}</button><small>{patient.id} · {patient.room}/{patient.bed}</small></td><td>{doc.title}</td><td><span className="document-state"><i className="new-indicator" />{doc.status}</span></td><td><button className="text-button" onClick={() => openPatient(patient, "documents")}>Akte öffnen</button></td></tr>))}</tbody></table></div></Panel> : <>
@@ -168,7 +167,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
                 <Tabs.Content value="vitals"><Panel title="Kurvenblatt · 05.11.2026" action={<span>Station 2A · Pflege / Vitalparameter</span>}><PulseMonitor sample={selected.vitals[selected.vitals.length - 1]} /><VitalChart patient={selected} />{renderVitalsTable()}</Panel><div className="overview-grid lower-grid"><Panel title="Pflegedokumentation"><p className="clinical-text">{selected.notes}</p><dl className="compact-details"><div><dt>Beobachtungszeitraum</dt><dd>06:00–16:00 Uhr · 05.11.2026</dd></div><div><dt>Dokumentation</dt><dd>Vollständig synthetische Messreihe</dd></div></dl></Panel><Panel title="Relevante Vorsorgehinweise">{renderFacts()}</Panel></div></Tabs.Content>
                 <Tabs.Content value="documents"><div className="document-filter"><label>Dokument suchen <input type="search" value={documentQuery} onChange={event => setDocumentQuery(event.target.value)} placeholder="Titel oder Dokumentart" /></label><span>{selected.documents.length} hinterlegte Dokumente</span></div><Panel title="Vorsorgedokumente und medizinische Willenserklärungen">{renderDocuments()}<p className="panel-footnote">„Dokumentiert“ bezeichnet den Akteneingang. Umfang und Bedingungen ergeben sich aus dem jeweiligen Dokument.</p></Panel><Panel title="Geltungsbereiche und Quellenverzeichnis" className="lower-panel">{renderFacts()}</Panel></Tabs.Content>
                 <Tabs.Content value="contacts"><div className="overview-grid"><Panel title="Kontaktperson"><dl className="compact-details"><div><dt>Name</dt><dd>{selected.contact.name}</dd></div><div><dt>Beziehung</dt><dd>{selected.contact.relationship}</dd></div><div><dt>Telefon</dt><dd>{selected.contact.phone}</dd></div><div><dt>Hinweis</dt><dd>Kontaktdaten allein begründen keine Vertretungsbefugnis.</dd></div></dl></Panel><Panel title="Befugnisse der benannten Personen">{renderFacts()}</Panel></div></Tabs.Content>
-                <Tabs.Content value="history"><Panel title="Fallbezogener Dokumentationsverlauf"><table><thead><tr><th>Zeit</th><th>Eintrag</th><th>Inhalt / Quelle</th></tr></thead><tbody>{selected.events.map((event,index) => <tr key={index}><td className="numeric">{event.time}</td><td><strong>{event.title}</strong></td><td>{event.text}</td></tr>)}{selected.documents.map(doc => <tr key={doc.id}><td>{formatDate(doc.received)}</td><td>Vorsorgedokument hinterlegt</td><td><a href={`/?patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => {event.preventDefault();openDocument(doc);}}>{doc.title}</a><small>Externe Vorsorgedokumentation · {doc.status}</small></td></tr>)}</tbody></table></Panel></Tabs.Content>
+                <Tabs.Content value="history"><Panel title="Fallbezogener Dokumentationsverlauf"><table><thead><tr><th>Zeit</th><th>Eintrag</th><th>Inhalt / Quelle</th></tr></thead><tbody>{selected.events.map((event,index) => <tr key={index}><td className="numeric">{event.time}</td><td><strong>{event.title}</strong></td><td>{event.text}</td></tr>)}{selected.documents.map(doc => <tr key={doc.id}><td>{formatDate(doc.received)}</td><td>Vorsorgedokument hinterlegt</td><td><a href={`${basePath}${basePath.includes("?") ? "&" : "?"}patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => {event.preventDefault();openDocument(doc);}}>{doc.title}</a><small>Externe Vorsorgedokumentation · {doc.status}</small></td></tr>)}</tbody></table></Panel></Tabs.Content>
               </Tabs.Root>}
             <IdleDialog onFinish={closeChart} />
           </>}

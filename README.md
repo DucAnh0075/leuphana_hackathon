@@ -2,6 +2,12 @@
 
 Eine Next.js-Demo eines Krankenhausinformationssystems mit acht synthetischen Patientenakten. Vorsorgeinformationen sind in die Akten integriert und mit den jeweiligen Dokumenten und Belegstellen verknüpft.
 
+## Produktkonzept und Anforderungen
+
+- [Bestehende KIS-Oberfläche](docs/UI-REQUIREMENTS.md): klinische Anforderungen und umgesetzter Demokontext.
+- [Zweite UI: persönliche Vorsorge](docs/UI-CONSUMER-ERWEITERUNG.md): Herleitung des freigegebenen Plans mit Nutzenargumenten und Hardwarefragen.
+- [Persönliche UI, Auth und Kartenereignis starten](docs/CARE-SETUP.md): implementierter Ablauf, Supabase-Voraussetzungen und Prüfgrenzen.
+
 ## Setup
 
 1. Abhängigkeiten installieren: `npm install`
@@ -20,7 +26,7 @@ Als Demo liegt das offizielle [BMJV-Formular Vorsorgevollmacht](https://www.bmjv
 ## Deployment (Vercel)
 
 1. Das Repo auf [vercel.com](https://vercel.com) importieren. Als Framework Preset **Next.js** wählen und die Defaults übernehmen.
-2. Für die aktuelle synthetische Demo sind keine Supabase-Umgebungsvariablen nötig. Bei späterer Aktivierung des Dokumentadapters werden `NEXT_PUBLIC_SUPABASE_URL` und `NEXT_PUBLIC_SUPABASE_ANON_KEY` benötigt.
+2. Die statische KIS-Ansicht benötigt keine Konfiguration. Für die gemeinsame persönliche/klinische Vorführung auf verteiltem Hosting den Supabase-Modus gemäß [CARE-SETUP.md](docs/CARE-SETUP.md) einrichten. Der lokale synthetische Sitzungszustand ist nicht zwischen Serverless-Instanzen geteilt.
 3. Deployen.
 
 Produktions-URL: _noch nicht eingetragen_
@@ -49,7 +55,7 @@ Jede Akte enthält vier verschiedene Dokumentarten: Vorsorgevollmacht für Gesun
 ### Daten und Belegkette
 
 - `lib/demo-patients.json`: gemeinsamer, editierbarer synthetischer Quelldatensatz.
-- `public/demo-documents/`: 32 ausgefüllte oder erzeugte Demo-PDFs mit insgesamt 72 Seiten.
+- `public/demo-documents/`: ursprünglicher KIS-Bestand aus 32 PDFs/72 Seiten, ergänzt um eine separate vierseitige Fassung 2 für die Übergabedemo.
 - `scripts/generate_demo_documents.py`: reproduzierbare PDF-Erzeugung; prüft alle 64 Kurz- und Detailverweise gegen Text und Abschnitt auf der tatsächlichen PDF-Seite.
 
 Alle Personen, Kontaktdaten, Messwerte und individuellen Festlegungen sind erfunden. Die Formulierungen der Patientenverfügung und das Vollmachtformular stammen aus den jeweils angegebenen echten Vorlagen. Die Dokumente sind als synthetisch und nicht rechtswirksam gekennzeichnet. Angezeigte Daten sind Demonstrationsinhalt, keine klinischen Empfehlungen oder automatisch rechtlich geprüften Befugnisse. Die Informationen sind für die Vorführung bereits im KIS vorhanden; es besteht keine echte Krankenhaus- oder NFC-Anbindung. Der ursprüngliche Supabase-Adapter bleibt im Repository erhalten, beliefert diese synthetische Demo jedoch nicht.
@@ -70,13 +76,13 @@ Der Vitalmonitor zeigt feste synthetische Messwerte. Seine schematische Pulsanim
 
 ```bash
 npm ci
-npm run dev -- --port 3100
+npm run dev -- --port 3110
 npm run lint
 npm run build
 npm run test:ui
 ```
 
-Vorschau: http://localhost:3100. In VS Code denselben Worktree mit `feat/notfallkarten-ui` öffnen.
+Vorschau: http://localhost:3110. Persönliche Ansicht und Demo-Einstieg: http://localhost:3110/anmelden. In VS Code denselben Worktree mit `feat/notfallkarten-ui` öffnen.
 Die Browsertests verwenden unter Windows Microsoft Edge; auf anderen Systemen vorher `npx playwright install chromium` ausführen. Prüfbilder und Traces bleiben im ignorierten `test-results/`.
 
 PDF-Daten nach Änderungen neu erzeugen (Python-Entwicklungswerkzeuge, nicht für den App-Betrieb nötig):

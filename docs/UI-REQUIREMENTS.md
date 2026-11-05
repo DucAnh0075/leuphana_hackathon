@@ -2,6 +2,8 @@
 
 Stand: 05.11.2026, nach der Kontextkorrektur zum KIS-Demonstrator. Anforderungskatalog mit aktualisierter Interpretation; keine Produktfreigabe.
 
+Ergänzend liegt ein eigener [Entwurf für die zweite, persönliche Vorsorge-UI](UI-CONSUMER-ERWEITERUNG.md) vor. Er beschreibt Vorbereitung, Unterstützung und nachvollziehbare Übergabe als Gegenstück zur KIS-Ansicht. Die Erweiterung ist geplant; die folgenden KIS-Anforderungen bleiben für die bestehende Oberfläche maßgeblich.
+
 ## Aktuelle Weiterentwicklung: klinische Informationsdichte und Belegstellen
 
 Diese Ausgestaltung folgt der anschließenden Nutzerkorrektur mit zwei M-KIS-Referenzbildern. Sie ersetzt für die aktuelle Demo die frühere Annahme einer sichtbaren Kartenleseaktion und eines zunächst leeren Dokumentbestands. Die zuvor dokumentierten Entscheidungen und Issue-IDs bleiben als Herkunft nachvollziehbar.

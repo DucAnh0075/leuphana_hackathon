@@ -1,0 +1,22 @@
+{
+  "sourceId": "26004182-patientenverfuegung",
+  "personId": "26004182",
+  "version": 2,
+  "date": "05.11.2026",
+  "fileUrl": "/demo-documents/26004182-patientenverfuegung-v2.pdf",
+  "pageCount": 4,
+  "evidence": {
+    "id": "gespraechsbegleitung",
+    "label": "Gesprächsbegleitung",
+    "value": "Jana Berger hinzuziehen",
+    "page": 4,
+    "section": "Ergänzung: Gesprächsbegleitung",
+    "quote": "Ich wünsche, dass meine Tochter Jana Berger bei Gesprächen über meine Behandlungswünsche hinzugezogen wird.",
+    "condition": "Soweit dies in der konkreten Behandlungssituation möglich ist.",
+    "exclusions": [
+      "Diese Ergänzung erteilt keine zusätzliche Vertretungsbefugnis."
+    ],
+    "person": "Jana Berger",
+    "category": "wishes"
+  }
+}
