@@ -4,14 +4,16 @@
 // Events only request a fresh authorized snapshot; card IDs never select a fallback patient.
 import { useEffect, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/auth/browser";
+import { getSupabaseConfiguration } from "@/lib/auth/config";
 
 export type CardReaderStatus = "connecting" | "connected" | "offline";
 export function useCardReader({ onCard, enabled = true }: { onCard: (cardId: string) => void; enabled?: boolean }) {
+  const available = enabled && Boolean(getSupabaseConfiguration());
   const callback = useRef(onCard);
   const [status, setStatus] = useState<CardReaderStatus>("connecting");
   useEffect(() => { callback.current = onCard; }, [onCard]);
   useEffect(() => {
-    if (!enabled) return;
+    if (!available) return;
     const client = createSupabaseBrowserClient();
     if (!client) return;
     const onScan = (event: Event) => {
@@ -27,6 +29,6 @@ export function useCardReader({ onCard, enabled = true }: { onCard: (cardId: str
       window.removeEventListener("demo-card-scan", onScan);
       void client.removeChannel(channel);
     };
-  }, [enabled]);
-  return { status: enabled ? status : "offline" as CardReaderStatus };
+  }, [available]);
+  return { status: available ? status : "offline" as CardReaderStatus };
 }

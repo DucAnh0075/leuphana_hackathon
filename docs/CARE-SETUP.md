@@ -50,6 +50,13 @@ Im synthetischen Lauf öffnet „Kartenereignis simulieren“ exakt denselben Sc
 - Ein erfolgreicher Scan bestätigt den Eingang des Pakets, nicht die Aktenübernahme.
 - Die Datenbankmigration wurde hier nicht auf einem Cloud-Projekt ausgeführt. Bestehende externe Installationen wurden daher nicht verändert.
 
+
+### Zusammenführung mit dem bisherigen Teamstand
+
+Beim Zusammenführen von `upstream/main` (`8d891788`) bleiben das Scan-/Realtime-Prinzip aus Issue #32 und die vorhandene Scan-Tabelle erhalten. Der frühere anonyme GET-Schreibzugriff und der globale Fallback auf Fall `26004179` werden durch den oben beschriebenen autorisierten Ablauf ersetzt. Die Benachrichtigung meldet den Dokumenteingang; die Aktenübernahme verlangt eine gesonderte Zuordnungsbestätigung. Der ursprüngliche Teamplan bleibt in `PLAN.md` als historischer Prototyp lesbar, während README und Reader-Agent den aktuellen Vertrag beschreiben. Eine geänderte Repository-Fassung bestätigt weder ein Vercel-Deployment noch die Anwendung der Cloud-Migration.
+
+Nach dieser Zusammenführung wurden Produktionsbuild einschließlich TypeScript, ESLint und alle 20 vorhandenen Playwright-Prüfungen erneut erfolgreich ausgeführt. Die vier neu erzeugten PDFs für die umbenannte Demoakte 26004179 wurden über neun Seiten, acht Belegstellen und 67 Formular-Widgets geprüft und visuell kontrolliert.
+
 ## Supabase einrichten
 
 Für die erste Inbetriebnahme ein separates Demo-/Testprojekt verwenden. Die Migration ändert bewusst die Berechtigungen des vorhandenen Scan-Prototyps; sie ist kein unverbindlicher UI-Schritt.

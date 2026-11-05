@@ -58,13 +58,13 @@ test("Alle vier Kurzverweise öffnen die richtige PDF-Seite samt Bedingungen und
 });
 
 test("Patientenwechsel und fremde Dokument-IDs vermischen keine Akten", async ({ page }) => {
-  await openPatient(page, "Hoffmann, Karl");
+  await openPatient(page, "Becker, Henri");
   await openSource(page);
-  await expect(page.locator(".source-evidence")).toContainText("Martin Hoffmann");
+  await expect(page.locator(".source-evidence")).toContainText("Martin Becker");
   await expect(page.locator(".source-evidence")).not.toContainText("Jana Berger");
-  await expect(page.locator(".page-sheet .textLayer")).toContainText("Martin Hoffmann");
+  await expect(page.locator(".page-sheet .textLayer")).toContainText("Martin Becker");
   await page.goto("/?patient=26004179&document=26004182-vorsorge&page=2");
-  await expect(page.getByLabel("Patientenkontext")).toContainText("Hoffmann, Karl");
+  await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
   await expect(page.locator(".embedded-viewer")).toHaveCount(0);
 });
 
@@ -168,7 +168,7 @@ test("Beleg-ID erhält den konkreten Wunsch beim Neuladen und verhindert falsche
   await expect(page.locator(".source-evidence")).not.toContainText(fact.quote);
   const other = data.patients[1].carePreferences.find(item => item.id === "reanimation")!;
   expect(other.value).not.toBe(fact.value);
-  await openPatient(page, "Hoffmann, Karl");
+  await openPatient(page, "Becker, Henri");
   const entry = page.locator(".care-preference").filter({ hasText: other.target });
   await expect(entry).toContainText(other.value);
   await entry.locator(".source-link").click();

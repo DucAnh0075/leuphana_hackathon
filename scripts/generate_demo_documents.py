@@ -32,9 +32,9 @@ for source in manifest["sources"]:
     actual = ROOT / "public" / source["url"].lstrip("/")
     assert hashlib.sha256(actual.read_bytes()).hexdigest() == source["sha256"], "Template changed; review field/section mapping before regeneration."
 
-font = Path("C:/Windows/Fonts/arial.ttf")
-bold = Path("C:/Windows/Fonts/arialbd.ttf")
-if font.exists():
+font = next((p for p in [Path("C:/Windows/Fonts/arial.ttf"), Path("/mnt/c/Windows/Fonts/arial.ttf")] if p.exists()), None)
+bold = next((p for p in [Path("C:/Windows/Fonts/arialbd.ttf"), Path("/mnt/c/Windows/Fonts/arialbd.ttf")] if p.exists()), None)
+if font and bold:
     pdfmetrics.registerFont(TTFont("DemoSans", str(font)))
     pdfmetrics.registerFont(TTFont("DemoBold", str(bold)))
     regular, strong = "DemoSans", "DemoBold"

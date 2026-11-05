@@ -29,11 +29,21 @@ Als Demo liegt das offizielle [BMJV-Formular Vorsorgevollmacht](https://www.bmjv
 2. Die statische KIS-Ansicht benötigt keine Konfiguration. Für die gemeinsame persönliche/klinische Vorführung auf verteiltem Hosting den Supabase-Modus gemäß [CARE-SETUP.md](docs/CARE-SETUP.md) einrichten. Der lokale synthetische Sitzungszustand ist nicht zwischen Serverless-Instanzen geteilt.
 3. Deployen.
 
-Produktions-URL: _noch nicht eingetragen_
+Bisherige Deployment-URL: https://leuphanahackathon.vercel.app/. Die Bereitstellung des aktuellen Feature-Stands unter dieser Adresse ist noch nicht bestätigt.
 
-### Demo-Laptop-Ablauf (PLAN.md Schritt 9)
+### Demo-Laptop-Ablauf
 
-Die lokale Vorschau oder eine tatsächlich bereitgestellte Deployment-URL öffnen und mit **F11** in den Vollbildmodus wechseln. Die Vorführung beginnt auf der Station und führt in eine Patientenakte. Die Dokumente sind bereits vorhanden; der in PLAN.md vorgesehene Reader und eine reale KIS-Anbindung sind noch nicht angeschlossen.
+Die lokale Vorschau oder eine für diesen Stand geprüfte Deployment-URL öffnen. Die bestehende Stationsansicht unter `/` zeigt synthetische Akten. Für die zusammenhängende Übergabevorführung unter `/anmelden` eine synthetische Demo öffnen und über den Link in die Klinikansicht wechseln. Das Kartenereignis erscheint dort zunächst als Eingang; erst nach bestätigter Fallzuordnung wird die Akte aktualisiert. Voraussetzungen und Grenzen stehen in [CARE-SETUP.md](docs/CARE-SETUP.md).
+
+## iPhone-Scan (statt USB-Reader)
+
+1. Für den echten Modus zunächst Supabase, Testkonten, kontrollierte Mitgliedschaften und Kartenfreigabe gemäß [CARE-SETUP.md](docs/CARE-SETUP.md) einrichten. Eine erreichbare HTTPS-Adresse dieses App-Stands verwenden; die bisherige Deployment-URL allein belegt dessen Bereitstellung nicht.
+2. Auf der Karte einen URL-Verweis auf `/scan?card=<registrierte-Kartenkennung>` hinterlegen, sofern der konkrete Tag dies unterstützt. Alternativ kann eine iOS-Automation diesen Link im Browser öffnen. Chip, Schreibverfahren und iPhone-Verhalten sind noch praktisch zu prüfen; die Annahme „eine Funktion auf dem Chip“ bleibt offen.
+3. Den Link auf dem iPhone öffnen, mit einem berechtigten Konto anmelden und **„Scan an Klinik senden“** bestätigen. Erst diese Aktion sendet einen autorisierten `POST /api/scan` mit Karten- und Vorgangskennung. Das Öffnen des Links allein verändert nichts.
+4. In der angemeldeten Klinikansicht den Eingang prüfen, die Fallzuordnung bestätigen und anschließend den Empfangsnachweis in der persönlichen Ansicht kontrollieren. Ein Scan ist noch keine bestätigte Aktenübernahme.
+5. **Test ohne Handy:** Im synthetischen Demo-Lauf die Klinikansicht öffnen und **„Kartenereignis simulieren“** verwenden. Persönliche und klinische Ansicht müssen dieselbe Demo-ID verwenden.
+
+Der frühere Kurzbefehl „Inhalte von URL abrufen“ auf `GET /api/scan?card=demo` ist abgelöst: GET liefert jetzt 405. Es gibt keine pauschale Karte `demo` und keinen Fallback auf eine feste Patientenakte. Eine Safari-Sitzung wird nicht automatisch an einen separaten Kurzbefehl weitergegeben.
 
 ## Klinische Demo mit synthetischen Patientenakten
 
@@ -66,7 +76,7 @@ Die acht Vorsorgevollmachten verwenden das unveränderte Formularlayout des Bund
 
 Die Patientenverfügungen sind individuelle Demofassungen aus ausgewählten Textbausteinen des vom Nutzer bereitgestellten BMJ-PDFs. Nicht gewählte, widersprüchliche Alternativen gehören nicht zur individuellen Erklärung. Die unveränderte Vorlage liegt als benötigte, reproduzierbare Quelle unter `public/templates/patientenverfuegung-textbausteine.pdf`. Betreuungsverfügung und begrenzte Auskunftserklärung bleiben selbst verfasste synthetische Beispiele. Die Herkunft wird je Dokument in `provenance` angegeben.
 
-Je Akte ergänzen vier `carePreferences` konkrete Aussagen zu Schmerztherapie, Ernährung, Notfallplanung und Beatmung. Jede Aussage führt ihre Anwendungssituation, Grenzen und die genaue Belegstelle mit. Erika Berger und Karl Hoffmann zeigen unterschiedliche Wünsche zur Wiederbelebung. Das System bestätigt keine aktuelle Anwendbarkeit und leitet keine allgemeine DNR-Anordnung ab.
+Je Akte ergänzen vier `carePreferences` konkrete Aussagen zu Schmerztherapie, Ernährung, Notfallplanung und Beatmung. Jede Aussage führt ihre Anwendungssituation, Grenzen und die genaue Belegstelle mit. Erika Berger und Henri Becker zeigen unterschiedliche Wünsche zur Wiederbelebung. Das System bestätigt keine aktuelle Anwendbarkeit und leitet keine allgemeine DNR-Anordnung ab.
 
 Die Zuordnung ist für die Demo redaktionell vorbereitet und gegen die tatsächlichen PDF-Inhalte geprüft. Es gibt weiterhin keine automatische Dokumentextraktion und keine reale KIS-Anbindung. Direktlinks enthalten die Beleg-ID; beim Neuladen wird sie innerhalb derselben Patientenakte und desselben Dokuments aufgelöst.
 

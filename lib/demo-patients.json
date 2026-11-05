@@ -562,8 +562,8 @@
     },
     {
       "id": "26004179",
-      "first": "Karl",
-      "name": "Hoffmann",
+      "first": "Henri",
+      "name": "Becker",
       "birth": "22.08.1952",
       "sex": "männlich",
       "room": "201",
@@ -588,7 +588,7 @@
       ],
       "notes": "Aufnahme zur Abklärung zunehmender Belastungsdyspnoe. Mobilisation mit Pausen; Angehörigengespräch geplant.",
       "contact": {
-        "name": "Martin Hoffmann",
+        "name": "Martin Becker",
         "relationship": "Sohn",
         "phone": "+49 (0)000 201 01"
       },
@@ -744,7 +744,7 @@
                 {
                   "id": "identity",
                   "title": "Vollmacht",
-                  "text": "Karl Hoffmann; bevollmächtigte Person: Martin Hoffmann."
+                  "text": "Henri Becker; bevollmächtigte Person: Martin Becker."
                 }
               ]
             },
@@ -814,7 +814,7 @@
                 {
                   "id": "identity",
                   "title": "Eingangsformel",
-                  "text": "Ich, Karl Hoffmann, geboren am 22.08.1952, wohnhaft Musterweg 11, 00000 Demostadt, bestimme hiermit für den Fall, dass ich meinen Willen nicht mehr bilden oder verständlich äußern kann. Alle Angaben und Entscheidungen sind für diese Demo erfunden."
+                  "text": "Ich, Henri Becker, geboren am 22.08.1952, wohnhaft Musterweg 11, 00000 Demostadt, bestimme hiermit für den Fall, dass ich meinen Willen nicht mehr bilden oder verständlich äußern kann. Alle Angaben und Entscheidungen sind für diese Demo erfunden."
                 },
                 {
                   "id": "situation",
@@ -879,7 +879,7 @@
                 {
                   "id": "linked-power",
                   "title": "2.7 Bezug zur Vorsorgevollmacht",
-                  "text": "Benannte Person im synthetischen Datensatz: Martin Hoffmann (Sohn); +49 (0)000 201 01. Deren Befugnisse ergeben sich aus der gesonderten Vorsorgevollmacht, nicht aus dieser Patientenverfügung.",
+                  "text": "Benannte Person im synthetischen Datensatz: Martin Becker (Sohn); +49 (0)000 201 01. Deren Befugnisse ergeben sich aus der gesonderten Vorsorgevollmacht, nicht aus dieser Patientenverfügung.",
                   "templatePage": 6,
                   "templateSection": "2.7"
                 },
@@ -914,12 +914,12 @@
                 {
                   "id": "identity",
                   "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Karl Hoffmann, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Hoffmann (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
+                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
                 },
                 {
                   "id": "nomination",
                   "title": "2. Gewünschte Betreuungsperson",
-                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Hoffmann als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
+                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Becker als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
                 },
                 {
                   "id": "limits",
@@ -952,12 +952,12 @@
                 {
                   "id": "identity",
                   "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Karl Hoffmann, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Hoffmann (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
+                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
                 },
                 {
                   "id": "information",
                   "title": "2. Umfang der Auskunft",
-                  "text": "Martin Hoffmann darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
+                  "text": "Martin Becker darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
                 },
                 {
                   "id": "time",
@@ -980,13 +980,13 @@
         {
           "id": "vertretung",
           "label": "Gesundheitsvertretung",
-          "value": "Martin Hoffmann",
+          "value": "Martin Becker",
           "condition": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann. Die Vorlage verlangt zusätzlich Besitz und Vorlage der Originalurkunde; in der Demo nicht nachgewiesen.",
           "exclusions": [
             "Vermögens-, Wohnungs- und Behördenangelegenheiten, Freiheitsentziehung, Zwangsmaßnahmen und Untervollmachten sind ausgeschlossen.",
             "Auskunft nur zum aktuellen Aufenthalt bis 31.12.2026; keine Weitergabe an Dritte."
           ],
-          "person": "Martin Hoffmann",
+          "person": "Martin Becker",
           "documentId": "26004179-vorsorge",
           "page": 2,
           "section": "1. Gesundheitssorge/Pflegebedürftigkeit",
@@ -1011,31 +1011,31 @@
         {
           "id": "betreuung",
           "label": "Betreuungswunsch",
-          "value": "Martin Hoffmann",
+          "value": "Martin Becker",
           "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
           "exclusions": [
             "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
           ],
-          "person": "Martin Hoffmann",
+          "person": "Martin Becker",
           "documentId": "26004179-betreuung",
           "page": 1,
           "section": "2. Gewünschte Betreuungsperson",
-          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Hoffmann als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Becker als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
           "category": "care"
         },
         {
           "id": "auskunft",
           "label": "Auskunftsrecht",
-          "value": "Martin Hoffmann",
+          "value": "Martin Becker",
           "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
           "exclusions": [
             "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
           ],
-          "person": "Martin Hoffmann",
+          "person": "Martin Becker",
           "documentId": "26004179-auskunft",
           "page": 1,
           "section": "2. Umfang der Auskunft",
-          "quote": "Martin Hoffmann darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "quote": "Martin Becker darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
           "category": "information"
         }
       ],
