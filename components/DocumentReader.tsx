@@ -50,12 +50,21 @@ export default function PdfContent({ doc, initialPage = 1, sourceSection, source
   useEffect(() => {
     const rail = thumbnailRail.current;
     const selected = rail?.querySelector<HTMLElement>('[aria-current="page"]');
-    if (!rail || !selected || !rail.clientHeight) return;
-    const railBounds = rail.getBoundingClientRect();
-    const selectedBounds = selected.getBoundingClientRect();
-    // Scroll only the rail; keep the reader focus and the outer page in place.
-    if (selectedBounds.top < railBounds.top) rail.scrollTop += selectedBounds.top - railBounds.top;
-    else if (selectedBounds.bottom > railBounds.bottom) rail.scrollTop += selectedBounds.bottom - railBounds.bottom;
+    if (!rail || !selected) return;
+    const revealSelected = () => {
+      if (!rail.clientHeight) return;
+      const railBounds = rail.getBoundingClientRect();
+      const selectedBounds = selected.getBoundingClientRect();
+      // Scroll only the rail; keep the reader focus and the outer page in place.
+      if (selectedBounds.top < railBounds.top) rail.scrollTop += selectedBounds.top - railBounds.top;
+      else if (selectedBounds.bottom > railBounds.bottom) rail.scrollTop += selectedBounds.bottom - railBounds.bottom;
+    };
+    revealSelected();
+    // Lazy PDF rendering can change this thumbnail or an earlier thumbnail's height.
+    const observer = new ResizeObserver(revealSelected);
+    observer.observe(rail);
+    rail.querySelectorAll(".thumbnail").forEach(thumbnail => observer.observe(thumbnail));
+    return () => observer.disconnect();
   }, [page, thumbnails, numPages]);
   const goTo = (next: number) => {
     setPage(Math.max(1, Math.min(numPages, next)));
