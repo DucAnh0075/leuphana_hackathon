@@ -33,7 +33,7 @@ export function Symbol({ name, size = 20 }: { name: SymbolName; size?: number })
 }
 
 export function Brand({ href = "/vorsorge", light = false }: { href?: string; light?: boolean }) {
-  return <a href={href} className={styles.brand + (light ? " " + styles.brandLight : "")} aria-label="Vorsorge home"><span className={styles.brandMark}><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 7v9c0 6 9 10 9 10s9-4 9-10V7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><path d="M12 8v7m8-7v7m-8-3h8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg></span><span>Vorsorge<span className={styles.brandDescriptor}>Your wishes. Within reach.</span></span></a>;
+  return <a href={href} className={styles.brand + (light ? " " + styles.brandLight : "")} aria-label="VORA home"><span className={styles.brandMark}><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 7 16 26 27 7M16 26V14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg></span><span>VORA<span className={styles.brandDescriptor}>Care, considered.</span></span></a>;
 }
 
 export function Badge({ children, tone = "neutral" }: { children: ReactNode; tone?: "neutral" | "blue" | "green" | "amber" | "red" }) {

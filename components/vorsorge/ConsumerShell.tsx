@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Symbol } from "./Presentation";
+import VoraAssistant from "@/components/vora/VoraAssistant";
 import styles from "./Planning.module.css";
 
 export type ConsumerShellProps = {
@@ -19,6 +20,10 @@ export default function ConsumerShell({ children, active, demoId, title = "Your 
   const [helpOpen, setHelpOpen] = useState(false);
   const helpButton = useRef<HTMLButtonElement>(null);
   const helpPanel = useRef<HTMLElement>(null);
+  const assistantDialog = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    if (active !== "plan" && helpOpen) assistantDialog.current?.showModal();
+  }, [active, helpOpen]);
   useEffect(() => {
     if (!helpOpen) return;
     helpPanel.current?.focus();
@@ -40,9 +45,9 @@ export default function ConsumerShell({ children, active, demoId, title = "Your 
   }
   return <div className={styles.shell} lang="en">
     <aside className={styles.sidebar} aria-label="Workspace navigation">
-      <a className={styles.brand} href={href("plan")} aria-label="Vorsorge home">
-        <span className={styles.brandMark}><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 26V12M16 19C7 19 5 13 5 7c7 0 11 4 11 12ZM16 14c0-6 4-9 11-9 0 6-4 9-11 9Z" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
-        <span className={styles.brandWord}>Vorsorge</span>
+      <a className={styles.brand} href="/vorsorge" aria-label="VORA home">
+        <span className={styles.brandMark}><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 7 16 26 27 7M16 26V14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+        <span className={styles.brandWord}>VORA</span>
       </a>
       <nav className={styles.navigation} aria-label="Main">
         <a href={href("plan")} aria-current={active === "plan" ? "page" : undefined}><Symbol name="home"/><span>Your plan</span></a>
@@ -51,17 +56,18 @@ export default function ConsumerShell({ children, active, demoId, title = "Your 
       </nav>
       <div className={styles.sidebarBottom}>
         {onReset && <button type="button" className={styles.railButton} onClick={onReset}><Symbol name="refresh"/><span>Start over</span></button>}
-        <button ref={helpButton} type="button" className={styles.railButton} aria-expanded={helpOpen} aria-controls="workspace-help" onClick={() => setHelpOpen(!helpOpen)}><Symbol name="help"/><span>Help</span></button>
-        <p className={styles.sidebarNote}>A little preparation.<br/>More peace of mind.</p>
+        <button ref={helpButton} type="button" className={styles.railButton} aria-expanded={helpOpen} aria-controls={active === "plan" ? "workspace-help" : "archive-assistant"} onClick={() => setHelpOpen(!helpOpen)}><Symbol name="help"/><span>{active === "plan" ? "Help" : "Ask VORA"}</span></button>
+        <p className={styles.sidebarNote}>Your documents.<br/>Your decisions.</p>
       </div>
     </aside>
     <div className={styles.workspace}>
       <header className={styles.topbar}><span>{demoId ? "Sample workspace" : title}{demoId && <small>Fictional data</small>}</span><div className={styles.headerActions}>{headerAction ?? <a className={styles.loginLink} href={"/anmelden?next=" + encodeURIComponent(href(active))}>Log in<Symbol name="person" size={16}/></a>}</div></header>
-      {helpOpen && <section ref={helpPanel} tabIndex={-1} id="workspace-help" className={styles.helpPanel} aria-label={helpTitle}>
+      {helpOpen && active === "plan" && <section ref={helpPanel} tabIndex={-1} id="workspace-help" className={styles.helpPanel} aria-label={helpTitle}>
         <div><h2>{helpTitle}</h2>{helpContent ?? <p>Plan your wishes in small steps. Documents holds existing originals, and Sharing shows deliveries to a clinic. A planning draft stays separate from signed documents.</p>}</div>
         <button className={styles.iconButton} aria-label="Close help" onClick={closeHelp}><Symbol name="close"/></button>
       </section>}
       {children}
+      {helpOpen && active !== "plan" && <dialog ref={assistantDialog} id="archive-assistant" aria-label="Ask VORA" className={styles.assistantDialog} onCancel={closeHelp} onClose={closeHelp}><VoraAssistant area={active === "documents" ? "signed document archive" : "document sharing"} onClose={closeHelp}/></dialog>}
     </div>
   </div>;
 }

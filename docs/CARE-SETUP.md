@@ -5,7 +5,9 @@ Die klinische Integration ist simuliert. Sämtliche bereitgestellten Personen un
 
 ## Consumer-Ausbau vom 06.11.2026
 
-Die öffentliche englische Planung startet unter `/vorsorge`. Der [Featurekatalog](CONSUMER-FEATURES.md) definiert Zweck, minimale UI, Backend-Bedarf und Abnahme jedes Consumer-Features. Planungsentwürfe bleiben in diesem Browser-Tab (`sessionStorage`) und können als Text exportiert werden. Sie werden nicht automatisch in den bisherigen Dokumentbestand, Supabase oder eine Klinikakte übernommen. Die bestehende Übergabe bleibt ein separater, autorisierter Ablauf.
+Der aktuelle englische **VORA**-Arbeitsbereich startet unter `/vorsorge`: Dokumentbausteine, allgemeine Vorsorgeangebote, Impfpass, Reisevorbereitung und kontextbezogener KI-Chat. [Design und Abnahme](VORA-DESIGN.md) sowie [KI-Konfiguration](VORA-AI.md) beschreiben diesen Ausbau. Entwürfe und Einträge werden lokal im Browser (`localStorage`) gespeichert, ohne automatische Übernahme in Supabase oder eine Klinikakte. Die bestehende Übergabe bleibt ein separater, autorisierter Ablauf.
+
+Die frühere Planung bleibt unter `/vorsorge?view=legacy` mit ihrem bisherigen `sessionStorage` und Text-Export erreichbar. Der [Featurekatalog](CONSUMER-FEATURES.md) erhält die frühere Priorisierung als nachvollziehbare Vorgeschichte und verweist auf den aktuellen Ausbau.
 
 ## Einstieg und Voraussetzungen
 
@@ -102,7 +104,9 @@ Aktuelle Herstellerhinweise: [Supabase SSR](https://supabase.com/docs/guides/aut
 
 Der implementierte Endpunkt `POST /api/assistant` arbeitet **lokal und deterministisch** auf dem bereits autorisierten Vorsorgebestand. Er beantwortet die drei Aufgaben Belegstelle, nächster Schritt und Übergabestand. Quellen verweisen auf Dokument, Fassung und Seite. Es werden weder Dokumente versendet noch Berechtigungen oder Unterschriften durch die Hilfe erzeugt.
 
-Die optionale externe OpenAI-Anbindung wurde durch die automatische Freigabeprüfung wegen der möglichen Übermittlung von Vorsorgeinhalten abgelehnt und ist **nicht im Code enthalten**. Der Nutzerentscheidung zu einer eventuellen Anbindung ausschließlich synthetischer Daten wird nicht vorgegriffen. Die lokale Hilfe bleibt ohne Schlüssel und externe Modellverbindung nutzbar.
+**Historischer Stand dieses Bestandsassistenten vom 05.11.2026:** Die damals vorgeschlagene externe OpenAI-Anbindung wurde durch die automatische Freigabeprüfung wegen möglicher Übermittlung von Vorsorgeinhalten abgelehnt und nicht eingebaut. Die lokale Hilfe unter `/api/assistant` bleibt ohne Schlüssel und externe Modellverbindung nutzbar.
+
+**Neuer VORA-Chat vom 06.11.2026:** Der anschließend ausdrücklich beauftragte Dialog verwendet den getrennten Endpunkt `/api/vora/assistant`. Nach bewusster Zustimmung sendet er nur eingegebenen Chattext, Gesprächsverlauf und Abschnittsbezeichnungen an OpenAI; gespeicherte Dokumentantworten, Profil-, Impf- und Reisedaten werden nicht automatisch angehängt. Dafür ist ein gültiger serverseitiger `OPENAI_API_KEY` nötig. Einrichtung, Grenzen und Fehlerzustände stehen in [VORA-AI.md](VORA-AI.md). Die frühere Ablehnung ist keine Aussage über den Implementierungsstand dieses neuen, anders begrenzten Endpunkts.
 
 ## Quellen für die neue Fassung
 

@@ -1,5 +1,5 @@
 .shell, .dialogContent {
-  --v-ink:#17352f; --v-text:#17352f; --v-muted:#586b65; --v-line:#dce5e0; --v-blue:#216856; --v-green:#216856; --v-amber:#99600d;
+  --v-ink:#203449; --v-text:#203449; --v-muted:#637588; --v-line:#dfe5ec; --v-blue:#245fd5; --v-green:#33715e; --v-amber:#99600d;
   color:var(--v-text); font:400 16px/1.55 var(--font-geist-sans),Arial,sans-serif; text-align:left; letter-spacing:-.012em;
 }
 .shell { min-height:100svh; background:#f7faf9; width:100%; }
@@ -183,7 +183,7 @@
 .footer { max-width:1200px; margin:0 auto; padding:18px 0 25px; border-top:1px solid var(--v-line); color:var(--v-muted); font-size:12px; display:flex; justify-content:space-between; gap:18px; }
 .footer a { text-decoration:underline; text-underline-offset:3px; }
 .authShell { display:grid; grid-template-columns:minmax(300px,.9fr) minmax(450px,1.1fr); min-height:100svh; }
-.authStory { color:white; background:#173f35; padding:45px clamp(30px,5vw,80px); display:flex; flex-direction:column; }
+.authStory { color:white; background:#152d42; padding:45px clamp(30px,5vw,80px); display:flex; flex-direction:column; }
 .authStoryContent { margin:auto 0; padding:70px 0; max-width:430px; }
 .authStoryContent h1 { color:white; font-size:clamp(35px,3.5vw,49px); line-height:1.15; }
 .authStoryContent > p { color:#c4d9dd; margin-top:23px; font-size:16px; line-height:1.75; }
@@ -227,7 +227,7 @@
   .nextStep { padding:20px; gap:13px; } .nextStep h2 { font-size:21px; } .stepIcon { width:35px; height:35px; border-radius:9px; }
   .documentRow { padding:17px 16px; gap:12px; } .documentIcon { width:34px; height:41px; } .documentEnd { gap:6px; } .documentEnd .badge { display:none; }
   .documentBody strong { font-size:13px; } .documentBody small { font-size:11px; }
-  .authShell { display:block; } .authStory { padding:22px; background:#173f35; } .authStoryContent,.authStory > small { display:none; } .authMain { padding:42px 24px; min-height:calc(100svh - 80px); }
+  .authShell { display:block; } .authStory { padding:22px; background:#152d42; } .authStoryContent,.authStory > small { display:none; } .authMain { padding:42px 24px; min-height:calc(100svh - 80px); }
   .authForm h1 { font-size:28px; } .authFooter { padding-top:28px; }
   .documentDetailTop { padding:17px; gap:12px; } .documentDetailTop h2 { font-size:20px; } .documentDetailTop .buttonRow { margin:0; width:100%; }
   .evidenceList { grid-template-columns:1fr; } .handoffHeader,.handoffBody { padding:18px; } .handoffHeader { gap:10px; flex-wrap:wrap; }

@@ -9,7 +9,7 @@ async function capture(page: Page, name: string) {
 }
 
 async function chooseInformationPlan(page: Page) {
-  await page.goto("/vorsorge");
+  await page.goto("/vorsorge?view=legacy");
   await expect(page.getByRole("heading", { name: "Who are you planning for?", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Continue", exact: true })).toBeDisabled();
   await page.getByRole("radio", { name: /^Myself/ }).check();
@@ -113,7 +113,7 @@ test("changing the subject asks first and clears previous personal answers only 
 test("mobile sidebar and contextual help remain reachable by keyboard", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/vorsorge");
+  await page.goto("/vorsorge?view=legacy");
   await expect(page.getByRole("link", { name: "Skip to content", exact: true })).toHaveCount(1);
   await expect(page.getByRole("link", { name: "Zum Inhalt", exact: true })).toHaveCount(0);
   await page.keyboard.press("Tab");
@@ -138,7 +138,7 @@ test("storage failure is explicit and never claims that answers were saved", asy
     Storage.prototype.getItem = () => { throw new DOMException("Storage blocked", "SecurityError"); };
     Storage.prototype.setItem = () => { throw new DOMException("Storage blocked", "SecurityError"); };
   });
-  await page.goto("/vorsorge");
+  await page.goto("/vorsorge?view=legacy");
   await expect(page.getByText("This browser cannot save this draft.", { exact: false })).toBeVisible();
   await expect(page.getByText("Saved in this tab. No cloud copy.", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("radio", { name: /^Myself/ })).toBeEnabled();
@@ -244,7 +244,7 @@ test("login code UI guides focus and associates verification errors using simula
 test("first question and long task content fit the declared viewports", async ({ page }) => {
   for (const viewport of [{ width: 1440, height: 960 }, { width: 390, height: 844 }, { width: 320, height: 740 }]) {
     await page.setViewportSize(viewport);
-    await page.goto("/vorsorge");
+    await page.goto("/vorsorge?view=legacy");
     await expect(page.getByRole("radio", { name: /^Myself/ })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
     await capture(page, `entry-${viewport.width}x${viewport.height}`);

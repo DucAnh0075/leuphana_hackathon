@@ -76,9 +76,9 @@ export default function Login({ next }: { next?: string }) {
   function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); void authenticate(sent ? "verify" : method); }
   const remaining = Math.max(0, Math.ceil((retryAt - now) / 1000));
   return <div lang="en" className={styles.shell}><div className={styles.authShell}>
-    <aside className={styles.authStory}><Brand href="/vorsorge" light/><div className={styles.authStoryContent}><h1>Your wishes.<br/>Within reach.</h1><p>Open your existing care documents and follow what your clinic has received.</p></div><small>The sample workspace contains fictional people and documents.</small></aside>
+    <aside className={styles.authStory}><Brand href="/vorsorge" light/><div className={styles.authStoryContent}><h1>Your documents.<br/>A clear handover.</h1><p>Sign in to access your stored originals, choose a recipient and track the clinic’s receipt.</p><ol className={styles.authStoryList}><li>Open your existing documents</li><li>Check the version and recipient</li><li>Share and follow the receipt</li></ol></div><small>The sample workspace contains fictional people and documents.</small></aside>
     <main id="main" className={styles.authMain}><div className={styles.authForm}>
-      <Link className={styles.authBack} href="/vorsorge"><Symbol name="arrow" size={16}/>Back to your plan</Link>
+      <Link className={styles.authBack} href="/vorsorge"><Symbol name="arrow" size={16}/>Back to VORA</Link>
       <h1>{auth?.authenticated ? "You are logged in" : sent ? "Check your email" : "Log in"}</h1>
       <p>{auth?.authenticated ? "Continue to your existing documents and sharing." : sent ? "Enter the six-digit code sent to your registered email address." : "Use your registered email to open your documents."}</p>
       {error && <div id="login-error" className={styles.notice + " " + styles.error} role="alert"><Symbol name="alert" size={18}/><span>{error}</span></div>}
@@ -94,6 +94,6 @@ export default function Login({ next }: { next?: string }) {
         </form>
       </>}
       <div className={styles.authChoice}><p>Want to see how it works?</p><button className={styles.button + " " + styles.secondary} disabled={busy} onClick={() => void startDemo()}>Open sample workspace</button><small>Public example data. No personal account.</small></div>
-    </div><p className={styles.authFooter}>Your planning draft stays in this tab. Logging in does not save it to an account.</p></main>
+    </div><p className={styles.authFooter}>Planning works without an account. Local drafts stay in this browser; signing in does not upload them.</p></main>
   </div></div>;
 }

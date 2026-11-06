@@ -1,5 +1,7 @@
 # Consumer experience: feature contracts
 
+**Aktueller Ausbau VORA, 06.11.2026:** Henris anschließender Auftrag erweitert den hier dokumentierten ersten Umfang ausdrücklich um einen echten KI-Dialog, vollständiger aufgeteilte Dokumentprozesse, Impfpass, allgemeine Früherkennungsangebote und Reisevorbereitung. Die alte Priorisierung „statische Hilfe statt Agent“ gilt für den neuen VORA-Arbeitsbereich nicht mehr. [Recherche und Originalquellen](research/VORA-VORSORGE.md), [verbindliche UI-Richtung und Abnahme](VORA-DESIGN.md) sowie [KI-Vertrag und Betriebsgrenzen](VORA-AI.md) beschreiben den neuen Stand. Der folgende erste Katalog bleibt als nachvollziehbare Vorgeschichte erhalten; frühere lokale Entwürfe sind unter `/vorsorge?view=legacy` erreichbar.
+
 Stand: 06.11.2026. Owner: Consumer-UI in `feat/notfallkarten-ui`. Grundlage sind Henris Korrekturen vom 06.11.: Englisch, wenige relevante Informationen, interaktive Prozessführung, dauerhaft erreichbare Sidebar, Vorlagenauswahl statt Upload, für sich selbst oder unterstützend für eine andere Person. Dieser Katalog ersetzt die frühere **Consumer**-Priorisierung in `UI-CONSUMER-ERWEITERUNG.md`; die klinische KIS-Oberfläche bleibt ein eigener Arbeitsplatz.
 
 ## Ziel und bewusste Grenze

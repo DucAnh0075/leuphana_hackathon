@@ -1,8 +1,16 @@
-# Vorsorge-NFC
+# VORA & Vorsorge-NFC
 
 Eine Next.js-Demo eines Krankenhausinformationssystems mit acht synthetischen Patientenakten. Vorsorgeinformationen sind in die Akten integriert und mit den jeweiligen Dokumenten und Belegstellen verknüpft.
 
+Unter `/vorsorge` beginnt **VORA**: ein zusammenhängender Consumer-Arbeitsbereich für Dokumentvorbereitung, allgemeine Vorsorgeangebote, Impfpass und Reisen. Dokumente werden bewusst ausgewählt und in einzelne Entscheidungen zerlegt; die Ausgabe trennt eigene Vorbereitungsnotizen von den amtlichen BMJV-Originalen. Ein kontextbezogener KI-Dialog überträgt nach ausdrücklicher Freigabe nur Chattext und Abschnittsbezeichnungen. Lokale Dokumentantworten, Profil- und Impfdaten werden nicht automatisch mitgesendet.
+
+Die lokale Speicherung ist keine verschlüsselte Cloud-Akte. Anmeldung öffnet das bestehende Dokumentarchiv und die Klinikübergabe; sie lädt lokale Entwürfe nicht automatisch hoch. ePA, Impfnachweis-Verifikation und Terminbuchung sind keine aktiven Backend-Anschlüsse; Buchungsdienste und amtliche Reiseinformationen öffnen als externe Links.
+
 ## Produktkonzept und Anforderungen
+
+- [VORA Designsprache, Prozess und Abnahme](docs/VORA-DESIGN.md)
+- [Vorsorge-Recherche mit amtlichen Formularen und Quellenstand](docs/research/VORA-VORSORGE.md)
+- [KI-Konfiguration und Datenschutzgrenzen](docs/VORA-AI.md): gültiger serverseitiger `OPENAI_API_KEY` erforderlich; die Existenz eines Schlüssels beweist keine funktionierende Verbindung.
 
 - [Aktuelle Consumer-Features und Abnahme](docs/CONSUMER-FEATURES.md): englische Prozessführung, Mindestumfang je Feature, Kundennutzen, Backend-Bedarf und bewusste Streichungen.
 
