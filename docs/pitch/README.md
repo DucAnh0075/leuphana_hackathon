@@ -1,8 +1,36 @@
-# Vorsorge: Pitch-Paket für den Open Track
+# VORA: Pitch-Paket für den Open Track
 
-Stand: 6. November 2026. Arbeitstitel **Vorsorge**. Owner der finalen Präsentation: Hackathonteam; Namen unten ergänzen.
+Stand: 6. November 2026. Aktueller Projektname **VORA**, bisheriger Pitch-Arbeitstitel **Vorsorge**; die bestehenden Deck-Dateinamen bleiben erhalten. Owner der finalen Präsentation: Hackathonteam; Namen unten ergänzen.
 
 Dieses Paket bereitet einen englischen **6-Minuten-Pitch einschließlich Live-Demo plus 3 Minuten Juryfragen** vor. Es ist ein ausgearbeiteter Entwurf auf Basis des vorhandenen Produkts und geprüfter Quellen. Es behauptet weder eine bereits gehaltene Präsentation noch Nutzerergebnisse oder eine erfolgte Abgabe.
+
+## Die Geschichte: Vorsorge für mich und meine Familie
+
+**VORA soll Vorsorge zu einem überschaubaren Alltagsschritt machen: verstehen, vorbereiten, ordnen, gezielt teilen und aktuell halten – bis relevante Informationen in der Versorgung ankommen.** Der Ausgangspunkt sind Menschen und ihre Familien. Die Klinikübergabe zeigt einen bereits implementierten Abschnitt dieses größeren Produktbildes.
+
+Der Einstieg ist ein mögliches Alltagsszenario: Eine Vollmacht liegt angefangen auf dem Tisch oder ausgefüllt in einem Ordner zu Hause. Angehörige wissen vielleicht nicht, was vorhanden oder aktuell ist. Ein Arztgespräch kann den Handlungsdruck erhöhen. Das beschreibt unsere Problemhypothese; Häufigkeit, Ursachen des Aufschiebens und tatsächliche Belastung wurden noch nicht mit Nutzern belegt.
+
+| Schritt im Produktbild | Konkreter Nutzen / Beispiel | Einordnung für den Pitch |
+|---|---|---|
+| Verstehen und vorbereiten | Relevante Themen für sich und Angehörige entdecken, Fragen in kleinen Schritten bearbeiten. | Geführte Planung ist im späteren Ausbau vorhanden; Vollständigkeit der individuellen medizinischen oder rechtlichen Beratung nicht behaupten. |
+| Ordnen und gezielt teilen | Dokumente an einem Ort; eine Angehörige darf die Vollmacht sehen, der Impfpass bleibt privat. | Auswahl von Dokumentfassungen für die Klinikübergabe ist Bestandteil der Basisdemo. Dauerhafte, einzeln steuerbare Familienfreigaben sind ein Zielbild. |
+| Aktuell bleiben | Änderungen, nächste Schritte und Termine überblicken, gegebenenfalls auch einen Notartermin. | Späterer Ausbau enthält Terminplanung; echte externe Buchungen, Benachrichtigungen und verlässliche laufende Aktualisierung sind nicht belegt. |
+| In der Versorgung ankommen | Karte als Zugangspunkt; perspektivisch passende Übergabe an KIS oder ePA. | Software-Übergabe in eine simulierte Klinik vorhanden. Karte ist kein PDF-Speicher und kein unbegrenzter Zugriffsbeweis; echte Integration bleibt zu prüfen. |
+
+Das angestrebte Gefühl ist: **Ich weiß, was vorbereitet ist, was noch fehlt und wer im Bedarfsfall worauf zugreifen darf.** Das ist ein Nutzenversprechen zur Validierung, keine Garantie, dass die Familie vollständig versorgt ist.
+
+**Englische Kurzfassung, direkt verwendbar:**
+
+> VORA starts with a simple question: what have I prepared for myself and my family? Our vision is one calm place to understand relevant topics, organize documents, choose who can see each one, and keep track of changes and next steps. A relative could see a power of attorney while a vaccination record stays private. A card would help connect that preparation to care through future hospital or ePA integration. Today, our synthetic prototype demonstrates one concrete part: sharing an existing document version with a simulated clinic and tracing it to its source.
+
+<details>
+<summary>Henris Produktbild, 6. November 2026 — Originalwortlaut; Hypothesen und Zielbild, keine verifizierten Tatsachenbehauptungen</summary>
+
+> Ich würde sagen was heißt es Vorsorge zu anzugehen für sich selbst und die Familie momentan eine Vollmacht im best case ausgefüllt in einem Ordner Zuhause oder nicht ausgefüllt, dein artzt sagt geh mal zur vorsorge ich mache mir sorgen was auch dann schon zu spät ist weil es indikation gibt, dann hast du vielleicht Daten in dem register, dann greift der artzt nicht drauf zu weil er keine Zeit hat, unsere Lösung du hast alles zur Vorsorge an einem stressfreien Ort du gibst es dort ein und gleichzeitig sagen wir dir alles was relevant ist für die Vorsorge für dich und deine Familie. Du kannst als Person es Leuten freigeben, aber musst nicht alles freigeben, sowas wie vollmacht freigeben zum einsehen aber nicht impfpass aber du weißt die familie ist versorgt was sich ändert und termine falls du mal zum Notar musst alles in einer app. Das ganze auf eine Karte das wenn du ins krankenhaus gehst dann hat man es direkt in dem system weil wir versuchen anbindung an die KIS zu finden oder die ePA. End to end solution für ein Problem was für stress sorgt aber durchgängig vertagt wird.
+
+Redaktionelle Umsetzung: Anlass und Aufschieben als Szenario erzählen; aus einem Arztgespräch weder „bereits zu spät“ noch fehlende Vorsorge ableiten. Geringe Registerabfragen belegen weder Zeitmangel noch generellen Nichtzugriff. „Alles relevant“ wird zu Orientierung und nächsten Schritten; Familienfreigaben, laufende Begleitung und echte KIS-/ePA-Anbindung bleiben nach tatsächlichem Implementierungsstand gekennzeichnet. Der Originalbeitrag bleibt unverändert erhalten.
+
+</details>
 
 ## Jetzt verwenden
 
@@ -18,7 +46,7 @@ Die Felder stehen direkt bei der Frage. Unbekannte Angaben bleiben offen, statt 
 | Frage / letzte Entscheidung | Bearbeitbare Antwort | Zuständig |
 |---|---|---|
 | Wie lautet die offizielle Team-ID für den Dateinamen? | **OFFEN: ergänzen** | Team |
-| Bleibt der Arbeitstitel Vorsorge? | **Vorschlag: Vorsorge; bestätigen oder ersetzen** | Team |
+| Welcher Name steht auf dem finalen Deck? | **VORA entsprechend dem aktuellen Projekt; finale Schreibweise bestätigen. Bestehende Dateinamen: Vorsorge-pitch.** | Team |
 | Wer spricht, wer bedient, wer beantwortet technische Fragen? | **OFFEN: Namen und Rollen ergänzen** | Team |
 | Welche Kontaktangabe darf im Deck stehen? | **OFFEN: freigegebene Teamadresse; bis dahin „Talk to our team after the pitch“** | Team |
 | Wer hat welche Event-Arbeit und Vorarbeit beigetragen? | **OFFEN: Tabelle unten ergänzen** | Alle Teammitglieder |
@@ -51,12 +79,14 @@ Dieses Paket liegt auf `docs/pitch-demo-2026-11-06`, ausgehend von `6ec45fe3c26f
 | Stand | Vorhanden | Aussage für die Vorführung |
 |---|---|---|
 | Commit `6ec45fe` | Synthetische KIS-Demo, persönliche Bestandsdokumente, explizite Übergabe, bestätigte Fallzuordnung, Belegstellen, Empfangsstatus | Reproduzierbare Grundlage der Hauptdemo; deutsche Produktbeschriftungen, englischer Vortrag |
-| Lokaler Consumer-Ausbau am 6. November | Englische Führung, öffentliche Planung, kleine Aufgaben, Textentwurf und Speicherung im Browser-Tab | Bei Prüfung noch uncommitted. Optionaler separater Ausblick, nur nach eigener Probe; nicht Bestandteil dieses Dokumentations-Commits |
+| Späterer Consumer-/VORA-Ausbau am 6. November | Englische Führung, Planung, Terminvorbereitung und Modelladapter; nachfolgende Commits `a038b16`, `ac306cf` und `258338b`, außerdem laufende lokale Arbeit | Außerhalb der fixierten Basisdemo. Kein pauschal „uncommitted“ gebliebener Ausbau; Verwendung nur nach Probe genau des gewählten Nachfolgestands |
 | Externe Dienste und Hardware | Implementierte Verträge bzw. Konfigurationswege, aber keine vollständige reale Abnahme | Keine echte KIS-, ePA- oder ZVR-Integration, kein bestätigter physischer NFC-Lauf oder produktiver Cloud-Betrieb behaupten |
 
 Die neue Planung erzeugt einen **unterschriftslosen Planungsentwurf**. Sie erstellt noch kein vollständiges rechtswirksames Formular und übergibt diesen neuen Entwurf nicht automatisch an die Klinik. Die Hauptdemo übergibt eine bereits vorbereitete synthetische Dokumentfassung. Diese Grenze im Vortrag nicht überspringen.
 
-Die sichtbare Assistenz arbeitet lokal und deterministisch. Quellenverknüpfungen wurden vorbereitet. Es gibt in diesem Stand keinen laufenden KI-Modellaufruf und keine automatische Dokumentextraktion. KI-Unterstützung beim Entwickeln ist davon getrennt; tatsächlich verwendete Werkzeuge und Modelle mit dem Team bestätigen.
+**Späteren Stand konkret einordnen:** Die [VORA-README bei `258338b`](https://github.com/DucAnh0075/leuphana_hackathon/blob/258338b/README.md) beschreibt die neuere Entwicklung. Der Code enthält geführte Vorbereitung für sich oder eine unterstützte Person, allgemeine nach Alter/Programm gefilterte Vorsorgeinformationen und Terminvorbereitung mit Textdownload. Lokale Ergänzungen zeigen fiktive Praxen und Slots sowie zwei feste synthetische Impfzeilen nach einer Demo-ePA-Zustimmung. Das ist keine reale Terminbuchung oder ePA-Abfrage. Familienkonten mit dauerhaften Freigaben je Dokument sind nicht implementiert; die vorhandene Übergabe wählt Dokumentfassungen für eine konfigurierte Klinik. Die detaillierte Trennung steht im [Belegblatt](EVIDENCE_QA.md#versioned-scope-demo-later-work-and-vision).
+
+**Nur für die Basisdemo `6ec45fe`:** Die dort sichtbare Assistenz arbeitet lokal und deterministisch, Quellenverknüpfungen sind vorbereitet; es gibt dort keinen laufenden KI-Modellaufruf und keine automatische Dokumentextraktion. Im späteren VORA-Code ist dagegen ein Modellzugang implementiert. Das ist kein Beleg für einen ausgeführten Modelllauf dieser Basisdemo oder eine Abnahme des gesamten neueren Produktstands. KI-Unterstützung beim Entwickeln bleibt getrennt; tatsächlich verwendete Werkzeuge und Modelle mit dem Team bestätigen.
 
 Die synthetische Übergabedemo benötigt **einen laufenden Next.js-Serverprozess** und dieselbe Demo-ID in persönlicher und klinischer Ansicht. Ein Neustart beendet den bisherigen Lauf. Ein verteiltes Serverless-Deployment teilt diesen In-Memory-Zustand nicht automatisch. Daher wird der lokale, geprobte Laptop-Ablauf empfohlen. Details und Startbefehle stehen im [Ablaufblatt](RUN_OF_SHOW.md) und in [CARE-SETUP](../CARE-SETUP.md).
 
@@ -68,9 +98,9 @@ Die Folie „What we built“ enthält die gemeinsame, belegbare Trennung. Die T
 |---|---|---|
 | Vor dem Event | Allgemeine Arbeits-/Promptregeln, Vorbereitungsunterlagen und neutraler Techniktest waren vorhanden. Der Einsatz einzelner Teile im Projekt ist zu bestätigen. | **Tatsächlich genutzt: OFFEN** |
 | Im Event implementiert | KIS-Demonstrator, synthetischer Dokumentbestand, persönliche Dokumentansicht und Übergabe-/Bestätigungsablauf laut Repository-Historie vom 5.–6. November | **Beitrag je Name: OFFEN** |
-| Zusätzlicher lokaler Ausbau | Geführte Consumer-Planung; am Prüfzeitpunkt nicht committed | **Beitrag, endgültiger Commit und Nutzung im Pitch: OFFEN** |
+| Späterer Consumer-/VORA-Ausbau | Geführte Consumer-Planung, weitere committed Entwicklung bis `258338b` sowie laufende lokale Änderungen; außerhalb der Basisdemo | **Beitrag, endgültiger Commit und Nutzung im Pitch: OFFEN** |
 | Externe Vorlagen und Komponenten | BMJ/BMJV-Vorlagen mit dokumentierter Herkunft; Next.js, React, Supabase-Bibliotheken, react-pdf; synthetische Inhalte und Demo-Kennzeichnung | **Weitere Teambestandteile/Lizenzen: OFFEN** |
-| KI-/Agentenunterstützung | Entwicklungsunterstützung im Arbeitsablauf vorhanden; Produktassistenz ohne Runtime-Modell | **Tatsächliche Werkzeuge, Modelle und Aufgaben pro Person: OFFEN** |
+| KI-/Agentenunterstützung | Entwicklungsunterstützung vorhanden; `6ec45fe` ohne Runtime-Modell, späterer VORA-Ausbau mit Modellanbindung | **Tatsächliche Werkzeuge, Modelle, vorgeführter Modelllauf und Aufgaben pro Person: OFFEN** |
 
 ## Kurzer Abschlusscheck am Laptop
 
@@ -90,7 +120,7 @@ Der Auftrag umfasst Präsentationsmaterial und dessen Git-Push, keine Änderung 
 
 Die Quellenrecherche und der Code-/Dokumentabgleich sind im [Belegblatt](EVIDENCE_QA.md) nachvollziehbar. Historische Produktprüfungen sind dort ausdrücklich als berichtete Ergebnisse eingeordnet. Das Schreiben dieses Pakets ist keine neue Produktabnahme. Die Zeitaufteilung ist ein Probenziel, keine gemessene Vortragsdauer.
 
-**Artefaktprüfung am 6. November:** Microsoft PowerPoint hat die PPTX und PDF nativ erzeugt. Alle elf Folien wurden als Renderbild einzeln geprüft; keine Textüberläufe wurden festgestellt. Die PPTX enthält acht Hauptfolien, drei im normalen Folienlauf ausgeblendete Anhangsfolien und elf Sprechernotizen. Die PDF enthält alle elf Seiten. Folientexte und Notizen stimmen mit dem Generator überein; die acht Zeitfenster entsprechen dem Ablaufblatt. Lokale Verweise, UTF-8 ohne BOM, Python-Syntax und `git diff --check` wurden geprüft. Diese Prüfungen umfassen weder eine gesprochene Sechs-Minuten-Probe noch einen neuen Anwendungstest.
+**Historische Artefaktprüfung des ersten Pakets am 6. November, Commit `d9fedf3`:** Microsoft PowerPoint hat die PPTX und PDF nativ erzeugt. Alle elf Folien wurden als Renderbild einzeln geprüft; keine Textüberläufe wurden festgestellt. Die PPTX enthält acht Hauptfolien, drei im normalen Folienlauf ausgeblendete Anhangsfolien und elf Sprechernotizen. Die PDF enthält alle elf Seiten. Folientexte und Notizen stimmten mit dem Generator überein; die acht Zeitfenster entsprachen dem Ablaufblatt. Lokale Verweise, UTF-8 ohne BOM, Python-Syntax und `git diff --check` wurden geprüft. Dieser damalige Nachweis umfasst weder die spätere Überarbeitung des Produktbildes noch eine gesprochene Sechs-Minuten-Probe oder einen neuen Anwendungstest.
 
 Für spätere Folienkorrekturen den [Deck-Quellgenerator](build_deck.py) und die Sprechtexte gemeinsam anpassen. Jede Änderung an Timing, Produktstand oder Quellenzahl muss in Folien, Notizen und Ablaufblatt übereinstimmen. Geprüfte PPTX- und PDF-Datei zusammen aktualisieren; temporäre Renderbilder gehören nicht ins Repository.
 
