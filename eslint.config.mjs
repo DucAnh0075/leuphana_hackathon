@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated browser-test output is not application source.
+    "test-results/**",
+    "playwright-report/**",
+    // Preserve imported third-party skill scripts under their own tooling rules.
+    ".agents/skills/**",
   ]),
 ]);
 

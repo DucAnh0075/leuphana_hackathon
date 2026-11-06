@@ -346,3 +346,40 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
 .scan-toast-actions { grid-column:2 / -1; }
 @keyframes scan-toast-in { from { opacity:0; transform:translateX(100%); } to { opacity:1; transform:translateX(0); } }
 @media(prefers-reduced-motion:reduce) { .scan-toast { animation:none; } }
+
+/* Preserve the dense workbench; make conditions and source actions readable. */
+.hospital-shell { --kis-reading-size:12px; --kis-supporting-size:11px; }
+.hospital-shell .clinical-panel > header h2 { font-size:var(--kis-reading-size); }
+.hospital-shell .patient-link,.hospital-shell .scope-row strong,.hospital-shell .clinical-text { font-size:var(--kis-reading-size); }
+.hospital-shell .scope-row { border-left:3px solid #527e9f; }
+.hospital-shell .scope-row.wishes { border-left-color:#a77c36; }
+.hospital-shell .scope-row.care { border-left-color:#8b72a6; }
+.hospital-shell .scope-row.information { border-left-color:#5a8b71; }
+.hospital-shell .scope-row small { font-size:var(--kis-supporting-size); line-height:1.55; }
+.hospital-shell .scope-row .scope-condition { margin-top:6px; }
+.hospital-shell .scope-link { min-height:28px; font-size:var(--kis-supporting-size); }
+.hospital-shell .source-link { font-size:var(--kis-supporting-size); min-height:32px; }
+.hospital-shell .scope-row > .source-link { white-space:normal; overflow-wrap:anywhere; min-width:0; }
+.hospital-shell .hot-tag { min-height:32px; font-size:11px; }
+.hospital-shell .hot-tag[aria-expanded="true"] { outline:1px solid currentColor; outline-offset:1px; box-shadow:inset 0 -2px currentColor; }
+.hospital-shell .hot-tag[aria-expanded="true"] > svg { transform:rotate(180deg); }
+.hospital-shell .document-filter { flex-wrap:wrap; justify-content:flex-start; gap:8px 14px; }
+.hospital-shell .document-filter > span { margin-left:auto; font-size:var(--kis-supporting-size); }
+.hospital-shell .document-search-clear { min-height:32px; }
+.hospital-shell .clinical-tab-list > button { font-size:12px; min-height:36px; }
+.hospital-shell :is(.hot-tag,.scope-link,.source-link,.patient-link,.document-search-clear):focus-visible { outline:3px solid #2d7cac; outline-offset:2px; }
+.hospital-shell .viewer-heading h2:focus { outline:2px solid #2d7cac; outline-offset:4px; }
+.scan-warning { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; padding:10px 12px; border:1px solid #cfbd9b; border-left:3px solid #a77c36; background:#fff8e9; color:#66502a; }
+.scan-warning > svg { margin-top:2px; }
+.scan-warning > div { flex:1; min-width:0; }
+.scan-warning strong { font-size:12px; }
+.scan-warning p { margin-top:3px; font-size:11px; line-height:1.55; }
+.scan-warning .icon-button { margin:-5px -5px 0 0; }
+.page-viewport:focus-visible { outline:3px solid #2d7cac; outline-offset:-3px; }
+@media(max-width:760px) {
+ .hospital-shell .scope-row { flex-direction:column; align-items:stretch; gap:4px; }
+ .hospital-shell .scope-row > .source-link { align-self:flex-start; max-width:none; flex-wrap:nowrap; white-space:nowrap; }
+ .hospital-shell .scope-detail-columns p,.hospital-shell .scope-detail-columns blockquote { font-size:11px; line-height:1.55; }
+ .hospital-shell .document-filter > span { margin-left:0; }
+ .hospital-shell .scan-warning { padding:9px 8px; gap:7px; }
+}

@@ -77,8 +77,10 @@ test("Beleglink bleibt nach Neuladen auf der richtigen Seite; PDF-Navigation fun
   await expect(page.locator(".source-evidence")).toContainText("Vermögensangelegenheiten");
   await page.getByRole("button", { name: "Vorherige Seite", exact: true }).click();
   await expect(page.locator(".page-count")).toContainText("Seite 1");
+  const beforeZoom = await page.locator(".page-sheet").boundingBox();
   await page.getByRole("button", { name: "Vergrößern", exact: true }).click();
-  await expect(page.locator(".zoom-value")).toHaveText("125 %");
+  await expect(page.locator(".zoom-value")).not.toHaveText("Auto");
+  await expect.poll(async () => (await page.locator(".page-sheet").boundingBox())!.width).toBeGreaterThan(beforeZoom!.width);
   await page.keyboard.press("Escape");
   await expect(page.locator(".embedded-viewer")).toHaveCount(0);
 });
@@ -134,8 +136,8 @@ test("NFC-Scan öffnet Henri Beckers Dokumente und zeigt eine Benachrichtigung",
   await page.goto("/");
   await page.getByRole("searchbox").fill("");
   await page.evaluate(() => window.dispatchEvent(new CustomEvent("demo-card-scan", { detail: "demo" })));
-  await expect(page.getByRole("status")).toContainText("Henri Becker");
-  await expect(page.getByRole("status")).toContainText("NFC-Notfallkarte erkannt");
+  await expect(page.locator('.scan-toast[role="status"]')).toContainText("Henri Becker");
+  await expect(page.locator('.scan-toast[role="status"]')).toContainText("NFC-Notfallkarte erkannt");
   await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
   await expect(page.getByRole("tab", { name: /Dokumente/ })).toHaveAttribute("aria-selected", "true");
 });

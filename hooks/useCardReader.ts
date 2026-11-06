@@ -6,6 +6,9 @@ import { supabase } from "@/lib/supabase";
 
 export type CardReaderStatus = "connecting" | "connected" | "offline";
 
+// Missing or malformed payloads must reach the UI as unrecognized cards.
+const cardIdFrom = (value: unknown): string => typeof value === "string" ? value : "";
+
 export function useCardReader({
   onCard,
 }: {
@@ -20,7 +23,7 @@ export function useCardReader({
 
   useEffect(() => {
     const client = supabase;
-    const onScan = (event: Event) => onCardRef.current((event as CustomEvent<string>).detail ?? "demo");
+    const onScan = (event: Event) => onCardRef.current(cardIdFrom((event as CustomEvent<unknown>).detail));
     window.addEventListener("demo-card-scan", onScan);
     if (!client) return () => window.removeEventListener("demo-card-scan", onScan);
 
@@ -29,7 +32,7 @@ export function useCardReader({
       .on(
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "scans" },
-        (p) => onCardRef.current(String(p.new.card_id ?? "demo")),
+        (p) => onCardRef.current(cardIdFrom(p.new.card_id)),
       )
       .subscribe((s) =>
         setStatus(s === "SUBSCRIBED" ? "connected" : "connecting"),
