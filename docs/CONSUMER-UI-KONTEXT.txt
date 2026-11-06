@@ -1,0 +1,371 @@
+MyDirectives ist für eure Strategie besonders interessant
+Ochsner Health meldete bereits am 15. April 2025 den produktiven Einsatz von MyDirectives innerhalb seines Epic-Systems. Die Lösung unterstützt dort Vorsorgegespräche und die Bereitstellung entsprechender Unterlagen über verschiedene Versorgungsbereiche hinweg. Ochsner Health System
+
+Am 27. Oktober 2026 kündigten MyDirectives und das Delaware Health Information Network zudem eine fünfjährige Initiative an, die Menschen, Behandelnde, Rettungsdienste und weitere Organisationen verbinden soll. Das ist eine angekündigte Erweiterung, nicht der Nachweis, dass bereits jeder Teil umgesetzt ist. Delaware Health Information Network
+
+Meine Ableitung: Ein spezialisiertes Vorsorgeunternehmen kann neben großen Gesundheitsplattformen sinnvoll existieren. Aber das überzeugendere Modell ist ein eigenständiger Vorsorgeprozess mit mehreren Anschlüssen, nicht eine Karte mit einem exklusiven PDF-Speicher. Die US-Beispiele beweisen allerdings weder deutsche Zahlungsbereitschaft noch die Übertragbarkeit des Geschäftsmodells.
+3. Wo das System bis 2031 wahrscheinlich steht
+Ich würde für eure Planung bewusst von einer deutlich besser funktionierenden digitalen Gesundheitsinfrastruktur ausgehen. Dann baut ihr kein Geschäftsmodell, das nur wegen heutiger technischer Defizite funktioniert.
+Entwicklung	Was heute belegt beziehungsweise angekündigt ist	Meine Konsequenz für euch
+Vorsorgedokumente werden zentral besser verfügbar	Seit Oktober 2026 ermöglicht das ZVR die Hinterlegung elektronischer Abschriften durch institutionelle Nutzer. Ein weiterer Ausbau zum Vollmachts- und Gültigkeitsregister ist vorgesehen.	Nicht darauf wetten, dass ihr dauerhaft die einzige digitale Quelle oder Statusverwaltung seid. Vorsorgeregister
+Gesundheitsdaten werden stärker grenzüberschreitend austauschbar	Der EHDS-Zeitplan sieht 2029 unter anderem Patientenkurzakten und elektronische Verordnungen, 2031 weitere Kategorien wie Laborbefunde, Bilddaten und Entlassberichte vor.	„Wir transportieren Gesundheitsdaten über Systemgrenzen“ wird voraussichtlich weniger unterscheidbar. Die tatsächliche Umsetzung bleibt abzuwarten. Public Health
+Digitale Identitätsnachweise werden leichter verfügbar	Deutschland kündigt die erste Stufe seiner EUDI-Wallet für Anfang 2027 an, mit schrittweisem Funktionsausbau.	Identifizierung nutzen, nicht selbst zum vermeintlich einzigartigen Kern machen. Bundesdigitalministerium
+Vertretung in Gesundheits-Apps wird normaler	Die ePA unterstützt bereits bis zu fünf eingerichtete Vertretungen. Doctolib bietet ebenfalls Angehörigenprofile.	„Familie kann mitverwalten“ reicht nicht. Entscheidend wäre, welche konkreten Aufgaben ihr besser löst. Gesundheitsportal
+KI übernimmt mehr Dokumentenarbeit	Entsprechende Produkte existieren bereits, etwa Doctolibs Dokumentationsassistent.	Meine Prognose: Erstellung, Extraktion und einfache Zusammenfassung werden leichter kopierbar, nicht euer stärkster Schutz. About Doctolib - Deutschland
+
+
+Daraus ergibt sich meine zentrale Zukunftsthese:
+Bis 2031 dürfte „Die Information ist verfügbar“ weniger wertvoll als Alleinstellungsmerkmal werden. Interessanter bleibt: „Die richtigen Beteiligten wissen, was vorliegt, was sie tun dürfen und welche Arbeit noch offen ist.“
+
+Das ist eine Hypothese, keine Garantie für eine dauerhafte Marktlücke. Auch große Anbieter können diese Aufgaben adressieren.
+4. Konkrete Produktideen für die Zeit nach der Erstellung
+A. Ein Änderungs- und Übergabeservice für Vorsorge
+Das Produkt endet nicht mit „neue Fassung gespeichert“, sondern verfolgt, wo die Änderung angekommen ist.
+
+Ein gedachtes Beispiel: Eine Person ändert ihre Vorsorgeunterlagen. Die neue Fassung liegt bei euch, aber eine früher beteiligte Einrichtung arbeitet möglicherweise noch mit einem alten Bestand. Ihr würdet nicht einfach überall Dokumente überschreiben, sondern einen nachvollziehbaren Prozess organisieren.
+
+Der sichtbare Stand könnte lauten:
+Neue Fassung hinterlegt.
+Vertrauensperson informiert und Kenntnisnahme bestätigt.
+Übermittlung an die vorgesehene Einrichtung bestätigt.
+Weitere Aktualisierung noch ausstehend.
+
+USP: Nicht nur Versionsverwaltung, sondern nachvollziehbare Weitergabe und Bearbeitung von Änderungen.
+
+Möglicher Moat: Eingespielte Empfängerprozesse, tatsächlich genutzte Bestätigungswege und ein zuverlässiger Betrieb über mehrere Organisationen hinweg.
+
+Grenze: Ihr kennt nur die Änderungen, die euch bekannt werden. Eine Patientenverfügung kann auch außerhalb eurer Anwendung formlos widerrufen werden. Deshalb wäre „zuletzt bestätigter beziehungsweise gemeldeter Stand“ ehrlicher als „garantiert aktuell“. Gesetze im Internet
+
+Außerdem darf die aktuelle Fassung nicht die historische Behandlungsdokumentation ausradieren. Änderungen der Behandlungsakte müssen nachvollziehbar bleiben. Gesetze im Internet
+B. Ein Arbeitsbereich für Bevollmächtigte
+Heute denkt ihr stark vom Patienten und vom Krankenhaus aus. Eine dritte Perspektive könnte eigenständig wertvoll sein:
+Was braucht die Person, die plötzlich für jemand anderen handeln soll?
+
+Ein möglicher Arbeitsbereich verbindet die relevanten Dokumente mit Kontakten, offenen Anfragen, bereits erfolgten Schritten und qualifizierter Unterstützung bei Unklarheiten.
+
+Das könnte beispielsweise helfen, eine Krankenhausanfrage zu bearbeiten, die passende Unterlage bereitzustellen oder eine Anschlussversorgung vorzubereiten. Nicht als allgemeiner Chatbot, sondern als konkreter Vorgang mit nachvollziehbarem Bearbeitungsstand.
+
+USP: „Wir machen die bevollmächtigte Person handlungsfähiger“, nicht nur „Wir speichern ihre Vollmacht“.
+
+Möglicher Moat: Wiederkehrende Zusammenarbeit mit Einrichtungen und Fachpartnern sowie ein erprobter Ablauf für tatsächliche Vertretungsfälle.
+
+Dabei müsstet ihr drei Dinge strikt auseinanderhalten: Zugang zu einer Anwendung, rechtliche Vertretungsmacht und die konkrete medizinische Entscheidung. Für bestimmte Maßnahmen verlangt das Gesetz beispielsweise eine schriftliche Vollmacht, die diese ausdrücklich umfasst. Gesetze im Internet
+C. Begleitete Vorsorge, die sich mit der Lebenssituation weiterentwickelt
+Hier verbindet ihr eure gewünschte Erstellung mit dem späteren Produkt.
+
+Nach der Erstellung könnte das System bei vom Nutzer gemeldeten Veränderungen einen Überprüfungsanlass anbieten: neue familiäre Zuständigkeiten, veränderte Versorgungssituation oder der Wunsch, bisherige Festlegungen neu zu besprechen.
+
+Es sollte nicht eigenständig erklären: „Ihre Patientenverfügung ist wegen dieser Diagnose ungültig.“ Stattdessen unterstützt es Vorbereitung, Gespräch, gegebenenfalls Anpassung und anschließende Verteilung.
+
+USP: Nicht regelmäßig einen neuen PDF-Download verkaufen, sondern Vorsorgegespräche und die anschließende Umsetzung zusammenhalten.
+
+Dafür gibt es bereits einen fachlichen Rahmen: Advance Care Planning, also die strukturierte Vorausplanung von Behandlungsentscheidungen. In Deutschland bestehen entsprechende Beratungsangebote und unter § 132g SGB V Finanzierungsmöglichkeiten für bestimmte Einrichtungen. Das bedeutet allerdings nicht, dass eure Software automatisch erstattungsfähig wäre. Advance Care Planning Deutschland
+
+Möglicher Moat: Zusammenarbeit mit qualifizierten Beratenden, gute Einbindung in deren Arbeit und langfristige Betreuung derselben Personen.
+D. Ein vorsorgespezifischer Übergabeprozess
+Der konkrete Anwendungsfall wäre nicht „alle Gesundheitsdaten überall“, sondern beispielsweise:
+Eine Person wechselt von zu Hause in eine Klinik und anschließend in eine Reha. Ihre Vorsorgeunterlagen und die zuständigen Personen sollen bei jedem Übergang richtig zugeordnet sein.
+
+Ihr würdet vor einer Übergabe zusammenstellen, was vorhanden ist, woher es stammt, welche Fassung bekannt ist und welche Fragen noch offen sind. Die aufnehmende Stelle bestätigt die Übernahme oder meldet eine konkrete Lücke.
+
+USP: Vorsorge wird als Bestandteil einer tatsächlichen Übergabe bearbeitet, nicht nur als Anhang mitgeschickt.
+
+Möglicher Käufer: Ein Klinik-, Pflege- oder Rehaverbund, sofern der Prozess nachweislich Arbeit spart oder Unklarheiten reduziert.
+
+Möglicher Moat: Ein funktionierender, organisationsübergreifender Prozess. Nicht das Exportformat.
+
+Der wichtige Wettbewerbstest wäre hier: Bestehende Patientenportale unterstützen bereits Dokumentenaustausch. Ihr müsstet zeigen, dass die vorsorgespezifischen Aufgaben darüber hinausgehen und nicht mit einer kleinen Konfiguration des vorhandenen Systems erledigt sind. Dedalus Global
+E. Ein vorbereiteter persönlicher Notfallservice
+Diese Idee bleibt interessant, sollte aber enger formuliert werden als „Wir helfen im Notfall“.
+
+Beispiel: Der Karteninhaber betreut einen pflegebedürftigen Angehörigen. Bei seinem eigenen Ausfall wird ein vorher vereinbarter Ablauf gestartet. Die vorgesehene Person bestätigt die Übernahme; andernfalls wird der nächste vereinbarte Schritt bearbeitet.
+
+USP: Nicht nur Ansprechpartner nennen, sondern feststellen, ob die vereinbarte Unterstützung tatsächlich zustande kommt.
+
+Möglicher Moat: Verlässlicher Betrieb und reale Leistungspartner, nicht die Benachrichtigungssoftware.
+
+Risiko: Das kann ein personalintensiver Service werden. Eine garantierte Ersatzversorgung dürftet ihr nur anbieten, wenn ihr sie tatsächlich organisiert habt. Zudem wirbt Afilio bereits mit persönlicher Hilfe im Notfall. Ihr müsstet deshalb den konkreten Leistungsumfang vergleichen, nicht nur das Schlagwort. Afilio
+F. Ein Vorsorge-Baustein für andere Plattformen
+Ihr müsst nicht zwingend die nächste große Gesundheits-App werden.
+
+Ein alternatives Modell wäre: Andere Anwendungen bieten euren Vorsorgeprozess unter ihrem eigenen Auftritt oder als eingebetteten Dienst an. Eure Leistung umfasst Erstellung beziehungsweise Import, Herkunftsnachweise, Beteiligte, bekannte Änderungen und die Bearbeitung konkreter Vorgänge.
+
+USP für Partner: Sie bekommen eine spezialisierte Vorsorgefunktion samt laufendem Betrieb, statt sie vollständig selbst aufzubauen.
+
+Die im Oktober 2026 angekündigte Verbindung von MyDirectives mit der Verbraucher-Gesundheitsplattform b.well ist ein passender Vergleich: Vorsorgedokumente sollen in bereits genutzten digitalen Gesundheitsangeboten sichtbar werden. b.well
+
+Möglicher Moat: Mehrere aktive Vertriebspartner und ein gemeinsamer spezialisierter Dienst, den jeder Partner nutzt.
+
+Risiko: Ein einzelner dominanter Vertriebspartner kann euch abhängig machen. Eine Partnerschaft ist erst dann strategisch wertvoll, wenn eure laufende Leistung nicht durch einen einmaligen Datentransfer ersetzt werden kann.
+5. Weitere Ideen für den längeren Horizont
+Diese würde ich zusätzlich sammeln, aber nicht sofort alle bauen:
+Idee	Was daran interessant wäre	Was noch bewiesen werden müsste
+Ein Vorsorge-Probelauf	Nutzer und Vertrauenspersonen testen, ob sie Dokumente finden und den vorgesehenen Ablauf verstehen. Das Ergebnis ist eine konkrete Liste offener Punkte, kein pauschaler Rechtsgültigkeits-Score.	Führt das zu besserer Vorbereitung, und zahlt jemand für die wiederkehrende Unterstützung?
+Grenzüberschreitende Vorsorgebegleitung	Verständliche Unterlagen, passende Ansprechpartner und qualifizierte Prüfung für Menschen mit Beziehungen zu mehreren Ländern.	Eine ausreichend große Zielgruppe und verlässliche Fachpartner. Übersetzung allein reicht nicht.
+Digitale Stellvertretung für alltägliche Aufgaben	Berechtigte Menschen können konkrete Vorgänge rund um Versorgung und Verwaltung koordinieren, ohne wiederholt dieselben Nachweise einzureichen.	Welche Einrichtungen akzeptieren welche Nachweise und Abläufe tatsächlich?
+Berechtigungen für zukünftige KI-Assistenten	Nutzer legen fest, welche Unterlagen ein Assistent für welchen Vorgang suchen, vorbereiten oder weitergeben darf.	Ob eine spezialisierte Vorsorgelösung dafür gebraucht wird oder allgemeine Plattformen dies ausreichend abdecken.
+Langfristige Vorsorgekontinuität	Ein klarer Export-, Übergabe- und Fortführungsplan schützt vor Abhängigkeit vom Fortbestand eines einzelnen Startups.	Ob daraus ein relevantes Kaufargument entsteht und wie die Leistung dauerhaft finanziert wird.
+
+
+Gerade die KI-Idee wäre für mich eine spätere Option, kein heutiger Kern. Eine technische Freigabe für einen Assistenten ist keine medizinische Entscheidungsvollmacht. Hier wäre besonders sauber zwischen Vorbereitung, Datenzugriff und rechtlich wirksamem Handeln zu unterscheiden.
+6. Wie daraus ein Moat wachsen könnte
+Mehr Funktionen ergeben nicht automatisch mehr Moat. Ich würde jede Erweiterung danach beurteilen, welchen schwerer ersetzbaren Bestandteil sie stärkt.
+Vertrieb in tatsächlichen Vorsorgeprozessen
+Ihr werdet beispielsweise regelmäßig von Beratungsstellen, Einrichtungen oder anderen Partnern eingesetzt. Dann entsteht ein Zugang zu Nutzern, den ein Wettbewerber nicht durch das Nachbauen eurer Oberfläche erhält.
+
+Die Erstellung hilft dabei: Sie schafft einen sinnvollen ersten Kontakt. Der weitere Service muss diesen Kontakt anschließend rechtfertigen.
+Akzeptierte Zusammenarbeit zwischen mehreren Beteiligten
+Ein stärkerer Vorteil entsteht, wenn eure Abläufe nicht nur technisch existieren, sondern von den beteiligten Organisationen genutzt werden: Wer nimmt etwas entgegen? Wer prüft es? Wer meldet eine Lücke zurück?
+
+Eine funktionierende API ist kopierbar. Eine bereits funktionierende Zusammenarbeit muss ein Wettbewerber erst aufbauen.
+
+Das wäre allerdings kein unangreifbarer Schutz. Auch etablierte Anbieter verfügen über Kundenbeziehungen und können solche Prozesse einführen.
+Nachweisbare Zuverlässigkeit
+Vertrauen sollte nicht nur ein Markenversprechen sein. Relevant wären überprüfbare Ergebnisse: richtige Zuordnung, erfolgreiche Übergaben, bearbeitete Rückfragen und transparente Fehlerfälle.
+
+Ein wachsender Erfahrungsschatz aus rechtmäßig ausgewerteten Prozessdaten kann eure Qualität verbessern. Die privaten Dokumente selbst würde ich nicht als euren exklusiven „Daten-Moat“ betrachten.
+Ein wirklicher Netzwerkeffekt
+Ein zusätzlicher Partner müsste den Nutzen für bereits angeschlossene Teilnehmer erhöhen.
+
+Beispiel: Eine neue Reha-Einrichtung kann bestehende Übergaben übernehmen und Rückmeldungen geben. Dadurch werden die Abläufe für bereits angeschlossene Kliniken besser.
+
+Eine größere Zahl gespeicherter PDFs erzeugt diesen Effekt noch nicht.
+Ein Betrieb, dessen Ersatz aufwendig wäre
+Wenn ihr nicht nur Dokumente bereitstellt, sondern offene Fälle zuverlässig bearbeitet, braucht ein Ersatzanbieter vergleichbare Prozesse, Partner und Qualität.
+
+Das kann ein belastbarer Schutz sein. Es kann aber auch eure Kosten erhöhen. Ein operativer Moat ist nicht automatisch ein hochmargiges Softwaregeschäft.
+7. Welche Kombination ich zuerst verfolgen würde
+Ich würde nicht sofort die gesamte persönliche Notfallorganisation bauen. Mein bevorzugter Kern wäre:
+Erstellen oder importieren → Beteiligte vorbereiten → Änderungen nachvollziehen → Unterlagen bei konkreten Übergängen bereitstellen → Eingang und offene Fragen bearbeiten.
+
+Das verbindet euren ursprünglichen Ansatz mit Leistungen, die nach der Erstellung weiterlaufen.
+
+Dabei würde ich zwei miteinander verbundene Angebote denken:
+Für die Person und ihre Vertrauenspersonen	Für Einrichtungen und Fachpartner
+Erstellung, verständliche Vorbereitung, portabler Bestand und mehrere Zugangswege.	Strukturierte Übernahme, nachvollziehbare Herkunft, bekannte Änderungen und Bearbeitung offener Fragen.
+Eine dauerhafte persönliche Beziehung.	Ein wiederkehrender Arbeitsprozess mit überprüfbarem Nutzen.
+
+
+Als ersten Test würde ich einen konkreten Übergang wählen, etwa zwischen einer Vorsorgeberatung, einem Pflegeanbieter und einer aufnehmenden Klinik. Nicht weil diese Kombination sicher die beste ist, sondern weil ihr dort prüfen könnt, ob euer Produkt über das Bereitstellen eines Dokuments hinaus tatsächlich gebraucht wird.
+
+Entscheidend wären drei Nachweise: Die richtigen Unterlagen kommen zuverlässiger an. Die Beteiligten wissen besser, wer zuständig ist. Änderungen und Rückfragen werden mit weniger Aufwand bearbeitet. Erst danach würde ich große Aussagen über Zeitersparnis, Sicherheit oder Marktpotenzial machen.
+
+Und jede neue Idee sollte denselben Stresstest bestehen:
+Das ZVR ist direkt in ORBIS integriert. Die ePA funktioniert gut. Doctolib bietet kostenlose Dokumentenerstellung und -ablage. Welche konkrete Leistung kauft unser Kunde trotzdem bei uns?
+
+Meine derzeit stärkste Antwort darauf: Ihr organisiert nicht nur den Zugang zu Vorsorgedokumenten, sondern ihre fortlaufende Verwendung zwischen der Person, ihren Vertrauenspersonen und wechselnden Einrichtungen. Die Erstellung eröffnet diese Beziehung. Die Karte macht sie auffindbar. Der mögliche Moat entsteht durch die akzeptierten Abläufe und den verlässlichen Betrieb danach.
+
+Soll ich die Entwicklungen bei ZVR, ePA, Doctolib und den direkten Wettbewerbern monatlich prüfen und daraus neue USP- und Moat-Hypothesen ableiten?
+
+
+
+
+
+
+      
+
+
+
+
+
+
+Okay, also ich glaube, was man machen kann: Auf der User-Seite bekommt der User ja nichts mit, wenn man irgendwie zum Krankenhaus geht und sagt: „Ich halte meine Karte daran.“ Wir garantieren so ein bisschen, dass das bei denen direkt beim System landet. Das ist eine super Value Proposition, und darauf bauen wir so ein bisschen auf.
+
+Dann sagen wir auf der App-Seite: Wir haben vielleicht die Erstellung davon. Zusätzlich haben wir dann so ein bisschen auf der Consumer-Seite alles rundum: „Finde Nutzer, damit du das erledigen kannst. Wir bieten Unterstützung an, dass wir das machen können.“
+
+Schau vielleicht auch noch mal, dass du bei anderen Betreibern schaust, wie die tatsächlich die Einbindung haben. Ich denke so ein bisschen an so ein User Interface wie bei DrLip, dass wir halt wirklich consumer-focused sind und dass man eigentlich sagt: „Okay, wir machen es relativ einfach, solche Dokumente zu erstellen. Wir bieten eigene Notare an. Wir bieten noch mal eine Rechtsberatung an. Man kann eigentlich direkt mit bestimmten Unternehmen oder mit Kanzleien partnern. Wenn zum Beispiel ein Notar notwendig ist, kann man direkt sagen: Okay, für mich oder für eine andere Person, was muss ich beachten?“
+
+Dann würde man so ein bisschen über ein App-Interface erstellen und dann zu uns hochladen. Dann wird es direkt an den Notar geschickt, und dann muss man nicht mehr daran denken. Man hat dann in der App trotzdem noch Zugriff darauf.
+
+Das würde ich dir im Krankenhaus auch vorzeigen: Du hast die Karte mal vergessen, aber natürlich ist eine Karte Pflicht, einfach aus Sicherheitsgründen. So denke ich momentan. Kannst du das so ein bisschen ausbauen, dass wir einfach sagen: Okay, wir nehmen beides, aber das ist einfach so ein bisschen mehr consumer-friendly, von der UI zumindest, so ein bisschen wie die Startups in Richtung DrLip? Schau gerne, ob das richtig möglich ist und ob wir daraus unseren USP bauen können. Danke dir.
+
+
+
+
+
+
+
+
+
+
+
+
+6m 59s nachgedacht
+
+
+
+
+
+
+Ja. Daraus lässt sich ein deutlich klareres Produkt bauen: eine einfach bedienbare Vorsorge-App, die nicht beim fertigen Dokument aufhört, sondern dessen Übergabe an die behandelnde Einrichtung organisiert.
+
+Die Erstellung, Beratung und Terminorganisation wären der Einstieg. Euer zentraler Leistungsnachweis wäre anschließend: Die richtige Fassung wurde der richtigen Patientenakte zugeordnet und dort bereitgestellt.
+
+Deine Vorstellung „Karte vorzeigen, den Rest erledigt das System“ ist dafür ein gutes Zielbild. Ihr müsstet dieses Versprechen allerdings zunächst auf tatsächlich angeschlossene Einrichtungen begrenzen. Eine Karte allein schafft noch keine Verbindung zur Krankenhaussoftware.
+
+Ich würde das Produkt folgendermaßen ausbauen.
+1. Die Produktidee: Vorsorge erledigen, nicht Dokumente verwalten
+Aus Nutzersicht würde ich weder mit „Register“ noch mit „Dokumentenspeicher“ beginnen. Der Einstieg wäre eine Aufgabe:
+„Ich möchte meine Vorsorge regeln. Zeigt mir, was ich brauche, organisiert die notwendigen Schritte und sorgt dafür, dass meine Unterlagen später verfügbar sind.“
+
+Eure App würde dafür drei Bereiche verbinden:
+
+Vorbereitung: Was möchte ich regeln, welche Unterlagen existieren schon, und wo brauche ich Unterstützung?
+
+Abschluss: Entwurf erstellen, Fragen klären, erforderliche Unterschriften oder notarielle Schritte erledigen und die abgeschlossene Fassung übernehmen.
+
+Spätere Verwendung: Unterlagen über Karte oder App bereitstellen, an angeschlossene Einrichtungen übergeben und bekannte Änderungen nachführen.
+
+Das wäre ein durchgehender Vorgang mit unterschiedlichen Beteiligten, nicht eine Sammlung unverbundener Angebote.
+
+Der Bezug zu Doctolib passt dabei: Dort werden beispielsweise Dokumente im Zusammenhang mit einem konkreten Termin angefordert und übermittelt. Nutzer müssen nicht erst überlegen, welches technische System dahintersteht. Dieses Prinzip könntet ihr übernehmen: Die App zeigt die nächste notwendige Handlung im jeweiligen Vorgang. Doctolib Patientenservice
+2. So könnte die App konkret aussehen
+Ich würde mit fünf einfachen Bereichen arbeiten:
+Bereich	Was Nutzer dort sehen und erledigen
+Meine Vorsorge	Welche Unterlagen vorhanden sind, welcher Bearbeitungsstand gilt und was noch fehlt.
+Erstellen und ergänzen	Geführte Erstellung oder Übernahme bereits vorhandener Dokumente.
+Beratung und Termine	Passende fachliche Unterstützung, Terminorganisation, Rückfragen und benötigte Unterlagen.
+Meine Vertrauenspersonen	Wer unterstützt, wer Zugriff erhält und wer in welchem Dokument benannt ist.
+Vorzeigen und übergeben	Digitale Karte, physische Karte verwalten und Unterlagen für eine konkrete Einrichtung bereitstellen.
+
+
+Der Startbildschirm sollte keine PDF-Liste sein
+Ein beispielhafter Startbildschirm könnte so aufgebaut sein:
+Deine Vorsorge
+
+Patientenverfügung: Unterschriebene Fassung hinterlegt.
+Vorsorgevollmacht: Rückfrage des Notariats beantworten.
+Vertrauensperson: Einladung noch nicht bestätigt.
+Deine Karte: Aktiv.
+
+Nächster Schritt: Angaben für deinen Notartermin vervollständigen.
+
+Nach einer Krankenhausaufnahme könnte dort stehen:
+Unterlagen für deinen Klinikaufenthalt
+
+Patientenverfügung und Vorsorgevollmacht wurden deiner Patientenakte zugeordnet.
+Empfang durch das Kliniksystem bestätigt.
+Ob das Behandlungsteam die Unterlagen bereits geprüft hat, wird hier nicht bestätigt.
+
+Die letzte Unterscheidung ist wichtig: Technisch angekommen, einer Akte zugeordnet und medizinisch geprüft sind unterschiedliche Zustände. Ihr könnt die Komplexität im Hintergrund reduzieren, solltet diese Zustände aber nicht miteinander vermischen.
+„Für mich“ und „Ich unterstütze jemanden“ wären eigene Einstiege
+Das halte ich für eine sinnvolle Erweiterung. Eine Person kann beispielsweise ihrer Mutter beim Zusammenstellen von Informationen, Hochladen bestehender Unterlagen und Vereinbaren eines Termins helfen.
+
+Aber die App muss klar zwischen organisatorischer Unterstützung, Datenzugriff und rechtlicher Vertretung unterscheiden. Eine neue Patientenverfügung kann nicht einfach durch einen Angehörigenaccount stellvertretend erklärt werden. Das Gesetz knüpft sie an die eigene Festlegung eines einwilligungsfähigen Volljährigen. Gesetze im Internet
+
+Der richtige Ablauf wäre deshalb: gemeinsam vorbereiten, die erforderliche eigene Entscheidung und Erklärung der betroffenen Person sichern und eine bereits bestehende Vertretungsberechtigung gesondert behandeln.
+3. Euer Notar- und Beratungsprozess ist möglich, aber anders als „hochladen und automatisch beglaubigt“
+Ihr könnt sehr viel Organisation übernehmen. Ihr könnt aber die notwendigen persönlichen und fachlichen Schritte nicht einfach verschwinden lassen.
+Nicht jede Person muss zum Notar
+Für eine Patientenverfügung ist grundsätzlich keine notarielle Beurkundung erforderlich. Auch bei Vorsorgevollmachten hängt der erforderliche beziehungsweise empfehlenswerte Weg vom Inhalt und dem vorgesehenen Einsatz ab. Eure App sollte deshalb nicht automatisch jeden Nutzer in einen kostenpflichtigen Notarprozess schicken. Gesundheitsportal
+
+Ich würde unterschiedliche Wege vorsehen: geführte Erstellung, zusätzliche individuelle Beratung oder notarielle Bearbeitung, soweit erforderlich oder gewünscht.
+
+Für die digitale Unterzeichnung kommt bei geeigneten Dokumenten eine qualifizierte elektronische Signatur in Betracht. Eine mit dem Finger gezeichnete Unterschrift in einer beliebigen App ist damit nicht gleichzusetzen. Welche Form genügt, muss für jeden angebotenen Dokumenttyp geprüft sein. Gesetze im Internet
+
+Dass sich digitale Signaturprozesse in eine Vorsorgeplattform integrieren lassen, zeigt bereits die Zusammenarbeit von Afilio und AUTHADA. Das ist also technisch kein unrealistischer Teil eurer Idee, aber auch kein neuer USP. AUTHADA
+Der integrierte Notarprozess würde so aussehen
+Vorbereiten → Notariat auswählen und beauftragen → Informationen übermitteln → Rückfragen und Entwurf bearbeiten → erforderlichen Termin wahrnehmen → endgültige Unterlagen übernehmen.
+
+Ich würde nicht zwingend zuerst einen fertigen „rechtssicheren“ Entwurf erzeugen und diesen dann zum Absegnen versenden. Häufig wäre ein strukturiertes Vorbereitungspaket sinnvoller: Wünsche, Beteiligte, vorhandene Unterlagen und offene Fragen. Das Notariat kann daraus seine eigenständige fachliche Bearbeitung machen.
+
+Für einen ersten Betrieb könnte ein vereinbarter, geschützter Partnerzugang genügen. Das Notariat erhält einen Vorgang, stellt Rückfragen, bestätigt den Bearbeitungsstand und übermittelt anschließend die für den Nutzer vorgesehenen Dokumente. Eine allgemeine, frei verfügbare Schnittstelle zu sämtlichen Notariaten solltet ihr dabei nicht voraussetzen.
+Ein digital organisierter Vorgang ist nicht automatisch eine Online-Beurkundung
+Für allgemeine Vorsorgevollmachten könnt ihr nicht einfach einen vollständig digitalen Videobeurkundungsprozess versprechen. Die öffentlich beschriebenen notariellen Online-Verfahren betreffen bestimmte gesetzlich zugelassene Angelegenheiten. Auch die am 28. Oktober 2026 angekündigte Erweiterung betrifft Gesellschafts- und Registerrecht, nicht eine allgemeine Freigabe sämtlicher Vorsorgeangelegenheiten. Notar
+
+Positiv für eure Idee: Seit 29. Dezember 2025 können notarielle Urkunden auch im Präsenzverfahren elektronisch errichtet werden. Die Person erscheint dabei weiterhin vor Ort, das Ergebnis entsteht aber unmittelbar elektronisch. Ob ein Notariat dieses Verfahren nutzt, liegt in seinem Ermessen. Bundesnotarkammer
+
+Bei Vollmachten bleiben zudem Unterschiede zwischen digitaler Abschrift, Urschrift und einer für bestimmte Zwecke benötigten Ausfertigung relevant. „In der App vorhanden“ darf deshalb nicht pauschal „ersetzt überall das Original“ bedeuten. Die Bundesnotarkammer weist gerade bei elektronischen Vollmachtsurkunden auf diese Grenzen hin. Bundesnotarkammer
+„Unsere Notare“ würde ich anders formulieren
+Ich würde mit unabhängigen Notariaten und befugten Rechtsberatenden arbeiten, nicht mit dem Eindruck, ein Notar sei eine weisungsgebundene Abteilung eures Startups. Notare müssen unabhängig und unparteiisch handeln. Individuelle rechtliche Einzelfallberatung ist außerdem von einer bloßen Softwarefunktion zu unterscheiden und muss im zulässigen Rahmen erbracht werden. Gesetze im Internet
+
+Auch ein einfaches Modell „Wir bekommen einen Anteil jedes vermittelten Honorars“ solltet ihr nicht voraussetzen. Für anwaltliche Auftragsvermittlung bestehen ausdrückliche Beschränkungen. Plattformleistungen, Fachleistungen und deren Vergütung müssten sauber strukturiert werden. Gesetze im Internet
+
+Das Nutzererlebnis kann trotzdem durchgehend sein: eine App, ein verständlicher Bearbeitungsstand und möglichst wenig erneute Dateneingabe. Im Hintergrund bleiben die fachlichen Verantwortlichkeiten getrennt.
+4. Wie andere Anbieter tatsächlich anbinden
+Die öffentlich dokumentierten Abläufe unterscheiden sich deutlich:
+Anbieter	Was öffentlich beschrieben wird	Was das für euch bedeutet
+Afilio	Ärzte oder Angehörige rufen Unterlagen über eine Website mit dem Code der Notfallkarte ab.	Ein guter Vergleich für den Zugang zur Vorsorge. Dieser beschriebene Kartenablauf belegt allein noch keine automatische Übernahme in ein KIS. Afilio
+DoctorBox	QR-Code scannen, verdeckte PIN freilegen und Notfalldaten auf einer Website öffnen.	Ebenfalls ein Abrufweg. Website anzeigen und Unterlagen in die lokale Patientenakte übernehmen bleiben verschiedene Leistungen. doctorbox.de
+DIPAT	Online-Hinterlegung, Hinweisaufkleber auf der Gesundheitskarte und Benachrichtigung hinterlegter Kontaktpersonen beim Abruf.	Abruf, Auffindbarkeit und Benachrichtigung sind bereits besetzt. dipat.de
+Dedalus Patient XCare Suite	Einbindung in ORBIS, sodass Klinikmitarbeiter Informationen über ihre gewohnten Module nutzen können; bestimmte Daten lassen sich in ORBIS-Formulare übernehmen.	Ein Beleg dafür, dass tiefe Integration möglich ist. Gleichzeitig ein bestehendes Produkt, gegenüber dem ihr Mehrwert zeigen müsst. Dedalus Global
+MyDirectives bei Ochsner Health	Seit April 2025 produktiv innerhalb des dortigen Epic-Systems eingesetzt, mit Erstellung, Verwaltung und Abruf von Vorsorgedokumenten im klinischen Arbeitsablauf.	Ein konkreter Vergleich für eine spezialisierte Vorsorgelösung mit klinischer Integration, nicht nur für eine Notfallkarte. mydirectives.com
+
+
+Die Schlussfolgerung ist nicht, dass keiner eure Idee schon verfolgt. Sie lautet: Die Kombination aus verbraucherfreundlicher Vorbereitung und klinischer Einbindung ist grundsätzlich umsetzbar. Ihr müsst aber präziser zeigen, welchen Ablauf ihr besser schließt als bestehende Angebote.
+
+Aus den öffentlichen Beschreibungen lässt sich außerdem nicht sicher ableiten, welche zusätzlichen, nicht öffentlich dokumentierten Integrationen ein Anbieter bereits hat.
+5. So wird aus „Karte vorzeigen“ eine echte Übernahme ins Krankenhaus
+Hier liegt der wichtigste Teil eures Produkts.
+
+Ich würde drei Leistungsstufen unterscheiden:
+
+Stufe 1: Abruf.
+Die Karte öffnet einen geschützten Zugang. Berechtigte Personen können Unterlagen lesen oder herunterladen. Dafür ist noch keine direkte KIS-Integration notwendig.
+
+Stufe 2: Anzeige im klinischen System.
+Das Behandlungsteam kann eure Dokumentenansicht aus seinem gewohnten System öffnen. Das reduziert den Wechsel zwischen Anwendungen, bedeutet aber noch nicht zwingend, dass das Dokument in der lokalen Behandlungsakte gespeichert ist.
+
+Stufe 3: Bestätigte Übernahme in die richtige Akte.
+Eine konkrete Fassung wird dem richtigen Patienten beziehungsweise Behandlungsfall zugeordnet und im vereinbarten klinischen Dokumentensystem übernommen. Erst das entspricht deinem stärkeren Versprechen.
+
+Für diese dritte Stufe gibt es technische Grundlagen: Das gematik-Modul ISiK-Dokumentenaustausch beschreibt die Bereitstellung von Dokumenten über FHIR-Schnittstellen. Die Spezifikation verlangt dabei ausdrücklich die Herstellung eines Patienten- und Behandlungskontexts für die korrekte Zuordnung. Ein Standard ersetzt jedoch weder die Freischaltung noch die Umsetzung in der konkreten Einrichtung. gemSpecPages
+Mein vorgeschlagener Ablauf
+Der Nutzer zeigt Karte oder App. Ein dafür eingerichteter Zugang im Krankenhaus erkennt die Kennung. Anschließend werden Zugriffsberechtigung und Zuordnung zum Patienten geklärt. Das System übergibt die vorgesehenen Unterlagen und erhält eine Rückmeldung über den tatsächlichen Übernahmestand.
+
+Nicht: Karte erkannt, also automatisch alle Dokumente irgendwohin senden.
+
+Sondern: Zugang herstellen, richtigen Empfänger und Patienten feststellen, vorgesehenes Dokument übergeben, Ergebnis bestätigen.
+
+Dabei würde ich nicht voraussetzen, dass eure NFC-Karte am bereits vorhandenen Gesundheitskartenlesegerät funktioniert. Der Einstieg muss mit der Klinik technisch festgelegt und getestet werden, beispielsweise über einen geeigneten Leser, Scanner oder einen App-basierten Ablauf.
+Was ihr garantieren könntet
+Ein seriöses Leistungsversprechen wäre beispielsweise:
+„An angeschlossenen Standorten übergeben wir deine freigegebenen Vorsorgedokumente direkt an das Kliniksystem und bestätigen die erfolgreiche Zuordnung.“
+
+Das ist stärker als „online abrufbar“, aber enger als „funktioniert in jedem Krankenhaus“.
+
+Auch die Bestätigung muss sauber definiert sein. Ein Server kann eine Datei angenommen haben, ohne dass sie bereits an der vorgesehenen Stelle sichtbar ist. Den grünen Status würde ich erst ausgeben, wenn der vereinbarte Zielzustand nachgewiesen ist.
+
+Nicht garantieren könnt ihr damit automatisch, dass eine Ärztin das Dokument gelesen hat oder welche konkrete Behandlung daraus folgt. Die Anwendung einer Patientenverfügung hängt weiterhin davon ab, ob ihre Festlegungen zur aktuellen Behandlungssituation passen. Gesetze im Internet
+6. Die Karte würde ich standardmäßig mitgeben, aber nicht zur einzigen Zugangsvoraussetzung machen
+Deinen Sicherheitsgedanken würde ich so übersetzen:
+Jeder Nutzer erhält eine physische Karte. Der Service bleibt aber auch ohne diese Karte erreichbar.
+
+Das ist etwas anderes als „Ohne Karte funktioniert nichts“.
+
+Für mein Produktdesign hätte die Karte die Aufgabe, den Vorsorgebestand auffindbar zu machen und einen alternativen Einstieg zu bieten. Sie wäre nicht alleiniger Identitätsnachweis und nicht alleinige Berechtigung, sämtliche Unterlagen einzusehen.
+
+Ich würde deshalb vorsehen: eine sperrbare Kartenkennung, eine digitale Alternative in der App, einen geregelten Zugang für berechtigte Vertrauenspersonen und einen gesondert abgesicherten Notfallzugriff. Der Verlust der Karte dürfte nicht den gesamten Vorsorgezugang zerstören.
+
+Außerdem würde ich zwei Informationsbereiche trennen: öffentlich beziehungsweise niedrigschwellig sichtbare Hinweise und den geschützten Zugriff auf vollständige Dokumente. Welche Informationen in welchem Fall zugänglich sind, müsste vor einem echten Pilotbetrieb fachlich und datenschutzrechtlich festgelegt werden.
+
+Die Karte erhöht eure Robustheit als zusätzlicher Zugangsweg. Sie macht das System nicht allein dadurch sicherer, dass sie verpflichtend ausgegeben wird.
+7. Daraus lässt sich ein USP formulieren, aber der Moat muss noch aufgebaut werden
+Ich würde eure Positionierung nicht auf „Doctolib für Vorsorgedokumente“ reduzieren. Das beschreibt die gewünschte Bedienbarkeit, nicht den Unterschied zum Wettbewerb.
+
+Der stärkere Produktentwurf wäre:
+Eine persönliche Vorsorgeplattform, die Erstellung, fachliche Unterstützung und die bestätigte Übergabe an angeschlossene Versorgungseinrichtungen verbindet.
+
+Für Verbraucher könnte das heißen:
+„Vorsorge erledigen. Bei Bedarf vorzeigen. Die Übergabe übernehmen wir.“
+
+Diese Aussage müsste in der Kommunikation unmittelbar mit der tatsächlichen Reichweite verbunden sein, etwa durch eine sichtbare Liste angeschlossener Einrichtungen und eine klare Erklärung des Ersatzwegs außerhalb dieses Netzes.
+Eure möglichen USPs wären dann drei zusammenhängende Leistungen
+Ein Vorgang statt mehrerer Einzelaufgaben. Nutzer müssen nicht selbst zwischen Dokumentengenerator, Beratung, Notariat, Ablage und Krankenhausübermittlung koordinieren.
+
+Vorzeigen statt erneut zusammensuchen und weiterleiten. Karte und App führen zum selben vorbereiteten Bestand; die klinische Übergabe erfolgt über den jeweils unterstützten Weg.
+
+Bestätigter Eingang statt bloßer Verfügbarkeit. Nutzer und Support erkennen, ob die Unterlagen wirklich am vereinbarten Ziel angekommen sind oder ob noch etwas fehlt.
+
+Das sind prüfbare USP-Hypothesen, noch keine belegte Einzigartigkeit.
+Der mögliche Moat liegt hinter dieser einfachen Oberfläche
+Er könnte aus einem tatsächlich genutzten Netz unabhängiger Fachpartner und Versorgungseinrichtungen entstehen, verbunden mit erprobten Übergabeprozessen, klaren Zuständigkeiten und verlässlich bearbeiteten Fehlerfällen.
+
+Eine weitere schöne App wäre leicht zu ersetzen. Ein funktionierender Ablauf vom Erstkontakt bis zur bestätigten Aufnahme in die Klinikakte ist aufwendiger zu ersetzen. Aber auch dieser Vorteil schützt euch nur, solange Kunden eure laufende Leistung benötigen und nicht lediglich einen einmaligen Anschluss.
+
+Deshalb würde ich für den ersten realen Pilot nicht sofort einen großen Beratungsmarktplatz bauen. Ich würde mit wenigen Fachpartnern und einer Klinik einen vollständigen Vorgang umsetzen: Erstellung oder Import, fachlicher Abschluss, Karte beziehungsweise App und bestätigte klinische Übernahme.
+
+Der entscheidende Test wäre nicht „Gefällt den Nutzern die Oberfläche?“, sondern:
+Kann eine Person ihre Vorsorge über euch abschließen und später in der angebundenen Klinik bereitstellen, ohne selbst Dateien suchen, erneut hochladen oder dem Eingang hinterherlaufen zu müssen?
+
+Wenn ihr diesen Ablauf zuverlässig hinbekommt, habt ihr ein konkretes Produktversprechen. Die Erstellung gewinnt den Nutzer. Die einfache Oberfläche macht den Prozess zugänglich. Euer eigentlicher Wert entsteht danach durch die nachweislich funktionierende Übergabe und Betreuung.

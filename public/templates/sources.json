@@ -1,0 +1,19 @@
+{
+  "purpose": "Versionierte Originalvorlagen fuer reproduzierbare synthetische Demodokumente",
+  "sources": [
+    {
+      "url": "/pdfs/Vorsorgevollmacht.pdf",
+      "label": "BMJ Formular Vorsorgevollmacht",
+      "version": "Januar 2023",
+      "upstream": "https://www.bmjv.de/SharedDocs/Downloads/DE/Formular/Vorsorgevollmacht.pdf",
+      "sha256": "88c2c5fad413c4c9046ac3f171ac71ded98b421effdca7e4dabb33afe520d176"
+    },
+    {
+      "url": "/templates/patientenverfuegung-textbausteine.pdf",
+      "label": "BMJ Textbausteine Patientenverfuegung",
+      "version": "Januar 2023; vom Nutzer bereitgestellte Fassung",
+      "upstream": "https://www.bmjv.de/SharedDocs/Downloads/DE/Formular/Patientenverfuegung_Textbausteine_pdf.pdf",
+      "sha256": "059c18c92dcaf8477aea95e3b8cb85c80b040602870703e1989d087a6687d524"
+    }
+  ]
+}

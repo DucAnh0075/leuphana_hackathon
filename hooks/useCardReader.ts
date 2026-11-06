@@ -1,48 +1,34 @@
 "use client";
 
-/** Kartenerkennung: iPhone -> /api/scan -> scans -> Realtime -> onCard. */
+// Adapted from upstream 8d891788 / issue #32: iPhone -> scan -> Supabase -> UI.
+// Events only request a fresh authorized snapshot; card IDs never select a fallback patient.
 import { useEffect, useRef, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { createSupabaseBrowserClient } from "@/lib/auth/browser";
+import { getSupabaseConfiguration } from "@/lib/auth/config";
 
 export type CardReaderStatus = "connecting" | "connected" | "offline";
-
-// Missing or malformed payloads must reach the UI as unrecognized cards.
-const cardIdFrom = (value: unknown): string => typeof value === "string" ? value : "";
-
-export function useCardReader({
-  onCard,
-}: {
-  onCard: (cardId: string) => void;
-}): { status: CardReaderStatus } {
-  const onCardRef = useRef(onCard);
+export function useCardReader({ onCard, enabled = true }: { onCard: (cardId: string) => void; enabled?: boolean }) {
+  const available = enabled && Boolean(getSupabaseConfiguration());
+  const callback = useRef(onCard);
   const [status, setStatus] = useState<CardReaderStatus>("connecting");
-
+  useEffect(() => { callback.current = onCard; }, [onCard]);
   useEffect(() => {
-    onCardRef.current = onCard;
-  });
-
-  useEffect(() => {
-    const client = supabase;
-    const onScan = (event: Event) => onCardRef.current(cardIdFrom((event as CustomEvent<unknown>).detail));
+    if (!available) return;
+    const client = createSupabaseBrowserClient();
+    if (!client) return;
+    const onScan = (event: Event) => {
+      const id = (event as CustomEvent<unknown>).detail;
+      if (typeof id === "string") callback.current(id);
+    };
     window.addEventListener("demo-card-scan", onScan);
-    if (!client) return () => window.removeEventListener("demo-card-scan", onScan);
-
-    const channel = client
-      .channel("scans-" + crypto.randomUUID())
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "scans" },
-        (p) => onCardRef.current(cardIdFrom(p.new.card_id)),
-      )
-      .subscribe((s) =>
-        setStatus(s === "SUBSCRIBED" ? "connected" : "connecting"),
-      );
-
+    const channel = client.channel("care-scans-" + crypto.randomUUID())
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "scans" },
+        payload => callback.current(String(payload.new.card_id ?? "")))
+      .subscribe(value => setStatus(value === "SUBSCRIBED" ? "connected" : value === "CHANNEL_ERROR" || value === "TIMED_OUT" || value === "CLOSED" ? "offline" : "connecting"));
     return () => {
       window.removeEventListener("demo-card-scan", onScan);
       void client.removeChannel(channel);
     };
-  }, []);
-
-  return { status: supabase ? status : "offline" };
+  }, [available]);
+  return { status: available ? status : "offline" as CardReaderStatus };
 }

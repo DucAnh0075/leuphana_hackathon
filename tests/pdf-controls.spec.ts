@@ -1,4 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
+import data from "../lib/demo-patients.json";
+const pageCount = data.patients[0].documents.find(doc => doc.id === "26004182-vorsorge")!.pages.length;
 
 async function openReader(page: Page) {
   await page.goto("/?patient=26004182&document=26004182-vorsorge&page=2");
@@ -53,10 +55,10 @@ test("Seitenwechsel hält die ausgewählte Vorschau sichtbar und den Tastaturfok
   const reader = page.getByRole("region", { name: /^PDF-Lesebereich/ });
   await reader.focus();
   await page.keyboard.press("ArrowLeft");
-  await expect(page.locator(".page-count")).toContainText("Seite 1 von 2");
+  await expect(page.locator(".page-count")).toContainText(`Seite 1 von ${pageCount}`);
   const outerScroll = await page.evaluate(() => window.scrollY);
   await page.keyboard.press("ArrowRight");
-  await expect(page.locator(".page-count")).toContainText("Seite 2 von 2");
+  await expect(page.locator(".page-count")).toContainText(`Seite 2 von ${pageCount}`);
   await expect(reader).toBeFocused();
   expect(await page.evaluate(() => window.scrollY)).toBe(outerScroll);
   await expect(page.locator('.thumbnail[aria-current="page"] canvas')).toBeVisible();
@@ -87,7 +89,7 @@ test("Mobile Seitenvorschau zeigt nach dem Öffnen die aktuelle Seite", async ({
   await expect(page.locator('.thumbnail[aria-current="page"] canvas')).toBeVisible();
   await expect(toggle).toBeFocused();
   await page.getByRole("button", { name: "Seite 1 anzeigen", exact: true }).click();
-  await expect(page.locator(".page-count")).toContainText("Seite 1 von 2");
+  await expect(page.locator(".page-count")).toContainText(`Seite 1 von ${pageCount}`);
   await expect(page.getByRole("button", { name: "Seite 1 anzeigen", exact: true })).toBeFocused();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
