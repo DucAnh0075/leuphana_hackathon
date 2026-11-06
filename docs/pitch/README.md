@@ -34,6 +34,8 @@ Redaktionelle Umsetzung: Anlass und Aufschieben als Szenario erzählen; aus eine
 
 ## Jetzt verwenden
 
+Die [Systemübersicht als PNG](VORAKAT-systemuebersicht.png) zeigt die vier Boxen und Linienarten nach Henris aktueller Grafikvorgabe mit dem Produktnamen **VORAKAT**. Die [draw.io-Datei](VORAKAT-systemuebersicht.drawio) bleibt bearbeitbar. Die Linien stellen die gewünschte schematische Zuordnung dar; aus ihrer Darstellung folgt keine technische Abnahme einer Integration.
+
 1. [Bearbeitbare PowerPoint mit englischen Sprechernotizen](Vorsorge-pitch.pptx) öffnen. Folien 1–8 bilden den Pitch; der Anhang ist für Fragen gedacht.
 2. [Ablauf und Sprechtext](RUN_OF_SHOW.md) auf dem Demo-Laptop neben die Anwendung legen. Die Hauptdemo verwendet bereits vorhandene synthetische Dokumente von Erika Berger.
 3. [Belege, Aussagegrenzen und Juryantworten](EVIDENCE_QA.md) für Rückfragen lesen. Besonders wichtig: tatsächlicher KI-Anteil, ZVR/ePA-Abgrenzung und noch unvalidiertes Geschäftsmodell.

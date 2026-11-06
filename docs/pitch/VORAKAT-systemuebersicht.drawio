@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="vorakat-systemuebersicht" name="VORAKAT – Systemübersicht">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="zvr" value="Zentrales&#xa;Vorsorgeregister&#xa;(ZVR)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#F2F6F8;strokeColor=#173746;strokeWidth=3;fontColor=#173746;fontFamily=Arial;fontSize=32;align=center;verticalAlign=middle;spacing=20;" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="500" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="kis" value="Krankenhaus-&#xa;Informationssystem&#xa;(KIS)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#F2F6F8;strokeColor=#173746;strokeWidth=3;fontColor=#173746;fontFamily=Arial;fontSize=32;align=center;verticalAlign=middle;spacing=20;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="100" width="500" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="epa" value="Elektronische&#xa;Patientenakte&#xa;(ePA)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#F2F6F8;strokeColor=#173746;strokeWidth=3;fontColor=#173746;fontFamily=Arial;fontSize=32;align=center;verticalAlign=middle;spacing=20;" vertex="1" parent="1">
+          <mxGeometry x="100" y="620" width="500" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="vorakat" value="VORAKAT" style="rounded=1;arcSize=12;whiteSpace=wrap;html=0;fillColor=#087F83;strokeColor=#087F83;strokeWidth=3;fontColor=#FFFFFF;fontFamily=Arial;fontSize=48;fontStyle=1;align=center;verticalAlign=middle;spacing=20;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="620" width="500" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="zvr-kis" value="" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=none;strokeColor=#526976;strokeWidth=4;dashed=1;dashPattern=10 7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="zvr" target="kis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="kis-vorakat" value="" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=none;strokeColor=#087F83;strokeWidth=4;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="kis" target="vorakat">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="epa-vorakat" value="" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=none;strokeColor=#526976;strokeWidth=4;dashed=1;dashPattern=10 7;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="epa" target="vorakat">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="zvr-vorakat" value="" style="edgeStyle=none;rounded=0;html=0;startArrow=none;endArrow=none;strokeColor=#087F83;strokeWidth=4;exitX=0.88;exitY=1;entryX=0.12;entryY=0;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="zvr" target="vorakat">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
