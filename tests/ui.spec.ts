@@ -77,8 +77,10 @@ test("Beleglink bleibt nach Neuladen auf der richtigen Seite; PDF-Navigation fun
   await expect(page.locator(".source-evidence")).toContainText(data.patients[0].facts[0].exclusions[0]);
   await page.getByRole("button", { name: "Vorherige Seite", exact: true }).click();
   await expect(page.locator(".page-count")).toContainText("Seite 1");
+  await expect(page.locator(".page-sheet canvas")).toBeVisible();
+  const fittedWidth = await page.locator(".page-sheet canvas").evaluate(element => element.getBoundingClientRect().width);
   await page.getByRole("button", { name: "Vergrößern", exact: true }).click();
-  await expect(page.locator(".zoom-value")).toHaveText("125 %");
+  await expect.poll(() => page.locator(".page-sheet canvas").evaluate(element => element.getBoundingClientRect().width)).toBeGreaterThan(fittedWidth);
   await page.keyboard.press("Escape");
   await expect(page.locator(".embedded-viewer")).toHaveCount(0);
 });

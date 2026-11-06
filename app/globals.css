@@ -396,6 +396,11 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
 .provenance-original-form { color:#1f6d66; }
 .provenance-adapted-blocks { color:#795c23; }
 .viewer-provenance { font-weight:600; }
+.hospital-shell .care-preferences-shortcut { display:flex; align-items:center; flex-wrap:wrap; gap:4px 12px; margin-bottom:10px; padding:6px 9px; border:1px solid #d9c7a2; background:#fffcf4; }
+.hospital-shell .care-preferences-jump { display:inline-flex; align-items:center; gap:7px; min-height:32px; padding:4px 6px; border:1px solid #b79b66; border-radius:2px; background:#f5ebd8; color:#65460f; font-size:12px; font-weight:600; text-align:left; }
+.hospital-shell .care-preferences-jump:hover { background:#ede0c4; }
+.hospital-shell .care-preferences-shortcut > span { color:#665638; font-size:11px; }
+.hospital-shell .care-preferences-jump:focus-visible,.hospital-shell .treatment-preferences > header h2:focus { outline:3px solid #2d7cac; outline-offset:3px; }
 .treatment-preferences > header { background:#f5ebd8; border-top:2px solid var(--clinical-amber); border-bottom-color:#d9c7a2; }
 .treatment-preferences > header h2 { color:#75531c; }
 .treatment-context { padding:6px 9px; border-bottom:1px solid #e8dfcb; background:#fffcf4; color:#71603d; font-size:10px; }
