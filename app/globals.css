@@ -147,10 +147,8 @@ tbody tr:nth-child(even) { background:#f8fafc; }
 .clinical-tabs [role="tabpanel"][data-state="inactive"] { display:none; }
 .overview-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; }
 .case-overview { align-items:start; }
-.case-overview > .case-anamnesis { grid-column:1; grid-row:1; }
-.case-overview > .scope-panel { grid-column:2; grid-row:1 / span 3; }
-.case-overview > .case-diagnoses { grid-column:1; grid-row:2; }
-.case-overview > .case-vitals { grid-column:1; grid-row:3; }
+.case-overview > .case-clinical-column { display:grid; align-content:start; gap:10px; min-width:0; grid-column:1; grid-row:1; }
+.case-overview > .scope-panel { grid-column:2; grid-row:1; }
 .allergy-flag.neutral { color:#526473; }
 .full-width { grid-column:1/-1; }
 .clinical-text { font-size:11px; padding:10px; color:#304c60; line-height:1.65; }
@@ -284,7 +282,8 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
  .station-filters label > span { font-size:9px; }
  .filter-count { font-size:9px; }
  .station-lower,.overview-grid { grid-template-columns:1fr; }
- .case-overview > .case-anamnesis,.case-overview > .scope-panel,.case-overview > .case-diagnoses,.case-overview > .case-vitals { grid-column:auto; grid-row:auto; }
+ .case-overview > .case-clinical-column { display:contents; }
+ .case-overview > .scope-panel { grid-column:auto; grid-row:auto; }
  .clinical-statusbar { flex-wrap:wrap; gap:2px; font-size:8px; padding:5px 9px; }
  .patient-strip { flex-wrap:wrap; gap:2px 10px; padding:5px 8px; }
  .patient-strip h1 { font-size:12px; }
@@ -382,4 +381,97 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
  .hospital-shell .scope-detail-columns p,.hospital-shell .scope-detail-columns blockquote { font-size:11px; line-height:1.55; }
  .hospital-shell .document-filter > span { margin-left:0; }
  .hospital-shell .scan-warning { padding:9px 8px; gap:7px; }
+}
+
+/* Original vital monitor, preserved from 85efd4a. */
+.pulse-monitor { margin:9px 10px 1px; border:1px solid #b4d3ce; background:#f2faf7; color:#185c56; }
+.monitor-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:5px 8px; border-bottom:1px solid #cde2dc; }
+.monitor-heading > span { display:flex; align-items:center; gap:5px; font-size:10px; font-weight:700; }
+.monitor-heading small { display:inline; font-size:9px; font-weight:400; color:#356f67; padding:0 4px; background:#deeee8; border:1px solid #b9d7ce; }
+.monitor-motion-control { display:inline-flex; align-items:center; gap:4px; padding:2px 5px; min-height:24px; border:1px solid #a9cbc2; background:#fff; color:#27675e; font-size:9px; }
+.monitor-motion-control:disabled { opacity:1; color:#506c65; background:#edf4f0; }
+.monitor-content { display:grid; grid-template-columns:62px minmax(70px,1fr) 118px; align-items:center; gap:10px; padding:7px 9px 4px; }
+.monitor-label { display:block; font-size:9px; color:#2f7066; }
+.monitor-pulse > strong { display:flex; align-items:baseline; gap:4px; color:#12766a; font-size:30px; line-height:1.1; font-weight:600; font-variant-numeric:tabular-nums; }
+.monitor-pulse > strong small { display:inline; font-size:9px; font-weight:400; color:#376b63; }
+.monitor-wave { height:57px; min-width:0; overflow:hidden; }
+.monitor-wave svg { display:block; width:100%; height:100%; }
+.monitor-grid { fill:none; stroke:#dcebe4; stroke-width:1; }
+.monitor-trace-base { fill:none; stroke:#8fc8ba; stroke-width:1.5; }
+.monitor-trace { fill:none; stroke:#117b76; stroke-width:2.3; stroke-linecap:round; stroke-dasharray:190 810; animation:monitor-sweep 4.4s linear infinite; }
+.pulse-monitor[data-paused="true"] .monitor-trace { animation-play-state:paused; }
+.monitor-secondary { margin:0; border-left:1px solid #c5ded4; padding-left:9px; }
+.monitor-secondary > div { display:flex; align-items:baseline; justify-content:space-between; gap:6px; margin:2px 0; }
+.monitor-secondary dt { font-size:9px; color:#3e6b62; }
+.monitor-secondary dd { margin:0; font-size:13px; font-variant-numeric:tabular-nums; color:#285f59; font-weight:600; }
+.monitor-secondary dd small { display:block; font-size:8px; font-weight:400; color:#466d65; text-align:right; }
+.monitor-caption { display:flex; justify-content:space-between; gap:6px; border-top:1px solid #dcebe4; padding:4px 8px; font-size:8px; color:#456a62; }
+@keyframes monitor-sweep { from { stroke-dashoffset:1000; } to { stroke-dashoffset:0; } }
+@media(max-width:1100px) { .monitor-content { grid-template-columns:56px minmax(40px,1fr) 105px; gap:7px; } .monitor-pulse > strong { font-size:27px; } }
+@media(max-width:760px) { .monitor-content { grid-template-columns:58px minmax(60px,1fr) 110px; } .monitor-caption { flex-wrap:wrap; } .pulse-monitor { margin-inline:8px; } }
+@media(prefers-reduced-motion:reduce) { .monitor-trace { animation:none!important; stroke-dasharray:none; } }
+
+/* Clinical workbench accents identify document roles and the current patient. */
+.hospital-shell { --clinical-blue:#266b9b; --clinical-teal:#117b76; --clinical-amber:#9a6512; --clinical-violet:#7651a4; }
+.hospital-shell .hospital-logo { color:var(--clinical-teal); }
+.hospital-shell .application-title { border-top:3px solid var(--clinical-teal); }
+.hospital-shell .application-tabs button.active { border-top-color:var(--clinical-blue); }
+.hospital-shell .module-rail button.active { box-shadow:inset 3px 0 #58c7bd; }
+.hospital-shell .tree-item.active,.hospital-shell .patient-shortlist button.active { border-left:3px solid var(--clinical-blue); padding-left:4px; }
+.hospital-shell .ward-table .bed-cell { border-left:3px solid #86b8c8; }
+.hospital-shell .ward-table [data-room="202"] .bed-cell { border-left-color:#9a89b1; }
+.hospital-shell .ward-table [data-room="203"] .bed-cell { border-left-color:#8bac96; }
+.hospital-shell .ward-table [data-room="204"] .bed-cell { border-left-color:#c2a56f; }
+.hospital-shell .ward-table .ward-document-button { color:#0d7069; }
+.hospital-shell .status-pill { color:#226b62; border-color:#a2c9bd; background:#eaf5f0; }
+.hospital-shell .patient-strip { background:#d8e9f5; border-left:4px solid var(--clinical-blue); gap:10px; }
+.hospital-shell .patient-avatar { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; flex-shrink:0; border:1px solid #adc6d7; border-radius:50%; background:#e6f0f7; color:#285e7a; font-size:11px; font-weight:700; letter-spacing:.4px; }
+.hospital-shell .patient-avatar[data-room="202"] { background:#eee8f4; border-color:#c5b7d6; color:#66517f; }
+.hospital-shell .patient-avatar[data-room="203"] { background:#e8f2eb; border-color:#b7cec0; color:#416d51; }
+.hospital-shell .patient-avatar[data-room="204"] { background:#f6eddc; border-color:#d8c59e; color:#7b602d; }
+.hospital-shell .patient-identity { display:flex; align-items:center; gap:8px; }
+.hospital-shell .patient-identity > div { min-width:0; }
+.hospital-shell .patient-strip .patient-avatar { width:27px; height:27px; background:#f5f9fc; }
+.hospital-shell .hot-tag { border-left:3px solid var(--clinical-blue); background:#eaf3fc; color:#195c8d; }
+.hospital-shell .hot-tag.wishes { border-left-color:var(--clinical-amber); color:#80540c; background:#fff4dc; }
+.hospital-shell .hot-tag.care { border-left-color:var(--clinical-violet); color:#63408d; background:#f2ebfa; }
+.hospital-shell .hot-tag.information { border-left-color:var(--clinical-teal); color:#126b63; background:#e5f5ef; }
+.hospital-shell .scope-row.representation { border-left-color:var(--clinical-blue); }
+.hospital-shell .scope-row.care { border-left-color:var(--clinical-violet); }
+.hospital-shell .scope-row.information { border-left-color:var(--clinical-teal); }
+.hospital-shell .scope-panel > header { background:#e3edf8; border-top:2px solid var(--clinical-blue); }
+.hospital-shell .case-vitals > header { background:#e0efec; border-top:2px solid var(--clinical-teal); }
+.hospital-shell .case-vitals > header h2 { color:#215d57; }
+.hospital-shell .clinical-panel > header { min-height:32px; }
+.hospital-shell .allergy-flag:not(.neutral) { background:#fff1e8; border:1px solid #e4b698; padding:3px 6px; color:#8e4225; }
+.hospital-shell .flagged-result { background:#fff4e9; color:#904023; }
+.hospital-shell .care-context-shortcut { display:flex; align-items:center; flex-wrap:wrap; gap:5px 12px; margin-bottom:10px; padding:5px 8px; border:1px solid #d5c6a9; background:#fffcf5; }
+.hospital-shell .care-context-jump { display:inline-flex; align-items:center; gap:7px; min-height:32px; padding:4px 7px; border:1px solid #bda06a; background:#f5ebd8; color:#65460f; font-size:12px; font-weight:600; }
+.hospital-shell .care-context-jump:hover { background:#ede0c4; }
+.hospital-shell .care-context-shortcut > span { font-size:11px; color:#665638; }
+.hospital-shell #care-context-heading { scroll-margin-top:130px; }
+.hospital-shell #care-context-heading:focus { outline:3px solid #2d7cac; outline-offset:3px; }
+.hospital-shell .treatment-wish { border-left:3px solid var(--clinical-amber); padding:9px 10px; background:#fffcf4; }
+.hospital-shell .treatment-wish-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:5px; color:#79541b; }
+.hospital-shell .treatment-wish-heading > span { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; }
+.hospital-shell .treatment-wish-heading > small { color:#79541b; font-size:10px; }
+.hospital-shell .treatment-wish blockquote { margin:8px 0; font-size:12px; line-height:1.6; color:#3f3c32; }
+.hospital-shell .treatment-condition,.hospital-shell .treatment-limits { margin-top:5px; font-size:11px; line-height:1.5; color:#6c5734; }
+.hospital-shell .treatment-source { display:flex; align-items:center; flex-wrap:wrap; gap:2px 12px; margin-top:6px; border-top:1px solid #e3d8c1; padding-top:3px; }
+.hospital-shell .treatment-source > span { font-size:10px; color:#715c38; }
+.hospital-shell .care-context-subheading { display:flex; align-items:center; gap:6px; padding:6px 10px; border-block:1px solid #cedae4; background:#f0f4f7; font-size:10px; font-weight:600; color:#425e73; }
+.hospital-shell .treatment-panel > header { background:#f5ebd8; border-top:2px solid var(--clinical-amber); }
+.hospital-shell .scope-detail,.hospital-shell .viewer-heading h2 { scroll-margin-top:130px; }
+@media(max-width:760px) {
+ .hospital-shell .patient-strip { gap:3px 8px; }
+ .hospital-shell .patient-strip .patient-avatar { width:26px; height:26px; }
+ .hospital-shell .patient-strip > span:not(.patient-avatar):not(.patient-strip-status) { margin-left:34px; }
+ .hospital-shell .care-context-shortcut { padding:7px 8px; }
+ .hospital-shell .care-context-jump { min-height:40px; }
+ .hospital-shell .care-context-shortcut > span { width:100%; font-size:10px; }
+ .hospital-shell #care-context-heading,.hospital-shell .scope-detail,.hospital-shell .viewer-heading h2 { scroll-margin-top:170px; }
+ .hospital-shell .treatment-wish { padding:9px 8px; }
+ .hospital-shell .case-overview > .scope-panel { order:-1; }
+ .hospital-shell .case-clinical-column > .case-vitals { order:-2; }
+ .hospital-shell .scope-panel { min-width:0; }
 }

@@ -1,7 +1,9 @@
 import type { SVGProps } from "react";
 
-type IconName = "arrow" | "back" | "check" | "document" | "download" | "expand" | "minus" | "plus" | "close" | "pages" | "shield" | "signal" | "hospital" | "pulse" | "users" | "history" | "inbox" | "bed" | "chevron" | "alert";
+type IconName = "arrow" | "back" | "check" | "document" | "download" | "expand" | "minus" | "plus" | "close" | "pages" | "shield" | "signal" | "hospital" | "pulse" | "users" | "history" | "inbox" | "bed" | "chevron" | "alert" | "play" | "pause";
 const paths: Record<IconName, React.ReactNode> = {
+  play: <path d="m8 5 11 7-11 7z" />,
+  pause: <path d="M8 5v14M16 5v14" />,
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   back: <path d="M19 12H5m6-6-6 6 6 6" />,
   check: <path d="m5 12 4 4L19 6" />,
