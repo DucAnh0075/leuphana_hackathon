@@ -4,6 +4,8 @@ Eine Next.js-Demo eines Krankenhausinformationssystems mit acht synthetischen Pa
 
 ## Produktkonzept und Anforderungen
 
+- [Aktuelle Consumer-Features und Abnahme](docs/CONSUMER-FEATURES.md): englische Prozessführung, Mindestumfang je Feature, Kundennutzen, Backend-Bedarf und bewusste Streichungen.
+
 - [Bestehende KIS-Oberfläche](docs/UI-REQUIREMENTS.md): klinische Anforderungen und umgesetzter Demokontext.
 - [Zweite UI: persönliche Vorsorge](docs/UI-CONSUMER-ERWEITERUNG.md): Herleitung des freigegebenen Plans mit Nutzenargumenten und Hardwarefragen.
 - [Persönliche UI, Auth und Kartenereignis starten](docs/CARE-SETUP.md): implementierter Ablauf, Supabase-Voraussetzungen und Prüfgrenzen.

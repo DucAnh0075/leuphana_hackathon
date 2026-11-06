@@ -33,7 +33,7 @@ export function Symbol({ name, size = 20 }: { name: SymbolName; size?: number })
 }
 
 export function Brand({ href = "/vorsorge", light = false }: { href?: string; light?: boolean }) {
-  return <a href={href} className={styles.brand + (light ? " " + styles.brandLight : "")} aria-label="Vorsorge – zur Übersicht"><span className={styles.brandMark}><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 7v9c0 6 9 10 9 10s9-4 9-10V7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><path d="M12 8v7m8-7v7m-8-3h8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg></span><span>Vorsorge<span className={styles.brandDescriptor}>Deine Unterlagen. Dein Überblick.</span></span></a>;
+  return <a href={href} className={styles.brand + (light ? " " + styles.brandLight : "")} aria-label="Vorsorge home"><span className={styles.brandMark}><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 7v9c0 6 9 10 9 10s9-4 9-10V7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><path d="M12 8v7m8-7v7m-8-3h8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg></span><span>Vorsorge<span className={styles.brandDescriptor}>Your wishes. Within reach.</span></span></a>;
 }
 
 export function Badge({ children, tone = "neutral" }: { children: ReactNode; tone?: "neutral" | "blue" | "green" | "amber" | "red" }) {
@@ -44,14 +44,14 @@ export function EmptyState({ title, children, icon = "document" }: { title: stri
   return <div className={styles.empty}><span className={styles.emptyIcon}><Symbol name={icon} size={26}/></span><h2>{title}</h2><p>{children}</p></div>;
 }
 
-export function LoadingState({ label = "Deine Vorsorge wird geladen …" }: { label?: string }) {
+export function LoadingState({ label = "Loading your documents…" }: { label?: string }) {
   return <div className={styles.loading} role="status"><span className={styles.spinner}/><span>{label}</span></div>;
 }
 
 export function dateLabel(value?: string | null, time = false) {
-  if (!value) return "Noch offen";
+  if (!value) return "Pending";
   if (/^\d{2}\.\d{2}\.\d{4}/.test(value)) return value;
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
-  return new Intl.DateTimeFormat("de-DE", time ? { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" } : { day: "2-digit", month: "long", year: "numeric" }).format(date);
+  return new Intl.DateTimeFormat("en-GB", time ? { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" } : { day: "2-digit", month: "long", year: "numeric" }).format(date);
 }

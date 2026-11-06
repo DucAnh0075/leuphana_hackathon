@@ -3,13 +3,18 @@
 Stand: 05.11.2026. Implementierter Demonstrator im Branch `feat/notfallkarten-ui`.
 Die klinische Integration ist simuliert. Sämtliche bereitgestellten Personen und PDFs sind synthetisch.
 
+## Consumer-Ausbau vom 06.11.2026
+
+Die öffentliche englische Planung startet unter `/vorsorge`. Der [Featurekatalog](CONSUMER-FEATURES.md) definiert Zweck, minimale UI, Backend-Bedarf und Abnahme jedes Consumer-Features. Planungsentwürfe bleiben in diesem Browser-Tab (`sessionStorage`) und können als Text exportiert werden. Sie werden nicht automatisch in den bisherigen Dokumentbestand, Supabase oder eine Klinikakte übernommen. Die bestehende Übergabe bleibt ein separater, autorisierter Ablauf.
+
 ## Einstieg und Voraussetzungen
 
 | Ziel | Voraussetzung / Einstieg |
 |---|---|
 | Vorhandene statische KIS-Ansicht | `/`, ohne Konfiguration |
-| Zusammenhängende lokale Vorführung | `/anmelden` → „Synthetische Demo öffnen“ |
-| Eigene Dokumente und Übergaben | `/vorsorge`; ohne Demo-ID mit Supabase-Sitzung |
+| Öffentliche geführte Planung | `/vorsorge`, ohne Anmeldung |
+| Bestehende Dokumente und Übergabe vorführen | `/anmelden` → „Open sample workspace“ |
+| Eigene Dokumente und Übergaben | `/vorsorge?view=documents` bzw. `view=handoffs`; ohne Demo-ID mit Supabase-Sitzung |
 | Klinischer Eingang und Aktenübernahme | `/klinik`; klinische Mitgliedschaft oder ausdrücklich synthetischer Demo-Lauf |
 | Karte als Auslöser | `/scan?card=<Kartenkennung>`; Seite öffnen, anmelden und Scan bestätigen |
 | Echte Supabase-Verbindung | Projekt, Schema, private Dateien, zwei eingerichtete Testkonten und kontrollierte Mitgliedschaften |
@@ -24,7 +29,7 @@ npm run build
 npm run start -- --port 3110
 ```
 
-Öffnen: http://localhost:3110/anmelden. Für die Entwicklung kann stattdessen `npm run dev -- --port 3110` verwendet werden.
+Planung öffnen: http://localhost:3110/vorsorge. Bestehende Dokumente im Beispielmodus: http://localhost:3110/anmelden. Für die Entwicklung kann stattdessen `npm run dev -- --port 3110` verwendet werden.
 
 Die Demo-ID in der URL verbindet persönliche und klinische Ansicht. Über „Persönliche Ansicht öffnen“ beziehungsweise „Klinikansicht öffnen“ denselben Lauf verwenden. Der Zustand gilt für **einen laufenden Next.js-Serverprozess**, höchstens 24 Stunden und maximal 100 Läufe. Ein Serverneustart beendet die Läufe. Die Demo-ID ist ein öffentlicher Verweis auf synthetische Daten, kein Authentifizierungsnachweis. Mehrere getrennte Serverless-Instanzen teilen diesen Zustand nicht; für eine verteilte Vorführung den Supabase-Modus verwenden.
 
