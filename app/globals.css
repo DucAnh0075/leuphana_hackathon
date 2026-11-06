@@ -429,3 +429,32 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
 .source-provenance summary { cursor:pointer; font-size:10px; font-weight:600; }
 .source-provenance p { margin:5px 0; font-size:10px; line-height:1.5; max-width:85ch; }
 .source-provenance a { display:inline-block; font-size:10px; line-height:1.5; min-height:24px; padding-top:3px; color:#26688e; }
+
+/* KIS reading hierarchy: retain clinical density without shrinking key care information. */
+.hospital-shell { --kis-reading-size:12px; --kis-supporting-size:11px; }
+.hospital-shell .clinical-panel > header h2 { font-size:12px; }
+.hospital-shell .patient-link,.hospital-shell .scope-row strong,.hospital-shell .clinical-text { font-size:var(--kis-reading-size); }
+.hospital-shell .scope-row small { font-size:var(--kis-supporting-size); line-height:1.55; }
+.hospital-shell .scope-link { min-height:28px; font-size:var(--kis-supporting-size); }
+.hospital-shell .source-link { font-size:var(--kis-supporting-size); min-height:30px; }
+.hospital-shell .scope-row > .source-link { white-space:normal; overflow-wrap:anywhere; min-width:0; }
+.hospital-shell .care-preference-heading strong,.hospital-shell .care-preference-value { font-size:13px; }
+.hospital-shell .care-preference-condition { font-size:var(--kis-reading-size); }
+.hospital-shell .care-preference-limits,.hospital-shell .treatment-context { font-size:var(--kis-supporting-size); }
+.hospital-shell .care-preference-heading > span { font-size:10px; }
+.hospital-shell .hot-tag { min-height:32px; font-size:11px; }
+.hospital-shell .hot-tag[aria-expanded="true"] { outline:1px solid currentColor; outline-offset:1px; box-shadow:inset 0 -2px currentColor; }
+.hospital-shell .hot-tag[aria-expanded="true"] > svg { transform:rotate(180deg); }
+.hospital-shell .hot-tag:focus-visible { outline:3px solid #2d7cac; outline-offset:2px; }
+.hospital-shell .document-filter { flex-wrap:wrap; justify-content:flex-start; gap:8px 14px; }
+.hospital-shell .document-filter > span { margin-left:auto; font-size:var(--kis-supporting-size); }
+.hospital-shell .document-search-clear { min-height:32px; }
+.hospital-shell .clinical-tab-list > button { font-size:12px; min-height:34px; }
+.hospital-shell :is(.scope-link,.source-link,.patient-link,.document-search-clear):focus-visible { outline:3px solid #2d7cac; outline-offset:2px; }
+.hospital-shell .care-preference-source { flex-wrap:wrap; gap:6px 12px; }
+.hospital-shell .care-preference-source > .source-link { flex-shrink:0; flex-wrap:nowrap; white-space:nowrap; }
+.hospital-shell .care-preference-source > small { flex:1 1 150px; min-width:0; overflow-wrap:anywhere; }
+@media(max-width:760px) {
+ .hospital-shell .scope-row { flex-direction:column; align-items:stretch; gap:4px; }
+ .hospital-shell .scope-row > .source-link { align-self:flex-start; max-width:none; flex-wrap:nowrap; white-space:nowrap; }
+}
