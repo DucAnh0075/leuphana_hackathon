@@ -48,3 +48,6 @@ next-env.d.ts
 
 /test-results/
 /playwright-report/
+
+# Private slide rendering and validation intermediates
+/docs/pitch/.build/

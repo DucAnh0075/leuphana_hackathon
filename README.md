@@ -4,6 +4,8 @@ Eine Next.js-Demo eines Krankenhausinformationssystems mit acht synthetischen Pa
 
 ## Produktkonzept und Anforderungen
 
+- [Pitch-Paket für den Open Track](docs/pitch/README.md): bearbeitbares englisches Deck, Sprechernotizen, minutierter Demoablauf, geprüfte Quellen und Juryantworten. Arbeitsrahmen laut projektspezifischer Pitch-Checkliste: 6 Minuten inklusive Demo, 3 Minuten Fragen, Deck-Upload nach Team-ID.
+
 - [Bestehende KIS-Oberfläche](docs/UI-REQUIREMENTS.md): klinische Anforderungen und umgesetzter Demokontext.
 - [Zweite UI: persönliche Vorsorge](docs/UI-CONSUMER-ERWEITERUNG.md): Herleitung des freigegebenen Plans mit Nutzenargumenten und Hardwarefragen.
 - [Persönliche UI, Auth und Kartenereignis starten](docs/CARE-SETUP.md): implementierter Ablauf, Supabase-Voraussetzungen und Prüfgrenzen.
