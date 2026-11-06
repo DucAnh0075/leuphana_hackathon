@@ -21,5 +21,6 @@ export default function ScanToast({ scan, onShowDocuments, onClose }: { scan: Sc
     <div className="scan-toast-content"><p className="scan-toast-title">NFC-Notfallkarte erkannt</p><strong>{patient.first} {patient.name}</strong><small>geb. {patient.birth} · Fall {patient.id}</small><p>{patient.documents.length} Vorsorgedokumente · Akte geöffnet</p></div>
     <button className="icon-button" aria-label="Benachrichtigung schließen" onClick={onClose}><Icon name="close" /></button>
     <div className="scan-toast-actions"><button className="text-button" onClick={onShowDocuments}>Dokumente anzeigen</button></div>
+    <span className="scan-toast-progress" aria-hidden="true" />
   </div>;
 }
