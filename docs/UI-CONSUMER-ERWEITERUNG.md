@@ -1,6 +1,10 @@
 # Zweite UI: Vorsorge, die nachvollziehbar ankommt
 
-## Aktueller Umsetzungsauftrag
+## Aktueller Consumer-Auftrag vom 06.11.2026
+
+Henri hat die Consumer-Richtung korrigiert: englische, interaktive Prozessführung von der Orientierung über bestehende Vorlagen zu kleinen Planungspaketen und einem prüfbaren Entwurf; kein datengetriebener Start und kein Upload. Der maßgebliche Featurekatalog mit Zweck, Kundennutzen, minimaler UI, Backend-Bedarf, Streichentscheidungen und Abnahme steht in [CONSUMER-FEATURES.md](CONSUMER-FEATURES.md). Er ersetzt die nachfolgende frühere Consumer-Priorisierung. Klinischer Empfang und Zugriffsschutz bleiben bestehen.
+
+## Umsetzungsstand vom 05.11.2026
 
 Am 05.11.2026 hat Henri den reduzierten Plan zur Umsetzung freigegeben. Seine Präzisierung: Der Chip soll eine UI-Benachrichtigung auslösen; die Anwendung ruft zugehörige Vorsorgedokumente aus Supabase ab und macht sie im Kliniksystem sichtbar. Die angenommene Beschränkung des Chips auf „eine Funktion“ bleibt eine offene Hardwarefrage.
 
