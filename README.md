@@ -60,6 +60,14 @@ Stationsliste, Fallnavigation, Befunde, Vitalverlauf, Medikation und Vorsorgeinf
 
 Jede Akte enthält vier verschiedene Dokumentarten: Vorsorgevollmacht für Gesundheitsangelegenheiten, Patientenverfügung, Betreuungsverfügung sowie Auskunftsvollmacht/Schweigepflichtentbindung. Diese Rollen sind nicht austauschbar: Ein Betreuungswunsch ist keine gerichtliche Bestellung, ein Auskunftsrecht keine Behandlungsvollmacht und ein situationsbezogener Behandlungswunsch keine pauschale Therapieanordnung.
 
+### Individuelle EKG- und Vitalwertsimulation
+
+Die Stationsliste zeigt für jede der acht Personen eine eigene schematische Sinuskurve mit Puls, Blutdruck und SpO₂. Die Fallübersicht und das Kurvenblatt zeigen dieselben Werte mit derselben Simulationsuhr. Ausgangswerte stammen aus der letzten historischen Demomessung; individuelle Verläufe werden stabil aus der Patienten-ID berechnet. Filtern, Patientenwechsel und Tabwechsel starten die Simulation nicht neu; ein Neuladen der Seite beginnt einen neuen Demolauf.
+
+„Simulation pausieren“ in der Werkzeugleiste hält Kurven und Werte gemeinsam an. Die Systemeinstellung für reduzierte Bewegung zeigt eine ruhende Kurve; Zahlen bleiben lesbar und die globale Pause bleibt verfügbar. In einem ausgeblendeten Browsertab wird nicht gezeichnet, die unpausierte Simulationszeit läuft jedoch weiter. Bei der Rückkehr erscheint direkt der aktuelle Stand. Puls und SpO₂ ändern sich langsam, Blutdruck wird nur als gelegentliche simulierte Messung aktualisiert. Die historischen Tabellen und Verläufe von 06:00 bis 16:00 Uhr bleiben separat erhalten.
+
+Diese Darstellung läuft ausschließlich im Browser: keine Live-Messung, keine Ableitung aus Diagnosen und keine Speicherung oder Übertragung der simulierten Werte. Bestehende Backend-, Karten- und Dokumentadapter bleiben unverändert.
+
 ### Daten und Belegkette
 
 - `lib/demo-patients.json`: gemeinsamer, editierbarer synthetischer Quelldatensatz.

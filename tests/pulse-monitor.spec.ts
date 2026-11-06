@@ -1,72 +1,92 @@
 import { expect, test, type Locator } from "@playwright/test";
 import data from "../lib/demo-patients.json";
 
-async function expectLatestSample(monitor: Locator, patient: typeof data.patients[number]) {
-  const sample = patient.vitals[patient.vitals.length - 1];
-  await expect(monitor.locator(".monitor-pulse strong")).toHaveText(`${sample.pulse}/min`);
-  await expect(monitor.locator(".monitor-secondary")).toContainText(`${sample.spo2}%`);
-  await expect(monitor.locator(".monitor-secondary")).toContainText(`${sample.bpSys}/${sample.bpDia}mmHg`);
-  await expect(monitor).toContainText(`Demowerte von ${sample.time} Uhr`);
-  await expect(monitor).toContainText("Schematische Pulswelle · kein EKG");
+async function readValues(monitor: Locator) {
+  return monitor.locator("[data-vital]").allTextContents();
 }
 
-test("Herzschlag zeigt die vorhandenen Patientenwerte in Übersicht und Kurve", async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: "no-preference" });
+test("Individuelle Vitalmonitore starten bei der letzten Demomessung; Historie bleibt erhalten", async ({ page }) => {
+  // Freeze the browser clock before hydration to inspect the actual t=0 UI.
+  const start = new Date("2026-11-06T10:00:00Z");
+  await page.clock.install({ time: start });
+  await page.clock.pauseAt(start);
   for (const patient of data.patients.slice(0, 2)) {
     await page.goto(`/?patient=${patient.id}`);
-    const monitor = page.getByRole("group", { name: "Vitalmonitor mit synthetischen Demowerten" });
+    const monitor = page.locator(`.pulse-monitor[data-patient-id="${patient.id}"]`);
+    const sample = patient.vitals[patient.vitals.length - 1];
     await expect(monitor).toBeVisible();
-    await expectLatestSample(monitor, patient);
+    await expect(monitor.locator('[data-vital="pulse"]')).toHaveText(String(sample.pulse));
+    await expect(monitor.locator('[data-vital="spo2"]')).toHaveText(String(sample.spo2));
+    await expect(monitor.locator('[data-vital="bp"]')).toHaveText(`${sample.bpSys}/${sample.bpDia}`);
+    await expect(monitor).toContainText("EKG-Simulation");
+    await expect(monitor).toContainText("Sinusrhythmus, schematisch");
     await page.getByRole("tab", { name: "Kurve / Vitaldaten", exact: true }).click();
     await expect(monitor).toBeVisible();
-    await expectLatestSample(monitor, patient);
     const pulseRow = page.locator(".vitals-table tbody tr").filter({ hasText: "Puls [/min]" });
-    await expect(pulseRow.locator("td").last()).toHaveText(String(patient.vitals[patient.vitals.length - 1].pulse));
+    await expect(pulseRow.locator("td")).toHaveText(patient.vitals.map(value => String(value.pulse)));
+    await expect(page.locator(".vitals-table caption")).toContainText("Historische Demowerte");
   }
 });
 
-test("Herzschlag lässt sich per Tastatur pausieren und fortsetzen, Werte bleiben erhalten", async ({ page }) => {
-  const patient = data.patients[0];
+test("Globale Pause ist per Tastatur bedienbar und hält Kurve sowie Zahlen gemeinsam an", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto(`/?patient=${patient.id}`);
-  const monitor = page.getByRole("group", { name: "Vitalmonitor mit synthetischen Demowerten" });
+  await page.clock.install();
+  await page.goto(`/?patient=${data.patients[0].id}`);
+  const monitor = page.locator(".pulse-monitor");
   const trace = monitor.locator(".monitor-trace");
-  const pause = monitor.getByRole("button", { name: "Animation pausieren", exact: true });
+  const pause = page.getByRole("button", { name: "Simulation pausieren", exact: true });
+  await expect(pause).toHaveCount(1);
   await expect(pause).toBeEnabled();
-  await expect(trace).toHaveCSS("animation-name", "monitor-sweep");
-  const firstOffset = await trace.evaluate(element => getComputedStyle(element).strokeDashoffset);
-  await expect.poll(() => trace.evaluate(element => getComputedStyle(element).strokeDashoffset)).not.toBe(firstOffset);
-
+  await expect(trace).toHaveAttribute("transform", /^translate\(/);
+  const firstTransform = await trace.getAttribute("transform");
+  await page.clock.runFor(250);
+  await expect(trace).not.toHaveAttribute("transform", firstTransform!);
   await pause.focus();
   await page.keyboard.press("Enter");
-  const resume = monitor.getByRole("button", { name: "Animation fortsetzen", exact: true });
+  const resume = page.getByRole("button", { name: "Simulation fortsetzen", exact: true });
   await expect(resume).toBeFocused();
   await expect(resume).toHaveAttribute("aria-pressed", "true");
-  await expect(trace).toHaveCSS("animation-play-state", "paused");
-  await expectLatestSample(monitor, patient);
-
-  const pausedOffset = await trace.evaluate(element => getComputedStyle(element).strokeDashoffset);
+  await expect(monitor).toHaveAttribute("data-paused", "true");
+  const pausedPath = await trace.getAttribute("d");
+  const pausedTransform = await trace.getAttribute("transform");
+  const pausedValues = await readValues(monitor);
+  const pausedTime = await monitor.getAttribute("data-elapsed-ms");
+  await page.clock.fastForward(65_000);
+  await expect(trace).toHaveAttribute("d", pausedPath!);
+  await expect(trace).toHaveAttribute("transform", pausedTransform!);
+  expect(await readValues(monitor)).toEqual(pausedValues);
+  await expect(monitor).toHaveAttribute("data-elapsed-ms", pausedTime!);
   await page.keyboard.press("Space");
   await expect(pause).toHaveAttribute("aria-pressed", "false");
-  await expect(trace).toHaveCSS("animation-play-state", "running");
-  await expect.poll(() => trace.evaluate(element => getComputedStyle(element).strokeDashoffset)).not.toBe(pausedOffset);
-  await expectLatestSample(monitor, patient);
+  await expect(pause).toBeFocused();
+  await page.clock.runFor(250);
+  await expect(trace).not.toHaveAttribute("transform", pausedTransform!);
 });
 
-test("Reduzierte Bewegung stoppt den Herzschlag und reagiert auf geänderte Systemeinstellung", async ({ page }) => {
-  const patient = data.patients[0];
+test("Reduzierte Bewegung hält die Kurve ruhig, lässt globale Pause zu und reagiert auf Systemeinstellungen", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto(`/?patient=${patient.id}`);
-  const monitor = page.getByRole("group", { name: "Vitalmonitor mit synthetischen Demowerten" });
+  await page.clock.install();
+  await page.goto(`/?patient=${data.patients[0].id}`);
+  const monitor = page.locator(".pulse-monitor");
+  const wave = monitor.locator(".monitor-wave");
   const trace = monitor.locator(".monitor-trace");
-  await expect(monitor.getByRole("button", { name: "Animation deaktiviert: reduzierte Bewegung", exact: true })).toBeDisabled();
-  await expect(trace).toHaveCSS("animation-name", "none");
-  await expect(trace).toHaveCSS("stroke-dasharray", "none");
-  await expectLatestSample(monitor, patient);
-
+  await expect(wave).toHaveAttribute("data-motion", "reduced");
+  await expect(page.getByRole("button", { name: "Simulation pausieren", exact: true })).toBeEnabled();
+  await expect(trace).toHaveAttribute("transform", /^translate\(/);
+  const initialPath = await trace.getAttribute("d");
+  const initialTransform = await trace.getAttribute("transform");
+  await page.clock.fastForward(10_000);
+  await expect(trace).toHaveAttribute("d", initialPath!);
+  await expect(trace).toHaveAttribute("transform", initialTransform!);
+  expect(Number(await monitor.getAttribute("data-elapsed-ms"))).toBeGreaterThanOrEqual(10_000);
+  await page.getByRole("button", { name: "Simulation pausieren", exact: true }).click();
+  const values = await readValues(monitor);
+  await page.clock.fastForward(20_000);
+  expect(await readValues(monitor)).toEqual(values);
+  await page.getByRole("button", { name: "Simulation fortsetzen", exact: true }).click();
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await expect(monitor.getByRole("button", { name: "Animation pausieren", exact: true })).toBeEnabled();
-  await expect(trace).toHaveCSS("animation-name", "monitor-sweep");
-  await expect(trace).toHaveCSS("animation-play-state", "running");
-  await expectLatestSample(monitor, patient);
+  await expect(wave).toHaveAttribute("data-motion", "animated");
+  const resumedTransform = await trace.getAttribute("transform");
+  await page.clock.runFor(250);
+  await expect(trace).not.toHaveAttribute("transform", resumedTransform!);
 });

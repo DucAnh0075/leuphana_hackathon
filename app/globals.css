@@ -383,13 +383,20 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
  .hospital-shell .scan-warning { padding:9px 8px; gap:7px; }
 }
 
-/* Original vital monitor, preserved from 85efd4a. */
+/* Clinical monitor: patient-specific synthetic values on one shared simulation clock. */
 .pulse-monitor { margin:9px 10px 1px; border:1px solid #b4d3ce; background:#f2faf7; color:#185c56; }
 .monitor-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:5px 8px; border-bottom:1px solid #cde2dc; }
 .monitor-heading > span { display:flex; align-items:center; gap:5px; font-size:10px; font-weight:700; }
 .monitor-heading small { display:inline; font-size:9px; font-weight:400; color:#356f67; padding:0 4px; background:#deeee8; border:1px solid #b9d7ce; }
-.monitor-motion-control { display:inline-flex; align-items:center; gap:4px; padding:2px 5px; min-height:24px; border:1px solid #a9cbc2; background:#fff; color:#27675e; font-size:9px; }
-.monitor-motion-control:disabled { opacity:1; color:#506c65; background:#edf4f0; }
+.monitor-heading .monitor-run-state { font-size:9px; font-weight:400; color:#386e65; white-space:nowrap; }
+.simulation-controls { display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:5px 8px; }
+.simulation-status { display:inline-flex; align-items:center; gap:5px; white-space:nowrap; color:#326b60; font-size:10px; }
+.simulation-status-dot { width:6px; height:6px; border-radius:50%; background:#267c68; }
+.simulation-status-dot[data-paused="true"] { background:#92744a; }
+.simulation-motion-note { color:#526473; font-size:9px; }
+.monitor-motion-control { display:inline-flex; align-items:center; justify-content:center; gap:5px; padding:3px 7px; min-height:28px; min-width:141px; border:1px solid #a9cbc2; background:#fff; color:#27675e; font-size:10px; white-space:nowrap; }
+.monitor-motion-control:hover { border-color:#508b7e; background:#eff8f3; }
+.monitor-motion-control[aria-pressed="true"] { background:#f8f3e9; border-color:#c1ae8b; color:#715528; }
 .monitor-content { display:grid; grid-template-columns:62px minmax(70px,1fr) 118px; align-items:center; gap:10px; padding:7px 9px 4px; }
 .monitor-label { display:block; font-size:9px; color:#2f7066; }
 .monitor-pulse > strong { display:flex; align-items:baseline; gap:4px; color:#12766a; font-size:30px; line-height:1.1; font-weight:600; font-variant-numeric:tabular-nums; }
@@ -397,19 +404,39 @@ kbd { font-family:inherit; border:1px solid #cad6df; border-radius:3px; backgrou
 .monitor-wave { height:57px; min-width:0; overflow:hidden; }
 .monitor-wave svg { display:block; width:100%; height:100%; }
 .monitor-grid { fill:none; stroke:#dcebe4; stroke-width:1; }
-.monitor-trace-base { fill:none; stroke:#8fc8ba; stroke-width:1.5; }
-.monitor-trace { fill:none; stroke:#117b76; stroke-width:2.3; stroke-linecap:round; stroke-dasharray:190 810; animation:monitor-sweep 4.4s linear infinite; }
-.pulse-monitor[data-paused="true"] .monitor-trace { animation-play-state:paused; }
+.monitor-trace { fill:none; stroke:#117b76; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
 .monitor-secondary { margin:0; border-left:1px solid #c5ded4; padding-left:9px; }
 .monitor-secondary > div { display:flex; align-items:baseline; justify-content:space-between; gap:6px; margin:2px 0; }
 .monitor-secondary dt { font-size:9px; color:#3e6b62; }
 .monitor-secondary dd { margin:0; font-size:13px; font-variant-numeric:tabular-nums; color:#285f59; font-weight:600; }
 .monitor-secondary dd small { display:block; font-size:8px; font-weight:400; color:#466d65; text-align:right; }
 .monitor-caption { display:flex; justify-content:space-between; gap:6px; border-top:1px solid #dcebe4; padding:4px 8px; font-size:8px; color:#456a62; }
-@keyframes monitor-sweep { from { stroke-dashoffset:1000; } to { stroke-dashoffset:0; } }
+.monitor-empty { padding:12px; font-size:10px; }
+.ward-vitals-cell { width:218px; }
+.ward-vitals { width:200px; color:#255e58; font-variant-numeric:tabular-nums; }
+.ward-vitals-top { display:grid; grid-template-columns:52px 140px; gap:8px; align-items:center; }
+.ward-pulse { display:flex; align-items:baseline; gap:4px; white-space:nowrap; }
+.ward-pulse strong { min-width:2ch; font-size:19px; line-height:1.2; font-weight:600; color:#17786c; }
+.ward-pulse small { display:inline; margin:0; font-size:9px; color:#49736c; }
+.monitor-wave-compact { width:140px; height:32px; background:#f1f8f5; border-bottom:1px solid #c9e0d6; }
+.monitor-wave-compact .monitor-trace { stroke-width:1.2; }
+.ward-vitals-secondary { display:flex; align-items:baseline; justify-content:space-between; gap:7px; color:#4b6763; font-size:9px; white-space:nowrap; }
+.ward-vitals-secondary strong { font-size:10px; font-weight:600; color:#285f59; }
+.ward-vitals-empty { max-width:200px; font-size:10px; color:#526473; }
 @media(max-width:1100px) { .monitor-content { grid-template-columns:56px minmax(40px,1fr) 105px; gap:7px; } .monitor-pulse > strong { font-size:27px; } }
-@media(max-width:760px) { .monitor-content { grid-template-columns:58px minmax(60px,1fr) 110px; } .monitor-caption { flex-wrap:wrap; } .pulse-monitor { margin-inline:8px; } }
-@media(prefers-reduced-motion:reduce) { .monitor-trace { animation:none!important; stroke-dasharray:none; } }
+@media(max-width:760px) {
+ .monitor-content { grid-template-columns:48px minmax(48px,1fr) 94px; gap:6px; padding-inline:7px; }
+ .monitor-caption { flex-wrap:wrap; }
+ .pulse-monitor { margin-inline:8px; }
+ .monitor-heading { flex-wrap:wrap; gap:3px 8px; }
+ .monitor-secondary { padding-left:6px; }
+ .monitor-secondary dd { font-size:12px; }
+ .hospital-shell .clinical-toolbar { flex-wrap:wrap; gap:4px; }
+ .hospital-shell .toolbar-actions { flex-wrap:wrap; justify-content:flex-end; margin-left:auto; gap:5px 8px; }
+ .simulation-controls { gap:4px 7px; }
+ .simulation-status { font-size:9px; }
+ .monitor-motion-control { min-height:32px; }
+}
 
 /* Clinical workbench accents identify document roles and the current patient. */
 .hospital-shell { --clinical-blue:#266b9b; --clinical-teal:#117b76; --clinical-amber:#9a6512; --clinical-violet:#7651a4; }
