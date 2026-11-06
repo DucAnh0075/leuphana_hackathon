@@ -1,3 +1,21 @@
+# Aktueller Vertrag und Herkunft des Teamplans
+
+Stand: 05.11.2026. Der folgende ursprüngliche Teamplan bleibt als **historischer Prototyp** erhalten. Seine Aussagen zu anonymem GET-Scan, fehlendem Login, öffentlichem Dokumentzugriff, festem Patientenfallback und automatischem Wechsel nach `/dokumente` beschreiben nicht den aktuellen Feature-Stand. Sie sind keine Einrichtungsanleitung für die neue Vorsorge-UI.
+
+Der freigegebene Ausbau und die tatsächlich implementierten Voraussetzungen stehen in [docs/CARE-SETUP.md](docs/CARE-SETUP.md). Der aktuelle Ablauf lautet:
+
+**Kartenlink öffnen → mit berechtigtem Konto anmelden → Scan sichtbar bestätigen → zugeordnetes Dokumentpaket im klinischen Eingang sehen → Fallzuordnung bestätigen → Akte und Empfangsnachweis aktualisieren.**
+
+- `POST /api/scan` verwendet eine registrierte Kartenkennung und eine UUID als Vorgangskennung. GET schreibt nichts und liefert 405. Unbekannte Karten öffnen keine feste Patientenakte.
+- `useCardReader({ onCard, enabled })` verwendet Supabase Realtime nur als Hinweis, den autorisierten Workspace neu zu laden. Das Ereignis allein bestätigt weder eine Patientenzuordnung noch eine Aktenübernahme.
+- Auth, kontrollierte Mitgliedschaften und der private Bucket `care-documents` gehören zum aktuellen Supabase-Modus. Die ausdrücklich synthetische lokale Demo ist davon getrennt.
+- Konkreter Chip, Kapazität, iPhone-Verhalten und die Annahme „nur eine Funktion“ sind weiterhin offen. Die früheren Hardwareangaben unten wurden nicht für den tatsächlichen Tag bestätigt.
+- Der alte iOS-Kurzbefehl muss umgestellt werden. Aktuelle iPhone-Schritte stehen in [README.md](README.md#iphone-scan-statt-usb-reader); echte Cloud- und Hardwareprüfungen sind noch ausstehend.
+
+---
+
+## Historischer Teamplan – ursprünglicher Prototyp
+
 # NFC-Notfallkarte → Vorsorgedokumente anzeigen
 
 > Teamplan für den Leuphana AI Hackathon (05.11.2026). Thema: digitales Tool für Patientenverfügung und Vorsorgevollmacht.

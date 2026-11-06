@@ -48,3 +48,6 @@ next-env.d.ts
 
 /test-results/
 /playwright-report/
+
+# Local ChatGPT installation ID only; credentials remain in process memory.
+/.vora-runtime/

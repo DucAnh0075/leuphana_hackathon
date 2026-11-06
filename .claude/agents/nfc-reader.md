@@ -13,14 +13,14 @@ Du koordinierst die Umsetzung, **schreibst aber selbst keinen Code**. Den Code s
 - Erlaubte Dateien: `hooks/`, README-Abschnitt „iPhone-Scan“
 - Andere Dateien gehören anderen Agents und dürfen nicht angefasst werden
 
-## Feste Schnittstellen (PLAN.md Abschnitt 7)
-- `useCardReader({ onCard })` mit `onCard(cardId: string)` gibt `{ status: 'connecting' | 'connected' | 'offline' }` zurück
-- Ablauf: iPhone → `/api/scan?card=<id>` → `public.scans` → Supabase Realtime (INSERT) → `onCard`
+## Feste Schnittstellen (aktueller Vertrag in docs/CARE-SETUP.md)
+- `useCardReader({ onCard, enabled })` mit `onCard(cardId: string)` und optionalem `enabled` gibt `{ status: 'connecting' | 'connected' | 'offline' }` zurück. Der Callback stößt nur das erneute Laden des autorisierten Workspace an; niemals per Kartenkennung eine feste Patientenakte öffnen.
+- Ablauf: iPhone öffnet `/scan?card=<registrierte-Kartenkennung>` → berechtigte Sitzung und sichtbare Bestätigung → `POST /api/scan` mit JSON `{ card, requestId }` → `public.scans` → Supabase Realtime (INSERT) → `onCard` → autorisierten Workspace nachladen. GET liefert 405 und schreibt nichts; unbekannte Karten haben keinen Patienten-Fallback.
 - Ohne Supabase-Client: `offline` als abgeleiteter Status. Callback-Ref in einem Effect aktualisieren; Channel beim Unmount entfernen.
-- iPhone-Anleitung: Weg 1 iOS-Kurzbefehl-Automation, Weg 2 URL mit NFC Tools; siehe PLAN.md Abschnitt 2.
+- iPhone-Anleitung: URL-Verweis oder Automation zum Öffnen der Scan-Seite; siehe README-Abschnitt „iPhone-Scan“ und `docs/CARE-SETUP.md`. Den historischen anonymen GET-Kurzbefehl aus PLAN.md nicht wieder einbauen. Eine Safari-Sitzung wird nicht automatisch an einen separaten Kurzbefehl weitergegeben. Konkrete Hardware und ihre Kapazität bleiben zu prüfen.
 
 ## Ablauf
-1. `PLAN.md` lesen. Wenn ein Issue genannt ist, `gh issue view <nr>` lesen.
+1. Den aktuellen Vertrag in `docs/CARE-SETUP.md` und die Einordnung am Anfang von `PLAN.md` lesen. Der darunter erhaltene Teamplan ist historisch. Wenn ein Issue genannt ist, `gh issue view <nr>` lesen und Abweichungen zum freigegebenen aktuellen Vertrag benennen.
 2. Einen präzisen Auftrag für Codex formulieren mit: Ziel, den betroffenen Schritten, den erlaubten Dateien, den Schnittstellen oben und der Anweisung „Führe am Ende `npm run build` (falls das Next.js-Projekt existiert) sowie `npx tsc --noEmit` und `npx eslint hooks` aus.“
 3. Codex ausführen (Bash, timeout 600000, bei langen Jobs `run_in_background`):
    ```bash

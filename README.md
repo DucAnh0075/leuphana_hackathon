@@ -1,8 +1,29 @@
-# Vorsorge-NFC
+# VORAcard & KIS-Demonstrator
 
-Eine Next.js-Demo eines Krankenhausinformationssystems mit acht synthetischen Patientenakten. Vorsorgeinformationen sind in die Akten integriert und mit den jeweiligen Dokumenten und Belegstellen verknüpft.
+Dieses Repository verbindet den persönlichen Vorsorgebereich **VORAcard** mit einer klinischen Demo für acht synthetische Patientenakten. Maßgeblich ist [DucAnh0075/leuphana_hackathon](https://github.com/DucAnh0075/leuphana_hackathon).
 
-Maßgeblich ist dieses Repository: [DucAnh0075/leuphana_hackathon](https://github.com/DucAnh0075/leuphana_hackathon). Der aktuelle Arbeitsumfang ist die KIS-Oberfläche auf `/`; eine persönliche Vorsorgeansicht oder ein Übergabe-Backend gehört nicht zu diesem Stand.
+- `/vorsorge`: öffentliche Startseite mit Deutsch/Englisch und getrenntem Demo-Einstieg.
+- `/vorsorge/app`: geschütztes Profil mit wiederholbaren Dokumentenfällen, Vorbereitungsnotizen, persönlichen Präventionsfiltern, Aufgaben und Demo-Terminbelegen. Die Profil-API schützt Änderungen mit Versionsprüfung und Vorgangskennung. Fälle für andere Personen erben keine persönlichen Alters-/Programmdaten.
+- `/vorsorge?view=documents`: bestehendes Dokumentarchiv mit gezielter Freigabe; `/klinik`: berechtigter Eingang, Fallzuordnung und bestätigte Aktenübernahme. Vorbereitungsnotizen werden nicht automatisch zu unterschriebenen Originalen oder Klinikdokumenten.
+- `/`: öffentliche KIS-Demo mit acht Avataren, individueller Vitalwertsimulation, Quellenbelegen und PDF-Leser.
+
+Die neue Profilmigration liegt additiv in [supabase/vora-profile.sql](supabase/vora-profile.sql), wurde bei dieser Integration aber **nicht in der Cloud angewendet**. Supabase-Konten und Providerkonfiguration wurden nicht verändert. Der getrennte Demo-Modus verwendet synthetische Daten; echte Profilspeicherung setzt die Konfiguration aus [CARE-SETUP.md](docs/CARE-SETUP.md) voraus. Lokale Gesundheitsdaten sind keine verschlüsselte Cloud-Akte.
+
+ePA-Import, Arzt- und Notartermine sind ausdrücklich Demonstrationen bzw. Vorbereitung. Eine reale ePA-/Krankenhausanbindung, echte Terminbuchungen und ein durchgängiger Upload neu unterschriebener Dokumentenfälle sind nicht angeschlossen. Die weitergehende Prävention für Familienpersonen und ein News-/Rechtebereich gehören noch nicht zu diesem Stand.
+
+Ein kontextbezogener KI-Dialog verwendet öffentliche Abschnittsinformationen und bewusst gesendeten Chattext. Persönliche Dokumentantworten, Profil- und Impfdaten werden nicht automatisch übertragen. Konkrete Anbieter, Einwilligung und Betriebsgrenzen stehen in [VORA-AI.md](docs/VORA-AI.md).
+
+## Produktkonzept und Anforderungen
+
+- [VORA Designsprache, Prozess und Abnahme](docs/VORA-DESIGN.md)
+- [Vorsorge-Recherche mit amtlichen Formularen und Quellenstand](docs/research/VORA-VORSORGE.md)
+- [KI-Konfiguration und Datenschutzgrenzen](docs/VORA-AI.md): eine vorhandene Konfiguration allein beweist keine funktionierende Modellverbindung.
+
+- [Aktuelle Consumer-Features und Abnahme](docs/CONSUMER-FEATURES.md): englische Prozessführung, Mindestumfang je Feature, Kundennutzen, Backend-Bedarf und bewusste Streichungen.
+
+- [Bestehende KIS-Oberfläche](docs/UI-REQUIREMENTS.md): klinische Anforderungen und umgesetzter Demokontext.
+- [Zweite UI: persönliche Vorsorge](docs/UI-CONSUMER-ERWEITERUNG.md): Herleitung des freigegebenen Plans mit Nutzenargumenten und Hardwarefragen.
+- [Persönliche UI, Auth und Kartenereignis starten](docs/CARE-SETUP.md): implementierter Ablauf, Supabase-Voraussetzungen und Prüfgrenzen.
 
 ## Setup
 
@@ -23,25 +44,24 @@ Als Demo liegt das offizielle [BMJV-Formular Vorsorgevollmacht](https://www.bmjv
 ## Deployment (Vercel)
 
 1. Das Repo auf [vercel.com](https://vercel.com) importieren. Als Framework Preset **Next.js** wählen und die Defaults übernehmen.
-2. Für die aktuelle synthetische Demo sind keine Supabase-Umgebungsvariablen nötig. Für den vorhandenen Dokumentadapter oder die optionale Scan-Anbindung werden `NEXT_PUBLIC_SUPABASE_URL` und `NEXT_PUBLIC_SUPABASE_ANON_KEY` benötigt.
+2. Die statische KIS-Ansicht benötigt keine Konfiguration. Für die gemeinsame persönliche/klinische Vorführung auf verteiltem Hosting den Supabase-Modus gemäß [CARE-SETUP.md](docs/CARE-SETUP.md) einrichten. Der lokale synthetische Sitzungszustand ist nicht zwischen Serverless-Instanzen geteilt.
 3. Deployen.
 
-Im bisherigen Projekt dokumentierte Deployment-URL: https://leuphanahackathon.vercel.app/. Welcher Commit dort tatsächlich läuft, ist vor einer Vorführung gesondert zu prüfen; ein lokaler Build bestätigt kein Deployment.
+Bisherige Deployment-URL: https://leuphanahackathon.vercel.app/. Die Bereitstellung des aktuellen Feature-Stands unter dieser Adresse ist noch nicht bestätigt.
 
-### Demo-Laptop-Ablauf (PLAN.md Schritt 9)
+### Demo-Laptop-Ablauf
 
-Chrome mit der lokalen Vorschau oder einer geprüften Deployment-URL öffnen und mit **F11** in den Vollbildmodus wechseln. Die aktuelle KIS-Demo beginnt auf der Station und führt in eine Patientenakte. Für eine Vorführung mit iPhone muss der folgende optionale Scanpfad zuvor mit der konkreten Hardware und Deployment-Konfiguration geprüft werden.
+Die lokale Vorschau oder eine für diesen Stand geprüfte Deployment-URL öffnen. Die bestehende Stationsansicht unter `/` zeigt synthetische Akten. Für die zusammenhängende Übergabevorführung eine synthetische Demo öffnen, das Dokumentarchiv über `/vorsorge?view=documents&demo=<Demo-ID>` aufrufen und über den Link in die Klinikansicht wechseln. Das Kartenereignis erscheint dort zunächst als Eingang; erst nach bestätigter Fallzuordnung wird die Akte aktualisiert. Voraussetzungen und Grenzen stehen in [CARE-SETUP.md](docs/CARE-SETUP.md).
 
-## Optionale iPhone-Scan-Anbindung (statt USB-Reader)
+## iPhone-Scan (statt USB-Reader)
 
-Die KIS-Oberfläche verarbeitet lokale `demo-card-scan`-Ereignisse und bei vorhandener Supabase-Konfiguration neue Einträge in `scans` über Realtime. Die Demokarte `demo` öffnet Henri Beckers Dokumente. Die folgenden Integrationsschritte setzen eine eigene Supabase-Konfiguration voraus; ein simulierter Browser-Scan bestätigt weder die physische NFC-Karte noch den Ablauf vom iPhone über Supabase zum PC.
+1. Für den echten Modus zunächst Supabase, Testkonten, kontrollierte Mitgliedschaften und Kartenfreigabe gemäß [CARE-SETUP.md](docs/CARE-SETUP.md) einrichten. Eine erreichbare HTTPS-Adresse dieses App-Stands verwenden; die bisherige Deployment-URL allein belegt dessen Bereitstellung nicht.
+2. Auf der Karte einen URL-Verweis auf `/scan?card=<registrierte-Kartenkennung>` hinterlegen, sofern der konkrete Tag dies unterstützt. Alternativ kann eine iOS-Automation diesen Link im Browser öffnen. Chip, Schreibverfahren und iPhone-Verhalten sind noch praktisch zu prüfen; die Annahme „eine Funktion auf dem Chip“ bleibt offen.
+3. Den Link auf dem iPhone öffnen, mit einem berechtigten Konto anmelden und **„Scan an Klinik senden“** bestätigen. Erst diese Aktion sendet einen autorisierten `POST /api/scan` mit Karten- und Vorgangskennung. Das Öffnen des Links allein verändert nichts.
+4. In der angemeldeten Klinikansicht den Eingang prüfen, die Fallzuordnung bestätigen und anschließend den Empfangsnachweis in der persönlichen Ansicht kontrollieren. Ein Scan ist noch keine bestätigte Aktenübernahme.
+5. **Test ohne Handy:** Im synthetischen Demo-Lauf die Klinikansicht öffnen und **„Kartenereignis simulieren“** verwenden. Persönliche und klinische Ansicht müssen dieselbe Demo-ID verwenden.
 
-1. `supabase/schema.sql` im Supabase-Dashboard im **SQL Editor** ausführen. Das richtet die Tabelle `scans`, die Zugriffsregeln und Supabase Realtime ein.
-2. **Weg 1 – Kurzbefehle-Automation:** Auf dem iPhone Kurzbefehle → Automation → + → NFC → Scannen → Karte ans iPhone halten. Aktion **„Inhalte von URL abrufen“** mit `https://leuphanahackathon.vercel.app/api/scan?card=demo` hinzufügen. **„Sofort ausführen“** einschalten und **„Bei Ausführung benachrichtigen“** ausschalten.
-3. **Weg 2 – NFC Tools (wakdev):** Unter Schreiben → Datensatz hinzufügen → URL den URL-Datensatz `https://leuphanahackathon.vercel.app/scan?card=demo` auf die Karte schreiben. **Karte nicht sperren.** Beim Scannen die iPhone-Mitteilung antippen; die Seite sendet den Scan und zeigt „✓ An PC gesendet“.
-4. **Test ohne Handy:** `https://leuphanahackathon.vercel.app/api/scan?card=demo` im Browser aufrufen. Bei geöffneter PC-Seite und verbundenem Realtime-Hook sollte der PC zu den Dokumenten wechseln.
-
-Die Dokumente sind bereits in der Demo vorhanden. Eine reale Krankenhausanbindung und der ursprünglich in PLAN.md vorgesehene USB-Reader sind nicht angeschlossen.
+Der frühere Kurzbefehl „Inhalte von URL abrufen“ auf `GET /api/scan?card=demo` ist abgelöst: GET liefert jetzt 405. Es gibt keine pauschale Karte `demo` und keinen Fallback auf eine feste Patientenakte. Eine Safari-Sitzung wird nicht automatisch an einen separaten Kurzbefehl weitergegeben.
 
 ## Klinische Demo mit synthetischen Patientenakten
 
@@ -66,15 +86,25 @@ Die Stationsliste zeigt für jede der acht Personen eine eigene schematische Sin
 
 „Simulation pausieren“ in der Werkzeugleiste hält Kurven und Werte gemeinsam an. Die Systemeinstellung für reduzierte Bewegung zeigt eine ruhende Kurve; Zahlen bleiben lesbar und die globale Pause bleibt verfügbar. In einem ausgeblendeten Browsertab wird nicht gezeichnet, die unpausierte Simulationszeit läuft jedoch weiter. Bei der Rückkehr erscheint direkt der aktuelle Stand. Puls und SpO₂ ändern sich langsam, Blutdruck wird nur als gelegentliche simulierte Messung aktualisiert. Die historischen Tabellen und Verläufe von 06:00 bis 16:00 Uhr bleiben separat erhalten.
 
-Diese Darstellung läuft ausschließlich im Browser: keine Live-Messung, keine Ableitung aus Diagnosen und keine Speicherung oder Übertragung der simulierten Werte. Bestehende Backend-, Karten- und Dokumentadapter bleiben unverändert.
+Diese Darstellung läuft ausschließlich im Browser: keine Live-Messung, keine Ableitung aus Diagnosen und keine Speicherung oder Übertragung der simulierten Werte. Die Simulation verändert keine Backend-, Karten- oder Dokumentdaten.
 
 ### Daten und Belegkette
 
 - `lib/demo-patients.json`: gemeinsamer, editierbarer synthetischer Quelldatensatz.
-- `public/demo-documents/`: 32 eigens erzeugte PDF-Dokumente mit insgesamt 48 Seiten.
-- `scripts/generate_demo_documents.py`: reproduzierbare PDF-Erzeugung; prüft jeden der 32 Kurzverweise gegen Text und Abschnitt auf der tatsächlichen PDF-Seite.
+- `public/demo-documents/`: ursprünglicher KIS-Bestand aus 32 PDFs/72 Seiten, ergänzt um eine separate vierseitige Fassung 2 für die Übergabedemo.
+- `scripts/generate_demo_documents.py`: reproduzierbare PDF-Erzeugung; prüft alle 64 Kurz- und Detailverweise gegen Text und Abschnitt auf der tatsächlichen PDF-Seite.
 
-Alle Personen, Kontaktdaten, Messwerte und Dokumenterklärungen sind erfunden. Die Dokumente sind als synthetisch und nicht rechtswirksam gekennzeichnet. Angezeigte Daten sind Demonstrationsinhalt, keine klinischen Empfehlungen oder automatisch rechtlich geprüften Befugnisse. Die Informationen sind für die Vorführung bereits im KIS vorhanden; es besteht keine echte Krankenhausanbindung. Die optionale Scan-Anbindung ist oben beschrieben; ihre Hardware- und Cloud-Abnahme bleibt separat erforderlich. Der ursprüngliche Supabase-Dokumentadapter bleibt im Repository erhalten, beliefert diese synthetische Demo jedoch nicht.
+Alle Personen, Kontaktdaten, Messwerte und individuellen Festlegungen sind erfunden. Die Formulierungen der Patientenverfügung und das Vollmachtformular stammen aus den jeweils angegebenen echten Vorlagen. Die Dokumente sind als synthetisch und nicht rechtswirksam gekennzeichnet. Angezeigte Daten sind Demonstrationsinhalt, keine klinischen Empfehlungen oder automatisch rechtlich geprüften Befugnisse. Die Informationen sind für die Vorführung bereits im KIS vorhanden; es besteht keine echte Krankenhaus- oder NFC-Anbindung. Der ursprüngliche Supabase-Adapter bleibt im Repository erhalten, beliefert diese synthetische Demo jedoch nicht.
+
+### Echte Vorlagen und konkrete Behandlungswünsche
+
+Die acht Vorsorgevollmachten verwenden das unveränderte Formularlayout des Bundesministeriums der Justiz (Januar 2023), ausgefüllt mit fiktiven Personen und expliziten Ja-/Nein-Auswahlen. Die interaktiven Formularfelder bleiben erhalten. Jede Seite trägt einen Demohinweis; Unterschriften werden nicht erzeugt.
+
+Die Patientenverfügungen sind individuelle Demofassungen aus ausgewählten Textbausteinen des vom Nutzer bereitgestellten BMJ-PDFs. Nicht gewählte, widersprüchliche Alternativen gehören nicht zur individuellen Erklärung. Die unveränderte Vorlage liegt als benötigte, reproduzierbare Quelle unter `public/templates/patientenverfuegung-textbausteine.pdf`. Betreuungsverfügung und begrenzte Auskunftserklärung bleiben selbst verfasste synthetische Beispiele. Die Herkunft wird je Dokument in `provenance` angegeben.
+
+Je Akte ergänzen vier `carePreferences` konkrete Aussagen zu Schmerztherapie, Ernährung, Notfallplanung und Beatmung. Jede Aussage führt ihre Anwendungssituation, Grenzen und die genaue Belegstelle mit. Erika Berger und Henri Becker zeigen unterschiedliche Wünsche zur Wiederbelebung. Das System bestätigt keine aktuelle Anwendbarkeit und leitet keine allgemeine DNR-Anordnung ab.
+
+Die Zuordnung ist für die Demo redaktionell vorbereitet und gegen die tatsächlichen PDF-Inhalte geprüft. Es gibt weiterhin keine automatische Dokumentextraktion und keine reale KIS-Anbindung. Direktlinks enthalten die Beleg-ID; beim Neuladen wird sie innerhalb derselben Patientenakte und desselben Dokuments aufgelöst.
 
 ### Lokal starten und prüfen
 
@@ -99,6 +129,6 @@ Auf macOS/Linux: `PLAYWRIGHT_PORT=3197 npm run test:ui`. Der Port gilt gleicherm
 PDF-Daten nach Änderungen neu erzeugen (Python-Entwicklungswerkzeuge, nicht für den App-Betrieb nötig):
 
 ```bash
-python -m pip install reportlab pymupdf
+python -m pip install reportlab pymupdf pypdf
 python scripts/generate_demo_documents.py
 ```

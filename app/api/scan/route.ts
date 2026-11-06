@@ -1,50 +1,14 @@
-import { supabase } from "@/lib/supabase";
-
+// Evolves upstream issue #32 / commit 8d891788: iPhone -> scan -> Supabase -> clinical notification.
+// Version boundary: a GET no longer writes and scans require a session or an explicit synthetic demo run.
+import { performCareScan } from "@/lib/care/service";
+import { assertSameOrigin, careErrorResponse, readCareBody } from "@/lib/care/errors";
 export const dynamic = "force-dynamic";
-
-const headers = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-  "Cache-Control": "no-store",
-};
-
-async function recordScan(value: unknown) {
-  const card = (typeof value === "string" ? value.trim() : "").slice(0, 64) || "demo";
-
-  if (!supabase) {
-    return Response.json(
-      { ok: false, error: "Supabase nicht konfiguriert" },
-      { status: 503, headers },
-    );
-  }
-
-  try {
-    const { error } = await supabase.from("scans").insert({ card_id: card });
-    if (error) {
-      return Response.json({ ok: false, error: error.message }, { status: 500, headers });
-    }
-    return Response.json({ ok: true, card }, { headers });
-  } catch (error) {
-    return Response.json(
-      { ok: false, error: error instanceof Error ? error.message : "Scan konnte nicht gespeichert werden" },
-      { status: 500, headers },
-    );
-  }
+export function GET() {
+  return Response.json({ error: "Zum Scannen /scan öffnen. Ein Scan wird ausschließlich mit POST bestätigt.", code: "POST_REQUIRED" }, { status: 405, headers: { Allow: "POST", "Cache-Control": "no-store" } });
 }
-
-export async function GET(request: Request) {
-  return recordScan(new URL(request.url).searchParams.get("card"));
-}
-
 export async function POST(request: Request) {
-  const body: unknown = await request.json().catch(() => null);
-  const card = body && typeof body === "object" && "card" in body && typeof body.card === "string"
-    ? body.card
-    : new URL(request.url).searchParams.get("card");
-  return recordScan(card);
-}
-
-export function OPTIONS() {
-  return new Response(null, { status: 204, headers });
+  try {
+    assertSameOrigin(request);
+    return Response.json(await performCareScan(request, await readCareBody(request)), { headers: { "Cache-Control": "no-store" } });
+  } catch (error) { return careErrorResponse(error); }
 }

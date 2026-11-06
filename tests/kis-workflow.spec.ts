@@ -93,29 +93,19 @@ test("Fremde Beleg-ID wird keinem anderen Dokument zugeschrieben", async ({ page
   await expect(page.getByLabel("Patientenkontext")).toContainText(patient.id);
 });
 
-test("Unbekannte Karte erhält Akte und Beleg; bekannte Demokarte öffnet zugeordneten Fall", async ({ page }) => {
+test("Nicht autorisierte Browser-Kartenereignisse verändern weder Akte noch Beleg", async ({ page }) => {
   await openPatient(page);
   await page.locator(`#hint-toggle-${representation.id}`).click();
   await page.locator(".scope-detail .source-link").click();
   await expect(page.locator(".viewer-heading h2")).toBeFocused();
   const address = page.url();
-  for (const cardId of ["unknown-card", "__proto__", undefined, null, "", 123, { card_id: "demo" }]) {
+  for (const cardId of ["demo", "unknown-card", "__proto__", undefined, null, "", 123, { card_id: "demo" }]) {
     await page.evaluate(id => window.dispatchEvent(id === undefined
       ? new CustomEvent("demo-card-scan")
       : new CustomEvent("demo-card-scan", { detail: id })), cardId);
-    await expect(page.locator(".scan-warning")).toHaveAttribute("role", "alert");
-    await expect(page.locator(".scan-warning")).toContainText("Karte nicht zugeordnet");
     await expect(page.getByLabel("Patientenkontext")).toContainText(patient.id);
     await expect(page.locator(".source-evidence")).toContainText(representation.quote);
     await expect(page).toHaveURL(address);
-    await expect(page.locator(".scan-toast")).toHaveCount(0);
+    await expect(page.locator(".viewer-heading h2")).toBeFocused();
   }
-  await page.getByRole("button", { name: "Kartenhinweis schließen", exact: true }).click();
-  await expect(page.locator(".scan-warning")).toHaveCount(0);
-  await page.evaluate(() => window.dispatchEvent(new CustomEvent("demo-card-scan", { detail: "demo" })));
-  await expect(page.locator(".scan-toast")).toContainText("Henri Becker");
-  await expect(page.getByLabel("Patientenkontext")).toContainText("26004179");
-  await expect(page.locator(".embedded-viewer")).toHaveCount(0);
-  await expect(page.getByRole("tab", { name: /Dokumente/ })).toHaveAttribute("aria-selected", "true");
-  await expect(page.locator(".document-table tbody tr")).toHaveCount(4);
 });

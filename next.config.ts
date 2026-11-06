@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   /* config options here */
   turbopack: {
     rules: {
-      "*.css": {
+      // Preserve native CSS Modules; only the Tailwind entry needs this loader.
+      "globals.css": {
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
       },
