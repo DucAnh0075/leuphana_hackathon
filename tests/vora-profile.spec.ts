@@ -1,0 +1,61 @@
+import { test, expect } from "@playwright/test";
+import { emptyProfile, parseProfileData, parseProfileMutation, profileFingerprint, suggestedDocuments, caseWorkspace, caseTodos, withExpectedProfileScope, ProfileAccountChangedError, type VoraCase } from "../lib/vora-profile";
+const id = "134b0f1c-1dd8-4f77-982c-a450301d48f5";
+function sampleCase(): VoraCase { return { id, title: "Fictional demo case", subject: "self", goals: ["representation"], discoveryVersion: 1, documentLanguage: "de", selected: ["power"], answers: { "power:person": { value: "Ask a trusted person", note: "Synthetic note", reviewed: true } }, completion: {}, revision: 1, createdAt: "2026-11-06T12:00:00.000Z", updatedAt: "2026-11-06T12:00:00.000Z" }; }
+test("case discovery separates document purposes and preserves deselected notes", () => {
+  expect(suggestedDocuments(["representation", "treatment", "guardian"])).toEqual(["power", "directive", "guardian"]);
+  const item = sampleCase(); item.selected = ["guardian"];
+  const profile = parseProfileData({ ...emptyProfile(), cases: [item] });
+  expect(profile.cases[0].answers["power:person"].note).toBe("Synthetic note");
+  expect(caseWorkspace(item, profile.profile).vaccines).toEqual([]);
+  expect(caseWorkspace(item, profile.profile).travel.destination).toBe("");
+  expect(caseTodos(item)).toEqual([{ documentId: "guardian", phase: 1, openBlocks: 4, type: "blocks" }]);
+  expect(profileFingerprint({ a: 1, z: { c: 3, b: 2 } })).toBe(profileFingerprint({ z: { b: 2, c: 3 }, a: 1 }));
+  expect(profileFingerprint({ a: 1, z: { c: 3, b: 2 } })).not.toBe(profileFingerprint({ z: { b: 2, c: 4 }, a: 1 }));
+});
+test("profile parser rejects owner injection, duplicated case IDs, invalid references and health imports", () => {
+  const data = { ...emptyProfile(), cases: [sampleCase()] };
+  expect(() => parseProfileData({ ...data, owner: "different-user" })).toThrow();
+  expect(() => parseProfileData({ ...data, cases: [sampleCase(), sampleCase()] })).toThrow();
+  expect(() => parseProfileData({ ...data, cases: [{ ...sampleCase(), vaccines: [] }] })).toThrow();
+  expect(() => parseProfileData({ ...data, tasks: [{ offerId: "invented-medical-advice", status: "open", createdAt: "2026-11-06T12:00:00Z" }] })).toThrow();
+  expect(() => parseProfileData({ ...data, appointments: [{ id: "demo-1", kind: "notary", purpose: "Test", providerLabel: "Demo", location: "Test", startsAt: "2026-11-07T12:00:00Z", endsAt: "2026-11-07T12:30:00Z", createdAt: "2026-11-06T12:00:00Z", status: "confirmed", mode: "real" }] })).toThrow();
+  expect(() => parseProfileMutation({ requestId: id, expectedRevision: -1, expectedLocalScope: `account-${id}`, data })).toThrow();
+  expect(() => parseProfileMutation({ requestId: "arbitrary", expectedRevision: 0, expectedLocalScope: `account-${id}`, data })).toThrow();
+  expect(() => parseProfileMutation({ requestId: id, expectedRevision: 0, data })).toThrow();
+  expect(() => parseProfileMutation({ requestId: id, expectedRevision: 0, expectedLocalScope: "owner-selected-by-client", data })).toThrow();
+  expect(parseProfileMutation({ requestId: id, expectedRevision: 0, expectedLocalScope: `account-${id}`, data }).expectedLocalScope).toBe(`account-${id}`);
+});
+test("account switch at equal revision rejects before the write callback and never adopts another account payload", () => {
+  const loadedA = { localScope: `account-${id}`, revision: 7, data: { ...emptyProfile(), cases: [sampleCase()] } };
+  const authenticatedB = { localScope: "account-d2411cff-be4c-420d-b617-8cb765e0db45", revision: 7, data: emptyProfile() };
+  const mutation = parseProfileMutation({ requestId: id, expectedRevision: loadedA.revision, expectedLocalScope: loadedA.localScope, data: loadedA.data });
+  let writes = 0;
+  const writeRpc = () => { writes++; authenticatedB.data = mutation.data; };
+  expect(() => withExpectedProfileScope(mutation.expectedLocalScope, authenticatedB.localScope, writeRpc)).toThrow(ProfileAccountChangedError);
+  expect(writes).toBe(0); expect(authenticatedB.data).toEqual(emptyProfile()); expect(authenticatedB.revision).toBe(7);
+  expect(() => withExpectedProfileScope(`demo-${id}`, `account-${id}`, writeRpc)).toThrow(ProfileAccountChangedError);
+  expect(writes).toBe(0);
+  expect(withExpectedProfileScope(loadedA.localScope, loadedA.localScope, () => "same authenticated owner")).toBe("same authenticated owner");
+});
+test("demo storage enforces valid capabilities, revisions, idempotent retry and separate sessions", async ({ request, baseURL }) => {
+  const origin = new URL(baseURL!).origin;
+  const create = await request.post("/api/demo", { headers: { Origin: origin } }); expect(create.status()).toBe(201);
+  const { demoId } = await create.json(); const endpoint = `/api/vora/profile?demo=${demoId}`;
+  const initial = await request.get(endpoint); expect(initial.status()).toBe(200); const loaded = await initial.json(); expect(loaded.revision).toBe(0);
+  const data = { ...emptyProfile(), cases: [sampleCase()] }; const mutation = { requestId: id, expectedRevision: 0, expectedLocalScope: loaded.localScope, data };
+  const other = await request.post("/api/demo", { headers: { Origin: origin } }); const otherId = (await other.json()).demoId;
+  const otherEndpoint = `/api/vora/profile?demo=${otherId}`;
+  const beforeOther = await (await request.get(otherEndpoint)).json(); expect(beforeOther.revision).toBe(loaded.revision);
+  const switched = await request.post(otherEndpoint, { headers: { Origin: origin }, data: mutation });
+  expect(switched.status()).toBe(409); expect((await switched.json()).code).toBe("ACCOUNT_CHANGED");
+  const afterOther = await (await request.get(otherEndpoint)).json(); expect(afterOther.revision).toBe(0); expect(afterOther.data.cases).toEqual([]);
+  const write = await request.post(endpoint, { headers: { Origin: origin }, data: mutation }); expect(write.status()).toBe(200); expect((await write.json()).revision).toBe(1);
+  const retry = await request.post(endpoint, { headers: { Origin: origin }, data: mutation }); expect(retry.status()).toBe(200); expect((await retry.json()).revision).toBe(1);
+  const stale = await request.post(endpoint, { headers: { Origin: origin }, data: { ...mutation, requestId: "d2411cff-be4c-420d-b617-8cb765e0db45" } }); expect(stale.status()).toBe(409);
+  const conflict = await request.post(endpoint, { headers: { Origin: origin }, data: { ...mutation, data: { ...data, locale: "en" } } }); expect(conflict.status()).toBe(409);
+  const foreign = await request.post(endpoint, { headers: { Origin: "https://foreign.invalid" }, data: mutation }); expect(foreign.status()).toBe(403);
+  expect((await (await request.get(`/api/vora/profile?demo=${otherId}`)).json()).data.cases).toEqual([]);
+  expect((await request.get(`/api/vora/profile?demo=${id}`)).status()).toBe(410);
+  expect((await request.get(`${endpoint}&role=clinic`)).status()).toBe(403);
+});

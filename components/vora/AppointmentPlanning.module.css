@@ -4,14 +4,15 @@
 .title > svg { flex-shrink:0; color:#456a95; margin-top:3px; }
 .title p { color:var(--muted); margin-top:5px!important; font-size:12px; }
 .localLabel { color:#52657a; background:#f2f5f9; border:1px solid #e1e7ee; padding:4px 8px; font-size:12px; border-radius:4px; flex-shrink:0; }
-.connection { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; background:#f2f6fc; border-block:1px solid #e1e8f1; padding:13px 26px; }
-.connection > strong { font-size:16px; letter-spacing:-.025em; color:#284b73; }
+.connection { display:flex; flex-wrap:wrap; align-items:center; gap:7px 15px; background:#fafbfd; border-block:1px solid #e1e8f1; padding:11px 26px; }
+.connection > strong { font-size:12px; letter-spacing:-.025em; color:#284b73; }
 .connectionStatus { display:inline-flex; align-items:center; gap:7px; font-size:12px; color:#705a38; }
 .connectionStatus > span { width:6px; height:6px; background:#a0783b; border-radius:50%; flex-shrink:0; }
 .connection > p { color:var(--muted); font-size:12px; margin-left:auto!important; }
 .stages { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); list-style:none; padding:0 26px; margin:0; gap:16px; border-bottom:1px solid var(--line); }
 .stages li { min-width:0; display:flex; align-items:flex-start; gap:9px; padding:20px 0; color:#617184; border-bottom:2px solid transparent; }
 .stages li.current { color:#235bc3; border-bottom-color:#245fd5; }
+.stages li.completed { color:#356a57; }
 .stepNumber { font-variant-numeric:tabular-nums; font-size:12px; padding-top:2px; }
 .stages strong { display:block; font-size:12px; font-weight:550; }
 .stages div > span { display:block; font-size:12px; color:#617184; margin-top:4px; line-height:1.5; }
@@ -32,7 +33,6 @@
 .nextStep { min-width:0; border-left:1px solid var(--line); padding:25px 26px; background:#fafbfd; }
 .eyebrow { display:block; font-size:12px; color:#60748a; margin-bottom:7px; }
 .nextStep > p { font-size:12px; color:var(--muted); margin-top:10px!important; line-height:1.75; }
-.unavailable { display:flex; justify-content:space-between; align-items:center; gap:12px; width:100%; min-height:44px; margin:19px 0; padding:10px 13px; border:1px solid #d6dfe8; color:#617184; background:#edf1f6; border-radius:5px; font-size:12px!important; cursor:not-allowed; text-align:left; }
 .nextStep > p.alternative { border-top:1px solid var(--line); padding-top:15px; font-size:12px; }
 .alternative a { color:#315a88; }
 .reviewHeading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
@@ -46,7 +46,43 @@
 .privacy > p { font-size:12px; line-height:1.75; max-width:790px; }
 .notice { color:#356a57; font-size:12px; padding:0 26px; }
 .notice:not(:empty) { padding-bottom:18px; }
+.demoBanner { display:flex; flex-wrap:wrap; align-items:center; gap:7px 12px; padding:10px 26px; color:#405c75; background:#eef4fa; border-block:1px solid #dce7f0; font-size:12px; line-height:1.55; }
+.demoBanner strong { text-transform:uppercase; font-size:10px; letter-spacing:.08em; }
+.demoStart { min-height:44px; margin-top:17px; max-width:100%; text-align:left; }
+.nextStep > p.demoHint { color:#536c84; font-size:11px; margin-top:7px!important; }
+.results { padding:25px 26px; min-width:0; }
+.resultsIntro,.reviewExplanation { color:var(--muted); font-size:12px; line-height:1.75; margin-top:9px!important; }
+.practiceList { margin:18px 0 14px; }
+.practice { padding:17px 0; border-top:1px solid var(--line); }
+.practiceHeading { display:flex; align-items:flex-start; gap:10px; }
+.practiceHeading > div { flex:1; min-width:0; }
+.practiceHeading h4 { font-size:13px; line-height:1.6; font-weight:550; margin:0; }
+.practiceHeading p { margin-top:3px!important; font-size:12px; color:var(--muted); }
+.practiceIcon { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:32px; height:34px; background:#eef3f8; color:#486a8c; border-radius:5px; }
+.exampleTag { font-size:10px; color:#526980; padding-top:4px; }
+.slots { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:13px; }
+.slots button { display:flex; align-items:center; justify-content:space-between; gap:8px; min-width:0; min-height:44px; padding:9px 10px; border:1px solid #c9d9ea; background:#f4f8fd; color:#285892; border-radius:5px; text-align:left; font-size:12px; line-height:1.5; cursor:pointer; }
+.slots button:hover { background:#e7f0fc; border-color:#6c94c4; }
+.slots button > svg { flex-shrink:0; }
+.noSlots { margin-top:11px!important; font-size:12px; color:var(--muted); }
+.appointmentTime { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin:22px 0 10px; }
+.appointmentTime strong { font-size:22px; font-weight:500; letter-spacing:-.035em; color:#315c89; }
+.appointmentTime span { color:var(--muted); font-size:12px; }
+.selectedPractice { margin:0; font-size:14px; line-height:1.6; font-weight:550; }
+.receiptTitle { display:flex; align-items:center; gap:13px; }
+.receiptTitle .eyebrow { margin-bottom:4px; }
+.receiptIcon,.cancelledIcon { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#32634d; background:#eaf3ed; }
+.cancelledIcon { color:#7b6041; background:#f6f0e8; }
+.receiptId { color:var(--muted); font-size:11px; line-height:1.6; margin-top:17px!important; }
+.receiptId code { display:block; overflow-wrap:anywhere; font-family:inherit; font-size:11px; }
+.nextStep > p.contextLocation,.sideSelection { overflow-wrap:anywhere; }
+.nextStep > p.sideSelection { border-top:1px solid var(--line); padding-top:14px; color:#385d85; }
+.nextStep > button { min-height:44px; }
+.results > button { min-height:44px; }
+.planner :is(button,input,select,a):focus-visible,.planner h3:focus-visible { outline:2px solid #245fd5; outline-offset:3px; }
+.reviewActions > button,.formActions > button { max-width:100%; white-space:normal; text-align:left; }
 @media (max-width:1100px) { .body { grid-template-columns:minmax(0,1.45fr) minmax(210px,1fr); } .fields { grid-template-columns:1fr; } .connection > p { flex-basis:100%; margin-left:0!important; } .stages { gap:12px; } .stages li { gap:7px; } }
-@media (max-width:700px) { .header { padding:21px 19px; flex-wrap:wrap; } .localLabel { margin-left:37px; } .connection { padding:13px 19px; } .stages { grid-template-columns:1fr 1fr; padding:6px 19px; gap:0 16px; } .stages li { padding:12px 0; } .body { grid-template-columns:1fr; } .form,.review { padding:23px 19px; } .nextStep { border-left:0; border-top:1px solid var(--line); padding:22px 19px; } .fields { margin-top:20px; } .privacy { padding:17px 19px; } .notice { padding-inline:19px; } }
-@media (max-width:360px) { .stages { grid-template-columns:1fr; } .stages li { padding:10px 0; } .stages div > span { margin-top:2px; } .stages li.current { border-bottom-color:transparent; } .stages li:not(:last-child) { border-bottom:1px solid var(--line); } .summary > div { grid-template-columns:1fr; gap:4px; } .formActions > button:first-child { width:100%; } }
+@media (max-width:700px) { .header { padding:21px 19px; flex-wrap:wrap; } .localLabel { margin-left:37px; } .connection { padding:13px 19px; } .stages { grid-template-columns:1fr 1fr; padding:6px 19px; gap:0 16px; } .stages li { padding:12px 0; } .body { grid-template-columns:1fr; } .form,.review,.results { padding:23px 19px; } .nextStep { border-left:0; border-top:1px solid var(--line); padding:22px 19px; } .fields { margin-top:20px; } .privacy { padding:17px 19px; } .notice { padding-inline:19px; } .demoBanner { padding-inline:19px; } .slots { grid-template-columns:1fr; } .exampleTag { display:none; } .appointmentTime strong { font-size:20px; } }
+@media (max-width:360px) { .stages li { padding:10px 0; } .stages li:not(.current) div > span { display:none; } .stages div > span { margin-top:2px; } .stages li.current { border-bottom-color:transparent; } .stages li:not(:last-child) { border-bottom:1px solid var(--line); } .summary > div { grid-template-columns:1fr; gap:4px; } .formActions > button:first-child { width:100%; } }
+@media (max-width:700px) { .compactAside { padding:8px 19px; } .compactAside > :not(button) { display:none; } }
 @media print { .planner { border:0; margin-top:25px; overflow:visible; } .header,.connection,.body,.privacy { break-inside:avoid; } .stages,.form,.nextStep,.reviewActions,.notice { display:none; } .body { display:block; } .review { padding:20px 0; } .privacy { padding-inline:0; } .summary > div { break-inside:avoid; } }

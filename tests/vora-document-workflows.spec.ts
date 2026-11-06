@@ -121,23 +121,37 @@ test("all three documents complete their 40 displayed blocks, export independent
   expect([...observedTitles.values()].flat()).toHaveLength(40);
   expect(new Set([...observedTitles.values()].flat()).size).toBe(40);
   await page.getByRole("navigation", { name: "Main navigation", exact: true }).getByRole("button", { name: "Overview", exact: true }).click();
-  await expect(page.getByText("40 of 40 blocks reviewed across 3 selected documents.", { exact: false })).toBeVisible();
+  await expect(page.getByText("40 of 40 selected blocks reviewed", { exact: true })).toBeVisible();
+  for (const doc of documents) {
+    await expect(page.getByRole("progressbar", { name: `${doc.title}: ${doc.count} of ${doc.count} blocks reviewed`, exact: true })).toHaveAttribute("value", String(doc.count));
+  }
   await page.screenshot({ path: testInfo.outputPath("all-three-documents-reviewed.png"), fullPage: false });
 
   await test.step("Resume each explicitly selected document after navigation and reload", async () => {
     for (const doc of documents) {
-      // A supported document-specific URL restores saved content. Cursor position
-      // is not persisted, so this does not claim to resume the last edited block.
+      // With every block reviewed, a document URL without a cursor starts at
+      // its first block. Selecting another block writes its resumable position.
       await page.goto(`/vorsorge?area=documents&doc=${doc.id}`);
-      await page.reload();
       await expect(page.getByRole("heading", { name: doc.title, exact: true })).toBeVisible();
       await expect(documentTab(page, doc.title)).toHaveAttribute("aria-pressed", "true");
       await expect(page.locator("#block-title")).toHaveText(doc.first);
       await expect(page.locator("#block-notes")).toHaveValue(notes.get(doc.id)![0]);
+      await page.getByRole("navigation", { name: "Document blocks", exact: true }).getByRole("button").last().click();
+      await expect(page.locator("#block-title")).toHaveText(doc.last);
+      await expect(page).toHaveURL(/(?:\?|&)phase=blocks(?:&|$)/);
+      await expect(page).toHaveURL(/(?:\?|&)block=[^&]+/);
+      const blockURL = page.url();
+      await page.reload();
+      await expect(page).toHaveURL(blockURL);
+      await expect(page.locator("#block-title")).toHaveText(doc.last);
+      await expect(page.locator("#block-notes")).toHaveValue(notes.get(doc.id)!.at(-1)!);
       await phase(page, "Review your notes");
       await expect(page.getByText(`${doc.count} of ${doc.count} blocks reviewed.`, { exact: false })).toBeVisible();
       for (const note of notes.get(doc.id)!) await expect(reviewSection(page).getByText(note, { exact: true })).toBeVisible();
       await phase(page, "Prepare & keep");
+      await expect(page).toHaveURL(/(?:\?|&)phase=finish(?:&|$)/);
+      await page.reload();
+      await expect(page.getByRole("heading", { name: "From preparation to a usable document.", exact: true })).toBeVisible();
       for (const label of completionChecks) await expect(page.getByRole("checkbox", { name: label, exact: true })).toBeChecked();
     }
     await page.getByRole("button", { name: "Change person or documents", exact: true }).click();
@@ -182,7 +196,11 @@ test("all three documents complete their 40 displayed blocks, export independent
     await page.getByRole("button", { name: "Change person or documents", exact: true }).click();
     for (const doc of documents) await expect(page.getByRole("checkbox", { name: `Select ${doc.title}`, exact: true })).toBeChecked();
     await page.getByRole("navigation", { name: "Main navigation", exact: true }).getByRole("button", { name: "Overview", exact: true }).click();
-    await expect(page.getByText("39 of 40 blocks reviewed across 3 selected documents.", { exact: false })).toBeVisible();
+    await expect(page.getByText("39 of 40 selected blocks reviewed", { exact: true })).toBeVisible();
+    for (const doc of documents) {
+      const reviewed = doc.id === "power" ? 18 : doc.count;
+      await expect(page.getByRole("progressbar", { name: `${doc.title}: ${reviewed} of ${doc.count} blocks reviewed`, exact: true })).toHaveAttribute("value", String(reviewed));
+    }
     await page.screenshot({ path: testInfo.outputPath("only-edited-block-invalidated.png"), fullPage: false });
   });
   expect(apiRequests).toEqual([]);

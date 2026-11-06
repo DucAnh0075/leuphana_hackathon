@@ -1,23 +1,42 @@
-# VORA conversation service
+# VORAcard conversation service
 
-This service supports the consumer workspace with multi-turn orientation, explanations of document modules and suggested wording. Responses are suggestions for review. It cannot read private records, change a document, determine vaccine protection, sign, send or book anything.
+**Current product context — 6 November 2026:** See the [current VORAcard feature contract](CONSUMER-FEATURES.md#aktueller-voracard-vertrag--6-november-2026) for the public website, protected profile, repeated case discovery, dashboard, DE/EN templates and notary demo. The assistant explains these public workflows; it does not read private case answers or local health files automatically. The visible name is VORAcard; existing API/storage identifiers remain unchanged. Earlier sign-in observations and acceptance records below are evidence from the **previous iteration**, not a new live-model or new-UI acceptance. The local ChatGPT/API funding and credential boundaries below continue to apply.
 
-## Current API-key configuration
+Current implementation contract, 6 November 2026. The service explains the current VORA task, public document modules and possible next actions. Suggested wording remains a draft for the person's review. It cannot read private records, change notes, connect ePA, determine vaccine protection, sign, register, share or book anything.
 
-Set `OPENAI_API_KEY` in the server environment. Never prefix credentials with `NEXT_PUBLIC_` or commit them. Optional `VORA_AI_MODEL` overrides `OPENAI_MODEL`; the default is `gpt-4.1-mini`. Restart the server after changing its environment. No extra SDK or production dependency is required.
+The user reported successful ChatGPT sign-in in the local preview on 6 November 2026. This establishes the user's sign-in observation, not a lead-verified completed model dialogue, remaining credit or clinical/legal answer quality. The UI offers **My ChatGPT account** and explicitly selected **Configured API key** mode. Failure never switches funding automatically.
+
+## Explicit API-key configuration
+
+Set `OPENAI_API_KEY` in the server environment for this separate API-billing mode. Never prefix credentials with `NEXT_PUBLIC_` or commit them. Optional `VORA_AI_MODEL` overrides `OPENAI_MODEL`; the default is `gpt-4.1-mini`. Environment changes require a coordinated restart. No extra SDK or production dependency is required. A key is not required for the implemented ChatGPT account path below.
 
 `GET /api/vora/assistant` returns `{ configured: boolean, provider: "OpenAI" }`. This reports key presence only. It does not verify credentials, model access, account credit or provider reachability.
 
-## Requested ChatGPT sign-in path — checked 6 November 2026
+<a id="requested-chatgpt-sign-in-path--checked-6-november-2026"></a>
 
-The user prefers signing in with an existing OpenAI account and using available credits. A separately purchased API balance is not the only supported funding path:
+## Local Sign in with ChatGPT — implemented 6 November 2026
 
-- [Sign in with ChatGPT for local/open-source applications](https://developers.openai.com/siwc/token-sharing-open-source) supports permission to use an eligible ChatGPT plan for Responses requests. It requires the app's own OAuth registration, a stable host identity and explicit user authorization. Remotely hosted or paid applications have a separate access process; local eligibility does not establish hosted-product approval.
-- The [registration contract](https://developers.openai.com/siwc/token-sharing-open-source/sign-in) requires a loopback callback, PKCE, state/nonce validation, signature-verified identity, granted inference scopes and protected app-owned credentials. The current VORA route has not implemented this flow. Which credit type and local/hosted target the user wants remains to be confirmed.
-- The [preview request contract](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations) requires streaming and `store: false`, with a narrower supported request shape. Switching the current non-streaming API-key call to OAuth is an implementation change, not merely substituting a token.
-- Eligible Pro/Business subscriptions can [claim included API credits](https://developers.openai.com/api/docs/guides/chatgpt-api-credits) for a linked API organization. That can fund the existing API-key route without separately buying API credits while a valid allowance remains. Eligibility, activation and actual balance must be checked in the user's account; existing ChatGPT credits are not automatically an API balance.
+The implementation follows OpenAI's [local/open-source registration flow](https://developers.openai.com/siwc/token-sharing-open-source/sign-in). It requires `VORA_CHATGPT_LOCAL_ENABLED=true`, `NODE_ENV=production` and strict HTTP loopback Host/origin admission. The operator must also bind the server to loopback: Host validation cannot establish the network peer's address. After building, start a coordinated local preview:
 
-No user plan, credit balance or OAuth entitlement has been inspected or assumed. No account credentials were copied or changed. This records the supported choices and corrects the earlier implication that a separately paid API key was necessarily the only option.
+```powershell
+$env:VORA_CHATGPT_LOCAL_ENABLED='true'
+npm run start -- --hostname 127.0.0.1 --port 3112
+```
+
+The page may use `localhost` or `127.0.0.1`; the exact callback is always `http://127.0.0.1:<port>/api/vora/chatgpt/callback`. `next dev` is intentionally not admitted because its request logging can expose callback queries. This local support does not establish public-hosted or commercial plan-use approval.
+
+Initial registration uses `dynamic_agent_client`, VORA's name and a stable opaque host ID. Each attempt has fresh state, nonce and PKCE S256 values; the callback's issued client ID is used for exchange. Signature/JWKS, issuer, exact audience, expiry and nonce are checked before accepting identity. Both `resource.invoke` and `chatgpt.tokens.use.direct` must be granted before inference. Identity without those scopes remains signed in with plan use disabled.
+
+Authorization lasts five minutes and supports cancellation, denial and one-time consumption. Credentials and account registrations remain only in a per-browser server-memory session, addressed by an HttpOnly, SameSite=Strict cookie. **Server restart requires sign-in again.** Only a non-secret host ID persists in ignored `.vora-runtime/chatgpt-host.json`; no Codex credentials are read or reused. This is a single-process local demo, not durable account storage. Refreshes are serialized and rotating tokens replaced together. Disconnect stops local use and attempts remote revocation; failure to confirm revocation is visible. See [accounts and sessions](https://developers.openai.com/siwc/token-sharing-open-source/profiles-and-sessions).
+
+| Connection endpoint | Contract / boundary |
+| --- | --- |
+| `GET /api/vora/chatgpt` | `{ available, connected, planEnabled, pending, accountLabel?, reason?, models?, diagnostic? }`; models contain `{ slug, displayName }`. Availability is local admission; sign-in and granted plan permission are distinct from completed inference or available credit. |
+| `POST /api/vora/chatgpt` with `{ action: "start" }` | Same-origin JSON; returns `{ authorizationUrl }` and sets the local session cookie. The user opens OpenAI's authorization flow. |
+| Same POST with `cancel` or `disconnect` | Returns status. Cancel invalidates the pending attempt; disconnect clears local credentials and attempts revocation. |
+| `GET /api/vora/chatgpt/callback` | Static success/failure HTML; sends only `{ type: "vora:chatgpt-auth", ok }` to the initiating page origin. Polling its own session remains authoritative. |
+
+Diagnostics contain only fixed/allowlisted `{ phase, code, httpStatus? }`, never OAuth codes, tokens, identity values or raw provider bodies. Omit `accountLabel` from troubleshooting output. No user balance or entitlement beyond the actual grant has been inspected or assumed. The earlier API-key `invalid_api_key` result is historical evidence in [VORA design history](VORA-DESIGN.md#historical-verification--earlier-api-key-prototype), not a current ChatGPT sign-in blocker.
 
 ## Frontend contract
 
@@ -25,12 +44,13 @@ No user plan, credit balance or OAuth entitlement has been inspected or assumed.
 
 ```json
 {
+  "provider": "chatgpt",
   "consent": true,
-  "locale": "de",
+  "locale": "en",
   "context": {
     "area": "documents",
-    "documentTitle": "Patientenverfügung",
-    "moduleTitle": "Was mir wichtig ist"
+    "documentTitle": "Vorsorgevollmacht",
+    "moduleTitle": "Your trusted person"
   },
   "messages": [
     { "role": "user", "content": "Welche Frage hilft mir beim Einstieg?" }
@@ -38,24 +58,32 @@ No user plan, credit balance or OAuth entitlement has been inspected or assumed.
 }
 ```
 
-The UI must explain before sending that OpenAI receives the submitted chat history and current screen titles. The deliberate consent control must govern this request, including retries. Do not infer permission from opening a panel or selecting a document. Do not include stored answers, document content, vaccination records or a profile automatically. User-entered chat text may itself contain sensitive information; explain this at the input and minimize it.
+The UI explains that OpenAI receives the submitted conversation, selected public screen context and VORA's public explanations of official templates/care-preparation steps. Deliberate conversation consent governs sends and retries; opening the avatar, choosing a document or completing OAuth does not replace it. Stored answers, profile/age, vaccination records, organ-card contents/uploads, private files and travel plans are not automatically attached. Chat text itself may contain sensitive information; the input warns against identifiers and medical files. The temporary chat clears when its panel closes.
+
+`provider` is `chatgpt` or `apiKey`; omission retains the older API-key contract. The provider must match the explicit server configuration, with no failure fallback. The instructions follow the language of the latest substantive user question and any explicit language request; `locale` is only a fallback when that signal is missing. English UI does not force English replies to German questions.
 
 Only the documented keys are admitted, including within context and messages. Limits: 24 messages, 6,000 characters per message, 18,000 total message characters and 80,000 request bytes. Roles are `user` and `assistant`; the last message must be from the user. Locale is `de` or `en`. Screen area is limited to 80 characters and optional titles to 160 each. The frontend should offer a new conversation rather than silently dropping older messages.
 
-Success is `{ message: string, mode: "live", sources: [] }`. Only a completed provider text response can produce `live`. Sources are empty because this service does not retrieve documents or web sources. Do not label generated statements as verified or source-backed. Render the message as text, not HTML.
+Success is `{ message: string, mode: "live", sources: { title, url }[] }`. Only a completed provider text response can produce `live`. Sources come from the selected public catalog and are labelled **Official references**: they are not live retrieved evidence or proof of every generated statement. Generated URLs never populate this metadata. Render the message as text, not HTML.
 
-Failure is `{ error: string, code: string, mode: "unavailable" }` with an appropriate non-2xx status. Configuration failures use 503, provider failures 502, timeout 504, rejected consent/schema 400 and capacity limits 429 with `Retry-After: 60`. Cross-origin requests use 403; oversized bodies 413 and wrong content types 415. A caller abort cancels the provider fetch and is classified as `CANCELLED` (499 if a response can still be delivered). Keep the user's text available to retry; do not fabricate a fallback AI answer.
+Failure is `{ error: string, code: string, mode: "unavailable" }` with an appropriate non-2xx status. Configuration/provider failures generally use 502/503, missing ChatGPT sign-in 401, timeout 504 and rejected consent/schema 400. Local capacity limits return 429 with `Retry-After: 60`; ChatGPT usage-limit errors do not invent a reset time. Cross-origin requests use 403; oversized bodies 413 and wrong content types 415. Caller abort or disconnect cancels provider fetch (`CANCELLED`, 499 if a response remains possible). Partial streams never count as success. Keep the question for explicit retry; do not fabricate an answer or change funding.
+
+## VORA-specific public context
+
+[The mapper](../lib/vora-agent-context.ts) reads finite public catalogs from [VORA](../lib/vora.ts) and [Health pass](../lib/vora-health-pass.ts). It matches a known German/English document name, then a module title within that document, and supplies its purpose, question, caution, choices and allowlisted references. Unknown or mismatched labels fall back to the known area. Health-pass selectors are `Health pass` with `Vaccination passport` or `Organ donation card`; no private card or vaccination state enters the mapper.
+
+The instructions know the 40 distinct blocks (19/17/4), genuine official originals and the distinction between preparation, review and signing. They separate prevention eligibility from personal recommendations; real ePA from opted-in fictional Demo-ePA; old unverified notes from imported records; a local organ card from a state-register entry; and the four-step fictional appointment journey from real booking. Replies normally use 2–4 short sentences/bullets, one concrete next action and at most one useful follow-up. These instructions describe intended behaviour, not measured model compliance. Public summaries retain the recorded date 6 November 2026; the earlier RKI retrieval limitation remains explicit.
 
 ## Data and execution boundaries
 
-The backend sends the validated conversation and screen titles to the fixed OpenAI Responses API endpoint. It adds product instructions, requests `store: false`, caps output at 1,200 tokens and supplies no tools. No secret, application record or user session is added to the model input. Secrets are read only by the server route. The application service does not log prompt or response text and does not persist the conversation server-side.
+Both modes use the fixed public Responses endpoint with product instructions, validated conversation, public catalog context, `store: false` and no tools. API-key mode caps output at 1,200 tokens. ChatGPT mode requests the actual account model catalog, selects its first displayable model in provider order and uses `stream: true`; unsupported fields including `max_output_tokens` are omitted. Only `response.completed` establishes inference success, and late usage errors stop it. See [models and inference](https://developers.openai.com/siwc/token-sharing-open-source/models-and-inference) and [preview limitations](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations). No secret or account credential enters model input. Application code does not log prompt/response text or persist conversations server-side.
 
 `store: false` disables response storage for later API retrieval. It is **not** proof of zero provider retention or an alternative to reviewing the account's applicable data controls and processing terms. Browser conversation retention is a separate frontend decision. Do not describe the whole conversation as device-only or promise zero retention.
 
-The request has a 25-second provider timeout, including response reading. There are no automatic retries and no autonomous writes. A retry is a new provider request and may incur another charge. Per-process admission caps work at three concurrent calls and 20 starts per minute. This protects a bounded demo; it is not a distributed quota or user authentication system. Before public production deployment, the application owner needs account-scoped access and a shared quota aligned with the deployment topology, plus applicable privacy and data-processing review.
+The provider timeout is 25 seconds including response reading. Returned text and streamed text deltas are bounded to 6,000 characters, matching the per-message history limit; oversized answers fail explicitly rather than being truncated or making the next follow-up invalid. The plan stream has a 512,000-byte ceiling. There are no automatic retries or autonomous writes. A retry is a new request and can consume allowance or credits. Per-process admission allows three concurrent calls and 20 starts per minute, not a distributed/account-wide quota. Public hosted deployment needs its own approved integration and session/quota design. Supabase configuration and archive permissions are unchanged.
 
 ## Verification
 
-[The contract tests](../tests/vora-assistant.spec.ts) exercise consent and unknown-key rejection, conversation bounds, provider payload and cancellation, unavailable/incomplete responses, error redaction and the request budget. Transport doubles establish the adapter contract; they do not establish live model availability or clinical/legal accuracy. A synthetic live test must be reported separately.
+[Assistant tests](../tests/vora-assistant.spec.ts), [OAuth/session tests](../tests/vora-chatgpt.spec.ts), [stream tests](../tests/vora-chatgpt-stream.spec.ts), [public-context tests](../tests/vora-agent-context.spec.ts) and [opt-in real local-route tests](../tests/vora-chatgpt-routes.spec.ts) cover the bounded contracts with synthetic data. The lead's final 20 agent/provider/context tests, production build and focused ESLint passed; assembled UI/production journey evidence is recorded in [current design acceptance](VORA-DESIGN.md#current-implementation-and-lead-acceptance--6-november-2026). These checks do not establish model accuracy, allowance or clinical/legal suitability. The user's earlier successful sign-in report is separate. The final local preview was restarted and an anonymous check confirmed availability; re-login is required after that restart. A completed live dialogue using the new VORA prompt has not been verified by the lead.
 
-Implementation follows [OpenAI's Responses guidance](https://developers.openai.com/api/docs/guides/migrate-to-responses) and [API quickstart](https://developers.openai.com/api/docs/quickstart). These links describe the provider interface, not evidence for health or legal answers.
+Implementation follows [OpenAI's prompt-engineering guidance](https://developers.openai.com/api/docs/guides/prompt-engineering): code-managed instructions, typed input, separation of trusted context and conversation, and representative boundary tests. Provider documentation is not evidence for medical or legal answers.

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Symbol } from "./Presentation";
 import VoraAssistant from "@/components/vora/VoraAssistant";
+import AgentAvatar from "@/components/vora/AgentAvatar";
+import voraStyles from "@/components/vora/Vora.module.css";
 import styles from "./Planning.module.css";
 
 export type ConsumerShellProps = {
@@ -45,9 +47,9 @@ export default function ConsumerShell({ children, active, demoId, title = "Your 
   }
   return <div className={styles.shell} lang="en">
     <aside className={styles.sidebar} aria-label="Workspace navigation">
-      <a className={styles.brand} href="/vorsorge" aria-label="VORA home">
+      <a className={styles.brand} href="/vorsorge" aria-label="VORAcard home">
         <span className={styles.brandMark}><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 7 16 26 27 7M16 26V14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
-        <span className={styles.brandWord}>VORA</span>
+        <span className={styles.brandWord}>VORAcard</span>
       </a>
       <nav className={styles.navigation} aria-label="Main">
         <a href={href("plan")} aria-current={active === "plan" ? "page" : undefined}><Symbol name="home"/><span>Your plan</span></a>
@@ -56,7 +58,7 @@ export default function ConsumerShell({ children, active, demoId, title = "Your 
       </nav>
       <div className={styles.sidebarBottom}>
         {onReset && <button type="button" className={styles.railButton} onClick={onReset}><Symbol name="refresh"/><span>Start over</span></button>}
-        <button ref={helpButton} type="button" className={styles.railButton} aria-expanded={helpOpen} aria-controls={active === "plan" ? "workspace-help" : "archive-assistant"} onClick={() => setHelpOpen(!helpOpen)}><Symbol name="help"/><span>{active === "plan" ? "Help" : "Ask VORA"}</span></button>
+        {active === "plan" && <button ref={helpButton} type="button" className={styles.railButton} aria-expanded={helpOpen} aria-controls="workspace-help" onClick={() => setHelpOpen(!helpOpen)}><Symbol name="help"/><span>Help</span></button>}
         <p className={styles.sidebarNote}>Your documents.<br/>Your decisions.</p>
       </div>
     </aside>
@@ -67,7 +69,8 @@ export default function ConsumerShell({ children, active, demoId, title = "Your 
         <button className={styles.iconButton} aria-label="Close help" onClick={closeHelp}><Symbol name="close"/></button>
       </section>}
       {children}
-      {helpOpen && active !== "plan" && <dialog ref={assistantDialog} id="archive-assistant" aria-label="Ask VORA" className={styles.assistantDialog} onCancel={closeHelp} onClose={closeHelp}><VoraAssistant area={active === "documents" ? "signed document archive" : "document sharing"} onClose={closeHelp}/></dialog>}
+      {active !== "plan" && <button ref={helpButton} type="button" className={voraStyles.agentLauncher} aria-label="Ask VORAcard" aria-expanded={helpOpen} aria-controls="archive-assistant" aria-haspopup="dialog" onClick={() => setHelpOpen(true)}><AgentAvatar animated/><span>Ask VORAcard</span></button>}
+      {helpOpen && active !== "plan" && <dialog ref={assistantDialog} id="archive-assistant" aria-label="Ask VORAcard" className={`${voraStyles.chatDrawer} ${voraStyles.nativeChat}`} onCancel={closeHelp} onClose={closeHelp}><VoraAssistant area={active === "documents" ? "signed document archive" : "document sharing"} onClose={closeHelp}/></dialog>}
     </div>
   </div>;
 }

@@ -55,31 +55,21 @@ test("document choices create distinct blocks, preserve open questions and expor
   expect(requests).toEqual([]);
 });
 
-test("vaccination entries can be corrected, resumed and deleted with undo without claiming verification", async ({ page }) => {
+test("Health pass opens the consented ePA flow without a vaccination upload", async ({ page }) => {
   await page.goto("/vorsorge");
-  await area(page, "Vaccinations");
-  await expect(page.getByRole("heading", { name: "Your record starts with one entry.", exact: true })).toBeVisible();
-  await capture(page, "vaccination-empty");
-  await page.getByRole("button", { name: "Add vaccination", exact: false }).click();
-  await page.locator("#vaccine-name").fill("Synthetic tetanus entry");
-  await page.locator("#vaccine-date").fill("2024-05-08");
-  await page.getByRole("button", { name: "Save vaccination", exact: true }).click();
-  await expect(page.getByText("Self-entered · unverified", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "Edit Synthetic tetanus entry", exact: true }).click();
-  await page.locator("#vaccine-name").fill("Synthetic corrected entry");
-  await page.getByRole("button", { name: "Save correction", exact: true }).click();
-  await page.reload();
-  await area(page, "Vaccinations");
-  await expect(page.getByRole("heading", { name: "Synthetic corrected entry", exact: true })).toBeVisible();
-  await expect(page.getByText("Not connected", { exact: true })).toBeVisible();
-  await capture(page, "vaccination-saved");
-  await page.getByRole("button", { name: "Delete Synthetic corrected entry", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Synthetic corrected entry", exact: true })).toHaveCount(0);
-  await page.getByRole("button", { name: "Undo deletion", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Synthetic corrected entry", exact: true })).toBeVisible();
+  await area(page, "Health pass");
+  const vaccinations = page.getByRole("region", { name: "Vaccination passport", exact: true });
+  await expect(vaccinations.locator('input[type="file"]')).toHaveCount(0);
+  await page.getByRole("button", { name: "Connect Demo-ePA", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Import demo vaccinations", exact: true })).toBeDisabled();
+  await page.getByRole("checkbox", { name: /I agree to import/ }).check();
+  await page.getByRole("button", { name: "Import demo vaccinations", exact: true }).click();
+  await expect(page.getByText("Source: Demo-ePA · fictional, not a medical record", { exact: true })).toHaveCount(2);
+  await capture(page, "health-pass-demo-import");
 });
 
 test("AI consent, context privacy, follow-up history and retry work with controlled provider responses", async ({ page }) => {
+  await page.route("**/api/vora/chatgpt", route => route.fulfill({ json: { available: true, connected: true, planEnabled: true, pending: false, accountLabel: "Synthetic test account", models: [{ slug: "test-model", displayName: "Test model" }] } }));
   const bodies: Array<Record<string, unknown>> = [];
   let release: (() => void) | undefined;
   await page.route("**/api/vora/assistant", async route => {
@@ -99,7 +89,7 @@ test("AI consent, context privacy, follow-up history and retry work with control
   const assistant = page.getByRole("region", { name: "VORA assistant", exact: true });
   await expect(assistant).toBeVisible();
   await expect(assistant.getByRole("button", { name: "Send", exact: true })).toBeDisabled();
-  await assistant.getByRole("checkbox", { name: "I agree to send my questions and this conversation to OpenAI, the AI provider.", exact: true }).check();
+  await assistant.getByRole("checkbox", { name: "I agree to send my questions and this conversation to OpenAI, together with the selected topic and public VORA explanations.", exact: true }).check();
   await assistant.getByRole("textbox", { name: "Your question", exact: true }).fill("What does this role mean?");
   await assistant.getByRole("button", { name: "Send", exact: true }).click();
   await expect(assistant.getByText("Reading your question…", { exact: false })).toBeVisible();
@@ -172,7 +162,8 @@ test("screening filters and travel preparation persist without presenting recomm
   await expect(page.getByRole("heading", { name: "Prostate & genital examination", exact: true })).toHaveCount(0);
   const appointment = page.getByRole("region", { name: "Plan an appointment", exact: true });
   await expect(appointment).toContainText("Booking not connected");
-  await expect(appointment.getByRole("button", { name: "Choose a practice", exact: false })).toBeDisabled();
+  await expect(appointment.getByRole("button", { name: "Try appointment demo", exact: true })).toBeEnabled();
+  await expect(appointment).toContainText("No real booking");
   await page.locator("#birth-year").fill(String(new Date().getFullYear() - 46));
   await page.getByRole("button", { name: "Apply filters", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Mammography screening", exact: true })).toHaveCount(0);
@@ -207,7 +198,7 @@ test("folder rows target the chosen document, person changes require confirmatio
   await startPower(page);
   await page.locator("#block-notes").fill("SYNTHETIC_PERSON_ONE_NOTES");
   await area(page, "Overview");
-  await page.getByRole("button", { name: /02 Patient directive/ }).click();
+  await page.getByRole("button", { name: /^Patient directive/ }).click();
   const directive = page.getByRole("checkbox", { name: "Select Patient directive", exact: true });
   await expect(directive).not.toBeChecked();
   await expect(directive).toBeFocused();

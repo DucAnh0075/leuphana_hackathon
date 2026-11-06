@@ -47,7 +47,7 @@ export function consumerError(result: { code?: string } | null | undefined, fall
   return (result?.code && messages[result.code]) || fallback;
 }
 
-export const defaultConsumerDestination = "/vorsorge?view=documents";
+export const defaultConsumerDestination = "/vorsorge/app";
 
 export function safeConsumerDestination(value?: string): string {
   if (!value?.startsWith("/") || value.startsWith("//") || /[\\\u0000-\u001f]/.test(value)) return defaultConsumerDestination;

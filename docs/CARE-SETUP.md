@@ -3,9 +3,13 @@
 Stand: 05.11.2026. Implementierter Demonstrator im Branch `feat/notfallkarten-ui`.
 Die klinische Integration ist simuliert. Sämtliche bereitgestellten Personen und PDFs sind synthetisch.
 
-## Consumer-Ausbau vom 06.11.2026
+## Aktueller Consumer-Ausbau VORAcard — 06.11.2026
 
-Der aktuelle englische **VORA**-Arbeitsbereich startet unter `/vorsorge`: Dokumentbausteine, allgemeine Vorsorgeangebote, Impfpass, Reisevorbereitung und kontextbezogener KI-Chat. [Design und Abnahme](VORA-DESIGN.md) sowie [KI-Konfiguration](VORA-AI.md) beschreiben diesen Ausbau. Entwürfe und Einträge werden lokal im Browser (`localStorage`) gespeichert, ohne automatische Übernahme in Supabase oder eine Klinikakte. Die bestehende Übergabe bleibt ein separater, autorisierter Ablauf.
+**VORAcard** startet mit einer öffentlichen DE/EN-Website unter `/vorsorge`. Registrierung/Anmeldung führen in das Profil unter `/vorsorge/app`; eine gesonderte Demo bleibt ausdrücklich als solche erkennbar. Personenbezug, Anlass und Dokumentauswahl gehören zu getrennten Fällen im Profil. Der Dokumentenfinder ist pro Fall erneut ausführbar. Das Dashboard verbindet offene Dokumentaufgaben, hinzugefügte Vorsorgeaufgaben und bestätigte Arzt-/Notar-Demotermine. Maßgeblich ist der [aktuelle Featurevertrag](CONSUMER-FEATURES.md#aktueller-voracard-vertrag--6-november-2026); frühere Abnahmen bleiben historische Nachweise.
+
+Der [Profiladapter](../lib/vora-profile-service.ts) nutzt die bestehende verifizierte Supabase-Sitzung und die RPCs `vora_profile_read` / `vora_profile_save`. [supabase/vora-profile.sql](../supabase/vora-profile.sql) enthält die **additive, noch nicht angewendete** Migration mit Eigentümerbindung, Revision und Wiederholungsschutz. Der geprüfte lokale Auth-Lauf meldet `configured: false`; produktiver Profilspeicher und Cloud-RLS sind deshalb noch nicht nachgewiesen. Es wurden keine Providerkonfiguration, Care-Tabellen oder bestehenden Freigaben geändert. Einrichten und Prüfen dieser Migration im verknüpften Projekt ist ein offener Betriebsschritt, kein bereits erfolgter DB-Effekt.
+
+Dokumentfälle, Sprachpräferenz, Profilfilter, Aufgaben und Demo-Termindaten haben einen DB-Adapter; die separate Demo hält ihre Profile im Server-Arbeitsspeicher. Gesundheitspass, Organspendeentwurf und lokale Dateien verwenden den serverseitig bestimmten Konto-/Demo-`localScope` und werden nicht automatisch in die Profil-DB oder Klinikakte kopiert. Der Chat bleibt temporär. Echte ePA-, Doctolib- und Notariatsbuchungen sind nicht angebunden. DE/EN wählt tatsächliche verfügbare BMJV-Sprachfassungen; persönliche Notizen werden nicht automatisch übersetzt.
 
 Die frühere Planung bleibt unter `/vorsorge?view=legacy` mit ihrem bisherigen `sessionStorage` und Text-Export erreichbar. Der [Featurekatalog](CONSUMER-FEATURES.md) erhält die frühere Priorisierung als nachvollziehbare Vorgeschichte und verweist auf den aktuellen Ausbau.
 
@@ -16,7 +20,8 @@ Die frühere Planung bleibt unter `/vorsorge?view=legacy` mit ihrem bisherigen `
 | Ziel | Voraussetzung / Einstieg |
 |---|---|
 | Vorhandene statische KIS-Ansicht | `/`, ohne Konfiguration |
-| Öffentliche geführte Planung | `/vorsorge`, ohne Anmeldung |
+| Öffentliche VORAcard-Website | `/vorsorge`, ohne Anmeldung; Nutzen, Ablauf und DE/EN-Sprachwahl |
+| Profil, Fälle, wiederholbarer Dokumentenfinder und Dashboard | `/vorsorge/app`, verifizierte Sitzung und eingerichteter Profilspeicher; alternativ ausdrückliche getrennte Demo |
 | Bestehende Dokumente und Übergabe vorführen | `/anmelden` → „Open sample workspace“ |
 | Eigene Dokumente und Übergaben | `/vorsorge?view=documents` bzw. `view=handoffs`; ohne Demo-ID mit Supabase-Sitzung |
 | Klinischer Eingang und Aktenübernahme | `/klinik`; klinische Mitgliedschaft oder ausdrücklich synthetischer Demo-Lauf |
@@ -108,7 +113,7 @@ Der implementierte Endpunkt `POST /api/assistant` arbeitet **lokal und determini
 
 **Historischer Stand dieses Bestandsassistenten vom 05.11.2026:** Die damals vorgeschlagene externe OpenAI-Anbindung wurde durch die automatische Freigabeprüfung wegen möglicher Übermittlung von Vorsorgeinhalten abgelehnt und nicht eingebaut. Die lokale Hilfe unter `/api/assistant` bleibt ohne Schlüssel und externe Modellverbindung nutzbar.
 
-**Neuer VORA-Chat vom 06.11.2026:** Der anschließend ausdrücklich beauftragte Dialog verwendet den getrennten Endpunkt `/api/vora/assistant`. Nach bewusster Zustimmung sendet er nur eingegebenen Chattext, Gesprächsverlauf und Abschnittsbezeichnungen an OpenAI; gespeicherte Dokumentantworten, Profil-, Impf- und Reisedaten werden nicht automatisch angehängt. Dafür ist ein gültiger serverseitiger `OPENAI_API_KEY` nötig. Einrichtung, Grenzen und Fehlerzustände stehen in [VORA-AI.md](VORA-AI.md). Die frühere Ablehnung ist keine Aussage über den Implementierungsstand dieses neuen, anders begrenzten Endpunkts.
+**Neuer VORA-Chat vom 06.11.2026:** Der ausdrücklich beauftragte Dialog nutzt `/api/vora/assistant` mit lokaler ChatGPT-Anmeldung oder ausdrücklich gewähltem API-Schlüsselmodus. Nach Gesprächseinwilligung werden Chattext, Verlauf und ausgewählter öffentlicher VORA-/Vorlagenkontext übermittelt; gespeicherte Antworten, Profil-, Impf-, Karten-/Datei- und Reisedaten werden nicht automatisch angehängt. Ein API-Schlüssel ist keine Voraussetzung des ChatGPT-Wegs. Einrichtung, Grenzen und Fehlerzustände stehen in [VORA-AI.md](VORA-AI.md). Die frühere Ablehnung betrifft den historischen Bestandsassistenten, nicht diesen neuen begrenzten Endpunkt; Supabase bleibt unverändert.
 
 ## Quellen für die neue Fassung
 

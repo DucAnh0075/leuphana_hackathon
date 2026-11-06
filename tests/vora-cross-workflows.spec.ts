@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
+import { emptyWorkspace, STORAGE_KEY } from "../lib/vora";
 
 async function navigate(page: Page, name: string) {
   await page.getByRole("navigation", { name: "Main navigation", exact: true }).getByRole("button", { name, exact: true }).click();
@@ -12,20 +13,24 @@ test("one local workspace moves through prevention, vaccination, travel, prepara
   const syntheticVaccine = "WORKFLOW_SYNTHETIC_RECORD";
   const syntheticNote = "WORKFLOW_PREPARATION_ONLY_NOT_AN_ORIGINAL";
   const birthYear = String(new Date().getFullYear() - 55);
+  const legacy = emptyWorkspace();
+  legacy.vaccines.push({ id: "workflow-legacy", name: syntheticVaccine, date: "2024-05-08", product: "", batch: "", note: "" });
+  await page.addInitScript(({ key, value }) => { if (!localStorage.getItem(key)) localStorage.setItem(key, value); }, { key: STORAGE_KEY, value: JSON.stringify(legacy) });
   await page.goto("/vorsorge");
 
-  await test.step("save prevention filters, add a personal record, and reopen both", async () => {
+  await test.step("save prevention filters, import fictional ePA records, and preserve the older personal record", async () => {
     await navigate(page, "Prevention");
     await page.locator("#birth-year").fill(birthYear);
     await page.locator("#programme").selectOption("women");
     await page.getByRole("button", { name: "Apply filters", exact: true }).click();
     await expect(page.getByRole("heading", { name: "Mammography screening", exact: true })).toBeVisible();
-    await navigate(page, "Vaccinations");
-    await page.getByRole("button", { name: "Add vaccination", exact: false }).click();
-    await page.locator("#vaccine-name").fill(syntheticVaccine);
-    await page.locator("#vaccine-date").fill("2024-05-08");
-    await page.getByRole("button", { name: "Save vaccination", exact: true }).click();
+    await navigate(page, "Health pass");
+    await page.getByRole("button", { name: "Connect Demo-ePA", exact: true }).click();
+    await page.getByRole("checkbox", { name: /I agree to import/ }).check();
+    await page.getByRole("button", { name: "Import demo vaccinations", exact: true }).click();
     await page.reload();
+    await expect(page.getByText("Demo-ePA synchronized", { exact: true })).toBeVisible();
+    await page.getByText("Older self-entered records (1)", { exact: true }).click();
     await expect(page.getByRole("heading", { name: syntheticVaccine, exact: true })).toBeVisible();
     await navigate(page, "Prevention");
     await expect(page.locator("#birth-year")).toHaveValue(birthYear);
@@ -110,9 +115,11 @@ test("one local workspace moves through prevention, vaccination, travel, prepara
 
   await test.step("return to VORA with local preparation and personal records still separate", async () => {
     await page.getByRole("link", { name: "VORA home", exact: true }).click();
-    await navigate(page, "Vaccinations");
+    await navigate(page, "Health pass");
+    await page.getByText("Older self-entered records (1)", { exact: true }).click();
     await expect(page.getByRole("heading", { name: syntheticVaccine, exact: true })).toBeVisible();
     await navigate(page, "Documents");
+    await page.getByRole("navigation", { name: "Document blocks", exact: true }).getByRole("button", { name: /Your preferred guardian/ }).click();
     await expect(page.locator("#block-notes")).toHaveValue(syntheticNote);
     await navigate(page, "Travel");
     await expect(page.locator("#destination")).toHaveValue("Ghana");
@@ -123,6 +130,7 @@ test("one local workspace moves through prevention, vaccination, travel, prepara
 
 test("AI conversations follow all five contexts while personal records remain outside the request", async ({ page }, testInfo) => {
   test.setTimeout(90_000);
+  await page.route("**/api/vora/chatgpt", route => route.fulfill({ json: { available: true, connected: true, planEnabled: true, pending: false, accountLabel: "Synthetic test account", models: [{ slug: "test-model", displayName: "Test model" }] } }));
   const marker = "SYNTHETIC_PRIVATE_WORKFLOW_MARKER";
   const sent: Array<{ consent: boolean; context: { area: string }; messages: Array<{ role: string; content: string }> }> = [];
   await page.route("**/api/vora/assistant", async route => {
@@ -134,19 +142,18 @@ test("AI conversations follow all five contexts while personal records remain ou
   await page.getByRole("checkbox", { name: "Select Power of attorney", exact: true }).check();
   await page.getByRole("button", { name: "Start selected documents", exact: false }).click();
   await page.locator("#block-notes").fill(marker);
-  await navigate(page, "Vaccinations");
-  await page.getByRole("button", { name: "Add vaccination", exact: false }).click();
-  await page.locator("#vaccine-name").fill(marker);
-  await page.locator("#vaccine-date").fill("2024-05-08");
-  await page.getByRole("button", { name: "Save vaccination", exact: true }).click();
+  await navigate(page, "Health pass");
+  await page.getByRole("button", { name: "Complete a card", exact: true }).click();
+  await page.getByLabel("Your full name", { exact: true }).fill(marker);
   await navigate(page, "Travel");
   await page.locator("#destination").fill(marker);
   await page.locator("#departure").fill("2027-06-01");
   await page.getByRole("button", { name: "Save trip", exact: true }).click();
 
-  for (const name of ["Overview", "Documents", "Prevention", "Vaccinations", "Travel"]) {
+  for (const name of ["Overview", "Documents", "Prevention", "Health pass", "Travel"]) {
     await test.step(`${name}: consent, current context, follow-up, and cleared conversation on close`, async () => {
       await navigate(page, name);
+      const contextArea = name === "Health pass" ? "vaccinations" : name.toLowerCase();
       await page.getByRole("button", { name: "Ask VORA", exact: true }).click();
       const assistant = page.getByRole("region", { name: "VORA assistant", exact: true });
       const consent = assistant.getByRole("checkbox");
@@ -156,12 +163,12 @@ test("AI conversations follow all five contexts while personal records remain ou
       await consent.check();
       await assistant.getByRole("textbox", { name: "Your question", exact: true }).fill("Explain the current section without using personal information.");
       await assistant.getByRole("button", { name: "Send", exact: true }).click();
-      await expect(assistant.getByText(`Controlled test reply for ${name.toLowerCase()}.`, { exact: false })).toBeVisible();
-      expect(sent.at(-1)?.context).toEqual({ area: name.toLowerCase() });
+      await expect(assistant.getByText(`Controlled test reply for ${contextArea}.`, { exact: false })).toBeVisible();
+      expect(sent.at(-1)?.context).toMatchObject({ area: contextArea });
       expect(sent.at(-1)?.messages).toHaveLength(1);
       await assistant.getByRole("textbox", { name: "Your question", exact: true }).fill("What is the next manual step?");
       await assistant.getByRole("button", { name: "Send", exact: true }).click();
-      await expect(assistant.getByText(`Controlled test reply for ${name.toLowerCase()}.`, { exact: false })).toHaveCount(2);
+      await expect(assistant.getByText(`Controlled test reply for ${contextArea}.`, { exact: false })).toHaveCount(2);
       expect(sent.at(-1)?.messages).toHaveLength(3);
       expect(JSON.stringify(sent)).not.toContain(marker);
       await assistant.getByRole("button", { name: "Close assistant", exact: true }).click();

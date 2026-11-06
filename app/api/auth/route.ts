@@ -61,7 +61,7 @@ export async function POST(request: Request) {
   try {
     requireSameOrigin(request);
     const body = await readBoundedJson(request);
-    if (typeof body.action !== "string" || !["otp", "verify", "password", "logout"].includes(body.action)) {
+    if (typeof body.action !== "string" || !["otp", "verify", "password", "signup", "logout"].includes(body.action)) {
       throw new RequestBoundaryError(400, "Diese Anmeldeaktion ist nicht bekannt.");
     }
     const client = await createSupabaseServerClient();
@@ -74,6 +74,16 @@ export async function POST(request: Request) {
     }
 
     const email = emailFrom(body);
+    if (body.action === "signup") {
+      if (typeof body.password !== "string" || body.password.length < 8 || body.password.length > 1024) throw new RequestBoundaryError(400, "Bitte ein Passwort mit mindestens 8 Zeichen eingeben.");
+      const confirmationReturn = new URL("/anmelden?next=%2Fvorsorge%2Fapp", request.url).toString();
+      const { data, error } = await client.auth.signUp({ email, password: body.password, options: { emailRedirectTo: confirmationReturn } });
+      if (error?.status === 429) return authFailure(429, "");
+      if (error && (!error.status || error.status >= 500)) return unavailable();
+      // Existing and unknown addresses share the confirmation response. Provider policy stays unchanged.
+      if (error) return json({ ok: true, confirmationRequired: true });
+      return json({ ok: true, confirmationRequired: !data.session });
+    }
     if (body.action === "otp") {
       const { error } = await client.auth.signInWithOtp({
         email,

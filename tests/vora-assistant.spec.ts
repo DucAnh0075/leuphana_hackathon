@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { answerVoraQuestion, createVoraRequestBudget, parseVoraAssistantRequest, type VoraAssistantRequest } from "../lib/vora-assistant";
 import { readBoundedJson, requireSameOrigin } from "../lib/auth/request";
+import { SOURCES } from "../lib/vora";
 
 const valid: VoraAssistantRequest = {
   consent: true, locale: "de", context: { area: "documents", documentTitle: "Patientenverfügung", moduleTitle: "Was mir wichtig ist" },
@@ -55,13 +56,15 @@ test("provider receives bounded multi-turn context, non-persistent request and n
   };
   const messages = [...valid.messages, { role: "assistant" as const, content: "Was ist dir wichtig?" }, { role: "user" as const, content: "Nähe zu meiner Familie." }];
   const answer = await answerVoraQuestion({ ...valid, messages }, { apiKey: "synthetic-test-token", model: "test-model" }, undefined, { fetch: transport });
-  expect(answer).toMatchObject({ mode: "live", sources: [] });
+  expect(answer).toMatchObject({ mode: "live", sources: [{ title: expect.any(String), url: SOURCES.directive }] });
   expect(answer.message).toContain("Wünschen");
   expect(authorization).toBe("Bearer synthetic-test-token");
   expect(outgoing).toMatchObject({ model: "test-model", store: false, max_output_tokens: 1200 });
   expect(outgoing).not.toHaveProperty("tools");
   expect(outgoing).not.toHaveProperty("previous_response_id");
-  expect(outgoing?.input).toEqual([{ role: "user", content: expect.stringContaining("titles only") }, ...messages]);
+  expect(outgoing?.input).toEqual(messages);
+  expect(outgoing?.instructions).toContain("Patientenverfügung");
+  expect(outgoing?.instructions).toContain("curated-public-context-not-live-retrieval");
   expect(outgoing?.instructions).toContain("German");
   expect(outgoing?.instructions).toContain("You cannot save, sign, send, book or share anything");
 });
@@ -104,6 +107,18 @@ test("timeout and caller cancellation abort the actual provider request", async 
   controller.abort();
   await expect(pending).rejects.toMatchObject({ code: "CANCELLED" });
   expect(aborted).toBe(true);
+});
+
+test("a maximum-size completed answer remains valid full history; oversized output fails without truncation", async () => {
+  const fullAnswer = "ä".repeat(6000);
+  const answer = await answerVoraQuestion(valid, { apiKey: "synthetic" }, undefined, { fetch: async () => completed(fullAnswer) });
+  expect(answer.message).toBe(fullAnswer);
+  const followup: VoraAssistantRequest = { ...valid, messages: [...valid.messages, { role: "assistant", content: answer.message }, { role: "user", content: "Bitte erkläre den nächsten Schritt." }] };
+  expect(parseVoraAssistantRequest(followup)).toEqual(followup);
+  let sentHistory: unknown;
+  await answerVoraQuestion(followup, { apiKey: "synthetic" }, undefined, { fetch: async (_url, init) => { sentHistory = JSON.parse(init!.body as string).input; return completed("Der nächste Schritt ist offen."); } });
+  expect(sentHistory).toEqual(followup.messages);
+  await expect(answerVoraQuestion(valid, { apiKey: "synthetic" }, undefined, { fetch: async () => completed("x".repeat(6001)) })).rejects.toMatchObject({ status: 502, code: "AI_OUTPUT_LIMIT" });
 });
 
 test("request budget bounds concurrent calls, releases once, and recovers after a minute", () => {
