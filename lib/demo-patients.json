@@ -715,7 +715,7 @@
         {
           "time": "05.11.2026 09:40",
           "title": "Vorsorgedokumente eingegangen",
-          "text": "Vier Vorsorgedokumente zugeordnet; vier konkrete Behandlungswünsche mit Bedingungen und Belegstellen in die Akte übernommen. Synthetische Vorführung, keine automatische Gültigkeitsprüfung."
+          "text": "Zwei Dokumente von der NFC-Notfallkarte übernommen. Inhaltliche Gültigkeit nicht automatisch bestätigt."
         },
         {
           "time": "05.11.2026 08:10",
@@ -731,57 +731,28 @@
       "documents": [
         {
           "id": "26004179-vorsorge",
-          "title": "Vorsorgevollmacht – Gesundheit",
+          "title": "Vorsorgevollmacht (BMJ-Formular)",
           "kind": "Vorsorgevollmacht",
           "date": "12.06.2025",
           "received": "05.11.2026 09:40",
           "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-vorsorge.pdf",
+          "url": "/card-documents/Vorsorgevollmacht.pdf",
           "pages": [
             {
-              "heading": "Vollmacht - Personen",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "Vollmacht",
-                  "text": "Henri Becker; bevollmächtigte Person: Martin Becker."
-                }
-              ]
+              "heading": "Personen",
+              "sections": []
             },
             {
               "heading": "Gesundheitssorge und Aufenthalt",
-              "sections": [
-                {
-                  "id": "scope",
-                  "title": "1. Gesundheitssorge/Pflegebedürftigkeit",
-                  "text": "Sie darf in allen Angelegenheiten der Gesundheitssorge entscheiden, ebenso über alle Einzelheiten einer ambulanten oder (teil-)stationären Pflege."
-                },
-                {
-                  "id": "choices",
-                  "title": "Ausgewählte Befugnisse",
-                  "text": "Gesundheitssorge und besonders risikobehaftete ärztliche Maßnahmen: Ja. Allgemeine Schweigepflichtentbindung gegenüber Dritten: Nein. Freiheitsentziehung, ärztliche Zwangsmaßnahmen und Wohnungsangelegenheiten: Nein."
-                }
-              ]
+              "sections": []
             },
             {
               "heading": "Behörden und Vermögenssorge",
-              "sections": [
-                {
-                  "id": "finance",
-                  "title": "4. Vermögenssorge",
-                  "text": "Alle Befugnisse auf dieser Seite: Nein."
-                }
-              ]
+              "sections": []
             },
             {
-              "heading": "Weitere Regelungen",
-              "sections": [
-                {
-                  "id": "restriction",
-                  "title": "10. Weitere Regelungen",
-                  "text": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann. Auskünfte und Akteneinsicht nur zum aktuellen Aufenthalt bis 31.12.2026; keine Weitergabe an Dritte."
-                }
-              ]
+              "heading": "Weitere Befugnisse und Unterschrift",
+              "sections": []
             }
           ],
           "provenance": {
@@ -789,190 +760,41 @@
             "label": "BMJ-Formular Vorsorgevollmacht",
             "url": "/pdfs/Vorsorgevollmacht.pdf",
             "version": "Januar 2023",
-            "note": "Originalformular mit synthetisch ausgefüllten Feldern und eindeutigen Ja/Nein-Auswahlen. Ohne Unterschrift; keine rechtswirksame Vollmacht."
-          },
-          "formData": {
-            "representativeBirth": "23.02.1971",
-            "address": "Musterweg 11, 00000 Demostadt",
-            "representativeAddress": "Beispielallee 21, 00000 Demostadt",
-            "condition": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann.",
-            "restriction": "Auskünfte und Akteneinsicht nur zum aktuellen Aufenthalt bis 31.12.2026; keine Weitergabe an Dritte."
+            "note": "Originalformular mit synthetisch ausgefüllten Feldern (Henri Becker / Martin Becker). Ohne Unterschrift; keine rechtswirksame Vollmacht."
           }
         },
         {
           "id": "26004179-patientenverfuegung",
-          "title": "Patientenverfügung",
+          "title": "Patientenverfügung (Formular Bayern)",
           "kind": "Patientenverfügung",
           "date": "18.08.2025",
           "received": "05.11.2026 09:40",
           "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-patientenverfuegung.pdf",
+          "url": "/card-documents/Patientenverfuegung.pdf",
           "pages": [
             {
-              "heading": "Anwendungssituation und Symptomlinderung",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "Eingangsformel",
-                  "text": "Ich, Henri Becker, geboren am 22.08.1952, wohnhaft Musterweg 11, 00000 Demostadt, bestimme hiermit für den Fall, dass ich meinen Willen nicht mehr bilden oder verständlich äußern kann. Alle Angaben und Entscheidungen sind für diese Demo erfunden."
-                },
-                {
-                  "id": "situation",
-                  "title": "2.2 Beschriebene Anwendungssituation",
-                  "text": "Wenn ich mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde. Andere in der Vorlage angebotene Situationen sind in dieser Demo-Auswahl nicht ausgewählt.",
-                  "templatePage": 1,
-                  "templateSection": "2.2"
-                },
-                {
-                  "id": "schmerz",
-                  "title": "2.3.2 Schmerz- und Symptombehandlung",
-                  "text": "In den oben beschriebenen Situationen wünsche ich eine fachgerechte Schmerz- und Symptombehandlung, wenn alle sonstigen medizinischen Möglichkeiten zur Schmerz- und Symptomkontrolle versagen, auch Mittel mit bewusstseinsdämpfenden Wirkungen zur Beschwerdelinderung. Die unwahrscheinliche Möglichkeit einer ungewollten Verkürzung meiner Lebenszeit durch schmerz- und symptomlindernde Maßnahmen nehme ich in Kauf.",
-                  "templatePage": 2,
-                  "templateSection": "2.3.2"
-                }
-              ]
+              "heading": "Situationen und Behandlungswünsche",
+              "sections": []
             },
             {
-              "heading": "Ernährung und Wiederbelebung",
-              "sections": [
-                {
-                  "id": "condition",
-                  "title": "Geltungsbedingung für diese Seite",
-                  "text": "Nur wenn ich meinen Willen nicht mehr bilden oder verständlich äußern kann und mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde."
-                },
-                {
-                  "id": "ernaehrung",
-                  "title": "2.3.3 Künstliche Ernährung und Flüssigkeitszufuhr",
-                  "text": "In den oben beschriebenen Situationen wünsche ich, dass eine künstliche Ernährung und Flüssigkeitszufuhr begonnen oder weitergeführt wird, wenn damit mein Leben verlängert werden kann.",
-                  "templatePage": 3,
-                  "templateSection": "2.3.3"
-                },
-                {
-                  "id": "reanimation",
-                  "title": "2.3.4 Wiederbelebung",
-                  "text": "In den oben beschriebenen Situationen wünsche ich Versuche der Wiederbelebung.",
-                  "templatePage": 3,
-                  "templateSection": "2.3.4 A"
-                },
-                {
-                  "id": "not-general",
-                  "title": "Abgrenzung der Demo-Auswahl",
-                  "text": "Die weitergehenden Alternativen in Abschnitt 2.3.4 B der Vorlage sind nicht ausgewählt. Diese Festlegung ist keine pauschale Anordnung für alle Fälle eines Kreislaufstillstands oder Atemversagens."
-                }
-              ]
+              "heading": "Ablehnungen und Hinweise",
+              "sections": []
             },
             {
-              "heading": "Beatmung, Bezugsperson und Dokumentstatus",
-              "sections": [
-                {
-                  "id": "condition",
-                  "title": "Geltungsbedingung für diese Seite",
-                  "text": "Nur wenn ich meinen Willen nicht mehr bilden oder verständlich äußern kann und mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde."
-                },
-                {
-                  "id": "beatmung",
-                  "title": "2.3.5 Künstliche Beatmung",
-                  "text": "In den oben beschriebenen Situationen wünsche ich eine künstliche Beatmung, falls dies mein Leben verlängern kann.",
-                  "templatePage": 3,
-                  "templateSection": "2.3.5"
-                },
-                {
-                  "id": "linked-power",
-                  "title": "2.7 Bezug zur Vorsorgevollmacht",
-                  "text": "Benannte Person im synthetischen Datensatz: Martin Becker (Sohn); +49 (0)000 201 01. Deren Befugnisse ergeben sich aus der gesonderten Vorsorgevollmacht, nicht aus dieser Patientenverfügung.",
-                  "templatePage": 6,
-                  "templateSection": "2.7"
-                },
-                {
-                  "id": "unsigned",
-                  "title": "Synthetische Fassung ohne Unterschrift",
-                  "text": "Keine ärztliche Beratung, Einwilligungsfähigkeit oder rechtswirksame Erklärung wird für diese fiktive Person behauptet. Es ist keine Unterschrift eingetragen. Nicht ausgewählte Themen der Vorlage bleiben ungeregelt."
-                }
-              ]
-            }
-          ],
-          "provenance": {
-            "kind": "adapted-blocks",
-            "label": "BMJ-Textbausteine Patientenverfügung",
-            "url": "/templates/patientenverfuegung-textbausteine.pdf",
-            "version": "Bereitgestellte Fassung, Januar 2023",
-            "note": "Individuell zusammengestellte Demo-Auswahl aus den bereitgestellten Textbausteinen. Alternative Formulierungen wurden nicht gemeinsam übernommen. Nicht unterschrieben."
-          }
-        },
-        {
-          "id": "26004179-betreuung",
-          "title": "Betreuungsverfügung",
-          "kind": "Betreuungsverfügung",
-          "date": "12.06.2025",
-          "received": "05.11.2026 09:40",
-          "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-betreuung.pdf",
-          "pages": [
+              "heading": "Vertrauenspersonen",
+              "sections": []
+            },
             {
-              "heading": "Wunsch für eine mögliche Betreuung",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
-                },
-                {
-                  "id": "nomination",
-                  "title": "2. Gewünschte Betreuungsperson",
-                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Becker als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
-                },
-                {
-                  "id": "limits",
-                  "title": "3. Grenzen der Benennung",
-                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
-                }
-              ]
+              "heading": "Widerruf und Unterschrift",
+              "sections": []
             }
           ],
           "provenance": {
-            "kind": "synthetic",
-            "label": "Synthetisches Demodokument",
-            "url": "",
-            "version": "Demo 05.11.2026",
-            "note": "Eigenständig verfasster Demotext, keine offizielle Formularvorlage."
-          }
-        },
-        {
-          "id": "26004179-auskunft",
-          "title": "Auskunft & Schweigepflichtentbindung",
-          "kind": "Auskunftsvollmacht",
-          "date": "03.11.2026",
-          "received": "05.11.2026 09:40",
-          "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-auskunft.pdf",
-          "pages": [
-            {
-              "heading": "Information und Kommunikation",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
-                },
-                {
-                  "id": "information",
-                  "title": "2. Umfang der Auskunft",
-                  "text": "Martin Becker darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
-                },
-                {
-                  "id": "time",
-                  "title": "3. Zeitliche und sachliche Begrenzung",
-                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
-                }
-              ]
-            }
-          ],
-          "provenance": {
-            "kind": "synthetic",
-            "label": "Synthetisches Demodokument",
-            "url": "",
-            "version": "Demo 05.11.2026",
-            "note": "Eigenständig verfasster Demotext, keine offizielle Formularvorlage."
+            "kind": "original-form",
+            "label": "Formular Patientenverfügung, Bayerisches Staatsministerium der Justiz",
+            "url": "https://www.justiz.bayern.de/Vorsorge",
+            "version": "22. Auflage",
+            "note": "Originalformular mit synthetisch ausgefüllten Feldern. Ohne Unterschrift; keine rechtswirksame Verfügung."
           }
         }
       ],
@@ -981,10 +803,10 @@
           "id": "vertretung",
           "label": "Gesundheitsvertretung",
           "value": "Martin Becker",
-          "condition": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann. Die Vorlage verlangt zusätzlich Besitz und Vorlage der Originalurkunde; in der Demo nicht nachgewiesen.",
+          "condition": "Vollmacht wirkt nur, solange Martin Becker die Vollmachtsurkunde besitzt und im Original vorlegen kann.",
           "exclusions": [
-            "Vermögens-, Wohnungs- und Behördenangelegenheiten, Freiheitsentziehung, Zwangsmaßnahmen und Untervollmachten sind ausgeschlossen.",
-            "Auskunft nur zum aktuellen Aufenthalt bis 31.12.2026; keine Weitergabe an Dritte."
+            "Ärztliche Zwangsmaßnahmen und die Verbringung zu deren Durchführung sind im Formular mit „nein“ angekreuzt.",
+            "Vermögenssorge und Wohnungsauflösung sind nicht erteilt."
           ],
           "person": "Martin Becker",
           "documentId": "26004179-vorsorge",
@@ -996,46 +818,46 @@
         {
           "id": "wille",
           "label": "Behandlungswünsche",
-          "value": "Vier situationsgebundene Festlegungen",
-          "condition": "Nur wenn ich meinen Willen nicht mehr bilden oder verständlich äußern kann und mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde.",
+          "value": "Lindernde Behandlung",
+          "condition": "Nur im unmittelbaren Sterbeprozess oder im Endstadium einer unheilbaren, tödlich verlaufenden Krankheit (Nr. 1 angekreuzt).",
           "exclusions": [
-            "Keine pauschale Reanimations- oder Therapieanordnung; konkrete Festlegungen nur in der beschriebenen Situation."
+            "Gehirnschädigung und fortgeschrittene Demenz sind nicht angekreuzt; künstliche Ernährung ist nicht abgelehnt."
           ],
           "person": "",
           "documentId": "26004179-patientenverfuegung",
           "page": 1,
-          "section": "2.3.2 Schmerz- und Symptombehandlung",
-          "quote": "In den oben beschriebenen Situationen wünsche ich eine fachgerechte Schmerz- und Symptombehandlung, wenn alle sonstigen medizinischen Möglichkeiten zur Schmerz- und Symptomkontrolle versagen, auch Mittel mit bewusstseinsdämpfenden Wirkungen zur Beschwerdelinderung. Die unwahrscheinliche Möglichkeit einer ungewollten Verkürzung meiner Lebenszeit durch schmerz- und symptomlindernde Maßnahmen nehme ich in Kauf.",
+          "section": "2. In allen unter Nummer 1 beschriebenen und angekreuzten Situationen verlange ich",
+          "quote": "Lindernde pflegerische Maßnahmen, insbesondere Mundpflege zur Vermeidung des Durstgefühls, sowie lindernde ärztliche Maßnahmen, im Speziellen Medikamente zur wirksamen Bekämpfung von Schmerzen, Luftnot, Angst, Unruhe, Erbrechen und anderen Krankheitserscheinungen.",
           "category": "wishes"
         },
         {
           "id": "betreuung",
           "label": "Betreuungswunsch",
           "value": "Martin Becker",
-          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "condition": "Erst relevant, falls trotz Vollmacht eine rechtliche Betreuung erforderlich wird.",
           "exclusions": [
-            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+            "Keine gerichtliche Bestellung dokumentiert."
           ],
           "person": "Martin Becker",
-          "documentId": "26004179-betreuung",
-          "page": 1,
-          "section": "2. Gewünschte Betreuungsperson",
-          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Becker als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "documentId": "26004179-vorsorge",
+          "page": 4,
+          "section": "8. Betreuungsverfügung",
+          "quote": "Falls trotz dieser Vollmacht eine gesetzliche Vertretung („rechtliche Betreuung“) erforderlich sein sollte, bitte ich, die oben bezeichnete Vertrauensperson als Betreuer zu bestellen.",
           "category": "care"
         },
         {
           "id": "auskunft",
           "label": "Auskunftsrecht",
           "value": "Martin Becker",
-          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "condition": "Behandelnde Ärzte und Pflegepersonal sind gegenüber Martin Becker von der Schweigepflicht entbunden.",
           "exclusions": [
-            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+            "Vermögensangelegenheiten sind nicht umfasst."
           ],
           "person": "Martin Becker",
-          "documentId": "26004179-auskunft",
-          "page": 1,
-          "section": "2. Umfang der Auskunft",
-          "quote": "Martin Becker darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "documentId": "26004179-vorsorge",
+          "page": 2,
+          "section": "1. Gesundheitssorge/Pflegebedürftigkeit",
+          "quote": "Sie darf Krankenunterlagen einsehen und deren Herausgabe an Dritte bewilligen.",
           "category": "information"
         }
       ],
@@ -1043,78 +865,50 @@
         {
           "id": "schmerz",
           "label": "Schmerz- und Symptombehandlung",
-          "value": "Linderung; Sedierung nur bei sonstigem Versagen",
-          "condition": "Nur wenn ich meinen Willen nicht mehr bilden oder verständlich äußern kann und mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde.",
+          "value": "Linderung, auch bei möglicher Lebenszeitverkürzung",
+          "condition": "Nur im unmittelbaren Sterbeprozess oder im Endstadium einer unheilbaren, tödlich verlaufenden Krankheit (Nr. 1 angekreuzt).",
           "exclusions": [
-            "Gilt nur in der ausdrücklich beschriebenen Situation; keine allgemeine Therapieanordnung.",
-            "Aktuelle Anwendbarkeit und der Wille der betroffenen Person sind gesondert zu prüfen."
+            "Gilt nur in den angekreuzten Situationen; keine allgemeine Therapieanordnung."
           ],
           "person": "",
           "documentId": "26004179-patientenverfuegung",
           "page": 1,
-          "section": "2.3.2 Schmerz- und Symptombehandlung",
-          "quote": "In den oben beschriebenen Situationen wünsche ich eine fachgerechte Schmerz- und Symptombehandlung, wenn alle sonstigen medizinischen Möglichkeiten zur Schmerz- und Symptomkontrolle versagen, auch Mittel mit bewusstseinsdämpfenden Wirkungen zur Beschwerdelinderung. Die unwahrscheinliche Möglichkeit einer ungewollten Verkürzung meiner Lebenszeit durch schmerz- und symptomlindernde Maßnahmen nehme ich in Kauf.",
+          "section": "2. In allen unter Nummer 1 beschriebenen und angekreuzten Situationen verlange ich",
+          "quote": "Die Möglichkeit einer Verkürzung meiner Lebenszeit durch diese Maßnahmen nehme ich in Kauf.",
           "category": "wishes",
-          "target": "Schmerztherapie",
-          "templatePage": 2,
-          "templateSection": "2.3.2 Schmerz- und Symptombehandlung"
-        },
-        {
-          "id": "ernaehrung",
-          "label": "Künstliche Ernährung",
-          "value": "Zur Lebensverlängerung gewünscht",
-          "condition": "Nur wenn ich meinen Willen nicht mehr bilden oder verständlich äußern kann und mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde.",
-          "exclusions": [
-            "Gilt nur in der ausdrücklich beschriebenen Situation; keine allgemeine Therapieanordnung.",
-            "Aktuelle Anwendbarkeit und der Wille der betroffenen Person sind gesondert zu prüfen."
-          ],
-          "person": "",
-          "documentId": "26004179-patientenverfuegung",
-          "page": 2,
-          "section": "2.3.3 Künstliche Ernährung und Flüssigkeitszufuhr",
-          "quote": "In den oben beschriebenen Situationen wünsche ich, dass eine künstliche Ernährung und Flüssigkeitszufuhr begonnen oder weitergeführt wird, wenn damit mein Leben verlängert werden kann.",
-          "category": "wishes",
-          "target": "Ernährung",
-          "templatePage": 3,
-          "templateSection": "2.3.3 Künstliche Ernährung und Flüssigkeitszufuhr"
+          "target": "Schmerztherapie"
         },
         {
           "id": "reanimation",
           "label": "Wiederbelebung",
-          "value": "Versuche gewünscht",
-          "condition": "Nur wenn ich meinen Willen nicht mehr bilden oder verständlich äußern kann und mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde.",
+          "value": "In den angekreuzten Situationen abgelehnt",
+          "condition": "Nur im unmittelbaren Sterbeprozess oder im Endstadium einer unheilbaren, tödlich verlaufenden Krankheit (Nr. 1 angekreuzt).",
           "exclusions": [
-            "Keine pauschale DNR-Anordnung; andere Notfallsituationen sind damit nicht geregelt.",
-            "Aktuelle Anwendbarkeit und der Wille der betroffenen Person sind gesondert zu prüfen."
+            "Keine pauschale DNR-Anordnung; andere Notfallsituationen sind damit nicht geregelt."
           ],
           "person": "",
           "documentId": "26004179-patientenverfuegung",
           "page": 2,
-          "section": "2.3.4 Wiederbelebung",
-          "quote": "In den oben beschriebenen Situationen wünsche ich Versuche der Wiederbelebung.",
+          "section": "3. In den unter Nummer 1 beschriebenen und angekreuzten Situationen lehne ich Folgendes ab",
+          "quote": "Wiederbelebungsmaßnahmen.",
           "category": "wishes",
-          "target": "Notfallplanung",
-          "templatePage": 3,
-          "templateSection": "2.3.4 Wiederbelebung"
+          "target": "Notfallplanung"
         },
         {
           "id": "beatmung",
-          "label": "Künstliche Beatmung",
-          "value": "Zur Lebensverlängerung gewünscht",
-          "condition": "Nur wenn ich meinen Willen nicht mehr bilden oder verständlich äußern kann und mich aller Wahrscheinlichkeit nach unabwendbar im unmittelbaren Sterbeprozess befinde.",
+          "label": "Lebensverlängernde Maßnahmen",
+          "value": "In den angekreuzten Situationen abgelehnt",
+          "condition": "Nur im unmittelbaren Sterbeprozess oder im Endstadium einer unheilbaren, tödlich verlaufenden Krankheit (Nr. 1 angekreuzt).",
           "exclusions": [
-            "Gilt nur in der ausdrücklich beschriebenen Situation; keine allgemeine Therapieanordnung.",
-            "Aktuelle Anwendbarkeit und der Wille der betroffenen Person sind gesondert zu prüfen."
+            "Gilt nur in den angekreuzten Situationen."
           ],
           "person": "",
           "documentId": "26004179-patientenverfuegung",
-          "page": 3,
-          "section": "2.3.5 Künstliche Beatmung",
-          "quote": "In den oben beschriebenen Situationen wünsche ich eine künstliche Beatmung, falls dies mein Leben verlängern kann.",
+          "page": 2,
+          "section": "3. In den unter Nummer 1 beschriebenen und angekreuzten Situationen lehne ich Folgendes ab",
+          "quote": "Maßnahmen, die zum Zweck der Lebenserhaltung bzw. Lebensverlängerung eingesetzt werden und nicht ausschließlich der Linderung von Leiden dienen, wie z. B. maschinelle Beatmung, Dialyse oder Operationen.",
           "category": "wishes",
-          "target": "Beatmung",
-          "templatePage": 3,
-          "templateSection": "2.3.5 Künstliche Beatmung"
+          "target": "Beatmung"
         }
       ]
     },

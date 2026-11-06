@@ -161,14 +161,14 @@ def generate_power(patient, doc):
     seed = hashlib.sha256(json.dumps(values,sort_keys=True,ensure_ascii=False).encode()).digest()[:16]
     from pypdf.generic import ArrayObject, ByteStringObject
     writer._ID = ArrayObject([ByteStringObject(seed),ByteStringObject(seed)])
-    with (OUT/(doc["id"]+".pdf")).open("wb") as stream:
+    with (ROOT / "public" / doc["url"].lstrip("/")).open("wb") as stream:
         writer.write(stream)
     return values
 
 field_checks = 0
 def validate_power(patient,doc,expected):
     global field_checks
-    reader = PdfReader(OUT/(doc["id"]+".pdf"))
+    reader = PdfReader(ROOT / "public" / doc["url"].lstrip("/"))
     fields = reader.get_fields()
     assert len(fields)==69 and len(reader.pages)==4
     for name,value in expected.items():
@@ -199,6 +199,8 @@ def validate_power(patient,doc,expected):
 count = 0
 for patient in DATA["patients"]:
     for doc in patient["documents"]:
+        if not doc["url"].startswith("/demo-documents/"):
+            continue
         if doc["provenance"]["kind"]=="original-form":
             values=generate_power(patient,doc)
             validate_power(patient,doc,values)
@@ -211,7 +213,7 @@ template=fitz.open(DIRECTIVE_SOURCE)
 for patient in DATA["patients"]:
     docs={d["id"]:d for d in patient["documents"]}
     for doc in patient["documents"]:
-        with fitz.open(OUT/(doc["id"]+".pdf")) as pdf:
+        with fitz.open(ROOT / "public" / doc["url"].lstrip("/")) as pdf:
             assert len(pdf)==len(doc["pages"])
             for page in pdf:
                 pages_checked+=1
@@ -225,7 +227,7 @@ for patient in DATA["patients"]:
                     page.get_pixmap(matrix=fitz.Matrix(1.2,1.2)).save(RENDERS/f"{doc['id']}-page-{n+1}.png")
     for fact in patient["facts"]+patient["carePreferences"]:
         assert fact["documentId"] in docs
-        with fitz.open(OUT/(fact["documentId"]+".pdf")) as pdf:
+        with fitz.open(ROOT / "public" / docs[fact["documentId"]]["url"].lstrip("/")) as pdf:
             page_text=norm(pdf[fact["page"]-1].get_text())
             assert norm(fact["quote"]) in page_text,(patient["id"],fact["id"],"Quote missing")
             assert norm(fact["section"]) in page_text,(patient["id"],fact["id"],"Section missing")

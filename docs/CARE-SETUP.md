@@ -30,6 +30,10 @@ Die frühere Planung bleibt unter `/vorsorge?view=legacy` mit ihrem bisherigen `
 | E-Mail-Code für externe Tester | Eigener SMTP-Versand und OTP-Mailvorlage |
 | Physische Handyvorführung | Konkretes iPhone/Tag testen, erreichbare HTTPS-Adresse; localhost auf dem Handy verweist auf das Handy selbst |
 
+Die öffentliche NFC-KIS-Demo ohne Login ist in [README.md](../README.md#nfc-karte-für-die-kis-demo-ohne-login) beschrieben.
+Sie verwendet `/api/karte?card=demo`, eigene Tabellen und den öffentlichen Bucket `documents`.
+Dieser Pfad ist getrennt vom autorisierten Care-Flow über `/scan` und `/klinik`.
+
 Die synthetische Vorführung benötigt **keine** Zugangsdaten. Sie verwendet einen eigenen serverseitigen Zustand und weder eine vorgetäuschte Anmeldung noch einen Ersatzweg zu privaten Cloud-Daten.
 
 ```bash

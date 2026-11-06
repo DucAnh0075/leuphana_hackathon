@@ -554,3 +554,14 @@ input:focus-visible,select:focus-visible { border-color:var(--accent); }
 .source-provenance a { display:inline-block; font-size:12px; line-height:1.5; min-height:28px; padding-top:3px; color:var(--accent); font-weight:500; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
 
 @media (hover:hover) and (pointer:fine) { .template-link:hover,.source-provenance a:hover { color:var(--accent-hover); } }
+
+/* Public KIS card notification. */
+.scan-toast { position:fixed; top:16px; right:16px; z-index:150; width:min(400px,calc(100vw - 32px)); display:flex; flex-wrap:wrap; align-items:flex-start; gap:12px; padding:16px; background:var(--surface); color:var(--ink); border:1px solid var(--accent-line); border-radius:var(--r-lg); box-shadow:var(--shadow-pop); animation:scan-toast-enter var(--dur-enter) var(--ease-out); overflow-wrap:anywhere; }
+.scan-toast > svg { width:22px; color:var(--accent); }
+.scan-toast-content { flex:1; min-width:0; }
+.scan-toast-title { color:var(--accent); font-weight:600; margin-bottom:8px; }
+.scan-toast-content p:last-child { margin-top:8px; }
+.scan-toast-actions { width:100%; border-top:1px solid var(--line); padding-top:8px; }
+.scan-toast .icon-button { min-width:32px; min-height:32px; }
+@keyframes scan-toast-enter { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce) { .scan-toast { animation:none; } }

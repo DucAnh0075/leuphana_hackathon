@@ -62,7 +62,7 @@ test("Patientenwechsel und fremde Dokument-IDs vermischen keine Akten", async ({
   await openSource(page);
   await expect(page.locator(".source-evidence")).toContainText("Martin Becker");
   await expect(page.locator(".source-evidence")).not.toContainText("Jana Berger");
-  await expect(page.locator(".page-sheet .textLayer")).toContainText("Martin Becker");
+  await expect(page.locator(".page-sheet .textLayer")).toContainText("1. Gesundheitssorge/Pflegebedürftigkeit");
   await page.goto("/?patient=26004179&document=26004182-vorsorge&page=2");
   await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
   await expect(page.locator(".embedded-viewer")).toHaveCount(0);
@@ -124,7 +124,7 @@ test("Mobile Ansicht erhält Patientenidentität und überschreitet die Bildschi
   await page.screenshot({ path: info.outputPath("source-mobile.png") });
 });
 
-test("Alle 32 generierten PDFs sind tatsächlich erreichbar", async ({ request }) => {
+test("Alle 30 hinterlegten PDFs sind tatsächlich erreichbar", async ({ request }) => {
   for (const patient of data.patients) for (const doc of patient.documents) {
     const response = await request.get(doc.url);
     expect(response.status()).toBe(200);
@@ -150,7 +150,7 @@ test("Konkrete Behandlungswünsche führen zur individuellen Erklärung und ihre
     await expect(page.locator(".source-evidence")).toContainText(fact.exclusions[0]);
     await expect(page.locator(".pdf-content")).toHaveAttribute("data-evidence-id", fact.id);
     await page.locator(".source-provenance summary").click();
-    await expect(page.locator(".source-provenance a")).toHaveAttribute("href", "/templates/patientenverfuegung-textbausteine.pdf#page=" + fact.templatePage);
+    await expect(page.locator(".source-provenance a")).toHaveAttribute("href", "/templates/patientenverfuegung-textbausteine.pdf#page=" + ("templatePage" in fact ? fact.templatePage : undefined));
     if (fact.id === "reanimation") await page.screenshot({ path: info.outputPath("individual-directive.png"), fullPage: true });
     await page.getByRole("button", { name: "Dokument schließen", exact: true }).click();
   }
@@ -188,4 +188,20 @@ test("Öffentliche KIS-Ansicht nimmt keine anonymen Kartenereignisse als Fallzuo
   await page.evaluate(() => window.dispatchEvent(new CustomEvent("demo-card-scan", { detail: "demo" })));
   await expect(page.getByLabel("Patientenkontext")).toHaveCount(0);
   await expect(page.locator(".patient-table tbody tr")).toHaveCount(8);
+});
+
+
+test("NFC-Karte öffnet Henri Beckers Akte mit Benachrichtigung", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("searchbox").fill("");
+  await page.evaluate(() => window.dispatchEvent(new CustomEvent("kis-card-scan", { detail: "demo" })));
+  const toast = page.getByRole("status").filter({ hasText: "NFC-Notfallkarte erkannt" });
+  await expect(toast).toContainText("NFC-Notfallkarte erkannt");
+  await expect(toast).toContainText("Henri Becker");
+  await expect(toast).toContainText("lokale Demodaten");
+  await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
+  await expect(page.getByRole("tab", { name: /Dokumente/ })).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator(".document-table")).toContainText("Vorsorgevollmacht (BMJ-Formular)");
+  await expect(page.locator(".document-table")).toContainText("Patientenverfügung (Formular Bayern)");
+  await expect(page.locator(".document-table tbody tr")).toHaveCount(2);
 });

@@ -132,3 +132,12 @@ PDF-Daten nach Änderungen neu erzeugen (Python-Entwicklungswerkzeuge, nicht fü
 python -m pip install reportlab pymupdf pypdf
 python scripts/generate_demo_documents.py
 ```
+
+## NFC-Karte für die KIS-Demo (ohne Login)
+
+1. `node scripts/build_kis_card_sql.mjs` ausführen und `supabase/kis-card.sql` im Supabase SQL Editor ausführen. Die App benötigt `NEXT_PUBLIC_SUPABASE_URL` und `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (alternativ `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
+2. `python scripts/fill_card_documents.py` ausführen (PyMuPDF benötigt). `public/card-documents/Vorsorgevollmacht.pdf` und `public/card-documents/Patientenverfuegung.pdf` mit genau diesen Dateinamen in den öffentlichen Bucket `documents` hochladen.
+3. iOS-Kurzbefehl „Inhalte von URL abrufen“: `https://leuphanahackathon.vercel.app/api/karte?card=demo`. Alternativ in NFC Tools die URL `https://leuphanahackathon.vercel.app/karte?card=demo` verwenden.
+4. Am PC `https://leuphanahackathon.vercel.app/` öffnen: Der Scan zeigt eine Benachrichtigung und öffnet Henri Beckers Dokumente.
+
+Dieser öffentliche Demopfad mit synthetischen Daten und eigenen Tabellen ist vom autorisierten Care-Flow (`/scan`, `/klinik`) getrennt. Ohne Supabase funktioniert das lokale Browserereignis `kis-card-scan` für `demo`; die Karten-API antwortet dann mit 503. Die beiden ausgefüllten Originalformulare sind nicht unterschrieben und nicht rechtswirksam.

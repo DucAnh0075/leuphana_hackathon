@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode, type
 import * as Tabs from "@radix-ui/react-tabs";
 import type { CareSnapshot } from "@/lib/care/types";
 import { projectClinicalPatients, type ClinicalDocument, type ClinicalFact as Fact, type ClinicalPatient as Patient } from "@/lib/clinical-care";
+import { loadKisCard, type KisCard } from "@/lib/kis-card";
+import { useKisCardScan } from "@/hooks/useKisCardScan";
+import ScanToast from "./ScanToast";
 import PdfViewer from "./PdfViewer";
 import IdleDialog from "./IdleDialog";
 import PulseMonitor, { SimulationControls } from "./PulseMonitor";
@@ -43,7 +46,10 @@ function VitalChart({ patient }: { patient: Patient }) {
 }
 
 export default function KisWorkspace({ initialPatientId, initialDocumentId, initialEvidenceId, initialPage = 1, careState, integrationPanel, basePath = "/" }: { initialPatientId?: string; initialDocumentId?: string; initialEvidenceId?: string; initialPage?: number; careState?: CareSnapshot; integrationPanel?: ReactNode; basePath?: string }) {
-  const patients = useMemo(() => projectClinicalPatients(careState), [careState]);
+  const [cardOverride, setCardOverride] = useState<Omit<KisCard, "source"> | null>(null);
+  const [toast, setToast] = useState<{ patientId: string; at: number; source: "supabase" | "lokal" } | null>(null);
+  const [unknownCard, setUnknownCard] = useState<string | null>(null);
+  const patients = useMemo(() => projectClinicalPatients(careState).map(patient => !careState && cardOverride?.patientId === patient.id ? { ...patient, documents: cardOverride.documents, facts: cardOverride.facts, carePreferences: cardOverride.carePreferences } : patient), [careState, cardOverride]);
   const simulation = useVitalSimulation(patients);
   const initialPatient = patients.find(patient => patient.id === initialPatientId) ?? null;
   const initialDoc = initialPatient?.documents.find(doc => doc.id === initialDocumentId);
@@ -113,9 +119,9 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
     const target = origin?.element?.isConnected ? origin.element : origin ? document.getElementById("hint-toggle-" + origin.factId) : null;
     target?.focus();
   }, []);
-  const onDocumentPageChange = useCallback((page: number) => {
+  const onDocumentPageChange = (page: number) => {
     if (selected && opened) updateAddress(selected, opened.document, page, opened.fact);
-  }, [selected, opened, updateAddress]);
+  };
   useEffect(() => {
     if (selectedId) {
       // Hydration must not take focus back from a control already reached by the user.
@@ -142,6 +148,16 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
     return () => window.removeEventListener("keydown", escape);
   }, [opened, activeFact, selected, updateAddress, closeFact, closeChart]);
 
+  useKisCardScan({ enabled: !careState, onCard: async id => {
+    const card = await loadKisCard(id);
+    const patient = card && patients.find(patient => patient.id === card.patientId);
+    if (!card || !patient) { setToast(null); setUnknownCard(id); return; }
+    setUnknownCard(null);
+    setCardOverride(card);
+    openPatient(patient, "documents");
+    setToast({ patientId: card.patientId, at: Date.now(), source: card.source });
+  } });
+  const toastPatient = toast && patients.find(patient => patient.id === toast.patientId);
   const visiblePatients = patients.filter(patient => (!room || patient.room === room) && [patient.name, patient.first, patient.id, patient.room, ...patient.diagnoses.map(d => d.title)].join(" ").toLocaleLowerCase("de").includes(query.toLocaleLowerCase("de")));
   const activeScope = selected?.facts.find(fact => fact.id === activeFact);
   const hasDocumentedAllergy = selected?.allergies.some(allergy => allergy !== "Keine Allergie dokumentiert") ?? false;
@@ -163,7 +179,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   const renderDocuments = (compact = false) => {
     if (!selected) return null;
     const docs = compact ? selected.documents : matchingDocuments;
-    return <div className="table-scroll"><table className="document-table"><thead><tr><th>Status</th><th>Dokument / Typ</th><th>Dokumentdatum</th>{!compact && <th>Geltungsbereich</th>}<th>In Akte seit</th><th>Quelle</th></tr></thead><tbody>{docs.map(doc => <tr key={doc.id}><td><span className="document-state"><i className={readDocuments.includes(doc.id) ? "read-indicator" : "new-indicator"} />{readDocuments.includes(doc.id) ? "Geöffnet" : doc.status}</span></td><td><a id={"document-" + doc.id} href={`${basePath}${basePath.includes("?") ? "&" : "?"}patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => { event.preventDefault(); openDocument(doc); }}>{doc.title}</a><small>{doc.kind} · {doc.pages.length} Seiten</small>{doc.provenance && <small className={"provenance-" + doc.provenance.kind}>{doc.provenance.label}</small>}</td><td>{formatDate(doc.date)}</td>{!compact && <td>{selected.facts.filter(fact => fact.documentId === doc.id).map(fact => <div key={fact.id}><strong>{categoryNames[fact.category]}</strong><small>{fact.condition}</small><small>Ausgenommen: {fact.exclusions.join("; ")}</small>{fact.person && <small>Benannte Person: {fact.person}</small>}</div>)}</td>}<td>{formatDate(doc.received)}</td><td><span className="source-cell">Externe Vorsorgedokumentation</span><small>PDF · Originaltext einsehbar</small></td></tr>)}</tbody></table>{!docs.length && <p className="empty-table">Keine Dokumente für diesen Suchbegriff.</p>}</div>;
+    return <div className="table-scroll"><table className="document-table"><thead><tr><th>Status</th><th>Dokument / Typ</th><th>Dokumentdatum</th>{!compact && <th>Geltungsbereich</th>}<th>In Akte seit</th><th>Quelle</th></tr></thead><tbody>{docs.map(doc => <tr key={doc.id}><td><span className="document-state"><i className={readDocuments.includes(doc.id) ? "read-indicator" : "new-indicator"} />{readDocuments.includes(doc.id) ? "Geöffnet" : doc.status}</span></td><td><a id={"document-" + doc.id} href={`${basePath}${basePath.includes("?") ? "&" : "?"}patient=${selected.id}&document=${doc.id}&page=1`} className="patient-link" onClick={event => { event.preventDefault(); openDocument(doc); }}>{doc.title}</a><small>{doc.kind} · {doc.pages.length ? `${doc.pages.length} Seiten` : "PDF"}</small>{doc.provenance && <small className={"provenance-" + doc.provenance.kind}>{doc.provenance.label}</small>}</td><td>{formatDate(doc.date)}</td>{!compact && <td>{selected.facts.filter(fact => fact.documentId === doc.id).map(fact => <div key={fact.id}><strong>{categoryNames[fact.category]}</strong><small>{fact.condition}</small><small>Ausgenommen: {fact.exclusions.join("; ")}</small>{fact.person && <small>Benannte Person: {fact.person}</small>}</div>)}</td>}<td>{formatDate(doc.received)}</td><td><span className="source-cell">Externe Vorsorgedokumentation</span><small>PDF · Originaltext einsehbar</small></td></tr>)}</tbody></table>{!docs.length && <p className="empty-table">Keine Dokumente für diesen Suchbegriff.</p>}</div>;
   };
   const renderFacts = (categories?: string[]) => selected?.facts.filter(fact => !categories || categories.includes(fact.category)).map(fact => <div className={"scope-row " + fact.category} key={fact.id}><div><button className="scope-link" onClick={() => openFact(fact)}>{fact.label}</button><strong>{fact.value}</strong><small className="scope-condition"><b>Gilt nur:</b> {fact.condition}</small>{fact.exclusions.length > 0 && <small className="scope-exclusions"><b>Grenzen:</b> {fact.exclusions.join("; ")}</small>}</div>{sourceLink(fact, true)}</div>);
   const renderTreatmentWishes = (context: string) => {
@@ -180,6 +196,7 @@ export default function KisWorkspace({ initialPatientId, initialDocumentId, init
   </tbody></table></div>;
 
   return <div className="hospital-shell">
+    {!careState && <ScanToast scan={toast && toastPatient ? { ...toast, patient: toastPatient } : null} unknownCard={unknownCard} onClose={() => { setToast(null); setUnknownCard(null); }} onShowDocuments={() => { if (toastPatient) openPatient(toastPatient, "documents"); }} />}
     <header className="application-title"><span><b className="hospital-logo" aria-hidden="true"><Icon name="cross" width="14" height="14" strokeWidth="2.6" /></b>Klinikum Nord <span className="application-subtitle">Klinischer Arbeitsplatz</span></span><span className="demo-label">Synthetische Demo</span><span className="session-user">{careState?.actor.name ?? "Dr. M. Weber · Ärztlicher Dienst"}</span>{!careState && <a href="/vorsorge" className="text-button">VORAcard · Persönliche Vorsorge</a>}</header>
     <div className="application-tabs"><button className={!selected && !inbox ? "active" : ""} onClick={closeChart}><Icon name="hospital" width="15" height="15" />Station 2A <small>Innere Medizin</small></button>{selected && <button className="active patient-workspace-tab" onClick={closeDocument}><Icon name="users" width="15" height="15" />{selected.name}, {selected.first}<small>Fall {selected.id}</small></button>}<span className="system-date">05.11.2026 · Stand 16:30</span></div>
     <div className="application-body">

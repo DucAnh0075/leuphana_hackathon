@@ -56,7 +56,7 @@ test("Hintergrundereignisse und Eltern-Rerender verlängern die 120 Sekunden nic
   // A real keyboard action establishes the start; card events are background input.
   await page.keyboard.press("Tab");
   await page.clock.fastForward(90_000);
-  await page.evaluate(() => window.dispatchEvent(new CustomEvent("demo-card-scan", { detail: "demo" })));
+  await page.evaluate(() => window.dispatchEvent(new CustomEvent("kis-card-scan", { detail: "demo" })));
   await expect(page.locator(".scan-toast")).toBeVisible();
   await expect(page.getByRole("tab", { name: /Dokumente/ })).toHaveAttribute("aria-selected", "true");
   await page.clock.fastForward(11_000);
