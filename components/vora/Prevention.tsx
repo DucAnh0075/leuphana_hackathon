@@ -2,9 +2,10 @@
 import { useState } from "react";
 import { Icon } from "@/components/Icons";
 import { PREVENTION, SOURCES, type WorkspaceState } from "@/lib/vora";
+import AppointmentPlanning from "./AppointmentPlanning";
 import s from "./Vora.module.css";
 
-export function BookingLinks() { return <div className={s.booking}><div><Icon name="hospital"/><div><h3>Ready to speak to a practice?</h3><p>Open a booking service. VORA sends no profile or health information.</p></div></div><div className={s.buttonGroup}><a className={s.secondary} href="https://www.116117.de/" target="_blank" rel="noreferrer">116117 <Icon name="arrow" width={16}/></a><a className={s.secondary} href="https://www.doctolib.de/" target="_blank" rel="noreferrer">Doctolib <Icon name="arrow" width={16}/></a></div></div>; }
+export function BookingLinks() { return <AppointmentPlanning/>; }
 
 export default function Prevention({ state, update }: { state: WorkspaceState; update: (next: WorkspaceState) => void }) {
   const [year, setYear] = useState(state.profile.birthYear);

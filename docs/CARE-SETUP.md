@@ -9,6 +9,8 @@ Der aktuelle englische **VORA**-Arbeitsbereich startet unter `/vorsorge`: Dokume
 
 Die frühere Planung bleibt unter `/vorsorge?view=legacy` mit ihrem bisherigen `sessionStorage` und Text-Export erreichbar. Der [Featurekatalog](CONSUMER-FEATURES.md) erhält die frühere Priorisierung als nachvollziehbare Vorgeschichte und verweist auf den aktuellen Ausbau.
 
+**Aktuelle Login-Präferenz:** Der einfache Einstieg verwendet E-Mail und Passwort über die bestehende Authentifizierung. Mailcodes sind eine sekundäre Option, keine Voraussetzung für diesen Ablauf. Der verknüpfte Supabase-Zugang, sein Schema und die Providerkonfiguration werden durch diese UI-Anpassung nicht verändert.
+
 ## Einstieg und Voraussetzungen
 
 | Ziel | Voraussetzung / Einstieg |

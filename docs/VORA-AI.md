@@ -2,11 +2,22 @@
 
 This service supports the consumer workspace with multi-turn orientation, explanations of document modules and suggested wording. Responses are suggestions for review. It cannot read private records, change a document, determine vaccine protection, sign, send or book anything.
 
-## Configuration
+## Current API-key configuration
 
 Set `OPENAI_API_KEY` in the server environment. Never prefix credentials with `NEXT_PUBLIC_` or commit them. Optional `VORA_AI_MODEL` overrides `OPENAI_MODEL`; the default is `gpt-4.1-mini`. Restart the server after changing its environment. No extra SDK or production dependency is required.
 
 `GET /api/vora/assistant` returns `{ configured: boolean, provider: "OpenAI" }`. This reports key presence only. It does not verify credentials, model access, account credit or provider reachability.
+
+## Requested ChatGPT sign-in path — checked 6 November 2026
+
+The user prefers signing in with an existing OpenAI account and using available credits. A separately purchased API balance is not the only supported funding path:
+
+- [Sign in with ChatGPT for local/open-source applications](https://developers.openai.com/siwc/token-sharing-open-source) supports permission to use an eligible ChatGPT plan for Responses requests. It requires the app's own OAuth registration, a stable host identity and explicit user authorization. Remotely hosted or paid applications have a separate access process; local eligibility does not establish hosted-product approval.
+- The [registration contract](https://developers.openai.com/siwc/token-sharing-open-source/sign-in) requires a loopback callback, PKCE, state/nonce validation, signature-verified identity, granted inference scopes and protected app-owned credentials. The current VORA route has not implemented this flow. Which credit type and local/hosted target the user wants remains to be confirmed.
+- The [preview request contract](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations) requires streaming and `store: false`, with a narrower supported request shape. Switching the current non-streaming API-key call to OAuth is an implementation change, not merely substituting a token.
+- Eligible Pro/Business subscriptions can [claim included API credits](https://developers.openai.com/api/docs/guides/chatgpt-api-credits) for a linked API organization. That can fund the existing API-key route without separately buying API credits while a valid allowance remains. Eligibility, activation and actual balance must be checked in the user's account; existing ChatGPT credits are not automatically an API balance.
+
+No user plan, credit balance or OAuth entitlement has been inspected or assumed. No account credentials were copied or changed. This records the supported choices and corrects the earlier implication that a separately paid API key was necessarily the only option.
 
 ## Frontend contract
 

@@ -187,6 +187,18 @@ Die [gematik-Übersicht zur ePA für alle](https://www.gematik.de/anwendungen/ep
 
 **Für diesen Ausbau:** `Open ePA information` kann ein echter externer Link sein. `Connected`, `Synced`, `Imported from ePA` oder `Verified by insurer` setzen einen tatsächlich implementierten und getesteten Anschluss voraus. Lokaler Impfpass, exportierter Entwurf, Supabase-Login und vorhandene Klinik-Demo belegen keinen ePA-Zugang. Diese Recherche prüft keine gematik-Zulassung, keine technischen Spezifikationen eines künftigen Anschlusses und keine verfügbare ePA-Impfpass-Schnittstelle. Sie empfiehlt deshalb auch keine erfundene Integration.
 
+### 6.1 Doctolib: tiefe Buchungsintegration statt Portal-Link
+
+**Nutzerkorrektur, 06.11.2026:** Gewünscht ist die visuelle und funktionale Einbindung von Arztauswahl, Verfügbarkeit und Buchung in VORA. Ein Schnelllink zum Portal erfüllt das nicht. Supabase-Einrichtung bleibt auf ausdrücklichen Nutzerwunsch außerhalb dieses Arbeitsschritts.
+
+Die [offizielle ADAC-Mitteilung vom 25.01.2024](https://media.doctolib.com/image/upload/mkg/file/doctolib_adac.pdf) belegt Arztsuche und Terminbuchung innerhalb einer ausgewählten Partner-App sowie Integration im individuellen Erscheinungsbild. Sie veröffentlicht weder einen API-Vertrag noch eine allgemeine Freigabe für VORA. Die [aktuelle Website-Button-Anleitung](https://doctolib.zendesk.com/hc/de/articles/35806670336660-Kostenfreies-Marketing-f%C3%BCr-eine-bestm%C3%B6gliche-Online-Buchungsquote-Sichtbarkeit) verwendet dagegen normale Links mit `target="_blank"`; ihre CSS-Bezeichnung `doctolib-widget` ist kein Nachweis für eingebettete Buchung.
+
+Öffentliche Leseprüfung am 06.11.2026: Die deutsche Startseite antwortete mit HTTP 200 und `X-Frame-Options: SAMEORIGIN`; diese konkrete Seite lässt sich nicht in einer fremden VORA-Origin einbetten. Das ist keine Aussage über freigegebene Partner-URLs. Das [Entwicklerportal](https://developers.doctolib.com/) antwortete mit HTTP 401 und verlangt Dokumentationszugang. Es wurden keine Zugangsdaten eingesetzt, keine privaten Endpunkte ausgewertet und keine Partnerschaftsanfrage versendet.
+
+**Benötigter Partnervertrag:** freigegebene patientenseitige Suche/Buchung in Deutschland, Sandbox und technische Dokumentation; unterstützter Embed-/SDK-/API-Weg; Rechte für Verzeichnis, echte Verfügbarkeiten und verbindliche Buchung; Authentifizierung und zugelassene Domains; dokumentierte Ereignisse für Bestätigung, Abbruch, Ablauf und Fehler. Ein normales Patientenkonto oder eine Praxis-API ist dafür nicht automatisch ausreichend.
+
+**VORA-UX:** Anlass und Ort vorbereiten → Praxis und echte Verfügbarkeit auswählen → Patient prüft und bestätigt → bestätigte Buchung anzeigen. Der lokale erste Schritt kann umgesetzt werden; die nachfolgenden Schritte bleiben ohne Partnerzugang sichtbar unverfügbar. Arztprofile, Zeiten oder Erfolgsbestätigungen werden nicht erfunden. Eine reservierte Zeit ist erst nach der dokumentierten Anbieterbestätigung eine Buchung. Die [offizielle Patientenhilfe](https://doctolibpatient.zendesk.com/hc/de/articles/360025316194-Wie-buche-ich-einen-Termin-auf-Doctolib) beschreibt zusätzliche Bedingungen wie Terminart, Standort und Bestandspatientenstatus.
+
 ## 7. Abnahme aus den Quellen
 
 1. **Originaldownload:** Die drei Dokumenttypen führen zu echten PDF-Inhalten; der Betreuungslink liefert das amtliche leere Formular. Der lokale Vollmacht-/PV-Originalstand bleibt nachvollziehbar.

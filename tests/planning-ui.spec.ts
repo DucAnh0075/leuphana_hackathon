@@ -216,6 +216,10 @@ test("login code UI guides focus and associates verification errors using simula
   });
   await page.goto("/vorsorge?view=documents");
   await expect(page).toHaveURL(url => url.pathname === "/anmelden" && url.searchParams.get("next") === "/vorsorge?view=documents");
+  await expect(page.getByRole("button", { name: "Log in", exact: true })).toBeEnabled();
+  await expect(page.getByLabel("Password", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Use an email code", exact: true }).click();
+  await expect(page.getByRole("textbox", { name: "Email address", exact: true })).toBeFocused();
   await expect(page.getByRole("button", { name: "Email me a code", exact: true })).toBeEnabled();
   await capture(page, "permission-login");
   await page.getByRole("textbox", { name: "Email address", exact: true }).fill("demo@example.test");

@@ -170,7 +170,9 @@ test("screening filters and travel preparation persist without presenting recomm
   await page.getByRole("button", { name: "Apply filters", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Mammography screening", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Prostate & genital examination", exact: true })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "Doctolib", exact: false })).toHaveAttribute("href", "https://www.doctolib.de/");
+  const appointment = page.getByRole("region", { name: "Plan an appointment", exact: true });
+  await expect(appointment).toContainText("Booking not connected");
+  await expect(appointment.getByRole("button", { name: "Choose a practice", exact: false })).toBeDisabled();
   await page.locator("#birth-year").fill(String(new Date().getFullYear() - 46));
   await page.getByRole("button", { name: "Apply filters", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Mammography screening", exact: true })).toHaveCount(0);

@@ -12,11 +12,11 @@ export default function Login({ next }: { next?: string }) {
   const [email, setEmail] = useState("");
   const [token, setToken] = useState("");
   const [password, setPassword] = useState("");
-  const [method, setMethod] = useState<"otp" | "password">("otp");
+  const [method, setMethod] = useState<"otp" | "password">("password");
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [codeError, setCodeError] = useState(false);
+  const [invalidField, setInvalidField] = useState<"code" | "password" | null>(null);
   const focusAfterUpdate = useRef<string | null>(null);
   const [message, setMessage] = useState("");
   const [retryAt, setRetryAt] = useState(0);
@@ -44,7 +44,7 @@ export default function Login({ next }: { next?: string }) {
     focusAfterUpdate.current = null;
   }, [busy, sent, method, error]);
   async function authenticate(action: "otp" | "verify" | "password") {
-    setBusy(true); setError(""); setCodeError(false); setMessage("");
+    setBusy(true); setError(""); setInvalidField(null); setMessage("");
     try {
       const response = await fetch("/api/auth", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -52,8 +52,14 @@ export default function Login({ next }: { next?: string }) {
       });
       const result = await response.json() as { ok?: boolean; code?: string };
       if (!response.ok || !result.ok) {
-        setError(consumerError(result, action === "verify" ? "This code could not be verified. Check it or request a new code." : "Login did not succeed. Check your details and try again."));
-        if (action === "verify") { setCodeError(true); focusAfterUpdate.current = "login-code"; }
+        const fallback = response.status === 429 ? "Too many attempts. Please wait a moment and try again."
+          : response.status >= 500 ? "Login is unavailable right now. Please try again later."
+          : action === "verify" ? "This code could not be verified. Check it or request a new code."
+          : action === "password" && response.status === 401 ? "Email or password is incorrect. Check your details and try again."
+          : "Login did not succeed. Check your details and try again.";
+        setError(consumerError(result, fallback));
+        if (action === "verify") { setInvalidField("code"); focusAfterUpdate.current = "login-code"; }
+        if (action === "password" && response.status === 401) { setInvalidField("password"); focusAfterUpdate.current = "login-password"; }
         return;
       }
       if (action === "otp") {
@@ -65,7 +71,7 @@ export default function Login({ next }: { next?: string }) {
     finally { setBusy(false); }
   }
   async function startDemo() {
-    setBusy(true); setError(""); setCodeError(false);
+    setBusy(true); setError(""); setInvalidField(null);
     try {
       const response = await fetch("/api/demo", { method: "POST", headers: { "Content-Type": "application/json" } });
       const result = await response.json() as { demoId?: string; code?: string };
@@ -80,17 +86,17 @@ export default function Login({ next }: { next?: string }) {
     <main id="main" className={styles.authMain}><div className={styles.authForm}>
       <Link className={styles.authBack} href="/vorsorge"><Symbol name="arrow" size={16}/>Back to VORA</Link>
       <h1>{auth?.authenticated ? "You are logged in" : sent ? "Check your email" : "Log in"}</h1>
-      <p>{auth?.authenticated ? "Continue to your existing documents and sharing." : sent ? "Enter the six-digit code sent to your registered email address." : "Use your registered email to open your documents."}</p>
+      <p>{auth?.authenticated ? "Continue to your existing documents and sharing." : sent ? "Enter the six-digit code sent to your registered email address." : method === "password" ? "Enter your email and password to open your documents." : "Get a sign-in code at your registered email address."}</p>
       {error && <div id="login-error" className={styles.notice + " " + styles.error} role="alert"><Symbol name="alert" size={18}/><span>{error}</span></div>}
       {message && <div className={styles.notice} role="status"><Symbol name="mail" size={18}/><span>{message}</span></div>}
       {!auth && !error ? <LoadingState label="Preparing login…"/> : auth?.authenticated ? <a className={styles.button} href={destination}>Continue to documents</a> : <>
         {auth && !auth.configured && <div className={styles.notice}><Symbol name="lock" size={18}/><span>Account login is not configured here. You can explore the sample workspace.</span></div>}
         <form className={styles.form} onSubmit={submit}>
-          <div className={styles.field}><label htmlFor="login-email">Email address</label><input id="login-email" className={styles.input} type="email" inputMode="email" autoComplete="email" required placeholder="name@example.com" value={email} onChange={event => setEmail(event.target.value)} readOnly={sent} disabled={busy || !auth?.configured}/></div>
-          {sent && <div className={styles.field}><label htmlFor="login-code">Verification code</label><input id="login-code" className={styles.input + " " + styles.codeInput} type="text" inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" minLength={6} maxLength={6} required aria-invalid={codeError} aria-describedby={codeError ? "login-error" : undefined} value={token} onChange={event => { setToken(event.target.value.replace(/\D/g, "").slice(0,6)); if (codeError) { setCodeError(false); setError(""); } }} placeholder="000000" disabled={busy}/></div>}
-          {!sent && method === "password" && <div className={styles.field}><label htmlFor="login-password">Password</label><input id="login-password" className={styles.input} type="password" autoComplete="current-password" required value={password} onChange={event => setPassword(event.target.value)} disabled={busy || !auth?.configured}/></div>}
+          <div className={styles.field}><label htmlFor="login-email">Email address</label><input id="login-email" name="email" className={styles.input} type="email" inputMode="email" autoComplete={method === "password" ? "username" : "email"} autoCapitalize="none" spellCheck={false} required aria-invalid={invalidField === "password"} aria-describedby={invalidField === "password" ? "login-error" : undefined} placeholder="name@example.com" value={email} onChange={event => { setEmail(event.target.value); if (invalidField === "password") { setInvalidField(null); setError(""); } }} readOnly={sent} disabled={busy || !auth?.configured}/></div>
+          {sent && <div className={styles.field}><label htmlFor="login-code">Verification code</label><input id="login-code" name="code" className={styles.input + " " + styles.codeInput} type="text" inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" minLength={6} maxLength={6} required aria-invalid={invalidField === "code"} aria-describedby={invalidField === "code" ? "login-error" : undefined} value={token} onChange={event => { setToken(event.target.value.replace(/\D/g, "").slice(0,6)); if (invalidField === "code") { setInvalidField(null); setError(""); } }} placeholder="000000" disabled={busy}/></div>}
+          {!sent && method === "password" && <div className={styles.field}><label htmlFor="login-password">Password</label><input id="login-password" name="password" className={styles.input} type="password" autoComplete="current-password" required aria-invalid={invalidField === "password"} aria-describedby={invalidField === "password" ? "login-error" : undefined} value={password} onChange={event => { setPassword(event.target.value); if (invalidField === "password") { setInvalidField(null); setError(""); } }} disabled={busy || !auth?.configured}/></div>}
           <button className={styles.button} type="submit" disabled={busy || !auth?.configured}>{busy ? "Please wait…" : sent ? "Verify code" : method === "password" ? "Log in" : "Email me a code"}</button>
-          {sent ? <div className={styles.buttonRow}><button type="button" className={styles.textButton} disabled={busy || remaining > 0} onClick={() => void authenticate("otp")}>{remaining > 0 ? "Resend in " + remaining + "s" : "Resend code"}</button><button type="button" disabled={busy} className={styles.textButton} onClick={() => { focusAfterUpdate.current = "login-email"; setSent(false); setToken(""); setMessage(""); setError(""); setCodeError(false); }}>Use another email</button></div> : <button type="button" className={styles.textButton} disabled={busy} onClick={() => { focusAfterUpdate.current = method === "otp" ? "login-password" : "login-email"; setMethod(value => value === "otp" ? "password" : "otp"); setError(""); }}>{method === "otp" ? "Use a password" : "Use an email code"}</button>}
+          {sent ? <div className={styles.buttonRow}><button type="button" className={styles.textButton} disabled={busy || remaining > 0} onClick={() => void authenticate("otp")}>{remaining > 0 ? "Resend in " + remaining + "s" : "Resend code"}</button><button type="button" disabled={busy} className={styles.textButton} onClick={() => { focusAfterUpdate.current = "login-email"; setSent(false); setToken(""); setMessage(""); setError(""); setInvalidField(null); }}>Use another email</button></div> : <button type="button" className={styles.textButton} disabled={busy} onClick={() => { focusAfterUpdate.current = method === "otp" ? "login-password" : "login-email"; setMethod(value => value === "otp" ? "password" : "otp"); setPassword(""); setError(""); setInvalidField(null); }}>{method === "otp" ? "Use a password" : "Use an email code"}</button>}
         </form>
       </>}
       <div className={styles.authChoice}><p>Want to see how it works?</p><button className={styles.button + " " + styles.secondary} disabled={busy} onClick={() => void startDemo()}>Open sample workspace</button><small>Public example data. No personal account.</small></div>
