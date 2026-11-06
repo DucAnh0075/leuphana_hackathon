@@ -60,9 +60,9 @@ test("Alle vier Kurzverweise öffnen die richtige PDF-Seite samt Bedingungen und
 test("Patientenwechsel und fremde Dokument-IDs vermischen keine Akten", async ({ page }) => {
   await openPatient(page, "Becker, Henri");
   await openSource(page);
-  await expect(page.locator(".source-evidence")).toContainText("Martin Becker");
+  await expect(page.locator(".source-evidence")).toContainText("Sie darf in allen Angelegenheiten der Gesundheitssorge");
   await expect(page.locator(".source-evidence")).not.toContainText("Jana Berger");
-  await expect(page.locator(".page-sheet .textLayer")).toContainText("Martin Becker");
+  await expect(page.locator(".page-sheet .textLayer")).toContainText("1. Gesundheitssorge");
   await page.goto("/?patient=26004179&document=26004182-vorsorge&page=2");
   await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
   await expect(page.locator(".embedded-viewer")).toHaveCount(0);
@@ -122,7 +122,7 @@ test("Mobile Ansicht erhält Patientenidentität und überschreitet die Bildschi
   await page.screenshot({ path: info.outputPath("source-mobile.png") });
 });
 
-test("Alle 32 generierten PDFs sind tatsächlich erreichbar", async ({ request }) => {
+test("Alle Akten-PDFs sind tatsächlich erreichbar", async ({ request }) => {
   for (const patient of data.patients) for (const doc of patient.documents) {
     const response = await request.get(doc.url);
     expect(response.status()).toBe(200);
@@ -136,6 +136,8 @@ test("NFC-Scan öffnet Henri Beckers Dokumente und zeigt eine Benachrichtigung",
   await page.evaluate(() => window.dispatchEvent(new CustomEvent("demo-card-scan", { detail: "demo" })));
   await expect(page.getByRole("status")).toContainText("Henri Becker");
   await expect(page.getByRole("status")).toContainText("NFC-Notfallkarte erkannt");
+  await expect(page.locator(".document-table")).toContainText("Vorsorgevollmacht (BMJ-Formular)");
+  await expect(page.locator(".document-table")).not.toContainText("Vorsorgevollmacht – Gesundheit");
   await expect(page.getByLabel("Patientenkontext")).toContainText("Becker, Henri");
   await expect(page.getByRole("tab", { name: /Dokumente/ })).toHaveAttribute("aria-selected", "true");
 });

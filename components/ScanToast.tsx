@@ -18,7 +18,7 @@ export default function ScanToast({ scan, onShowDocuments, onClose }: { scan: Sc
   const { patient } = scan;
   return <div className="scan-toast" role="status" aria-live="polite" key={scan.at}>
     <Icon name="document" />
-    <div className="scan-toast-content"><p className="scan-toast-title">NFC-Notfallkarte erkannt</p><strong>{patient.first} {patient.name}</strong><small>geb. {patient.birth} · Fall {patient.id}</small><p>{patient.documents.length} Vorsorgedokumente · Akte geöffnet</p></div>
+    <div className="scan-toast-content"><p className="scan-toast-title">NFC-Notfallkarte erkannt</p><strong>{patient.first} {patient.name}</strong><small>geb. {patient.birth} · Fall {patient.id}</small><p>{patient.documents.length} {patient.documents.length === 1 ? "Vorsorgedokument" : "Vorsorgedokumente"} · Akte geöffnet</p></div>
     <button className="icon-button" aria-label="Benachrichtigung schließen" onClick={onClose}><Icon name="close" /></button>
     <div className="scan-toast-actions"><button className="text-button" onClick={onShowDocuments}>Dokumente anzeigen</button></div>
   </div>;

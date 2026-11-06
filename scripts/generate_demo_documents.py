@@ -5,6 +5,7 @@ All pages are fictional, unsigned demonstration material, never legal forms.
 """
 from pathlib import Path
 import json, re, html
+from urllib.parse import unquote
 from reportlab.pdfgen import canvas
 from reportlab.lib.colors import HexColor
 from reportlab.lib.styles import ParagraphStyle
@@ -40,6 +41,8 @@ def text_block(c, text, y, heading=False):
 count = 0
 for patient in DATA["patients"]:
     for doc in patient["documents"]:
+        if not doc["url"].startswith("/demo-documents/"):
+            continue
         target = OUT / (doc["id"] + ".pdf")
         c = canvas.Canvas(str(target), pagesize=(W,H), invariant=1)
         c.setTitle(doc["title"] + " - " + patient["first"] + " " + patient["name"] + " - Synthetische Demo")
@@ -68,17 +71,17 @@ for patient in DATA["patients"]:
         count += 1
 
 # Validate every source link against the actual generated PDF page, not just JSON.
-norm = lambda s: re.sub(r"\s+", " ", s).strip()
+norm = lambda s: re.sub(r"\s+", " ", s.replace("­", "")).strip()
 checked = 0
 pages_checked = 0
 for patient in DATA["patients"]:
     docs = {doc["id"]: doc for doc in patient["documents"]}
     for doc in patient["documents"]:
-        pdf = fitz.open(OUT / (doc["id"]+".pdf"))
+        pdf = fitz.open(ROOT / "public" / unquote(doc["url"].lstrip("/")))
         assert len(pdf) == len(doc["pages"])
         for page in pdf:
             pages_checked += 1
-            for word in page.get_text("words"):
+            for word in page.get_text("words") if doc["url"].startswith("/demo-documents/") else []:
                 assert word[0] >= 0 and word[2] <= W+1 and word[1] >= 0 and word[3] <= H+1, (doc["id"],word)
         if patient["id"] == "26004182":
             for n, page in enumerate(pdf):
@@ -86,7 +89,7 @@ for patient in DATA["patients"]:
         pdf.close()
     for fact in patient["facts"]:
         assert fact["documentId"] in docs
-        pdf = fitz.open(OUT / (fact["documentId"]+".pdf"))
+        pdf = fitz.open(ROOT / "public" / unquote(docs[fact["documentId"]]["url"].lstrip("/")))
         page_text = norm(pdf[fact["page"]-1].get_text())
         assert norm(fact["quote"]) in page_text, (patient["id"],fact["id"],"Quote missing")
         assert norm(fact["section"]) in page_text, (patient["id"],fact["id"],"Section missing")

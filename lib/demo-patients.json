@@ -544,7 +544,7 @@
         {
           "time": "05.11.2026 09:40",
           "title": "Vorsorgedokumente eingegangen",
-          "text": "Vier Dokumente dem richtigen Fall zugeordnet. Inhaltliche Gültigkeit nicht automatisch bestätigt."
+          "text": "Zwei Dokumente von der NFC-Notfallkarte übernommen. Inhaltliche Gültigkeit nicht automatisch bestätigt."
         },
         {
           "time": "05.11.2026 08:10",
@@ -560,155 +560,55 @@
       "documents": [
         {
           "id": "26004179-vorsorge",
-          "title": "Vorsorgevollmacht – Gesundheit",
+          "title": "Vorsorgevollmacht (BMJ-Formular)",
           "kind": "Vorsorgevollmacht",
           "date": "12.06.2025",
           "received": "05.11.2026 09:40",
           "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-vorsorge.pdf",
+          "url": "/pdfs/Vorsorgevollmacht.pdf",
           "pages": [
             {
-              "heading": "Personen und Voraussetzungen",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
-                },
-                {
-                  "id": "condition",
-                  "title": "2. Voraussetzungen",
-                  "text": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann."
-                }
-              ]
+              "heading": "Personen",
+              "sections": []
             },
             {
-              "heading": "Umfang und Grenzen",
-              "sections": [
-                {
-                  "id": "scope",
-                  "title": "3. Gesundheitliche Vertretung",
-                  "text": "Martin Becker ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken."
-                },
-                {
-                  "id": "limits",
-                  "title": "4. Ausgeschlossene Angelegenheiten",
-                  "text": "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
-                },
-                {
-                  "id": "verification",
-                  "title": "5. Einordnung im Demofall",
-                  "text": "Das Dokument ist ein synthetisches Beispiel. Die Übersicht ersetzt keine Prüfung der Vollmacht, ihrer Form, Aktualität oder Anwendbarkeit. Es liegt keine echte Unterschrift und kein Nachweis einer rechtswirksamen Bevollmächtigung vor."
-                }
-              ]
+              "heading": "Gesundheitssorge und Aufenthalt",
+              "sections": []
+            },
+            {
+              "heading": "Behörden und Vermögenssorge",
+              "sections": []
+            },
+            {
+              "heading": "Weitere Befugnisse und Unterschrift",
+              "sections": []
             }
           ]
         },
         {
           "id": "26004179-patientenverfuegung",
-          "title": "Patientenverfügung",
+          "title": "Patientenverfügung (Formular Bayern)",
           "kind": "Patientenverfügung",
           "date": "18.08.2025",
           "received": "05.11.2026 09:40",
           "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-patientenverfuegung.pdf",
+          "url": "/pdfs/Patientenverfuegung.pdf",
           "pages": [
             {
-              "heading": "Behandlungssituation",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
-                },
-                {
-                  "id": "situation",
-                  "title": "2. Beschriebene Situation",
-                  "text": "Die nachfolgenden Wünsche beziehen sich ausschließlich auf einen unumkehrbaren Sterbeprozess bei fehlender eigener Einwilligungsfähigkeit. Ob diese Voraussetzungen vorliegen, ist in der jeweiligen Behandlungssituation zu prüfen."
-                }
-              ]
+              "heading": "Situationen und Behandlungswünsche",
+              "sections": []
             },
             {
-              "heading": "Wünsche und Abgrenzung",
-              "sections": [
-                {
-                  "id": "wishes",
-                  "title": "3. Behandlungswünsche",
-                  "text": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung."
-                },
-                {
-                  "id": "limits",
-                  "title": "4. Grenzen dieser Zusammenfassung",
-                  "text": "Diese Passage ist keine allgemeine Ablehnung medizinischer Maßnahmen und keine pauschale Anordnung zur Unterlassung einer Reanimation. Aus dem Kurzvermerk allein darf keine Therapieentscheidung abgeleitet werden."
-                },
-                {
-                  "id": "role",
-                  "title": "5. Rolle des Dokuments",
-                  "text": "Eine Patientenverfügung beschreibt den eigenen Behandlungswillen. Sie benennt für sich allein keine bevollmächtigte Vertretung. Synthetischer Demotext ohne rechtswirksame Erklärung."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "26004179-betreuung",
-          "title": "Betreuungsverfügung",
-          "kind": "Betreuungsverfügung",
-          "date": "12.06.2025",
-          "received": "05.11.2026 09:40",
-          "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-betreuung.pdf",
-          "pages": [
+              "heading": "Ablehnungen und Hinweise",
+              "sections": []
+            },
             {
-              "heading": "Wunsch für eine mögliche Betreuung",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
-                },
-                {
-                  "id": "nomination",
-                  "title": "2. Gewünschte Betreuungsperson",
-                  "text": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Becker als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht."
-                },
-                {
-                  "id": "limits",
-                  "title": "3. Grenzen der Benennung",
-                  "text": "Eine gerichtliche Bestellung wird in diesem Demofall weder behauptet noch nachgewiesen. Der Wunsch ist kein Nachweis einer bereits bestehenden Betreuung."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "26004179-auskunft",
-          "title": "Auskunft & Schweigepflichtentbindung",
-          "kind": "Auskunftsvollmacht",
-          "date": "03.11.2026",
-          "received": "05.11.2026 09:40",
-          "status": "Dokumentiert",
-          "url": "/demo-documents/26004179-auskunft.pdf",
-          "pages": [
+              "heading": "Vertrauenspersonen",
+              "sections": []
+            },
             {
-              "heading": "Information und Kommunikation",
-              "sections": [
-                {
-                  "id": "identity",
-                  "title": "1. Personen und Zuordnung",
-                  "text": "Fiktive Person: Henri Becker, geboren am 22.08.1952. Fallnummer 26004179. Benannte Kontaktperson: Martin Becker (Sohn). Kontaktdaten: +49 (0)000 201 01 (nicht anwählbare Demorufnummer)."
-                },
-                {
-                  "id": "information",
-                  "title": "2. Umfang der Auskunft",
-                  "text": "Martin Becker darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen."
-                },
-                {
-                  "id": "time",
-                  "title": "3. Zeitliche und sachliche Begrenzung",
-                  "text": "Beschränkt auf den aktuellen stationären Aufenthalt, längstens bis 31.12.2026. Keine Weitergabe an weitere Personen und keine Auskünfte zu nicht zugehörigen älteren Behandlungsfällen."
-                }
-              ]
+              "heading": "Widerruf und Unterschrift",
+              "sections": []
             }
           ]
         }
@@ -718,60 +618,60 @@
           "id": "vertretung",
           "label": "Gesundheitsvertretung",
           "value": "Martin Becker",
-          "condition": "Nur soweit die betroffene Person ihre gesundheitlichen Angelegenheiten nicht selbst besorgen kann.",
+          "condition": "Vollmacht wirkt nur, solange Martin Becker die Vollmachtsurkunde besitzt und im Original vorlegen kann.",
           "exclusions": [
-            "Wohnungsauflösung und finanzielle Angelegenheiten sind nicht umfasst."
+            "Ärztliche Zwangsmaßnahmen und die Verbringung zu deren Durchführung sind im Formular mit „nein“ angekreuzt."
           ],
           "person": "Martin Becker",
           "documentId": "26004179-vorsorge",
           "page": 2,
-          "section": "3. Gesundheitliche Vertretung",
-          "quote": "Martin Becker ist im fiktiven Demofall für Gesundheitsangelegenheiten benannt: ärztliche Aufklärung entgegennehmen, Behandlungsunterlagen einsehen und an Entscheidungen über Untersuchungen und Behandlungen mitwirken.",
+          "section": "1. Gesundheitssorge/Pflegebedürftigkeit",
+          "quote": "Sie darf in allen Angelegenheiten der Gesundheitssorge entscheiden, ebenso über alle Einzelheiten einer ambulanten oder (teil-)stationären Pflege.",
           "category": "representation"
         },
         {
           "id": "wille",
           "label": "Behandlungswünsche",
-          "value": "Situationsgebunden",
-          "condition": "Nur im beschriebenen unumkehrbaren Sterbeprozess bei fehlender Einwilligungsfähigkeit.",
+          "value": "Lindernde Behandlung",
+          "condition": "Nur im unmittelbaren Sterbeprozess oder im Endstadium einer unheilbaren, tödlich verlaufenden Krankheit (Nr. 1 angekreuzt).",
           "exclusions": [
-            "Keine pauschale Reanimations- oder Therapieanordnung."
+            "Gehirnschädigung und fortgeschrittene Demenz sind nicht angekreuzt; künstliche Ernährung ist nicht abgelehnt."
           ],
           "person": "",
           "documentId": "26004179-patientenverfuegung",
-          "page": 2,
-          "section": "3. Behandlungswünsche",
-          "quote": "Für den beschriebenen Fall eines unumkehrbaren Sterbeprozesses wünsche ich eine auf Linderung von Schmerzen, Atemnot und Angst ausgerichtete Begleitung.",
+          "page": 1,
+          "section": "2. In allen unter Nummer 1 beschriebenen und angekreuzten Situationen verlange ich",
+          "quote": "Lindernde pflegerische Maßnahmen, insbesondere Mundpflege zur Vermeidung des Durstgefühls, sowie lindernde ärztliche Maßnahmen, im Speziellen Medikamente zur wirksamen Bekämpfung von Schmerzen, Luftnot, Angst, Unruhe, Erbrechen und anderen Krankheitserscheinungen.",
           "category": "wishes"
         },
         {
           "id": "betreuung",
           "label": "Betreuungswunsch",
           "value": "Martin Becker",
-          "condition": "Erst relevant, falls eine gerichtliche Betreuung erforderlich wird.",
+          "condition": "Erst relevant, falls trotz Vollmacht eine rechtliche Betreuung erforderlich wird.",
           "exclusions": [
-            "Keine gerichtliche Bestellung dokumentiert; keine unmittelbare Vertretungsmacht."
+            "Keine gerichtliche Bestellung dokumentiert."
           ],
           "person": "Martin Becker",
-          "documentId": "26004179-betreuung",
-          "page": 1,
-          "section": "2. Gewünschte Betreuungsperson",
-          "quote": "Sollte eine gerichtliche Betreuung erforderlich werden, wünsche ich Martin Becker als Betreuungsperson. Diese Benennung allein erteilt keine Vertretungsmacht.",
+          "documentId": "26004179-vorsorge",
+          "page": 4,
+          "section": "8. Betreuungsverfügung",
+          "quote": "Falls trotz dieser Vollmacht eine gesetzliche Vertretung („rechtliche Betreuung“) erforderlich sein sollte, bitte ich, die oben bezeichnete Vertrauensperson als Betreuer zu bestellen.",
           "category": "care"
         },
         {
           "id": "auskunft",
           "label": "Auskunftsrecht",
           "value": "Martin Becker",
-          "condition": "Aktueller Aufenthalt; längstens bis 31.12.2026.",
+          "condition": "Behandelnde Ärzte und Pflegepersonal sind gegenüber Martin Becker von der Schweigepflicht entbunden.",
           "exclusions": [
-            "Keine Behandlungsentscheidungen und keine Weitergabe an Dritte."
+            "Vermögensangelegenheiten sind nicht umfasst."
           ],
           "person": "Martin Becker",
-          "documentId": "26004179-auskunft",
-          "page": 1,
-          "section": "2. Umfang der Auskunft",
-          "quote": "Martin Becker darf Auskünfte zu meinem aktuellen stationären Aufenthalt und die zugehörigen Behandlungsunterlagen erhalten. Diese Auskunftsberechtigung erlaubt keine Entscheidung über medizinische Maßnahmen.",
+          "documentId": "26004179-vorsorge",
+          "page": 2,
+          "section": "1. Gesundheitssorge/Pflegebedürftigkeit",
+          "quote": "Sie darf Krankenunterlagen einsehen und deren Herausgabe an Dritte bewilligen.",
           "category": "information"
         }
       ]

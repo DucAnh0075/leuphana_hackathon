@@ -58,10 +58,10 @@ Jede Akte enthält vier verschiedene Dokumentarten: Vorsorgevollmacht für Gesun
 ### Daten und Belegkette
 
 - `lib/demo-patients.json`: gemeinsamer, editierbarer synthetischer Quelldatensatz.
-- `public/demo-documents/`: 32 eigens erzeugte PDF-Dokumente mit insgesamt 48 Seiten.
+- `public/demo-documents/`: 28 synthetische PDFs; hinzu kommen Henri Beckers zwei ausgefüllte amtliche Formulare in `public/pdfs/`.
 - `scripts/generate_demo_documents.py`: reproduzierbare PDF-Erzeugung; prüft jeden der 32 Kurzverweise gegen Text und Abschnitt auf der tatsächlichen PDF-Seite.
 
-Alle Personen, Kontaktdaten, Messwerte und Dokumenterklärungen sind erfunden. Die Dokumente sind als synthetisch und nicht rechtswirksam gekennzeichnet. Angezeigte Daten sind Demonstrationsinhalt, keine klinischen Empfehlungen oder automatisch rechtlich geprüften Befugnisse. Die Informationen sind für die Vorführung bereits im KIS vorhanden; es besteht keine echte Krankenhaus- oder NFC-Anbindung. Der ursprüngliche Supabase-Adapter bleibt im Repository erhalten, beliefert diese synthetische Demo jedoch nicht.
+Alle Personen, Kontaktdaten, Messwerte und Dokumenterklärungen sind erfunden. Die Dokumente sind als synthetisch und nicht rechtswirksam gekennzeichnet. Angezeigte Daten sind Demonstrationsinhalt, keine klinischen Empfehlungen oder automatisch rechtlich geprüften Befugnisse. Die Informationen sind für die Vorführung bereits im KIS vorhanden; es besteht keine echte Krankenhaus- oder NFC-Anbindung. Henri Beckers Karten-Dokumente werden über den Supabase-Adapter geladen.
 
 ### Lokal starten und prüfen
 
@@ -82,3 +82,13 @@ PDF-Daten nach Änderungen neu erzeugen (Python-Entwicklungswerkzeuge, nicht fü
 python -m pip install reportlab pymupdf
 python scripts/generate_demo_documents.py
 ```
+
+## Karten-Dokumente (Henri Becker)
+
+Die Vorlagen liegen in `content/pdfs/`, ihre Quellen in `content/QUELLEN.md`.
+`python scripts/fill_card_documents.py` erzeugt mit PyMuPDF die fiktiv ausgefüllten,
+unsignierten Formulare `public/pdfs/Vorsorgevollmacht.pdf` und
+`public/pdfs/Patientenverfuegung.pdf`. Beide mit genau diesen Dateinamen in den
+Supabase-Storage-Bucket `documents` hochladen. Beim Scan wird die Liste neu geladen;
+die Akte zeigt genau die Bucket-PDFs. Hinweise werden anhand des Dateinamens
+zugeordnet. Bei nicht verfügbarem Bucket dienen die PDFs in `public/pdfs/` als Fallback.
